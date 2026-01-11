@@ -1,0 +1,858 @@
+<html lang="en" dir="ltr" data-locale="US"><head>
+<script>
+if(window&&!("Promise"in window)){var xhr=new XMLHttpRequest;xhr.open("GET",'/media/shared/js/promise.js',false);xhr.onerror=function(){console.log(xhr.statusText)};xhr.send("");eval(xhr.responseText);}
+</script> <script>window.usingBordeauxAds = true</script>
+<!-- Consent Manager Tag : Stubbed (minified) (updated 2018-04-27T17:00) -->
+<script type="text/javascript">
+/*! CMP 2.18.0 Copyright 2018 Oath Holdings, Inc. */
+!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=2)}({2:function(e,t){!function(){var e=!1;function t(e){var t="string"==typeof e.data,n=e.data;if(t)try{n=JSON.parse(e.data)}catch(e){}if(n&&n.__cmpCall){var r=n.__cmpCall;window.__cmp(r.command,r.parameter,function(n,o){var a={__cmpReturn:{returnValue:n,success:o,callId:r.callId}};e&&e.source&&e.source.postMessage(t?JSON.stringify(a):a,"*")})}}"function"==typeof __cmp||(window.__cmp=function(){var t=arguments;if(__cmp.a=__cmp.a||[],!t.length)return __cmp.a;"ping"===t[0]?t[2]({gdprAppliesGlobally:e,cmpLoaded:!1},!0):__cmp.a.push([].slice.apply(t))},function e(){if(document.body&&document.body.firstChild){var t=document.body,n=document.createElement("iframe");n.style.display="none",n.height=n.width=0,n.name="__cmpLocator",t.insertBefore(n,t.firstChild)}else setTimeout(e,5)}(),window.addEventListener?window.addEventListener("message",t,!1):window.attachEvent("onmessage",t))}()}});
+</script>
+<!-- End Consent Manager Tag : Stubbed (minified) -->
+<script>
+window.askForConsent = true;
+window.waitForConsent = true;
+window.indexExchangeEnabled = true;
+window.amazonA9Enabled = true;
+window.rampS2SEnabled = null;
+window.iasOptimiseEnabled = true;
+window.bluekaiEnabled = true;
+window.cmpConfig = {"gdprAppliesGlobally":false,"uiUrl":"https:\/\/consent.cmp.livescience.com\/cmpui.html"};
+/*! begin dom-promises (v1.0.0) */
+(function(){function v(a){n||(n=!0,w.forEach(m(a)))}function x(a){p||(p=!0,y.forEach(m(a)))}function g(){return q&&q.now&&q.now()||0}function m(){for(var a=arguments.length,c=Array(a),b=0;b<a;b++)c[b]=arguments[b];return function(a){return a.apply(void 0,c)}}function B(a){"cmp_request_translation_data"===a.data&&Promise.resolve(window.reliablePageLoad).then(function(){var a=window.__translator.trans;a={tag:"cmp_translations_data",main:{heading:a("cmp_main_heading"),description:a("cmp_main_description"),
+btnAccept:a("cmp_main_btn_accept"),btnMoreInfo:a("cmp_main_btn_moreinfo")},confirm:{heading:a("cmp_confirm_heading"),description:a("cmp_confirm_description"),btnGoBack:a("cmp_confirm_btn_goback"),btnLeave:a("cmp_confirm_btn_leave")},purposes:{heading:a("cmp_purposes_heading"),description:a("cmp_purposes_description"),btnAcceptAll:a("cmp_purposes_btn_acceptall"),btnRejectAll:a("cmp_purposes_btn_rejectall"),btnSave:a("cmp_purposes_btn_save"),btnAndContinue:a("cmp_purposes_btn_andcontinue"),btnAndContinueShort:a("cmp_purposes_btn_andcontinueshort"),
+list:{1:a("cmp_purposes_list_1"),"1_description":a("cmp_purposes_list_1_description"),2:a("cmp_purposes_list_2"),"2_description":a("cmp_purposes_list_2_description"),3:a("cmp_purposes_list_3"),"3_description":a("cmp_purposes_list_3_description"),4:a("cmp_purposes_list_4"),"4_description":a("cmp_purposes_list_4_description"),5:a("cmp_purposes_list_5"),"5_description":a("cmp_purposes_list_5_description")}},vendors:{heading:a("cmp_vendors_heading"),description:a("cmp_vendors_description"),btnAcceptAll:a("cmp_vendors_btn_acceptall"),
+btnRejectAll:a("cmp_vendors_btn_rejectall"),btnSave:a("cmp_vendors_btn_save"),btnBack:a("cmp_vendors_btn_back"),privacyPolicy:a("cmp_vendors_privacy_policy")}};document.getElementById("cmp-ui-iframe").contentWindow.postMessage(a,"*")});"cmp_request_ffte_data"===a.data&&Promise.resolve(window.reliablePageLoad).then(function(){var a={tag:"cmp_ffte_data",ffte:window.ffte||{}};document.getElementById("cmp-ui-iframe").contentWindow.postMessage(a,"*")})}function C(a,c,b){a.performance&&a.performance.timing&&
+Date.now();a.__cmp("init",a.cmpConfig);a.__cmp("getVendorConsents",null,function(e,D){D?(c({askedForConsent:!0,consent:e}),a.reliablePageLoad.then(function(){if(e.gdprApplies&&.33>Math.random()){var b=E(e.vendorConsents);a.ga&&a.ga("send","event","CMP","getVendorConsents",b.label,b.consented,{nonInteraction:!0,dimension123:b.consented})}})):b(Error("Failed to get vendor consents"))})}function F(a,c,b){function e(a,b){return null===b||void 0===b?a:b}JSON.parse(e("true",h("mock_consent_success")(a)))?
+(b=parseInt(h("mock_consent_timeout")(a),10),a={askedForConsent:!0,consent:{gdprApplies:JSON.parse(e("true",h("mock_gdpr_applies")(a))),hasGlobalScope:JSON.parse(e("false",h("mock_has_global_scope")(a))),metadata:"AAAAAAA",purposeConsents:JSON.parse(e(JSON.stringify({1:!0,2:!0,3:!0,4:!0,5:!0}),h("mock_purpose_consents")(a))),vendorConsents:JSON.parse(e("{}",h("mock_vendor_consents")(a)))}},isNaN(b)?c(a):setTimeout(c,b,a)):b(Error("Failed to get vendor consents"))}function E(a){var c=1<arguments.length&&
+void 0!==arguments[1]?arguments[1]:"none";if(!(a instanceof Object))return a?{label:"all",total:0,consented:0}:{label:c,total:0,consented:0};var b=G(a);b.label=0===b.total?"n/a":0===b.consented?c:b.consented===b.total?"all":"some";return b}function G(a){if(!(a instanceof Object))return{total:0,consented:0};var c=Object.keys(a),b=c.length;c=c.filter(function(b){return a[b]}).length;return{total:b,consented:c}}function r(a){return function(c){return 0<=c.location.search.indexOf(a)}}function h(a){return function(c){return z(a,
+c.location.search)}}function z(a,c){var b=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"\x26";if(""===a)return!1;var e=c.indexOf(a+"\x3d");return 0<=e?(e=c.indexOf("\x3d",e),b=c.indexOf(b,e+1),0<=b?c.substring(e+1,b):c.substring(e+1)):!1}function H(a){return a.split("").map(function(a){return I(J.call(a,0)-1)}).join("")}var K=function(a){return a.split("").map(function(a){return String.fromCharCode(a.charCodeAt(0)+1)}).join("")}("sp.blocking"),f=String,I=f.fromCharCode,J=f.prototype.charCodeAt,
+d=window,A=d.document,q=d.performance;f=d.Promise;var t=g();performance.mark("DOMPromises - Initialising");d.resolveFEP=null;d.processFEP=f?new f(function(a){d.resolveFEP=a}):{then:function(){}};var k=!(-1<window.location.href.indexOf("disable_dom_promise_timeouts")),p=!1,y=[];k&&setTimeout(function(){return x({timeStamp:g()})},5E3);A.addEventListener("DOMContentLoaded",x);d.reliableDOMContentLoaded=f?new f(function(a){k&&setTimeout(function(){return a({timeStamp:g()})},5E3);A.addEventListener("DOMContentLoaded",
+a)}):{then:function(a){p?a():y.push(a)}};d.reliableDOMContentLoaded.then(function(a){console.log("DOMContentLoaded at",a.timeStamp-t|0)});var n=!1,w=[];k&&setTimeout(function(){return v({timeStamp:g()})},7E3);d.addEventListener("load",v);d.reliablePageLoad=f?new f(function(a){k&&setTimeout(function(){return a({timeStamp:g()})},7E3);d.addEventListener("load",a)}):{then:function(a){n?a():w.push(a);return d.reliablePageLoad},catch:function(){return d.reliablePageLoad}};d.reliablePageLoad.then(function(a){console.log("PageLoad at",
+a.timeStamp-t|0)});var l=!1,u=[];k&&setTimeout(function(){var a={timeStamp:g()};l||(l=!0,u.forEach(m(a)))},1E4);d.resolveBordeauxDone=function(){var a={timeStamp:g()};l||(l=!0,u.forEach(m(a)))};d.bordeauxDone=f?new f(function(a){k&&setTimeout(function(){return a({timeStamp:g()})},1E4);d.resolveBordeauxDone=function(){return a({timeStamp:g()})}}):{then:function(a){l?a():u.push(a)}};d.bordeauxDone.then(function(a){console.log("BordeauxDone at",a.timeStamp-t|0)});(function(a){var c=a.Promise;a.addEventListener("message",
+B,!1);a.reliableConsentGiven=c?c.resolve(a.reliableDOMContentLoaded).then(function(){return new c(function(b,c){r("force_clear_consent")(a)&&(document.cookie="EuConsent\x3d; path\x3d/; Max-Age\x3d0",document.cookie="cmp\x3d; path\x3d/; Max-Age\x3d0",document.cookie="TestingHideEUConsent\x3d; path\x3d/; Max-Age\x3d0");r("force_hide_consent")(a)&&(document.cookie="TestingHideEUConsent\x3dtrue;");var e=r("mock_consent")(a);"true"===z("TestingHideEUConsent",document.cookie,";")?b({askedForConsent:!1}):
+e?F(a,b,c):a.askForConsent?C(a,b,c):b({askedForConsent:!1})})}):{then:function(){}};a.reliableConsentGiven.then(function(){a.bdx&&a.bdx.metrics&&a.bdx.metrics.mark("Reliable consent")});a.reliableConsentGiven.then(function(b){b.askedForConsent&&b.consent.gdprApplies&&a.reliablePageLoad.then(function(){var b=a.document.querySelector("#document-footer-content \x3e nav \x3e ul");if(b){var c=a.document.createElement("a");c.addEventListener("click",function(){a.__cmp("renderConsents",function(){})});c.href=
+"#";c.textContent=a.__translator.trans("cmp_footer_link");var d=a.document.createElement("li");d.appendChild(c);b.appendChild(d)}if(b=a.document.querySelector("ul.footer__listcontainer"))c=a.document.createElement("a"),c.className="footer__link",c.addEventListener("click",function(){a.__cmp("renderConsents",function(){})}),c.href="#",c.textContent=a.__translator.trans("cmp_footer_link"),d=a.document.createElement("li"),d.className="footer__list-item",d.appendChild(c),b.appendChild(d);if(b=a.document.querySelector("#gawker-contact-block ul"))c=
+a.document.createElement("a"),c.className="is-reversed",c.addEventListener("click",function(){a.__cmp("renderConsents",function(){})}),c.href="#",c.textContent=a.__translator.trans("cmp_footer_link"),d=a.document.createElement("li"),d.appendChild(c),b.appendChild(d)})})})(d);(function(){var a=window,c=a.document,b=a.Promise;a.wadoinawdoijzxioznelknsdf=b?new b(function(a){var b=parseInt(h("mock_tiberius")(window),10);isNaN(b)||setTimeout(a,b,!0);c.addEventListener(H(K),function(){a(!0)})}):{then:function(){}}})()})();
+/*! end dom-promises (v1.0.0) */</script>
+<script>
+window.hawk_css_endpoint = "https://widgets.fie-data.co.uk";
+</script>
+<script id="hawk-script">
+function loadHawk(src) {
+!function (e, f, u) {
+e.async = 1;
+e.src = u;
+f.parentNode.insertBefore(e, f);
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+src);
+}
+window.reliableDOMContentLoaded.then(function() {
+loadHawk("https://widgets.fie-data.co.uk/js/w/livescience.js");
+});
+</script>
+<link rel="preload" href="https://widgets.fie-data.co.uk/js/w/livescience.js" as="script">
+<script>
+window.adParameters = {
+site: 'livescience',
+content: 'unknown',
+type: 'standard',
+};
+</script>
+<script>window.gaCookieSet=/(?:^|;\\s*)_ga/.test(document.cookie);</script>
+<script>window.vanilla = window.vanilla || {}</script>
+<script>'use strict';(function(){function g(c,a){return function(){return setTimeout(c,a)}}function h(c,a,b){b=void 0===b?function(){}:b;return function(){var d=c.createElement("script"),e=c.getElementsByTagName("script")[0],f=k({},a,{async:1});Object.keys(f).forEach(function(a){return d.setAttribute(a,f[a])});e.parentNode.insertBefore(d,e);b()}}var k=Object.assign||function(c){for(var a=1;a<arguments.length;a++){var b=arguments[a],d;for(d in b)Object.prototype.hasOwnProperty.call(b,d)&&(c[d]=b[d])}return c};
+window.vanilla.addJs=function(c,a,b,d){b=void 0===b?!1:b;c=h(document,c,d);a=null!==a?g(c,a):c;b?window.reliablePageLoad.then(a):a()}})();</script>
+<script>'use strict';(function(){function f(a,d){return function(){var c=a.createElement("link"),b=g({},d,{rel:"stylesheet",type:"text/css"});Object.keys(b).forEach(function(a){return c.setAttribute(a,b[a])});var e=a.getElementsByTagName("head")[0];e.parentNode.insertBefore(c,e)}}var g=Object.assign||function(a){for(var d=1;d<arguments.length;d++){var c=arguments[d],b;for(b in c)Object.prototype.hasOwnProperty.call(c,b)&&(a[b]=c[b])}return a},h=window.requestAnimationFrame||window.webkitRequestAnimationFrame||
+window.mozRequestAnimationFrame||window.msRequestAnimationFrame||function(a){return window.reliablePageLoad.then(a)};window.vanilla.addCss=function(a){return h(f(document,a))}})();</script>
+<link rel="amphtml" href="https://www.livescience.com/amp/most-detailed-universe-simulation.html">
+<script>
+function handleHeaderError() {
+if (window.amIIE && !window.amIIE()) {
+window.wadoinawdoijzxioznelknsdf.then(function () {
+window._sp_ = window._sp_ || {};
+window._sp_.config = window._sp_.config || {};
+if (window._sp_.bootstrap && !window.headerExecuted) {
+window._sp_.bootstrap('//vanilla.futurecdn.net/livescience/145481/media/js/header/header.js');
+}
+})
+}
+}
+</script>
+<script>
+window.bordeaux = window.bordeaux || {};
+window.bordeaux.cmd = window.bordeaux.cmd || [];
+window.bordeaux.cmd.push(function(){
+window.bordeaux.setPlacement(null);
+});
+</script>
+<script defer src="//vanilla.futurecdn.net/livescience/145481/media/js/header/header.js" onerror="handleHeaderError()" crossorigin="anonymous"></script>
+<!-- tag factory //-->
+<meta charset="utf-8">
+<link rel="dns-prefetch" href="//cdn.mos.cms.futurecdn.net">
+<meta data-static-host="//vanilla.futurecdn.net/livescience/145481" id="static-host-pattern">
+<script async="1" src="https://consent.cmp.oath.com/cmp3p.js"></script>
+<meta id="gpt-api-script-location" data-src="//securepubads.g.doubleclick.net/tag/js/gpt.js">
+<meta id="index-exchange-script-location" data-src="//js-sec.indexww.com/ht/p/184056-45544352601794.js">
+<meta id="amazon-a9-script-location" data-src="//c.amazon-adsystem.com/aax2/apstag.js">
+<meta id="ias-optimise-script-location" data-src="//cdn.adsafeprotected.com/iasPET.1.js">
+<meta id="bluekai-script-location" data-src="//tags.bkrtx.com/js/bk-coretag.js">
+<script>
+var vanFontLoader=function(e){if("undefined"==typeof e||"object"!=typeof e)return!1;var t=document.getElementsByTagName("head")[0],n=function(e,n){var o=document.createElement("style");o.type="text/css","undefined"!=typeof n&&(o.id=n,o.classList.add("font-style")),o.styleSheet?o.styleSheet.cssText=e:o.appendChild(document.createTextNode(e)),t.appendChild(o)},o=function(){"undefined"!=typeof e.hideKey&&n(e.hideKey+"{visibility:visible}")};if("undefined"!=typeof e.hideKey&&n(e.hideKey+"{visibility:hidden}"),"undefined"!=typeof e.fontKey&&"undefined"!=typeof e.staticHost&&"undefined"!=typeof e.version&&"undefined"!=typeof e.woff2Version){var i=e.fontKey,a=e.version,f=e.woff2Version,r=e.staticHost,d="woff",s=!1;f&&(s=function(e){if(!("FontFace"in e))return!1;var t=new e.FontFace("t",'url( "data:application/font-woff2," ) format( "woff2" )',{});try{var n=t.load();"undefined"!=typeof n.then&&n.then(function(){},function(){})}catch(o){return!1}return"loading"==t.status}(window)),s?d="woff2":navigator.userAgent.indexOf("Android")>-1&&(d="ttf");var c="vanFont-"+i+"-"+d,u=c+".json",y=function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+r+"/"+a+"/media/fonts/json/"+u,t.appendChild(e)},l=!1,v=!1;try{if(l=localStorage.getItem(c)){var v=JSON.parse(l);v.version!=a&&(localStorage.removeItem(c),v=!1)}}catch(p){console.error("Error when parsing font in vanFontLoader",p)}v&&"undefined"!=typeof v.value?(n(v.value,i),o()):y()}this.store=function(e){e.version=a;var t=JSON.stringify(e);localStorage.setItem(c,t),n(e.value),o()}}; try {
+var OpenSans_vanFontLoader = new vanFontLoader({fontKey: 'OpenSans', version: 1, woff2Version: true, staticHost: 'vanilla.futurecdn.net/livescience' });
+var livescience_vanFontLoader = new vanFontLoader({fontKey: 'livescience', version: 1, woff2Version: false, staticHost: 'vanilla.futurecdn.net/livescience' ,hideKey: '.icon' });
+} catch(e) {
+console.warn('Failed to load fonts: '+ e.message);
+}
+</script>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta content="" name="news_keywords">
+<title>Physicists Just Created the Most Detailed Simulation of the Universe in History | Live Science</title>
+<meta name="pub_date" content="2019-11-19T12:48:14+00:00">
+<meta name="description" content="An international team of scientists has created the most detailed large-scale model of the universe to date, a simulation they call TNG50.">
+<link rel="canonical" href="https://www.livescience.com/most-detailed-universe-simulation.html">
+<style id="critical-styles">.newsletter-signup,.mag-banner-wrap,.popular-box{display:none;}html,body,div,span,iframe,h1,h2,h3,h4,p,a,abbr,img,small,i,ul,li,form{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}label{padding:0;border:0;font:inherit;font-size:100%}label,table{vertical-align:baseline}table,caption{margin:0;padding:0;border:0;font:inherit;font-size:100%}tbody,thead,tr{vertical-align:baseline}tbody,thead,tr,th,td{margin:0;padding:0;border:0;font:inherit;font-size:100%}article,aside,figure,figcaption,footer,header,nav,section,time{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:400;vertical-align:middle}a img{border:none}article,aside,figcaption,figure,footer,header,nav,section{display:block}.container{margin:auto}.container:after{content:"";display:table;clear:both}.container.full{clear:both;max-width:100%}@media screen and (min-width:1000px){.container.full{max-width:970px}}@media screen and (min-width:1574px){.container.full{max-width:1200px}body.limit-width .container.full{max-width:970px}}#main{background:#fff;outline:none}#sidebar{width:100%}@media screen and (min-width:1000px){#sidebar{width:300px;margin-top:.875em}}@media only screen and (min-width:700px){html{font-size:100%}}html{font-family:"Open Sans",Arial,sans-serif;color:#333}h1,h2,h3,h4{font-weight:700}.block-link{display:block;position:relative;color:#333;background:#ddd;line-height:22px;padding:11px 12px;margin:0 12px 12px 0;text-align:center;font-size:14px;font-weight:600;text-transform:uppercase}.block-link .chunk{display:inline-block;vertical-align:middle;max-width:80%}.block-link:hover{color:#333;text-decoration:none;background:#666}.block-link:visited{color:#333;text-decoration:none}.block-link.full{width:-webkit-calc(100% - 24px);width:calc(100% - 24px)}.separator-heading{border-top:1px solid #ccc;border-bottom:1px solid #ccc}.news-article header h1{font-weight:600;font-size:24px;line-height:30px;margin-bottom:.25rem}@media (min-width:700px){.news-article header h1{margin-bottom:.5rem;font-size:28px;line-height:34px}}@media (min-width:1574px){.news-article header h1{margin-bottom:.75rem;font-size:34px;line-height:42px}body.limit-width .news-article header h1{margin-bottom:.5rem;font-size:28px;line-height:34px}}.news-article header h2{font-size:18px;line-height:26px;font-weight:300;margin-bottom:20px}@media (min-width:1000px){.news-article header h2{font-size:20px;line-height:28px}}@media (min-width:1574px){.news-article header h2{font-size:24px;line-height:30px}body.limit-width .news-article header h2{font-size:20px;line-height:28px}}.fallback{display:none}.icon:before{font-family:"livescience",arial;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style:normal;font-variant:normal;font-weight:400;text-decoration:none;text-transform:none}.icon-arrow-down:before{content:"\f104"}.icon-arrow-right:before{content:"\f106"}.icon-envelope-solid:before{content:"\f11b"}.icon-envelope:before{content:"\f11c"}.icon-facebook:before{content:"\f11e"}.icon-filled-envelope:before{content:"\f11f"}.icon-flipboard:before{content:"\f120"}.icon-google-plus:before{content:"\f122"}.icon-home:before{content:"\f123"}.icon-instagram:before{content:"\f124"}.icon-search:before{content:"\f12c"}.icon-twitter:before{content:"\f133"}.icon-whats-app:before{content:"\f135"}.icon-youtube:before{content:"\f136"}.icon-circle{border-radius:50%;display:block}.media-list{margin-top:1rem}.media-list li{-webkit-box-sizing:border-box;box-sizing:border-box;margin-bottom:1rem;float:left;width:100%}@media (min-width:575px){.media-list li{width:50%}}.media-list li a{float:left;width:100%;color:#333;text-decoration:none}.media-list li a:hover{text-decoration:underline}.media-list li img,.media-list li h4{-webkit-box-sizing:border-box;box-sizing:border-box;float:left;width:50%;text-transform:none;padding-right:20px;font-weight:300;line-height:24px;font-size:16px}.media-list li:nth-child(odd){clear:both}.news-article{position:relative}.news-article .box>img{width:100%}.news-article .text-copy{clear:both;position:relative;word-break:break-word;margin-bottom:40px}.news-article .text-copy p,.news-article .text-copy img{width:100%;height:auto}.news-article .text-copy img.lft{width:auto}.news-article .text-copy figure{margin-bottom:1em}.news-article .text-copy p{font-size:16px;line-height:1.5;margin-bottom:1em}.news-article .text-copy figcaption{font-size:13px;line-height:16px;color:#ccc}.news-article .text-copy>*:last-child{margin-bottom:0}@media (min-width:1000px){.news-article{float:left;max-width:650px}}@media (min-width:1574px){.news-article{max-width:832px}body.limit-width .news-article{max-width:650px}}.news-article footer{clear:both}.news-article header{margin-top:30px}.news-article header .byline{clear:both;line-height:23px;margin-bottom:.625rem;font-size:13px}@media (min-width:1000px){.news-article header .byline{margin-bottom:.5rem}}@media (min-width:1574px){.news-article header .byline{margin-bottom:.75rem}}.news-article header .byline .chunk{margin-right:1ex}.news-article header,.news-article section,.news-article footer,.news-article .partner-banner{margin-left:20px;margin-right:20px}.news-article footer #article-comments{margin:2em 0 0;overflow:visible;width:100%}@media (min-width:1000px){.news-article header,.news-article section,.news-article footer,.news-article .partner-banner{margin-left:1.5em;margin-right:1.5em}}@media (min-width:1574px){.news-article header,.news-article section,.news-article footer,.news-article .partner-banner{margin-left:125px;margin-right:70px}body.limit-width .news-article header,body.limit-width .news-article section,body.limit-width .news-article footer,body.limit-width .news-article .partner-banner{margin-left:1.5em;margin-right:1.5em}}.news-article header,.news-article section{overflow:visible}.no-sidebar .news-article{max-width:100%!important}#article-body figure,article figure{margin-bottom:15px}#article-body figure p.vanilla-image-block,article figure p.vanilla-image-block{line-height:0;margin-bottom:15px}#article-body figure p.vanilla-image-block,#article-body figure figcaption,article figure p.vanilla-image-block,article figure figcaption{display:inline-block}#article-body figure figcaption,article figure figcaption{width:100%}figure{position:relative}figure img{top:0;left:0}img.lft{float:left;margin:0 20px 10px 0;width:auto}.dfp-leaderboard-container{margin:auto;max-width:970px;height:auto}.dfp-leaderboard-container:empty{display:none}#burgerbar-none{display:none}#burgerbar{background:#023953}#burgerbar,#burgerbar~.burgerbar .button-menu.checked{display:none}@media only screen and (max-width:699px){#burgerbar:checked~.burgerbar .button-menu.unchecked{display:none}#burgerbar:checked~.burgerbar .button-menu.checked,#burgerbar:checked~.wrapper .menuitems{display:block}}.button-search{position:absolute;top:0;right:0;min-width:60px;height:60px;margin-bottom:0;line-height:60px}@media only screen and (min-width:700px){.button-search{position:relative}}*:checked+.button-search{background-color:#f9ae3b}.search-box{z-index:1000001;position:absolute;right:0;top:60px;width:100%;border:2px solid #f9ae3b;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#fff;padding:1em 18px;font-size:16px;display:none;line-height:44px}.search-box .search-submit{position:absolute;right:18px;top:16px;width:44px;height:44px;background-color:#333;color:#fff;border:none;padding:0}.search-box .search-submit .icon:before{font-size:20px}*:checked~.search-box{display:block}.burgerbar .burgerbar-small .search-box{width:100%}@media screen and (min-width:575px){.burgerbar .burgerbar-small .search-box{width:480px}}.search-checkbox{display:none}.masthead-item{width:auto;text-align:center;font-size:0}@media only screen and (min-width:700px){.masthead-item{padding-right:1rem;padding-left:1rem;position:relative;height:100%;float:right}}.masthead-item .desktop-text{display:none}@media only screen and (min-width:700px){.masthead-item .desktop-text{display:inline-block;zoom:1;*display:inline;padding-right:8px;font-size:14px;vertical-align:middle;line-height:60px}}.masthead-item .icon-search{display:inline-block;zoom:1;*display:inline;vertical-align:middle;font-size:1.4rem}@media only screen and (min-width:700px){.masthead-item .icon-search{font-size:1rem}}.burgerbar{background-color:#023953;color:#fff;font-size:24px;line-height:60px;max-height:60px;height:60px}.pro .burgerbar{background-color:#8c2b5e}@media only screen and (min-width:700px){.burgerbar{border-bottom:1px solid #023953}.pro .burgerbar{border-bottom:1px solid #8c2b5e}}.burgerbar .other-links{display:none}@media only screen and (min-width:700px){.burgerbar .other-links{display:block;float:right;clear:none;margin-right:10px;height:24px;line-height:24px;margin-top:18px;font-size:14px}.burgerbar .other-links a{float:left;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff}.burgerbar .other-links a:visited{color:#fff}}.burgerbar .buttons-social{display:none}@media only screen and (min-width:700px){.burgerbar .buttons-social{display:block}.burgerbar .buttons-social a{float:left;border:1px solid #fff;width:24px;height:24px;margin-top:18px;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;margin-right:10px}.burgerbar .buttons-social a:visited{color:#fff}.burgerbar .buttons-social a:before{font-size:12px;line-height:22px;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;width:22px;text-align:center}}.burgerbar .buttons-social .icon-youtube{display:none}@media screen and (min-width:750px){.burgerbar .buttons-social .icon-youtube{display:block}}.burgerbar .logo{text-align:left}.burgerbar .logo .site-logo{vertical-align:middle;line-height:25px;height:27px;display:inline-block}.pro .burgerbar .logo .site-logo{line-height:16px}.pro .burgerbar .logo .site-logo:after{bottom:-1px}.burgerbar .logo .site-logo:after{position:absolute;content:'';text-transform:uppercase;font-size:9.11px;bottom:-4px;left:3px;line-height:0}@media only screen and (max-width:360px){.pro .burgerbar .logo svg{width:185px}.pro .burgerbar .logo svg path{-webkit-transform:scale(.93);-ms-transform:scale(.93);transform:scale(.93)}}.burgerbar .logo h1,.burgerbar .logo .hidden-header{display:none}.burgerbar .logo .strapline{font-size:13px;font-weight:400;text-transform:uppercase;float:right;line-height:13px;margin-top:27px;margin-left:13px}@media only screen and (max-width:699px){.burgerbar .logo{text-align:center;margin:auto}.burgerbar .logo .strapline{display:none}}.burgerbar .logo a{color:#fff}.burgerbar .logo a:hover{color:#fff;text-decoration:none}.burgerbar .logo a:visited{color:#fff}.burgerbar .logo a:visited:hover{color:#fff}.burgerbar .button-menu{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;-ms-user-select:none;user-select:none;position:absolute;left:0;width:60px}.burgerbar .burgerbar-small{width:100%;max-height:60px;height:60px}@media only screen and (min-width:700px){.burgerbar .burgerbar-small{position:relative}.burgerbar .burgerbar-small>.button-menu{display:none}.burgerbar .burgerbar-small .logo{padding:0 16px;position:absolute}}.burgerbar .site-logo{position:relative}.trending-wrapper{margin:30px 24px 0;display:block;font-weight:600}.trending-wrapper .trending-bar{*zoom:1;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;background-color:transparent;position:relative;clear:both;white-space:nowrap;width:100%;height:40px;font-size:14px;background:#ededed;overflow:hidden}.trending-wrapper .trending-items{overflow:hidden;height:100%;display:inline-block;text-align:center}.trending-wrapper .trending-items:hover{overflow:auto;overflow-y:hidden}@media screen and (max-width:900px){.trending-wrapper .trending-items{overflow:auto;overflow-y:hidden}.trending-wrapper .trending-items::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 2px rgba(0,0,0,.3);background-color:#F5F5F5;border-radius:10px}.trending-wrapper .trending-items::-webkit-scrollbar{height:6px;background-color:#F5F5F5}.trending-wrapper .trending-items::-webkit-scrollbar-thumb{background-color:#f9ae3b;border-radius:10px}}.trending-wrapper .trending-lead{text-transform:uppercase;margin:0 0 0 10px;padding:0 10px 0 0;display:inline-block;line-height:40px;cursor:pointer;background:#ededed;color:#f9ae3b;vertical-align:top}.trending-wrapper .trending-item{display:inline-block;*display:inline;margin-left:-2px;line-height:40px}.trending-wrapper .trending-item:first-of-type{margin-left:0}.trending-wrapper .trending-item a{line-height:40px;padding:0 14px;display:block}.trending-wrapper .trending-item a,.trending-wrapper .trending-item a:hover,.trending-wrapper .trending-item a:visited,.trending-wrapper .trending-item a:hover:visited{color:#023953}.trending.pro{width:100%;max-width:927px;display:table;overflow:hidden;border-collapse:separate;border-spacing:2px;margin-left:22px;margin-top:30px}@media only screen and (max-width:999px){.trending.pro{display:none}}.trending.pro .menu-item-container{background:#ededed;padding:0 12px;line-height:40px;font-size:13px;display:table-cell;text-align:center}.trending.pro .menu-item-container a{color:#333}.trending.pro .menu-item{font-size:inherit;display:inline}.trending.pro .menu-item a{font-size:inherit;padding-left:0;padding-right:0;line-height:40px}.trending.pro .menu-item a:hover{background-color:inherit}.breadcrumb{font-size:13px;margin-bottom:30px}@media (max-width:700px){.breadcrumb{display:none}}.breadcrumb li{display:inline-block}.breadcrumb li:after{content:'>';margin-left:1ex;margin-right:1ex}.breadcrumb li:last-child:after{content:none;margin:0}.box{display:table;margin-bottom:40px;float:left;clear:both;width:100%}.box.less-space{margin-bottom:30px}.box h3,.box h4{font-weight:600;font-size:16px;line-height:40px;text-transform:uppercase;vertical-align:middle}.box p{font-size:16px;line-height:24px;margin-bottom:1rem;color:#333}.box li{font-size:16px;line-height:28px}.box ul{margin-bottom:1rem}#sidebar .box{margin-bottom:30px}.button{text-transform:uppercase;font-size:.875em;text-align:center;font-weight:700;line-height:3em;display:block}.button:hover,.button:hover:visited{background-color:#666;text-decoration:none}.button.dark{color:#fff;background-color:#f9ae3b}.button.dark:hover,.button.dark:visited:hover{color:#fff}.load-comments:hover{color:#fff}input[type="search"]{-webkit-appearance:none;border:1px solid #ddd;font-size:1em;padding-right:3em;line-height:2.5em;padding-left:.75em;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;outline-offset:0;border-radius:0;margin-top:0;margin-bottom:0}input[type="search"]:focus{outline-offset:0}@media screen and (min-width:700px){input[type="search"]{padding-right:0}}@media screen and (min-width:900px){input[type="search"]{padding-right:54px;padding-top:13px;padding-bottom:11px;line-height:16px;font-size:16px}}label{line-height:1.4;display:block;margin:0 0 5px}.sponsored-bar{height:44px;text-align:center;background:#023953;text-transform:uppercase;color:#fff;font-size:10px;vertical-align:middle}.sponsored-bar span{line-height:44px;vertical-align:middle}.sponsored-bar .sponsor-logo-img{height:20px;margin-left:8px;vertical-align:middle}.byline{display:block;margin-bottom:4px;line-height:23px;font-size:13px}.byline .relative-date{margin-left:4px}.primary-nav.pro .wrapper,.primary-nav.pro .menuitems.container,.primary-nav.pro .wrapper .menu-item-container a{background:#601948!important}.primary-nav{position:relative;z-index:1600}.primary-nav .wrapper{background:#f9ae3b}.primary-nav .menuitems{display:none;position:absolute;width:100%;left:0;top:60px;z-index:999}.primary-nav .menuitems:hover{z-index:999}@media screen and (min-width:700px){.primary-nav .menuitems{z-index:auto;display:block;position:relative;top:0}}.nav-list{font-size:0}@media screen and (min-width:700px){.nav-list{height:44px;overflow:hidden}}.nav-list.component-loaded{height:auto;overflow:visible}.menu-item{background-color:#333}@media screen and (min-width:700px){.menu-item{display:inline-block;zoom:1;*display:inline;vertical-align:top;font-size:0;background-color:transparent}}.menu-item a{display:block;line-height:44px;font-size:1rem;padding-left:1rem}.menu-item a:not(.maglink){padding-right:1rem}@media screen and (min-width:700px){.menu-item a{display:inline-block;zoom:1;*display:inline;vertical-align:top}}.menu-item a,.menu-item a:visited,.menu-item a:hover,.menu-item a:visited:hover{color:#fff}@media screen and (min-width:700px){.menu-item a:not(.menu-item-magazines):hover{background-color:#333}}.menu-item a:not(.menu-item-magazines):active{background-color:#023953}.menu-item .icon-home{font-size:1.3em;line-height:1}.pro .menu-item{background-color:transparent}.menu-item.menu-item-main-pro{background-color:#8c2b5e}@media screen and (min-width:700px){.menu-item.menu-item-main-pro{min-width:70px;text-align:center}}.menu-item.menu-item-main-pro a{background-color:transparent}.pro .menu-item.menu-item-main-pro{background-color:#2f6e91}.sub-menu{vertical-align:top;display:none;background-color:#333;font-size:0}.sub-menu-item{font-size:1rem}.menu-hamburger{height:60px;margin-bottom:0}.menu-hamburger:before,.menu-hamburger:after{content:"";position:absolute;width:18px;margin-left:-9px;top:50%;left:50%}.menu-hamburger:before{height:8px;border-top:2px solid #fff;border-bottom:2px solid #fff;margin-top:-6px}.menu-hamburger:after{height:2px;background:#fff;margin-top:-1px}.menu-hamburger.checked:before{border-top:none;border-bottom:none;border-left:2px solid #fff;border-right:2px solid #fff;width:8px;height:18px;margin-top:-9px;margin-left:-6px}.menu-hamburger.checked:after{width:2px;height:18px;margin-top:-9px;margin-left:-1px}.menu-item-hover-reveal,.menu-item-magazines{line-height:44px;color:#fff;padding-left:1rem;padding-right:1rem;white-space:nowrap;cursor:default}.menu-item-hover-reveal.menu-item,.menu-item-magazines.menu-item{font-size:1rem}@media screen and (min-width:700px){.menu-item-hover-reveal:hover .sub-menu,.menu-item-hover-reveal:focus .sub-menu,.menu-item-magazines:hover .sub-menu,.menu-item-magazines:focus .sub-menu{display:block;position:absolute;margin-left:-16px}}.menu-item-hover-reveal .icon,.menu-item-magazines .icon{font-size:11px;line-height:1;position:relative;top:-1px;left:1px}@media screen and (min-width:700px){.menu-item-hover-reveal .icon-arrow-right,.menu-item-magazines .icon-arrow-right{display:none}}.menu-item-hover-reveal .icon-arrow-down,.menu-item-magazines .icon-arrow-down{display:none}@media screen and (min-width:700px){.menu-item-hover-reveal .icon-arrow-down,.menu-item-magazines .icon-arrow-down{display:inline}}@media screen and (min-width:700px){.nav-sub-set-container{position:absolute;top:0;right:0}}@media screen and (min-width:700px){.menu-item-nav-sub-set{float:right}}#sidebar{-webkit-box-sizing:border-box;box-sizing:border-box;float:left}@media screen and (min-width:700px){#sidebar{padding-left:20px;padding-right:20px}}@media screen and (min-width:1000px){#sidebar{padding-left:0;padding-right:0;width:300px}#sidebar>*:first-child{margin-top:1em}}.pagination.internal{border-top:1px solid #ddd;width:100%}.socialite-widget-item{display:inline-block;zoom:1;*display:inline;vertical-align:middle;width:24px;height:24px;line-height:24px;font-size:1rem;margin-left:8px}.socialite-widget-item:first-child{margin-left:0}.socialite-widget-item a{background-color:#333;display:block;line-height:24px;width:100%;height:100%;text-align:center;color:#fff;border-radius:50%;text-decoration:none}.socialite-widget-item a:visited,.socialite-widget-item a:hover,.socialite-widget-item a:visited:hover{color:#fff;text-decoration:none}.socialite-widget-item .icon{font-size:.9em;width:100%;height:100%;line-height:24px}.socialite-widget-item .icon:before{display:block}.socialite-widget-item .facebook,.socialite-widget-item .icon-facebook,.buttons-social .icon-facebook{background:#3B5998}.socialite-widget-item .facebook:hover,.socialite-widget-item .icon-facebook:hover,.buttons-social .icon-facebook:hover{background:#4c70ba}.socialite-widget-item .twitter,.socialite-widget-item .icon-twitter,.buttons-social .icon-twitter{background:#4099FF}.socialite-widget-item .twitter:hover,.socialite-widget-item .icon-twitter:hover,.buttons-social .icon-twitter:hover{background:#73b4ff}.socialite-widget-item .whatsapp{background:#64D448}.socialite-widget-item .whatsapp:hover{background:#87de71}.buttons-social .icon-youtube{background:#CD201F}.buttons-social .icon-youtube:hover{background:#e23e3d}.socialite-widget-item .email{background:#333}.socialite-widget-item .email:hover{background:#4d4d4d}.buttons-social .icon-instagram{background:#de3073}.buttons-social .icon-instagram:hover{background:#e55c91}.socialite-widget-item .flipboard,.socialite-widget-item .icon-flipboard,.buttons-social .icon-flipboard{background:#e12828}.socialite-widget-item .flipboard:hover,.socialite-widget-item .icon-flipboard:hover,.buttons-social .icon-flipboard:hover{background:#e75555}.buttons-social .icon-envelope{background:#f9ae3b}.socialite-widget-item .icon.icon-flipboard,.buttons-social .icon.icon-flipboard{font-size:12px}.burgerbar .buttons-social a{border:none}.burgerbar .buttons-social a:before{font-size:14px;line-height:24px;width:100%;height:100%}.burgerbar .buttons-social .icon.icon-flipboard:before{font-size:12px}.newsletter-signup{display:block!important;background-color:#ededed;border-bottom:1px solid #1b1b1b}@media (max-width:900px){.newsletter-signup{float:none!important}}.newsletter-signup .grey-box{color:#666}.newsletter-signup>h3{min-height:36px;font-size:16px;line-height:1.25em;font-family:"Open Sans",Arial,sans-serif;padding:8px 0;border-top:1px solid #1b1b1b;border-bottom:1px solid #1b1b1b}.newsletter-signup>h3 span{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;width:300px;margin:0 auto}.newsletter-signup .icon-envelope{float:left;background-color:#f9ae3b;color:#fff;text-align:center;border-radius:50%;font-size:25px;line-height:36px;width:38px;height:38px;margin-right:10px;margin-left:10px}.newsletter-signup small{font-size:10px;line-height:12px}@media screen and (min-width:700px){.newsletter-signup{float:none}}@media screen and (min-width:900px){.newsletter-signup{float:none;width:100%}}@media screen and (max-width:900px){.newsletter-signup .icon-envelope{margin-left:0}.newsletter-signup .grey-box{padding-left:0;padding-right:0}.newsletter-signup h3 span{width:300px;margin:0 auto}}.newsletter-signup .newsletter-logo{text-align:center}.newsletter-signup .newsletter-logo img{height:20px;padding-top:2px}.newsletter-signup.product-newsletter{border:solid 1px #333;-webkit-box-sizing:border-box;box-sizing:border-box}.newsletter-signup.product-newsletter h3,.newsletter-signup.product-newsletter h4{color:#fff;text-transform:none;font-family:"Open Sans",Arial,sans-serif}.newsletter-signup.product-newsletter h3{background:#333;font-size:15px;line-height:20px;border-top:none;border-bottom:none}.newsletter-signup.product-newsletter .icon-filled-envelope{float:left}.newsletter-signup.product-newsletter .product-cta{font-weight:700;display:inline}.newsletter-signup.product-newsletter .product-info{font-weight:400;display:inline}.newsletter-signup.product-newsletter .reduce{font-size:80%;display:inline}.newsletter-signup.product-newsletter h4{background-color:#666;font-size:.75em;line-height:33px}.newsletter-signup.product-newsletter p{color:#333;text-align:center;font-size:13px;line-height:17px;width:58%;margin-top:.5rem;display:inline-block;margin-left:5px}.newsletter-signup.product-newsletter p .jump-out-text{font-weight:700;display:block}.newsletter-signup.product-newsletter footer{color:#666;margin:.75rem 0 .5rem}.newsletter-signup .newsletter-image{display:inline-block;height:102px;width:35%;margin-left:8px;background:url("/media/img/newsletter-image.png") no-repeat;background-size:auto 102px;background-repeat:no-repeat;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;-ms-interpolation-mode:nearest-neighbor}.newsletter-signup .newsletter-button{-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;padding:0 17px;background:-webkit-gradient(linear,left bottom,left top,color-stop(50%,#E94E1B),color-stop(50%,#ed724a));background:-webkit-linear-gradient(bottom,#E94E1B 50%,#ed724a 50%);background:linear-gradient(to top,#E94E1B 50%,#ed724a 50%);height:44px;text-align:center}.newsletter-signup .newsletter-button a{color:#fff;font-size:1em;font-weight:900;display:inline-block;padding-top:14px;height:100%;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.newsletter-signup .newsletter-button a:hover,.newsletter-signup .newsletter-button a:visited{color:#fff;text-decoration:none}.newsletter-signup .newsletter-button .icon{color:#fff;font-size:12px;position:relative;top:-2px;padding-left:3px}.newsletter-signup .subtitle{display:block;padding-left:10px;width:300px;margin:auto}.icon-filled-envelope{float:left;text-align:center;border-radius:50%;font-size:40px;line-height:36px;width:38px;height:38px;margin-right:10px;margin-left:10px;background-color:#f9ae3b;color:#fff}.menu-item.menu-item-nextup a,.menu-item.menu-item-nextup a:hover{background-color:#1DAFEC}@media screen and (min-width:700px){.menu-item.menu-item-nextup a,.menu-item.menu-item-nextup a:hover{background-color:#1DAFEC}}#article-body .inlinegallery{visibility:hidden;margin-bottom:30px;width:100%}#article-body .inlinegallery,#article-body .inlinegallery .inlinegallery-wrap{position:relative;overflow:hidden}#article-body .inlinegallery .inlinegallery-item{position:relative;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;float:left;width:100%}#article-body .inlinegallery .inlinegallery-item,#article-body .inlinegallery .inlinegallery-item figure{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column}#article-body .inlinegallery .inlinegallery-item figure{-webkit-box-pack:start;-webkit-justify-content:flex-start;-ms-flex-pack:start;justify-content:flex-start;max-height:90vh;margin-bottom:1em;border-bottom:1px solid #333}#article-body .inlinegallery .inlinegallery-item figure p.vanilla-image-block{position:relative;margin-bottom:15px;background-color:#333}#article-body .inlinegallery .inlinegallery-item figure p.vanilla-image-block img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain}.news-article #article-body .inlinegallery .inlinegallery-item>*:last-child{margin-bottom:0}.newsletter-signup,.newsletter-signup>h3{background-color:#fff}.newsletter-signup .grey-box{padding:1ex;margin:0 auto;width:300px;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column}#article-body .widthsetter{width:100%}#article-body .widthsetter .articletable{display:inline-block;width:100%;margin-bottom:20px;word-break:normal;overflow-x:scroll}#article-body .widthsetter .articletable::-webkit-scrollbar{-webkit-appearance:none;-moz-appearance:none}#article-body .widthsetter .articletable::-webkit-scrollbar-thumb{border-radius:8px;border:2px solid #fff;background-color:rgba(0,0,0,.5)}#article-body .widthsetter .articletable::-webkit-scrollbar-track{background-color:#fff;border-radius:8px}#article-body .widthsetter .articletable table{margin-left:150px}#article-body .widthsetter .articletable table caption{width:100%;padding:14px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;font-weight:800;font-size:16px;line-height:18px;background-color:#fff}#article-body .widthsetter .articletable table tbody,#article-body .widthsetter .articletable table thead{text-align:center}#article-body .widthsetter .articletable table th,#article-body .widthsetter .articletable table td{padding:14px;min-width:10px;max-width:150px;font-size:13px;line-height:13px}@media (min-width:575px){#article-body .widthsetter .articletable table th,#article-body .widthsetter .articletable table td{font-size:15px;line-height:15px;max-width:200px}}#article-body .widthsetter .articletable table thead>tr{background-color:#333;color:#fff}#article-body .widthsetter .articletable table thead>tr th{background-color:#333}#article-body .widthsetter .articletable table tr .firstcol{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;max-width:120px;min-height:30px;left:0;padding:0 14px;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:100;cursor:default}@media (min-width:575px){#article-body .widthsetter .articletable table tr .firstcol{max-width:200px}}#article-body .widthsetter .articletable table tbody>tr:nth-of-type(2n+1),#article-body .widthsetter .articletable table tbody>tr:nth-of-type(2n+1) td{background-color:#fff}body{background-color:#fff;-webkit-text-size-adjust:100%}a{color:#026ca2;text-decoration:none}a:hover{text-decoration:underline}a:visited{color:#026ca2}a:visited:hover{color:#026ca2}button{font-size:.875em;line-height:3em;border:solid 1px #f9ae3b;color:#fff;background-color:#f9ae3b;text-transform:uppercase;font-family:"Open Sans",Arial,sans-serif;margin:0;padding:1ex 1em}button:focus{outline:0}button::-moz-focus-inner{border:0}@media screen and (min-width:700px){.mobile-only{display:none}}#affiliateDisclaimer{text-align:left;font-size:12px;line-height:16px;padding:0;margin:15px 24px 0;color:#333}@media screen and (min-width:700px){#affiliateDisclaimer{font-size:13px;line-height:18px;margin-top:15px}}@media screen and (min-width:1000px){#affiliateDisclaimer{font-size:13px;line-height:18px;margin-top:20px}}#affiliateDisclaimer a{color:#333;text-decoration:underline}.pagination.internal,article .pagination.internal,.sub-menu{display:block}.sub-menu{visibility:hidden;position:absolute;margin-left:-16px}@media screen and (min-width:700px){.menu-item-hover-reveal:hover .sub-menu{visibility:visible}}article section .box{margin-bottom:1em}article .text-copy figcaption,.news-article .text-copy figcaption{margin-top:0;padding:0;display:inline}img{display:block}article section .box img{margin-bottom:15px}.news-article .partner-banner{margin-top:30px;margin-bottom:-8px}.news-article .partner-banner img{width:100%}@media (min-width:575px) and (max-width:1000px){.news-article .partner-banner img{max-width:540px;margin-left:auto;margin-right:auto}}.pagination.internal{border-bottom:none;display:block;text-align:center}@media screen and (min-width:700px){.nav-list.component-loaded{overflow:hidden;height:44px}}</style>
+<link rel="apple-touch-icon" href="https://vanilla.futurecdn.net/livescience/145481/apple-touch-icon.png">
+<link rel="shortcut icon" href="https://vanilla.futurecdn.net/livescience/145481/favicon.ico">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="https://vanilla.futurecdn.net/livescience/145481/apple-touch-icon.png">
+<meta property="og:title" content="Physicists Just Created the Most Detailed Simulation of the Universe in History">
+<meta property="og:site_name" content="livescience.com">
+<meta property="og:url" content="https://www.livescience.com/most-detailed-universe-simulation.html">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-1200-80.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:type" content="article">
+<meta property="article:publisher" content="https://www.facebook.com/livescience?cmpid=556687">
+<meta property="article:author" content="https://www.facebook.com/livescience?cmpid=556687">
+<meta property="fb:app_id" content="">
+<meta property="fb:pages" content="">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:site" content="@LiveScience">
+<meta property="twitter:title" content="Physicists Just Created the Most Detailed Simulation of the Universe in History">
+<meta property="twitter:description" content="">
+<meta property="twitter:creator" content="@LiveScience">
+<meta property="twitter:image" content="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-1200-80.png">
+<meta property="twitter:account_id" content="9696142">
+<meta name="google-site-verification" content="cT0VCuWQCTCmUeE43of8bJhsqQBzcEpdq18TOMdUguk">
+<meta name="taboola:url" content="https://www.livescience.com/most-detailed-universe-simulation.html">
+<meta name="botify-site-verification" content="Bvex9ErUud910tVAIquqUVU7RH2if7uS">
+<script type="text/javascript">
+window.missingImage = function(){var missingImage = document.createElement('img');missingImage.src = '//vanilla.futurecdn.net/livescience/media/img/missing-image.svg';return missingImage;}
+VAN={};
+var FEP_object;
+;
+VAN.gaDimensions=function(e,i,a,o){ga("create",e,"auto",{useAmpClientId:!0}),null!=a&&ga("set",{dimension57:a}),ga("require","displayfeatures"),o.fepPrimaryProduct&&ga("set",{dimension40:o.fepPrimaryProduct}),o.fepSecondaryProducts.length&&ga("set",{dimension41:o.fepSecondaryProducts.join("|")}),o.fepPrimaryProduct[0]&&ga("set",{dimension42:o.fepPrimaryCompany}),o.fepCompanies.length>=1&&ga("set",{dimension43:o.fepCompanies.join("|")}),o.fepPrimaryProduct&&ga("set",{dimension45:o.fepPrimaryProduct}),o.fepCategory&&ga("set",{dimension46:o.fepCategory}),o.fepArticleName.length>0&&ga("set",{dimension47:o.fepArticleName}),o.fepAlgorithm&&ga("set",{dimension50:o.fepAlgorithm}),o.fepNullified?ga("set",{dimension51:"true"}):ga("set",{dimension51:"false"}),"object"==typeof o.fepGroups&&Array.isArray(o.fepGroups)&&ga("set",{dimension58:o.fepGroups.join("|")}),o.thirdCategories&&ga("set",{dimension74:o.thirdCategories.join("|")}),void 0!==VAN.abTest&&void 0!==VAN.abTest.variationId&&ga("set",{dimension26:VAN.abTest.variationId});var t="false";try{void 0!==window.vanilla&&void 0!==window.vanilla.aft&&(t=!0===window.vanilla.aft.logged_in?"true":"false")}catch(e){console.error("Badly structured aft object",e)}ga("set",{dimension13:t}),ga("set",{dimension10:document.querySelector("html").getAttribute("data-locale").replace("_","-")});try{var n=document.cookie.replace(/(?:(?:^|.*;\s*)_ga\s*\=\s*([^;]*).*$)|^.*$/,"$1");n&&ga("set",{dimension59:n})}catch(e){console.log("GA ID error: ",e)}ga("send","pageview",i)}; VAN.assignFep=function(a){try{var e=e||{fepPrimaryProduct:"",fepSecondaryProducts:Array(),fepCompanies:Array(),fepHawk:{},fepCategory:"",fepGroups:Array(),kwMunge:Array(),fepArticleName:"",fepPrimaryCompany:"",fepAlgorithm:"",fepNullified:"",ready:!1,primaryCategory:"",secondaryCategories:Array(),thirdCategories:Array()};if(window.FEP=e,!e.ready){if("undefined"==typeof a)throw"FEPNotReady";e.fepPrimaryProduct=a[0].adTags.primaryProduct,e.fepSecondaryProducts=a[0].adTags.secondaryProducts,e.fepCompanies=a[0].adTags.companies,e.fepCategory="object"==typeof a[0].adTags.category?"":a[0].adTags.category,e.fepGroups="undefined"!=typeof a[0].adTags.groups?a[0].adTags.groups:Array(),e.fepArticleName=a[0].articleName,e.fepAlgorithm=a[0].strategy,e.fepNullified=a[0].nullified,e.fepPrimaryCompany=null!==a[0].adTags.primaryCompany&&a[0].adTags.primaryCompany.length>=1?a[0].adTags.primaryCompany:" ","undefined"!=typeof a[0].adTags.primaryCategory&&"undefined"!=typeof a[0].adTags.secondaryCategories&&"undefined"!=typeof a[0].adTags.thirdCategories&&(e.primaryCategory=a[0].adTags.primaryCategory,e.secondaryCategories=a[0].adTags.secondaryCategories,e.thirdCategories=a[0].adTags.thirdCategories),e.fepIAB=[],e.ready=!0;var r=["fepPrimaryProduct","fepSecondaryProducts","fepCompanies","fepCategory"];r.forEach(function(a){var r=e[a];"object"==typeof r&&(r=r),e.kwMunge=e.kwMunge.concat(r)}),e.kwMunge=e.kwMunge.filter(function(a,r){return e.kwMunge.indexOf(a)==r}),"undefined"!=typeof a[0].hawkTags.primaryProduct&&(e.fepHawk.primaryProduct=a[0].hawkTags.primaryProduct),"undefined"!=typeof a[0].hawkTags.secondaryProducts&&(e.fepHawk.secondaryProducts=a[0].hawkTags.secondaryProducts),"undefined"!=typeof a[0].hawkTags.companies&&(e.fepHawk.companies=a[0].hawkTags.companies),"undefined"!=typeof a[0].hawkTags.groups&&(e.fepHawk.groups=a[0].hawkTags.groups),"undefined"!=typeof a[0].hawkTags.category&&(e.fepHawk.category=a[0].hawkTags.category)}return window.FEP=e,e}catch(o){console.log("fep ga exc "+o.message)}};;
+</script>
+<script>
+try{
+var FEP_object = [{"acceptableLanguage":true,"adTags":{"category":"galaxy_formation","companies":[],"groups":["galaxy_formation","galaxies","universe_simulation","tng50"],"primaryCategory":"galaxy_formation","primaryCompany":"Max_Planck_Institute_for_Astrophysics","primaryProduct":"Supernova","secondaryCategories":["galaxy_formation","galaxies","universe_simulation","tng50"],"secondaryCompanies":[],"secondaryProducts":["Galaxy","Gravity","Milky_Way","Supermassive_black_hole","Galaxy_formation_and_evolution"],"thirdCategories":[]},"articleName":"Physicists_Just_Created_the_Most_Detailed_Simulation_of_the_Universe_in_History","articleType":"news","dataSource":"provided","hawkTags":{"primaryProduct":"Supernova","secondaryProducts":["Galaxy","Gravity","Milky_Way","Supermassive_black_hole","Galaxy_formation_and_evolution"],"companies":["Max_Planck_Institute_for_Astrophysics"],"category":"galaxy_formation","groups":["galaxy_formation","galaxies","universe_simulation","tng50"],"internalProductName":""},"internalProductName":"","nullified":false,"origSite":"livescience","overrides":[],"rampTags":{"primaryProduct":"Supernova","secondaryProducts":["Galaxy","Gravity","Milky Way","Supermassive black hole","Galaxy formation and evolution"],"companies":["Max Planck Institute for Astrophysics"],"category":"galaxy formation","groups":["galaxy formation","galaxies","universe simulation","tng50"]},"site":"livescience","strategy":5,"timestamp":1574177609,"topProductVsproductName":"0"}];
+}catch(ex){
+if (typeof console == "object") {
+console.log(ex);
+}
+}
+</script>
+<!-- GA TPL PREMIUM -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+// Optimizely Universal Analytics Integration
+window.optimizely = window.optimizely || [];
+window.optimizely.push("activateUniversalAnalytics");
+// Setup the FEP global object form the FEP_object
+// @TODO - can the format of FEP_object be changed server side?
+VAN.assignFep(FEP_object);
+var ga_code = 'UA-72111741-7';
+var analytics_ga_data = {"dimension1":"news","dimension2":"space","dimension4":"Science_LiveScience\/","dimension5":"EzysxMVcJT2UCqRRwjyJQU","dimension6":"|galaxy_formation|galaxies|universe_simulation|tng50|channel_other|type_news|serversidehawk|videoarticle","dimension7":"tim_childers","dimension8":"19-11-2019","dimension9":"1","dimension10":"EN-US","dimension27":"21.5.3","dimension95":"news","dimension106":"1","dimension126":"en","dimension127":"GB|US|AU|SG","dimension128":"19-11-2019"};
+var version = 'null';
+// Make sure all the GA dimensions are setup and correct
+VAN.gaDimensions(ga_code, analytics_ga_data, version, window.FEP);
+</script>
+<!-- END GA PREMIUM -->
+<script>
+var trailingSlash = false;
+</script>
+<link rel="manifest" href="/manifest.json">
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script id="onesignal_tag" data-app-id-https="5c99bb14-923c-4bea-be28-34e14f32c9c6" src="https://vanilla.futurecdn.net/livescience/145481/media/shared/js/onesignal.js" async=""></script>
+<meta name="parsely-type" content="NewsArticle">
+<meta name="parsely-pub-date" content="2019-11-19T12:48:14+00:00">
+<meta name="parsely-post-id" content="EzysxMVcJT2UCqRRwjyJQU">
+<meta name="parsely-tags" content="galaxy formation,galaxies,universe simulation,tng50">
+<meta name="parsely-section" content="space">
+<script type="application/ld+json">
+{
+"@type": "NewsArticle",
+"name": "Physicists Just Created the Most Detailed Simulation of the Universe in History",
+"headline": "Physicists Just Created the Most Detailed Simulation of the Universe in History",
+"articleBody": "The formation of galaxies is a complex dance between matter and energy, occurring on a stage of cosmic proportions and spanning billions of years. How the diversity of structured and dynamic galaxies we observe today arose from the fiery chaos of the Big Bang remains one of the most difficult unsolved puzzles of cosmology . In search of answers, an international team of scientists has created the most detailed large-scale model of the universe to date, a simulation they call TNG50. Their&hellip;",
+"datePublished": "2019-11-19T12:48:14Z",
+"image": "https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn.png",
+"author": {
+"@type": "Person",
+"name": "Tim Childers"
+},
+"creator": {
+"@type": "Person",
+"name": "Tim Childers"
+},
+"publisher": {
+"@type": "Organization",
+"name": "Live Science",
+"url": "https://www.livescience.com",
+"logo": {
+"@type": "ImageObject",
+"url": "https://vanilla.futurecdn.net/livescience/media/img/ls-logo-inverted.svg",
+"caption": "Live Science logo"
+}
+},
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://www.livescience.com/most-detailed-universe-simulation.html"
+},
+"url": "https://www.livescience.com/most-detailed-universe-simulation.html",
+"thumbnailUrl": "https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-320-80.png",
+"keywords": [
+"galaxy formation",
+"galaxies",
+"universe simulation",
+"tng50",
+"channel_other",
+"type_news",
+"serversidehawk",
+"videoarticle"
+],
+"@context": "http://schema.org"
+}
+</script>
+</head>
+<body class="limit-width ">
+<script>window.isIE = false</script>
+<!--[IE]><script>window.isIE = true</script><![endif]-->
+<script>
+window.amIIE = function() {
+return navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') !== -1 || window.isIE;
+}
+</script>
+<a href="#main" class="skip-to-main-content" style="position:absolute;">Skip to main content</a>
+<!-- contentType : //-->
+<nav class="primary-nav">
+<input type="radio" name="burgerbar-expand" class="burgerbar-none-radio" id="burgerbar-none" checked>
+<input type="radio" name="burgerbar-expand" class="burgerbar-radio" id="burgerbar">
+<div class="burgerbar ">
+<div class="container full burgerbar-small">
+<label class="button-menu unchecked menu-hamburger" for="burgerbar" onclick=""></label>
+<label class="button-menu checked menu-hamburger" for="burgerbar-none" onclick=""></label>
+<script type="application/ld+json">
+[
+{
+"@type": "Organization",
+"name": "Live Science",
+"url": "https://www.livescience.com",
+"logo": {
+"@type": "ImageObject",
+"url": "https://vanilla.futurecdn.net/livescience/media/img/ls-logo-inverted.svg",
+"caption": "Live Science logo"
+},
+"@context": "http://schema.org"
+},
+{
+"@type": "WebSite",
+"name": "Live Science",
+"url": "https://www.livescience.com",
+"potentialAction": {
+"@type": "SearchAction",
+"target": "https://www.livescience.com/search?searchTerm={query}",
+"query-input": "required name=query"
+},
+"@context": "http://schema.org"
+}
+]
+</script>
+<div class="logo" id="publisherDetails">
+<a href="https://www.livescience.com/">
+<span class="site-logo">
+<svg width="230" height="28" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="#FFF"><path d="M209.454.464v27.072h20.613v-5.298h-14.696v-5.685h14.161v-5.3h-14.16v-5.49h14.502v-5.3zM89.97 27.923c-4.1 0-8.238-1.431-11.487-4.332l3.52-4.215c2.436 2.01 4.988 3.287 8.082 3.287 2.437 0 3.906-.967 3.906-2.552v-.078c0-1.508-.927-2.281-5.453-3.442-5.453-1.392-8.972-2.9-8.972-8.276v-.077c0-4.912 3.945-8.16 9.475-8.16 3.946 0 7.31 1.237 10.055 3.44l-3.094 4.488c-2.397-1.664-4.757-2.67-7.038-2.67-2.282 0-3.48 1.045-3.48 2.36v.078c0 1.779 1.16 2.359 5.84 3.558 5.491 1.43 8.584 3.403 8.584 8.12v.078c0 5.376-4.099 8.393-9.939 8.393M115.78 28c-7.965 0-13.883-6.15-13.883-13.922V14c0-7.696 5.802-14 14.116-14 5.106 0 8.16 1.702 10.674 4.177l-3.79 4.37c-2.088-1.895-4.215-3.055-6.922-3.055-4.563 0-7.851 3.79-7.851 8.43V14c0 4.64 3.21 8.508 7.85 8.508 3.095 0 4.99-1.237 7.117-3.171l3.79 3.829c-2.785 2.978-5.878 4.834-11.1 4.834M195.854 28c-7.966 0-13.884-6.15-13.884-13.922V14c0-7.696 5.802-14 14.116-14 5.106 0 8.16 1.702 10.674 4.177l-3.79 4.37c-2.088-1.895-4.215-3.055-6.922-3.055-4.563 0-7.851 3.79-7.851 8.43V14c0 4.64 3.21 8.508 7.85 8.508 3.095 0 4.99-1.237 7.117-3.171l3.79 3.829c-2.785 2.978-5.878 4.834-11.1 4.834M129.381 27.536h5.955V.464h-5.955zM173.592.464v16.668L160.906.464h-5.49v5.298H141.16v5.531h14.254v5.254h-14.254l.034 5.671h14.22v5.318h5.878v-17.21l13.111 17.21h5.066V.464z"></path></g><g fill="#FAAE39"><path d="M0 .367h3.055v24.25h15.238v2.822H0zM21.388 27.439h3.055V.367h-3.055zM50.24.367h3.288L41.886 27.632h-2.707L27.539.367h3.403l9.63 23.321zM76.192 3.152H59.678v9.243h14.774v2.785H59.678v9.475h16.707v2.784H56.623V.368h19.569z"></path></g></g></svg> <img class="fallback" src="" data-fallback-src="https://vanilla.futurecdn.net/livescience/media/img/ls-logo-inverted.svg">
+</span>
+<span class="hidden-header" itemprop="name">Live Science</span> <span class="strapline"></span>
+</a>
+</div>
+<input type="checkbox" name="burgerbar-expand" class="search-checkbox" id="search-checkbox">
+<label class="button-search masthead-item " for="search-checkbox" onclick="">
+<span class="desktop-text">Search</span><span class="icon icon-search"></span>
+</label>
+<form class="search-box" action="https://www.livescience.com/search" method="GET">
+<input type="search" name="searchTerm" placeholder="Search Live Science" class="search-input">
+<button type="submit" class="search-submit">
+<span class="icon icon-search"></span>
+</button>
+</form>
+<div class="other-links">
+<a href="https://www.livescience.com/feeds/all">
+<abbr title="Really Simple Syndication">RSS</abbr>
+</a>
+</div>
+<div class="buttons-social masthead-item">
+<a target="_blank" href="https://www.facebook.com/livescience?cmpid=556687" class="icon icon-circle icon-facebook" aria-label="Facebook"></a>
+<a target="_blank" href="https://twitter.com/LiveScience?cmpid=556688" class="icon icon-circle icon-twitter" aria-label="Twitter"></a>
+<a target="_blank" href="https://www.youtube.com/user/LiveScienceVideos" class="icon icon-circle icon-youtube" aria-label="YouTube"></a>
+<a target="_blank" href="https://flipboard.com/@LiveScience" class="icon icon-circle icon-flipboard" aria-label="Flipboard"></a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div class="menuitems container full">
+<ul class="nav-list" data-component="nav">
+<li class="menu-item menu-item-home" data-menuitem="">
+<a class="home" href="https://www.livescience.com/">
+<i class="icon icon-home"></i>
+</a>
+</li>
+<li class="menu-item menu-item-news" data-menuitem="">
+<a class="" href="https://www.livescience.com/news">
+<span>News</span>
+</a>
+</li>
+<li class="menu-item menu-item-tech" data-menuitem="">
+<a class="" href="https://www.livescience.com/technology">
+<span>Tech</span>
+</a>
+</li>
+<li class="menu-item menu-item-health" data-menuitem="">
+<a class="" href="https://www.livescience.com/health">
+<span>Health</span>
+</a>
+</li>
+<li class="menu-item menu-item-planet earth" data-menuitem="">
+<a class="" href="https://www.livescience.com/planet-earth">
+<span>Planet Earth</span>
+</a>
+</li>
+<li class="menu-item menu-item-strange news" data-menuitem="">
+<a class="" href="https://www.livescience.com/strange-news">
+<span>Strange News</span>
+</a>
+</li>
+<li class="menu-item menu-item-animals" data-menuitem="">
+<a class="" href="https://www.livescience.com/animals">
+<span>Animals</span>
+</a>
+</li>
+<li class="menu-item menu-item-history" data-menuitem="">
+<a class="" href="https://www.livescience.com/history">
+<span>History</span>
+</a>
+</li>
+<li class="menu-item menu-item-space &amp; physics" data-menuitem="">
+<a class="" href="https://www.livescience.com/space">
+<span>Space &amp; Physics</span>
+</a>
+</li>
+<li class="menu-item menu-item-reference" data-menuitem="">
+<a class="" href="https://www.livescience.com/references">
+<span>Reference</span>
+</a>
+</li>
+<li class="menu-item menu-item-culture" data-menuitem="">
+<a class="" href="https://www.livescience.com/culture">
+<span>Culture</span>
+</a>
+</li>
+<li class="menu-item menu-item-more menu-level-1 has-submenu
+menu-item-hover-reveal more-hide" data-more="">
+More
+<i class="icon icon-arrow-down"></i><i class="icon icon-arrow-right"></i>
+<ul class="sub-menu" data-more-submenu="">
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="dfp-leaderboard-container"></div>
+<div id="main" class="container full " tabindex="-1">
+<div class="trending-wrapper ">
+<div class="trending-bar container full">
+<div class="trending-lead brands-disabled">
+Trending
+</div>
+<ul class="trending-items ">
+<li class="trending-item"> <a href="https://www.livescience.com/topics/climate">Climate Change News</a></li>
+<li class="trending-item"> <a href="https://www.livescience.com/topics/vaping">Vaping Risks &amp; Updates</a></li>
+<li class="trending-item"> <a href="https://www.livescience.com/topics/lifes-little-mysteries">Life's Little Mysteries</a></li>
+<li class="trending-item"> <a href="https://www.livescience.com/topics/archaeology">Archaeology</a></li>
+<li class="trending-item"> <a href="https://www.livescience.com/topics/tardigrades">Tardigrades</a></li>
+<li class="trending-item"> <a href="https://www.livescience.com/topics/aliens">Aliens?</a></li>
+<li class="trending-item"> <a href="https://www.livescience.com/64665-how-it-works-free-issue.html">Read "How It Works" Magazine</a></li>
+<!-- Start Trending Subset //-->
+<!-- End Trending Subset //-->
+</ul>
+</div>
+</div>
+<aside id="affiliateDisclaimer"><small>Live Science is supported by its audience. When you purchase through links on our site, we may earn an affiliate commission. <a href="https://www.futureplc.com/terms-conditions/">Learn more</a></small></aside>
+<article class="news-article " data-id="EzysxMVcJT2UCqRRwjyJQU">
+<header>
+<nav class="breadcrumb" aria-label="Breadcrumbs">
+<ol>
+<li><a href="https://www.livescience.com/">Home</a></li>
+<li><a href="https://www.livescience.com/news">News</a></li>
+</ol>
+</nav>
+<h1>Physicists Just Created the Most Detailed Simulation of the Universe in History</h1>
+<div class="byline-social">
+<p class="byline">
+By
+<span class="no-wrap by-author"><a href="https://www.livescience.com/author/tim-childers" rel="author"><span style="white-space: nowrap">Tim Childers</span> - <span>Live Science Contributor</span></a></span>
+<time class="no-wrap relative-date chunk" datetime="2019-11-19T12:48:14+00:00">2019-11-19T12:48:14Z</time>
+<span class="no-wrap"><a class="chunk category" href="https://www.livescience.com/space">Space</a> <i class="icon icon-category-space"></i></span>
+</p>
+<p class="strapline"></p>
+<nav class="socialite-widget box less-space " data-contexturl="https://www.livescience.com/https://www.livescience.com/most-detailed-universe-simulation.html">
+<ul class="socialite-widget-ul">
+<li class="socialite-widget-item">
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.livescience.com/most-detailed-universe-simulation.html" data-platform="facebook" target="_blank" class="facebook socialite" data-action="share" aria-label="Facebook">
+<i class="icon icon-facebook"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="https://twitter.com/intent/tweet?text=Physicists%20Just%20Created%20the%20Most%20Detailed%20Simulation%20of%20the%20Universe%20in%20History&amp;url=https://www.livescience.com/most-detailed-universe-simulation.html" data-platform="twitter" target="_blank" class="twitter socialite" data-action="tweet" aria-label="Twitter">
+<i class="icon icon-twitter"></i>
+</a>
+</li>
+<li class="socialite-widget-item mobile-only">
+<a href="whatsapp://send?text=Physicists%20Just%20Created%20the%20Most%20Detailed%20Simulation%20of%20the%20Universe%20in%20Historyhttps://www.livescience.com/most-detailed-universe-simulation.html?fwa" data-platform="whatsapp" class="whatsapp socialite" data-action="message" aria-label="WhatsApp">
+<i class="icon icon-whats-app"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="http://www.reddit.com/submit?url=https://www.livescience.com/most-detailed-universe-simulation.html&amp;title=Physicists%20Just%20Created%20the%20Most%20Detailed%20Simulation%20of%20the%20Universe%20in%20History" data-platform="reddit" target="_blank" class="reddit socialite" data-action="submit" aria-label="Reddit">
+<i class="icon icon-reddit"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="http://pinterest.com/pin/create/button/?url=https://www.livescience.com/most-detailed-universe-simulation.html&amp;media=https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-1200-80.png" data-platform="pinterest" target="_blank" class="pinterest socialite" data-action="pin" aria-label="Pinterest">
+<i class="icon icon-pinterest"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="https://share.flipboard.com/bookmarklet/popout?title=Physicists%20Just%20Created%20the%20Most%20Detailed%20Simulation%20of%20the%20Universe%20in%20History&amp;url=https%3A%2F%2Fwww.livescience.com%2Fmost-detailed-universe-simulation.html" data-platform="flipboard" target="_blank" class="flipboard socialite" data-action="flip" aria-label="Flipboard">
+<i class="icon icon-flipboard"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="mailto:?subject=I%20found%20this%20webpage&amp;body=Hi,%20I%20found%20this%20webpage%20and%20thought%20you%20might%20like%20it%20https://www.livescience.com/most-detailed-universe-simulation.html" class="email socialite" data-platform="email" aria-label="Email">
+<i class="icon icon-envelope-solid"></i>
+</a>
+</li>
+</ul>
+<div class="num-shares-wrapper"><i class="icon icon-share"></i> <span class="num-shares-label">Shares</span> <span class="num-shares-value"></span></div>
+</nav>
+</div>
+</header>
+<section class="content-wrapper">
+<div class="box">
+<img src="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-320-80.png" alt="The centers of massive galaxy clusters are super hot (red), while bright structures show diffuse gas from the intergalactic medium shock heating at the boundary between cosmic voids and filaments. " class=" block-image-ads hero-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" srcset="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-320-80.png 320w, https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-480-80.png 480w, https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-650-80.png 650w, https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-970-80.png 970w, https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn-1024-80.png 1024w" sizes="(min-width: 1000px) 970px,(min-width: 900px) 970px,(min-width: 700px) 970px,(min-width: 575px) 650px,(min-width: 360px) 575px" data-original-mos="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn.png" data-pin-media="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn.png">
+<div class="caption-text">The centers of massive galaxy clusters are super hot (red), while bright structures show diffuse gas from the intergalactic medium shock heating at the boundary between cosmic voids and filaments. </div>
+<div class="credit">(Image: © TNG Collaboration)</div>
+</div>
+<div itemprop="articleBody" id="article-body" class="text-copy bodyCopy auto">
+<div itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+<meta itemprop="url" content="https://cdn.mos.cms.futurecdn.net/qFd74BjTwgJcQhofvQgAn.png">
+<meta itemprop="height" content="602">
+<meta itemprop="width" content="370">
+</div>
+<p>The formation of galaxies is a complex dance between matter and energy, occurring on a stage of cosmic proportions and spanning billions of years. How the diversity of structured and dynamic galaxies we observe today arose from the fiery chaos of <a href="https://www.livescience.com/25126-big-bang-theory.html" data-original-url="https://www.livescience.com/34224-how-did-we-get-from-the-big-bang-to-the-universe-today.html"><u>the Big Bang</u></a> remains one of the most difficult unsolved puzzles of <a href="https://www.livescience.com/65384-cosmology.html"><u>cosmology</u></a>.</p><p>In search of answers, an international team of scientists has created the most detailed large-scale model of the universe to date, a simulation they call TNG50. Their virtual universe, some 230 million light-years wide, contains tens of thousands of evolving galaxies with levels of detail previously seen only in single-galaxy models. The simulation tracked more than 20 billion particles representing <a href="https://www.livescience.com/28402-what-is-dark-matter.html"><u>dark matter</u></a>, gases, stars and supermassive black holes, over a 13.8-billion-year period. </p><aside class="hawk-widget" data-render-type="fte" data-widget-type="seasonal"></aside><p>The unprecedented resolution and scale allowed the researchers to gather key insights into our own universe's past, revealing how various oddly shaped galaxies morphed themselves into being and how stellar explosions and black holes triggered this galactic evolution. Their results are published in two articles to be featured in the December 2019 issue of the journal <a href="https://academic.oup.com/mnras/article/490/3/3196/5566345?searchresult=1"><u>Monthly Notices of the Royal Astronomical Society</u></a>. </p><p><strong>Related: </strong><a href="https://www.livescience.com/65471-photo-timeline-big-bang.html"><u><strong>From Big Bang to Present: Snapshots of Our Universe Through Time</strong></u></a></p><p>TNG50 is the latest simulation created by the <a href="https://www.tng-project.org/about/"><u>IllustrisTNG Project</u></a>, which aims to build a complete picture of how our universe evolved since the Big Bang by producing a large-scale universe without sacrificing the fine details of individual galaxies.</p><div id="futr_botr_DmUEN01y_UbKkvo80_div" class="future__jwplayer"><div id="botr_DmUEN01y_UbKkvo80_div"></div></div><p>"These simulations are huge datasets where we can learn a ton by dissecting and understanding the formation and evolution of galaxies within them," said Paul Torrey, associate professor of physics at the University of Florida and co-author of the study. "What's fundamentally new about TNG50, is that you're getting to a sufficiently high mass and spatial resolution within the galaxies that give you a clear picture of what the internal structure of the systems looks like as they form and evolve."</p><p>The model's attention to detail comes at some cost. The simulation required 16,000 processor cores of the Hazel Hen <a href="https://www.livescience.com/65467-new-supercomputer-fastest.html"><u>supercomputer</u></a> in Stuttgart, Germany, running continuously for more than a year. The same calculation would take a single processor system 15,000 years to compute. Despite being one of the most computationally heavy astrophysical simulations in history, the researchers believe their investment has paid off.</p><p>"Numerical experiments of this kind are particularly successful when you get out more than you put in," Dylan Nelson, a postdoctoral fellow at the Max Planck Institute for Astrophysics in Munich, Germany, and co-author of the study, <a href="https://www.mpg.de/14086971/1104-astr-106969-tng50-evolution-galaxies?c=2249"><u>said in a statement</u></a>. "In our simulation, we see phenomena that had not been programmed explicitly into the simulation code. These phenomena emerge in a natural fashion, from the complex interplay of the basic physical ingredients of our model universe."</p><p class="mid__article"></p><a target="_blank"><figure data-bordeaux-image-check=""><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="The violent simulated birth of a galaxy cluster where dark matter structures (in white) merge together while supermassive blackholes and supernovae expel cosmic gas away (gas motion is shown in red)." class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/qAXLuii56Mc9tyhT89FVpB-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/qAXLuii56Mc9tyhT89FVpB-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/qAXLuii56Mc9tyhT89FVpB-650-80.jpg 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/qAXLuii56Mc9tyhT89FVpB.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/qAXLuii56Mc9tyhT89FVpB.jpg"></p><figcaption itemprop="caption description"><span class="caption-text">The violent simulated birth of a galaxy cluster where dark matter structures (in white) merge together while supermassive blackholes and supernovae expel cosmic gas away (gas motion is shown in red). </span><span class="credit" itemprop="copyrightHolder">(Image credit: TNG Collaboration)</span></figcaption></figure></a><p>That emergent phenomenon might be essential to understanding why our universe appears as it is today 13.8 billion years after the Big Bang. TNG50 allowed researchers to see firsthand how galaxies may have emerged from the turbulent clouds of gas present shortly after the universe was born. They discovered that the disk-shaped galaxies common to our cosmic neighborhood naturally emerged within their simulation and produced internal structures, including spiral arms, bulges and bars extending from their central supermassive <a href="https://www.space.com/15421-black-holes-facts-formation-discovery-sdcmp.html"><u>black holes</u></a>. When they compared their computer-generated universe to real-life observations, they found their population of galaxies were qualitatively consistent with reality.</p><p><strong>Related: </strong><a href="https://www.livescience.com/weirdest-galaxies.html"><u><strong>The 15 Weirdest Galaxies in Our Universe</strong></u></a></p><p>As their galaxies continued to flatten into well-ordered rotating disks, another phenomenon began to emerge. <a href="https://www.space.com/chandra-shows-reverse-shocks-in-cassiopeia.html"><u>Supernova</u></a> explosions and supermassive black holes at the heart of each galaxy created high-speed outflows of gas. These outflows morphed into fountains of gas rising thousands of light-years above a galaxy. The tug of gravity eventually brought much of this gas back unto the galaxy's disk, redistributing it to its outer edge and creating a feedback loop of gas outflow and inflow. Apart from recycling the ingredients for forming new stars, the outflows were also shown to change their galaxy's structure. The recycled gases accelerated the transformation of galaxies into thin rotating disks.</p><p>Despite these initial findings, the team is far from finished dissecting their model. They also plan to release all of the simulation's data publicly for astronomers across the world to study their virtual cosmos.</p><p>"There's a huge road ahead of us now that we have these simulations completed," Torrey said. "A whole team of researchers are working to better understand the detailed properties of the galaxies that form and what emergent trends show up in that data."</p><ul><li><a href="https://www.livescience.com/64955-stellar-star-images.html"><u>15 Amazing Images of Stars</u></a></li><li><a href="https://www.livescience.com/63847-facts-about-the-milky-way.html"><u>11 Fascinating Facts About Our Milky Way Galaxy</u></a></li><li><a href="https://www.livescience.com/64113-dark-matter-mysteries.html"><u>The 11 Biggest Unanswered Questions About Dark Matter</u></a></li></ul><p><em>Originally published on </em><a href="https://www.livescience.com/65651-quantum-computers-get-scary-fast.html"><em>Live Science</em></a><em>.</em> </p><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace%20" target="_blank"></a><figure data-bordeaux-image-check=""><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace%20" target="_blank"><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="All About Space Holiday 2019" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW-320-80.png" data-srcset="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW-320-80.png 320w, https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW-650-80.png 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW.png" data-pin-media="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW.png"></p></a><figcaption itemprop="caption description"><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace%20" target="_blank"><span class="caption-text"><em>Need more space? </em></span></a><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace%20" target="_blank"><em>Subscribe to our sister title "All About Space" Magazine</em></a><em> for the latest amazing news from the final frontier!</em> <span class="credit" itemprop="copyrightHolder">(Image credit: All About Space)</span></figcaption></figure>
+</div>
+<div class="read-more-container"></div>
+<div id="this-will-be-used-for-mpu-2"></div>
+</section>
+<script>
+window._taboola = window._taboola || [];
+var taboola_lists = [];
+function taboola_is_device(device) {
+if ((! device) || device === null || (typeof device) === 'undefined') return true
+if (device === 'amp') return false
+if (device === 'desktop' && window.screen.width >= 700) return true
+if (device === 'mobile' && window.screen.width < 700) return true
+return false
+}
+</script>
+<footer class="van_taboola" id="taboola-below-article-thumbnails"></footer>
+<script>
+if (taboola_is_device("desktop")) {
+taboola_lists.push({
+mode: "thumbnails-f",
+container: "taboola-below-article-thumbnails",
+placement: "Below Article Thumbnails",
+target_type: "mix"
+});
+}
+</script>
+<footer class="van_taboola" id="taboola-mobile-below-article-thumbnails"></footer>
+<script>
+if (taboola_is_device("mobile")) {
+taboola_lists.push({
+mode: "thumbnails-g",
+container: "taboola-mobile-below-article-thumbnails",
+placement: "Mobile Below Article Thumbnails",
+target_type: "mix"
+});
+}
+</script>
+<footer class="van_taboola" id=""></footer>
+<script>
+if (taboola_is_device("amp")) {
+taboola_lists.push({
+mode: "thumbnails-a",
+container: "",
+placement: "below-main-column",
+target_type: ""
+});
+}
+</script>
+<script>
+for(var i = 0; i < taboola_lists.length; i++){
+_taboola.push(taboola_lists[i]);
+}
+</script>
+<div class="related-articles-block">
+<div id="expanding-articles"></div> <!-- No tag-links --> </div>
+<footer id="comment-jump">
+</footer>
+</article>
+<aside id="sidebar">
+<section class="box newsletter-signup">
+<h3 class="separator-heading">
+<span>
+<i class="icon icon-envelope white"></i><span class="newsletter-title">Sign Up for e-mail newsletters</span>
+</span>
+</h3>
+<div class="grey-box">
+<p>Get breaking science news on monster snakes and dinosaurs, aliens, spooky particles and more!</p>
+<iframe style="width:100%" height="100" sandbox="allow-scripts allow-forms" data-lazy-src="https://futureplc.slgnt.eu/optiext/optiextension.dll?ID=s6XsWnyjpNGgHmS9IDSe4kGMs9Z0hv5kXjNQUQiRO2tDkDpIITWHetB5caZtol9br5fEOvs9fVr9oPM92i&amp;BRAND=LVS" data-lazy-priority="low" scrolling="no">
+</iframe>
+<footer>
+<small>No spam, we promise. You can unsubscribe at any time and we'll never share your details without your permission.</small>
+</footer>
+</div>
+</section>
+<section class="popular-box">
+<div id="popular-box-wrapper" class="style1">
+<div class="most-popular-tab-bar">
+<input type="radio" name="popradio" id="popradio-1" checked>
+<input type="radio" name="popradio" id="popradio-2">
+<div id="popularcontent">
+<div class="flex-row">
+<label class="poplabel" id="poplabel-1" for="popradio-1">
+<span>Most Read</span>
+</label>
+<label class="poplabel" id="poplabel-2" for="popradio-2">
+<span>Most Shared</span>
+</label>
+</div>
+<ol class="popular-list active" id="poplist-1">
+<li class="most-popular-item first-article">
+<div style="width:100%">
+<a href="https://www.livescience.com/Viking-shield-maiden-facial-reconstruction.html" aria-label="Battle-Scarred Viking Shield-Maiden Gets Facial Reconstruction for First Time">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/gnri5MarQag8wU2XDrCw2T.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-1">1</span><h4><a href="https://www.livescience.com/Viking-shield-maiden-facial-reconstruction.html">Battle-Scarred Viking Shield-Maiden Gets Facial Reconstruction for First Time</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/how-sugar-affects-body-brain.html" aria-label="Here's What Sugar Does to Your Brain">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/9LMTvygkTcz9HFHH6dawTB.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-2">2</span><h4><a href="https://www.livescience.com/how-sugar-affects-body-brain.html">Here's What Sugar Does to Your Brain</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/gravitational-wave-supernova-disappointment.html" aria-label="Mysterious Gravitational Wave Sparks Days-Long Hunt — But It Was Just a Glitch">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/vBQEcvQVwKU4PmuxZW2UE.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-3">3</span><h4><a href="https://www.livescience.com/gravitational-wave-supernova-disappointment.html">Mysterious Gravitational Wave Sparks Days-Long Hunt — But It Was Just a Glitch</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/infants-buried-wearing-skull-helmets.html" aria-label="2 Infants Were Buried Wearing Helmets Made from Kids' Skulls. And Archaeologists Are Puzzled.">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-4">4</span><h4><a href="https://www.livescience.com/infants-buried-wearing-skull-helmets.html">2 Infants Were Buried Wearing Helmets Made from Kids' Skulls. And Archaeologists Are Puzzled.</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/objective-reality-not-exist-quantum-physicists.html" aria-label="Objective Reality Doesn't Exist, Quantum Experiment Shows">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-5">5</span><h4><a href="https://www.livescience.com/objective-reality-not-exist-quantum-physicists.html">Objective Reality Doesn't Exist, Quantum Experiment Shows</a></h4>
+</div>
+</div>
+</li>
+</ol>
+<ol class="popular-list " id="poplist-2">
+<li class="most-popular-item first-article">
+<div style="width:100%">
+<a href="https://www.livescience.com/infants-buried-wearing-skull-helmets.html" aria-label="2 Infants Were Buried Wearing Helmets Made from Kids' Skulls. And Archaeologists Are Puzzled.">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/unbGJj8Xty9sKYGsY45QrH.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-1">1</span><h4><a href="https://www.livescience.com/infants-buried-wearing-skull-helmets.html">2 Infants Were Buried Wearing Helmets Made from Kids' Skulls. And Archaeologists Are Puzzled.</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/burn-calories-brain.html" aria-label="How Many Calories Can the Brain Burn by Thinking?">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/XtjrmUWS4772wJJeDPNgGN.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-2">2</span><h4><a href="https://www.livescience.com/burn-calories-brain.html">How Many Calories Can the Brain Burn by Thinking?</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/objective-reality-not-exist-quantum-physicists.html" aria-label="Objective Reality Doesn't Exist, Quantum Experiment Shows">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/CHAD6Kur3Tup8xFzKRxxwJ.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-3">3</span><h4><a href="https://www.livescience.com/objective-reality-not-exist-quantum-physicists.html">Objective Reality Doesn't Exist, Quantum Experiment Shows</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/cows-swept-sea-swam-island.html" aria-label="3 Cows Swept Out to Sea by Hurricane Dorian Were Found Peacefully Grazing on an Island Miles Away">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh-320-80.jpeg" data-srcset="https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh-320-80.jpeg 320w, https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh-450-80.jpeg 450w, https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh-970-80.jpeg 970w, https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh-1024-80.jpeg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh.jpeg" data-pin-media="https://cdn.mos.cms.futurecdn.net/vP3MBomQ4MsXdAVHDwsqhh.jpeg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-4">4</span><h4><a href="https://www.livescience.com/cows-swept-sea-swam-island.html">3 Cows Swept Out to Sea by Hurricane Dorian Were Found Peacefully Grazing on an Island Miles Away</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.livescience.com/carnivore-beef-diet.html" aria-label="Can a Person Survive Eating Only Beef?">
+<img src="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/livescience/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/qCZJTduKiR2SRCEwg2c7FG.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-5">5</span><h4><a href="https://www.livescience.com/carnivore-beef-diet.html">Can a Person Survive Eating Only Beef?</a></h4>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</aside>
+</div>
+<script id="hawklinks-script">
+function loadHawklinks(src) {
+!function (e, f, u) {
+e.async = 1;
+e.src = u;
+f.parentNode.insertBefore(e, f);
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+src);
+}
+window.reliableDOMContentLoaded.then(function() {
+loadHawklinks("https://gizmos.files-hawk.co.uk/hl/hawklinks.js");
+});
+</script>
+<link rel="preload" href="https://gizmos.files-hawk.co.uk/hl/hawklinks.js" as="script">
+<!-- SP NOPE -->
+<script type="text/javascript">
+window.vanilla.tiberius = {
+enabled: false,
+}
+</script>
+<footer id="document-footer" class="container full">
+<div id="document-footer-content">
+<p>Live Science is part of Future US Inc, an international media group and leading digital publisher. <a href="http://www.futureus.com" target="_blank">Visit our corporate site</a>.</p>
+<nav>
+<ul>
+<li><a href="http://www.futureplc.com/terms-conditions/" target="_blank">Terms and conditions</a></li>
+<li><a href="http://www.futureplc.com/privacy-policy/" target="_blank">Privacy policy</a></li>
+<li><a href="http://www.futureplc.com/cookies-policy/" target="_blank">Cookies policy</a></li>
+<li><a href="http://www.futureplc.com/accessibility-statement/" target="_blank">Accessibility Statement</a></li>
+<li><a href="https://www.livescience.com/topics" target="_blank">Topics</a></li>
+</ul>
+</nav>
+<p>©
+<span>
+<span>
+<span>Future US, Inc.</span> </span>
+<span>11 West 42nd Street, 15th Floor</span>,
+<span>New York,</span>
+<span class="region">NY</span> <span>10036</span></span>. </p>
+</div>
+</footer>
+<script>
+window.vanL10N = [];
+</script><script>
+if (document.cookie.indexOf("EuConsent") < 0) {
+if (!window._comscore) {
+window._comscore = window._comscore || [];
+}
+window._comscore.push({
+c1: "2",
+c2: "10055482",
+cs_ucfr: '' });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+} else {
+window.reliableConsentGiven.then(function(value) {
+if (!window._comscore) {
+window._comscore = window._comscore || [];
+}
+var cs_ucfr_value = '';
+if (value.consent && value.consent.purposeConsents[5]) {
+cs_ucfr_value = 1;
+} else {
+cs_ucfr_value = 0;
+}
+window._comscore.push({
+c1: "2",
+c2: "10055482",
+cs_ucfr: cs_ucfr_value });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+});
+}
+</script>
+<script>
+var dfp_config = {
+"keystone": "",
+"ad_unit": "10518929/Science_LiveScience/",
+"live_ad_unit": "10518929/Science_LiveScience/",
+"test_ad_unit": "10518929/Science_LiveScience_Test/",
+"recovery_ad_unit": "",
+"recovery_test_ad_unit": "",
+"incremental": true,
+"gptBeta": "",
+"max_incremental_ads": 20,
+"max_incremental_ads_mobile": 20,
+"max_concurrent_ads": 4,
+"refresh": true,
+"site_platform": "vanilla",
+"tiberius": false,
+"tiberius_mode": "off",
+"keywords": "channel_other,type_news,serversidehawk,videoarticle,Space,galaxy formation,galaxies,universe simulation,tng50",
+"article_id": "EzysxMVcJT2UCqRRwjyJQU",
+"vanilla_article_id": "EzysxMVcJT2UCqRRwjyJQU",
+"page_type": "news",
+"product_brand": "",
+"product_category": "",
+"product": "",
+"vertical": "space",
+"source": "",
+"provertical": "",
+"single_request": true,
+"onscroll": {
+"refresh" : "",
+"mpu": ""
+},
+"jwplayer": "carousel,article"
+}
+</script> <script>
+dfp_config.gallery_refresh_interval = 2;
+</script> <script>window.vanillaComponents = [{"trackable":[{"type":"click","identifier":".menuitems a","name":"Link clicked","countTotal":true}],"name":"Primary Nav","excludeHidden":false,"identifier":".primary-nav"},{"trackable":[{"type":"click","identifier":".feature-block-item-wrapper a","name":"Article clicked","countTotal":false}],"name":"Featured articles","excludeHidden":false,"identifier":".top-featured"},{"trackable":[{"type":"click","identifier":"a","name":"Logo clicked","countTotal":false}],"name":"Site Logo","identifier":".logo"},{"trackable":[{"type":"click","identifier":".most-popular-item","name":"Most read article clicked","countTotal":true}],"name":"Most Popular - Popular","identifier":"#poplist-1"},{"trackable":[{"type":"click","identifier":".most-popular-item","name":"Most shared article clicked","countTotal":true}],"name":"Most Popular - Shared","identifier":"#poplist-2"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":false}],"name":"Prev/Next","identifier":".next-prev-container"},{"trackable":[{"type":"click","identifier":"a","name":"Number clicked","countTotal":true}],"name":"Paginated Review Numerical pagination - Number","identifier":".pagination-numerical-list"},{"trackable":[{"type":"click","identifier":".prev,.next","name":"Prev/Next clicked","countTotal":false}],"name":"Paginated Review Numerical pagination - Prev/Next","identifier":".navigation-sequential"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Inline Pagination","identifier":".swipe-pages-wrapper"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Article Tags","identifier":"#articleTag"},{"trackable":[{"type":"click","identifier":".recommended-article a","name":"Link clicked","countTotal":true}],"name":"Recommended article","identifier":".recommendation-articles"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Trending bar","identifier":".trending-items"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-1","identifier":".club-boilerplate-1"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-2","identifier":".club-boilerplate-2"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-3","identifier":".club-boilerplate-3"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-4","identifier":".club-boilerplate-4"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Inline links","identifier":"#article-body"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Social links","identifier":".socialite-widget"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Avatar","identifier":"#club-login"},{"trackable":[{"type":"click","identifier":".fwd-link","name":"FWD link clicked","countTotal":true}],"name":"Forward Linker","identifier":"#article-body"},{"trackable":[{"type":"click","identifier":"div .brands-lead","name":"Extending Trending Bar","countTotal":true}],"name":"Trending Bar Parent","excludeHidden":false,"identifier":"div .trending-bar"},{"trackable":[{"type":"click","identifier":"a[data-event-label=elkInjectedRelatedBlock]","name":"Link clicked","countTotal":true}],"name":"ELK Injected Related Block","identifier":"#article-body"}]</script> <script>
+var require = {waitSeconds:0};
+</script> <!-- Google Tag Manager -->
+<script>
+(function(){
+function loadGTM(){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TGWDHDQ');
+}
+// Can't be in asset loader until we can call custom loader functions
+;(window.Promise
+? Promise.all([
+window.reliablePageLoad,
+window.reliableConsentGiven
+])
+: window.reliableConsentGiven
+).then(function(){
+setTimeout(loadGTM, 1500);
+});
+})();
+</script>
+<!-- End Google Tag Manager -->
+<script type="text/javascript">
+(function(){
+if(typeof window._taboola !== 'undefined'
+&& typeof taboola_lists !== 'undefined'
+&& Array.isArray(taboola_lists)
+&& taboola_lists.length)
+{
+function loadTaboola()
+{
+!function (e, f, u) {
+e.async = 1;
+e.src = u;
+f.parentNode.insertBefore(e, f);
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+'//cdn.taboola.com/libtrc/futureplc-network/loader.js');
+_taboola.push({article: 'auto'});
+_taboola.push({flush: true});
+}
+// Can't be in asset loader until we can call custom loader functions
+(window.Promise
+? Promise.all([window.reliablePageLoad, window.reliableConsentGiven])
+: window.reliableConsentGiven
+).then(function(){
+setTimeout(loadTaboola, 6000);
+});
+}
+})();
+</script>
+<script>window.addEventListener("load",function(){if(!window.askForConsent){var e=document.createElement("script");e.src="https://vanilla.futurecdn.net/livescience/cookieconsent.min.js",e.onload=function(){var e=window.innerWidth>=700?"bottom":"top";window.cookieconsent.initialise({palette:{popup:{background:"#000"},button:{background:"#666666"}},position:e,content:{message:"We use cookies on this website to deliver content to you, personalise content and ads, provide social media features, and analyse our traffic. Click 'I accept' to consent to the use of cookies. More information on cookies and how to manage them",link:"click here",href:"http://www.futureplc.com/cookies-policy/",dismiss:"I accept"}})},document.body.appendChild(e);var o=document.createElement("link");o.rel="stylesheet",o.type="text/css",o.href="https://vanilla.futurecdn.net/livescience/cookieconsent.min.css",document.body.appendChild(o);var t=document.createElement("style");t.appendChild(document.createTextNode(".cc-window {z-index:10000000}")),document.body.appendChild(t)}});</script>
+<!-- document assets - added by the article itself -->
+<script>
+window.vanilla.addJs({"id":"main-js","src":"\/\/vanilla.futurecdn.net\/livescience\/145481\/media\/js\/main.min.js"}, null, 0)
+window.vanilla.addJs({"id":"responsive-js","src":"\/responsive.d911f142.js"}, null, 0)
+window.vanilla.addJs({"id":"ffte-js","src":"\/\/vanilla.futurecdn.net\/livescience\/145481\/media\/shared\/js\/app.js"}, 2000, 1)
+window.vanilla.addCss({"href":"\/\/vanilla.futurecdn.net\/livescience\/145481\/media\/css\/livescience.min.css"})
+</script> <script>
+window.ffte = {"site":"livescience","endpoint":"\/\/api.vanilla.futurecdn.net\/article","locale":"US","gaCode":"UA-72111741-7","debug":[],"serverEnvironment":"live","regionLink":"","isGlobal":false,"properties":{"articleProduct":[],"articleProductHandle":[],"articleType":"news","articleTemplate":"standard","articleTagHandle":["galaxy-formation","galaxies","universe-simulation","tng50"],"articleTagType":["freeform","freeform","freeform","freeform"],"articleControlTag":["channel_other","type_news","serversidehawk","videoarticle"],"articleVerticalHandle":["space"],"articleCategoryHandle":[],"subSite":"","articleVertical":"space","id":"EzysxMVcJT2UCqRRwjyJQU","legacyId":"EzysxMVcJT2UCqRRwjyJQU"}}
+</script>
+<script id="parsely-cfg" src="//cdn.parsely.com/keys/livescience.com/p.js"></script>
+<script>
+window.xkeys = ["livescience-platform-responsive","livescience-core-version-21.5.3","livescience-core-ftefrontprodblue","livescience-article-EzysxMVcJT2UCqRRwjyJQU","livescience-articletype-news","livescience-article-age-recent","livescience-region-US","livescience-language-en","livescience-author-wP6Hn2XAY5JfUFigWykxFS","livescience-tag-DskWHFz2NcYXs7j3B6NvZJ","livescience-tag-FP6R5JXWxSN3hwYTp5gvUY","livescience-tag-ycaMxAjaFT9CutG9fpHPLc","livescience-tag-eq3imDaV7FvMt7JkhW4d9c","livescience-tag-vpLngVWsBnxHYBKGtndvZR"];
+window.templateVariables = {};
+</script>
+
+<script>
+window.ftr_request_id = "";
+</script> 
+</body></html>

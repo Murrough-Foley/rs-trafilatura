@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Reference - Configuration Options | Developer Docs</title>
+    <meta name="description" content="Complete reference for configuration options in the API.">
+</head>
+<body>
+    <nav class="docs-nav">
+        <a href="/docs">Documentation</a>
+        <a href="/api">API Reference</a>
+        <a href="/examples">Examples</a>
+    </nav>
+
+    <main class="docs-content">
+        <article>
+            <h1>Configuration Options</h1>
+
+            <p>This page documents all available configuration options for the library. Each option can be set programmatically or through configuration files.</p>
+
+            <h2>Basic Options</h2>
+
+            <p>The following table lists the basic configuration options:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>timeout</td>
+                        <td>integer</td>
+                        <td>30</td>
+                        <td>Request timeout in seconds</td>
+                    </tr>
+                    <tr>
+                        <td>retries</td>
+                        <td>integer</td>
+                        <td>3</td>
+                        <td>Number of retry attempts</td>
+                    </tr>
+                    <tr>
+                        <td>debug</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>Enable debug logging</td>
+                    </tr>
+                    <tr>
+                        <td>cache_enabled</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                        <td>Enable response caching</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Advanced Options</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>max_connections</td>
+                        <td>integer</td>
+                        <td>100</td>
+                        <td>Maximum concurrent connections</td>
+                    </tr>
+                    <tr>
+                        <td>buffer_size</td>
+                        <td>integer</td>
+                        <td>8192</td>
+                        <td>I/O buffer size in bytes</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Code Examples</h2>
+
+            <p>Here's how to configure the library in different languages:</p>
+
+            <h3>Rust</h3>
+
+            <pre><code>use mylib::Config;
+
+fn main() {
+    let config = Config::builder()
+        .timeout(60)
+        .retries(5)
+        .debug(true)
+        .build();
+
+    let client = Client::new(config);
+}</code></pre>
+
+            <h3>Python</h3>
+
+            <pre><code>from mylib import Config, Client
+
+config = Config(
+    timeout=60,
+    retries=5,
+    debug=True
+)
+
+client = Client(config)</code></pre>
+
+            <h2>Environment Variables</h2>
+
+            <p>Configuration can also be set via environment variables:</p>
+
+            <ul>
+                <li><code>MYLIB_TIMEOUT</code> - Sets the timeout value</li>
+                <li><code>MYLIB_RETRIES</code> - Sets the retry count</li>
+                <li><code>MYLIB_DEBUG</code> - Enables debug mode when set to "true"</li>
+            </ul>
+
+            <h2>Configuration File</h2>
+
+            <p>Create a <code>config.toml</code> file in your project root:</p>
+
+            <pre><code>[settings]
+timeout = 60
+retries = 5
+debug = true
+
+[advanced]
+max_connections = 200
+buffer_size = 16384</code></pre>
+        </article>
+    </main>
+
+    <aside class="docs-sidebar">
+        <h3>On This Page</h3>
+        <ul>
+            <li><a href="#basic">Basic Options</a></li>
+            <li><a href="#advanced">Advanced Options</a></li>
+            <li><a href="#examples">Code Examples</a></li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>Documentation version 2.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<html class="no-js" lang="en" dir="ltr"><!--<![endif]--><head>
+    <meta charset="utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"560baa128a",applicationID:"236585302"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:site" content="@ap">
+<meta property="twitter:title" content="Unpredictable Sondland faces questions about Trump, Ukraine">
+<meta property="article:publisher" content="https://www.facebook.com/APNews">
+<meta property="twitter:image" content="https://mapi.associatedpress.com/v1/items/cfec9b3238d14d67a00488a2e0cc3d45/preview/preview.jpg?s=690x">
+<link rel="shortcut icon" href="https://hosted.ap.org/profiles/ap/themes/ap_hosted/favicon.ico">
+<meta property="twitter:description" content="WASHINGTON (AP) — Ambassador Gordon Sondland, the most anticipated witness in the impeachment inquiry, is likely to be unpredictable when he faces questions about his evolving accounts of the Trump administration’s dealings…">
+<meta property="og:image" content="https://mapi.associatedpress.com/v1/items/cfec9b3238d14d67a00488a2e0cc3d45/preview/preview.jpg?s=690x">
+<meta property="twitter:image:alt" content="FILE - In this Monday, Oct. 28, 2019, file photo, U.S. Ambassador to the European Union Gordon Sondland walks to a secure area of the Capitol to testify as part of the House impeachment inquiry into President Donald Trump, in Washington. Sondland is scheduled to be the first witness when the impeachment hearings resume at 9 a.m. EST Wednesday, Nov. 20. (AP Photo/Patrick Semansky, File)">
+<meta http-equiv="ImageToolbar" content="false">
+<meta property="twitter:url" content="https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine">
+<meta name="viewport" content="width=device-width, maximum-scale = 1.0">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="WASHINGTON (AP) — Ambassador Gordon Sondland, the most anticipated witness in the impeachment inquiry, is likely to be unpredictable when he faces questions about his evolving accounts of the Trump administration’s dealings with Ukraine and a newly revealed summertime phone call with President Donald Trump.">
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)">
+<link rel="canonical" href="https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine">
+<link rel="shortlink" href="https://hosted.ap.org/node/777174">
+<meta property="og:site_name" content="Hosted">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine">
+<meta property="og:title" content="Unpredictable Sondland faces questions about Trump, Ukraine">
+<meta property="og:description" content="WASHINGTON (AP) — Ambassador Gordon Sondland, the most anticipated witness in the impeachment inquiry, is likely to be unpredictable when he faces questions about his evolving accounts of the Trump administration’s dealings with Ukraine and a newly revealed summertime phone call with President Donald Trump.">
+<meta property="og:updated_time" content="2019-11-20T05:52:50-05:00">
+<meta property="article:published_time" content="2019-11-20T05:52:20-05:00">
+<meta property="article:modified_time" content="2019-11-20T05:52:50-05:00">
+    <title>Unpredictable Sondland faces questions about Trump, Ukraine | Hosted</title>
+    <link rel="stylesheet" href="https://hosted.ap.org/sites/hosted/files/css/css_kShW4RPmRstZ3SpIC-ZvVGNFVAi0WEMuCnI0ZkYIaFw.css">
+<link rel="stylesheet" href="https://hosted.ap.org/sites/hosted/files/css/css_DNRAKJ-F_tjGJ3lkTmergTSh7y0hkG0FzgOTENiowsQ.css">
+<link rel="stylesheet" href="https://hosted.ap.org/sites/hosted/files/css/css_tfot7XjoK72YizuIYKuLV4R8HFN2GspGfmZHmJdoTXM.css">
+<link rel="stylesheet" href="https://hosted.ap.org/sites/hosted/files/css/css_7P3fPwnTCSb9f62Y9rkA54pB3XlhaogBW4xhTOjCLrE.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write("<script src='/profiles/ap/modules/contrib/jquery_update/replace/jquery/1.10/jquery.min.js'>\x3C/script>")</script>
+<script src="https://hosted.ap.org/sites/hosted/files/js/js_PdiuypZMI8o81AYEdTHwjRslVPEF69JFzr7Y9sMWt4s.js"></script>
+<script>var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+googletag.slots = googletag.slots || {};</script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+<script src="https://hosted.ap.org/sites/hosted/files/js/js_s3L_uC35AiN5EGYY533su-jccnLRp2aKpOnjgPLbo34.js"></script>
+<script>googletag.slots["billboard"] = googletag.defineSlot("/15786418/hosted/berkshireeagle/site", [[970, 250], [970, 90], [728, 90]], "dfp-ad-billboard")
+  .addService(googletag.pubads());</script>
+<script>googletag.slots["billboard_mobile"] = googletag.defineSlot("/15786418/hosted/berkshireeagle/site", [[300, 50], [320, 50], [300, 100]], "dfp-ad-billboard_mobile")
+  .addService(googletag.pubads());</script>
+<script>googletag.slots["half_page"] = googletag.defineSlot("/15786418/hosted/berkshireeagle/site", [300, 600], "dfp-ad-half_page")
+  .addService(googletag.pubads());</script>
+<script>googletag.slots["mediumrectangle"] = googletag.defineSlot("/15786418/hosted/berkshireeagle/site", [300, 250], "dfp-ad-mediumrectangle")
+  .addService(googletag.pubads());</script>
+<script src="https://hosted.ap.org/sites/hosted/files/js/js_autNJ7ZGxC-zDE8yrCVT_Cw2UheKdkls3gcif5KOpq4.js"></script>
+<script>googletag.cmd.push(function() {
+  googletag.pubads().enableAsyncRendering();
+  googletag.pubads().enableSingleRequest();
+});
+
+googletag.enableServices();</script>
+<script>window.CKEDITOR_BASEPATH = '/profiles/ap/libraries/ckeditor/'</script>
+<script src="https://hosted.ap.org/sites/hosted/files/js/js_gPqjYq7fqdMzw8-29XWQIVoDSWTmZCGy9OqaHppNxuQ.js"></script>
+<script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-27590430-21", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);var path = window.location.pathname.split('/');
+//document.addEventListener("DOMContentLoaded", function(event) {
+jQuery('document').ready(function(){
+       if (path[2] == "gallery" || path[2] == "article") {
+        var slug = document.getElementById("ap-story-slug").innerHTML;    
+console.log(slug);
+           // Set value for custom dimension at index 1.
+           ga('set', 'dimension1', path[1]);
+           ga('set', 'dimension2', path[3]);
+           ga('set', 'dimension3', slug);
+       }
+else if (path[2] == "tags") {
+          ga('set', 'dimension1', path[1]);
+}ga("send", "pageview");});</script>
+<script>(function($) { 
+          $(window).load(function() {
+            if (window._gat) {
+              var wlTracker = window._gat._getTracker("UA-85555179-1"); // whitelabel only
+              wlTracker._trackPageview();
+            }else if (window.ga && ga.loaded){
+              ga("create", "UA-85555179-1", "auto", "whitelabel"); // whitelabel only
+              ga("whitelabel.send", "pageview");  
+            }
+          });
+        })(jQuery);</script>
+<script>window.onTaboolaClick = function(item) {
+          var clickedUrl = item.url; // this is the url of the organic item the user clicked
+          if(AP_WL_NAME) {
+            var a = document.createElement("a");
+            a.href = clickedUrl;
+            var hostname = a.hostname;
+            var updated_url = clickedUrl.replace(hostname, hostname + "/" + AP_WL_NAME);
+            a.href = updated_url;
+            document.body.appendChild(a);
+            a.click();
+            return false;
+          }
+          return true;
+     }</script>
+<script>(function($){
+      $(document).ready(function () {
+      try {
+          //Block of code to try
+           var path = window.location.pathname.split('/');
+        var scrollEventLabel = 0;
+        $(".button-back").click(function (e) {
+          e.preventDefault();
+          var articlePath = jQuery(this).attr('href');
+            if (path[2] == "gallery" && path[3].length == 32) {
+                 ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Back',
+                    eventAction: 'BacktoStory',
+                    eventLabel: path[3],
+                    hitCallback: function() {
+                     window.location.href = articlePath; 
+                  }
+                });
+            }
+        });
+/***********************************************/
+/*         Track use of Media Galleries        */
+/***********************************************/
+
+       $(".hosted-photo").click(function (e) {
+e.preventDefault();
+ var currentImage = jQuery(this);
+            if (path[2] == "article" && path[3].length == 32) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Gallery',
+                    eventAction: 'Photo Thumbnail',
+                   hitCallback: function() {
+                     window.location.href = currentImage.find('a').attr('href'); 
+                  }
+                });
+            }
+        });
+        $(".hosted-video").click(function (e) {
+e.preventDefault();
+
+ var currentVideo = jQuery(this);
+            if (path[2] == "article" && path[3].length == 32) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Gallery',
+                    eventAction: 'Video Thumbnail',
+                    hitCallback: function() {
+                     window.location.href = currentVideo.find('a').attr('href'); 
+                  }
+                });
+            }
+        });
+        $(".hosted.graphic").click(function (e) {
+e.preventDefault();
+var currentGraphic = jQuery(this);
+
+            if (path[2] == "article" && path[3].length == 32) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Gallery',
+                    eventAction: 'Graphic Thumbnail',
+                    hitCallback: function() {
+                     window.location.href = currentGraphic.find('a').attr('href'); 
+                  }
+                });
+            }
+        });
+
+
+$("#view-all").click(function (e) {
+e.preventDefault();
+viewAllPath = $(this).attr('href');
+            if (path[2] == "article" && path[3].length == 32) {
+try{
+               ga('send', {
+                    hitType: 'event',
+                   eventCategory: 'Gallery',
+                 eventAction: 'View Media',
+                   hitCallback: function() {
+                    window.location.href =viewAllPath; 
+               }
+             });
+}catch(err){
+console.log("ga is not defined.");
+}
+            }
+        });
+/***********************************************/
+/*         Track use of Blocks        */
+/***********************************************/
+//Taboola block content bottom
+$(document).on( 'click', '.videoCube', function (e) {  
+  e.preventDefault();
+
+  var taboolaLink = $(this).find('a').first().attr("href");
+
+   if (path[2] == "article" && path[3].length == 32) {
+
+               ga('send', {
+                   hitType: 'event',
+                   eventCategory: 'Block',
+                   eventAction: 'You Might Like',
+                   eventLabel: link,
+                   hitCallback: function() {
+                    window.location.href = taboolaLink;
+                 }
+               });
+           }
+       });
+    
+//People, Topics, Compnaies, Places block
+$(".topics-tags, .places-tag, .oraganization-tag, .people-tag, .companies-tag").click(function (e) {
+e.preventDefault();
+
+var tagsLinks = $(this).attr("href");
+           if (path[2] == "article" && path[3].length == 32) {
+               
+               ga('send', {
+                   hitType: 'event',
+                   eventCategory: 'Block',
+                   eventAction: $(this).attr('data'),
+                   eventLabel: $(this).text(),
+                   hitCallback: function() {
+                    window.location.href = tagsLinks;
+                 }
+               });
+           }
+       });
+
+//Hosted RSS Feed Block
+    $(document).on( 'click', '.media-body', function (e) { 
+    e.preventDefault();
+   var link = $(this).find('a:first').attr('href');
+
+    if (path[2] == "article" || path[2] == "gallery" && path[3].length == 32) {
+
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Block',
+                    eventAction: 'Hosted RSS Feed',
+                    eventLabel: link,
+                    hitCallback: function() {
+                    window.location.href =link; 
+               }
+                });
+            }
+        });
+// Trending Block
+    $(document).on( 'click', '.trending li', function (e) {
+   e.preventDefault();
+   var tredningLink = $(this).find('a').attr('href');
+   var part = tredningLink.split("/");
+
+   if (path[2] === "article" || path[2] === "gallery"  && part[3].length === 32) {
+               ga('send', {
+                   hitType: 'event',
+                   eventCategory: 'Block',
+                   eventAction: 'Trending',
+                   eventLabel: part[3], //ItemId
+                   hitCallback: function() {
+                    window.location.href = tredningLink;
+                 }
+               });
+           }
+         });
+
+        
+//on browser tab close track scroll/no-scroll event
+window.addEventListener("beforeunload", function (e) {
+if (path[2] == "article" || path[2] == "gallery") {
+  var scrollAction = '';
+  if(scrollEventLabel == 0){
+    scrollAction = 'NoScroll';
+  }
+  else{
+    scrollAction = 'Scroll';
+  }
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'ScrollDepth',
+    eventAction: scrollAction,
+    eventLabel: scrollEventLabel,
+  });
+  }
+});  //beforeunload close
+    
+    // Scroll depth
+jQuery.scrollDepth({
+  percentage: true,
+  userTiming: false,
+  pixelDepth: false,
+  nonInteraction: false,  
+  eventHandler: function(data) {
+    if (path[2] == "article" || path[2] == "gallery") {
+      scrollEventLabel = data.eventLabel;
+    }
+  }
+  }); //scroll depth close
+
+/*Track Social Interaction Start*/
+if(path[2] == "gallery" || path[2] == "article"){
+jQuery(document).on('click', '.social-share-top a', function (e) {
+  var socialNetwork = jQuery(this).attr('class').split(' ')[1];
+pageType =path[2].charAt(0).toUpperCase() + path[2].slice(1);
+socialNetwork = socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1);
+ var slug =  jQuery("#ap-story-slug").text();
+ //wl path name
+ ga('set', 'dimension1', path[1]);
+ //Article Item Id 
+ ga('set', 'dimension2', path[3]);
+ // Article Slug
+ ga('set', 'dimension3', slug);
+ga('send', {
+           hitType: 'event',
+           eventCategory: 'Share',
+           eventAction: pageType,
+           eventLabel: socialNetwork,
+});
+});
+}
+/*Track Social Interaction End*/
+
+      }
+      catch(err) {
+         // Block of code to handle errors
+         console.log("Error found in custom js block",err);
+      } 
+      }); //ready close   
+
+    })(jQuery);</script>
+<script src="https://hosted.ap.org/sites/hosted/files/js/js_vtW8d--0erjVBEkUgXLtUWalLJKuNqHrS_O86DI1pQ0.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"ap_hosted","theme_token":"CrhJtM36jnT5dVWwmnTNkXQ2AeIsPxbD9WmSMwHNkmA","js":{"0":1,"\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1.10.2\/jquery.min.js":1,"1":1,"misc\/jquery.once.js":1,"2":1,"https:\/\/www.googletagservices.com\/tag\/js\/gpt.js":1,"misc\/drupal.js":1,"3":1,"4":1,"5":1,"6":1,"profiles\/ap\/modules\/custom\/core\/ap_boxes\/js\/jquery.hoverIntent.minified.js":1,"profiles\/ap\/modules\/custom\/core\/ap_boxes\/js\/jquery.masonry.min.js":1,"profiles\/ap\/modules\/custom\/core\/ap_boxes\/js\/ap_boxes.js":1,"profiles\/ap\/modules\/custom\/core\/ap_boxes\/js\/ap_boxes_masonry.js":1,"profiles\/ap\/modules\/custom\/core\/ap_boxes\/js\/ap_boxes_flyout.js":1,"profiles\/ap\/modules\/custom\/dev\/ap_google_analytics\/js\/scrolldepth.js":1,"profiles\/ap\/modules\/custom\/dev\/ap_hosted_rightsidebar_widget\/js\/ap_hosted_right_rail.js":1,"profiles\/ap\/modules\/custom\/core\/hosted_article\/js\/ap_hosted_article.js":1,"7":1,"8":1,"profiles\/ap\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"9":1,"10":1,"11":1,"12":1,"profiles\/ap\/themes\/ap_hosted\/js\/vendor\/custom.modernizr.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation.min.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/jquery.cookie\/jquery.cookie.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/jquery-placeholder\/jquery.placeholder.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/fastclick\/lib\/fastclick.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/clipboard\/dist\/clipboard.min.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/masonry\/dist\/masonry.pkgd.min.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/jquery.mCustomScrollbar.concat.min.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.abide.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.alerts.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.clearing.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.cookie.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.dropdown.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.forms.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.interchange.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.joyride.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.magellan.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.orbit.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.placeholder.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.reveal.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.section.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.tooltips.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/foundation\/foundation.topbar.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/modernizr.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/app.js":1,"profiles\/ap\/themes\/ap_hosted\/js\/scripts.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/jwplayer\/jwplayer.js":1,"profiles\/ap\/themes\/ap_hosted\/bower_components\/jwplayer\/jwplayer.html5.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"profiles\/ap\/modules\/custom\/core\/ap_boxes\/css\/flyout.css":1,"profiles\/ap\/modules\/custom\/dev\/ap_google_analytics\/css\/ap_google_analytics.css":1,"profiles\/ap\/modules\/contrib\/date\/date_api\/date.css":1,"profiles\/ap\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"profiles\/ap\/modules\/custom\/core\/hosted_article\/css\/hosted_article.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"profiles\/ap\/modules\/contrib\/views\/css\/views.css":1,"profiles\/ap\/modules\/contrib\/ctools\/css\/ctools.css":1,"profiles\/ap\/themes\/zurb_foundation\/css\/normalize.css":1,"profiles\/ap\/themes\/ap_hosted\/css\/foundation.min.css":1,"profiles\/ap\/themes\/ap_hosted\/css\/app.css":1,"profiles\/ap\/themes\/ap_hosted\/font-awesome-4.4.0\/css\/font-awesome.min.css":1,"profiles\/ap\/themes\/ap_hosted\/css\/jquery-ui\/jquery-ui.min.css":1,"profiles\/ap\/themes\/ap_hosted\/css\/jquery.mCustomScrollbar.css":1,"profiles\/ap\/themes\/ap_hosted\/css\/styles.css":1,"profiles\/ap\/themes\/ap_hosted\/css\/responsive-styles.css":1}},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"}});</script>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Taboola script goes here -->
+    <script type="text/javascript">
+      window._taboola = window._taboola || [];
+      _taboola.push({article: 'auto'});
+      !function (e, f, u, i) {
+        if (!document.getElementById(i)) {
+          e.async = 1;
+          e.src = u;
+          e.id = i;
+          f.parentNode.insertBefore(e, f);
+        }
+      }(document.createElement('script'),
+              document.getElementsByTagName('script')[0],
+              'https://cdn.taboola.com/libtrc/associatedpress-hosted20/loader.js',
+              'tb_loader_script');
+    </script>
+    <!-- Inform Player Library for Pixel Perfect-->
+    <script type="text/javascript" src="//launch.newsinc.com/js/embed.js"></script>
+  </head>
+  <body class="html not-front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-777174 node-type-hosted-article onwl section-article f-topbar-fixed">
+    <div id="skip-link">
+      <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+    </div>
+        <!--.page -->
+<div role="document" class="page">
+
+  <!--.l-header region -->
+      <header role="banner" class="l-header contain-to-grid fixed" style="background-color:#333333;">
+          <!--.top-bar -->
+          <nav class="top-bar" data-topbar="" data-options="">
+        <div class="row">
+          <div class="large-12 columns">
+            <ul class="title-area">
+              <li class="name">
+                <a href="http://berkshireeagle.com">
+                </a><h1><a href="http://berkshireeagle.com"> 
+                                      <img border="0" src="https://hosted.ap.org/sites/hosted/files/styles/ap_white_label_logo/public/white_label/logos/5ac797e9d90b1_berkshire-eagle-reverse.png?itok=Vq310x3v" alt="The Berkshire Eagle" title="The Berkshire Eagle">                                    </a>
+                </h1>
+              </li>
+
+              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+
+            <div class="top-bar-section">
+                              <div id="wl-basic-menu"><div class="item-list"><ul><li class="parent-menu-item first" style="background-color:;"><a class="" href="http://www.berkshireeagle.com/news/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">News</a></li><li class="parent-menu-item " style="background-color:;"><a class="" href="http://www.berkshireeagle.com/sports/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Sports</a></li><li class="parent-menu-item " style="background-color:;"><a class="" href="http://www.berkshireeagle.com/berkshirelandscapes/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Landscapes</a></li><li class="parent-menu-item " style="background-color:;"><a class="" href="http://www.berkshireeagle.com/entertainment/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Entertainment</a></li><li class="parent-menu-item " style="background-color:;"><a class="" href="http://www.berkshireeagle.com/lifestyle/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Life</a></li><li class="parent-menu-item " style="background-color:;"><a class="" href="http://www.berkshireeagle.com/opinion/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Opinion</a></li><li class="parent-menu-item " style="background-color:;"><a class="" href="http://www.legacy.com/obituaries/berkshire/" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Obituaries</a></li><li class="parent-menu-item last" style="background-color:;"><a class="" href="http://berkshireeagle.ma.newsmemory.com/specials_page.php" onmouseout="this.style.color=''" onmouseover="this.style.color=''" style="color:;">Publications</a></li></ul></div></div>                          </div>
+          </div>
+        </div>
+      </nav>
+          <!--/.top-bar -->
+  
+  <!-- Title, slogan and menu -->
+    <!-- End title, slogan and menu -->
+
+  
+</header>
+<!--/.l-header -->
+  
+
+
+  
+  
+      <!--/.l-banner -->
+    <main class="row l-main">
+          <section class="block block-dfp billboard small-12 columns show-for-large-up block-dfp-billboard">
+
+      
+      <div id="dfp-ad-billboard-wrapper" class="dfp-tag-wrapper">
+<div id="dfp-ad-billboard" class="dfp-tag-wrapper">
+    <script type="text/javascript">
+    googletag.cmd.push(function() {
+      googletag.display("dfp-ad-billboard");
+    });
+  </script>
+</div>
+</div>  
+</section>  <section class="block block-dfp billboard small-12 columns hide-for-large-up show-for-large-down block-dfp-billboard-mobile">
+
+      
+      <div id="dfp-ad-billboard_mobile-wrapper" class="dfp-tag-wrapper">
+<div id="dfp-ad-billboard_mobile" class="dfp-tag-wrapper">
+    <script type="text/javascript">
+    googletag.cmd.push(function() {
+      googletag.display("dfp-ad-billboard_mobile");
+    });
+  </script>
+</div>
+</div>  
+</section>    </main>
+    <!--/.l-banner -->
+  
+
+              
+    <section class="l-messages row">
+    <div class="large-12 columns">
+      <div class="success-msg-wrp"></div> 
+    </div>
+  </section>
+  
+  <main role="main" class="row l-main">
+    <div class="ap-story small-12 medium-7 large-8 main columns">
+      
+      <a id="main-content"></a>
+
+
+
+                            
+                      <div class="ap-story-timestamp">Nov. 20, 2019 5:52 AM EST</div>
+  <h2 class="ap-story-headline">Unpredictable Sondland faces questions about Trump, Ukraine</h2>
+<div class="ap-story-byline"><div class="field field-name-field-byline-original field-type-text field-label-hidden field-wrapper">By LISA MASCARO, MARY CLARE JALONICK and ERIC TUCKER</div><div class="field field-name-field-byline-title field-type-text field-label-hidden field-wrapper">Associated Press</div></div>
+<div id="ap-story-slug" style="display : none">AP-US--Trump-Impeachment, 4th Ld-Writethru</div>  
+<div class="social-share-top inline">
+  <!-- Twitter -->
+  <a href="http://twitter.com/share?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine&amp;text=Unpredictable%20Sondland%20faces%20questions%20about%20Trump,%20Ukraine" target="_blank" class="share-btn twitter" title="Share on Twitter">
+    <i class="fa fa-twitter"></i>
+  </a>
+
+  <!-- Google Plus -->
+  <a href="https://plus.google.com/share?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn google-plus" title="Share on Google+">
+    <i class="fa fa-google-plus"></i>
+  </a>
+
+  <!-- Facebook -->
+  <a href="http://www.facebook.com/sharer/sharer.php?u=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn facebook" title="Share on Facebook">
+    <i class="fa fa-facebook"></i>
+  </a>
+
+  <!-- Reddit -->
+  <a href="http://www.reddit.com/submit?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn reddit" title="Share on Reddit">
+    <i class="fa fa-reddit"></i>
+  </a>
+
+  <!-- Pinterest -->
+  <a href="http://pinterest.com/pin/create/button/?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine&amp;description=WASHINGTON%20(AP)%20%E2%80%94%20Ambassador%20Gordon%20Sondland,%20the%20most%20anticipated%20witness%20in%20the%20impeachment%20inquiry,%20is%20likely%20to%20be%20unpredictable%20when%20he%20faces%20questions%20about%20his%20evolving%20accounts%20of%20the%20Trump%20administration%E2%80%99s%20dealings%20with%20Ukraine%20and%20a%20newly%20revealed%20summertime%20phone%20call%20with%20President%20Donald%20Trump." target="_blank" class="share-btn pinterest" title="Share on Pinterest">
+    <i class="fa fa-pinterest"></i>
+  </a>
+
+  <!-- Email -->
+  <a href="mailto:?subject=Hosted:%20Unpredictable%20Sondland%20faces%20questions%20about%20Trump,%20Ukraine&amp;body=%20%0D%0AUnpredictable%20Sondland%20faces%20questions%20about%20Trump,%20Ukraine.%20%0D%0A%20%0D%0AWASHINGTON%20(AP)%20%E2%80%94%20Ambassador%20Gordon%20Sondland,%20the%20most%20anticipated%20witness%20in%20the%20impeachment%20inquiry,%20is%20likely%20to%20be%20unpredictable%20when%20he%20faces%20questions%20about%20his%20evolving%20accounts%20of%20the%20Trump%20administration%E2%80%99s%20dealings%20with%20Ukraine%20and%20a%20newly%20revealed%20summertime%20phone%20call%20with%20President%20Donald%20Trump.%20%20%0D%0A%20%0D%0Ahttps://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn email" title="Email article">
+    <i class="fa fa-envelope"></i>
+  </a>
+
+</div>  <!-- <div class="gallery-teaser">
+    <div class="row"> 
+      <div class="small-12 columns" style="margin-bottom: 1rem">
+             
+      </div>
+    </div>
+  </div>-->
+  <div class="gallery-teaser">
+    <div class="row"> 
+      <div class="small-12 columns" style="margin-bottom: 1rem">
+        <div class="text-center">
+            <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine"><img src="https://mapi.associatedpress.com/v1/items/cfec9b3238d14d67a00488a2e0cc3d45/preview/preview.jpg?s=690x" alt="FILE - In this Monday, Oct. 28, 2019, file photo, U.S. Ambassador to the European Union Gordon Sondland walks to a secure area of the Capitol to testify as part of the House impeachment inquiry into President Donald Trump, in Washington. Sondland is scheduled to be the first witness when the impeachment hearings resume at 9 a.m. EST Wednesday, Nov. 20. (AP Photo/Patrick Semansky, File)"></a><br>
+        </div>
+        <span class="ap-story-gallery-teaser-caption">Patrick Semansky, ASSOCIATED PRESS</span>
+      </div>
+    </div>
+  </div>
+<block><p>WASHINGTON (AP) — Ambassador Gordon Sondland, the most anticipated witness in <a href="https://apnews.com/Trumpimpeachmentinquiry">the impeachment inquiry,</a> is likely to be unpredictable when he faces questions about his evolving accounts of the Trump administration’s dealings with Ukraine and a newly revealed summertime phone call with President Donald Trump.</p>  <div class="ap-story-media-blk-wrap">
+    <div class="ap-story-media-blk">
+      <div class="gallery-teaser-grid js-masonry" data-masonry-options='{ "itemSelector": ".item", "columnWidth": 150 }'>
+                                                        <!--<div class="item hosted-video">
+                <a href="?id=i-">
+                  <img src="" alt="">
+                  <span class="video-item"><i class="fa fa-play" aria-hidden="true"></i></span>
+                </a>
+              </div>-->
+                                            <div class="item audio-main-frame">
+                  <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine?id=i-21501136">
+                    <img src="/profiles/ap/themes/ap_hosted/images/audio-player-image.png">
+                  </a>
+                </div>
+                            
+                                                                                    <!--<div class="item hosted-video">
+                <a href="?id=i-">
+                  <img src="" alt="">
+                  <span class="video-item"><i class="fa fa-play" aria-hidden="true"></i></span>
+                </a>
+              </div>-->
+                                            <div class="item audio-main-frame">
+                  <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine?id=i-21501137">
+                    <img src="/profiles/ap/themes/ap_hosted/images/audio-player-image.png">
+                  </a>
+                </div>
+                            
+                                                                                    <!--<div class="item hosted-video">
+                <a href="?id=i-">
+                  <img src="" alt="">
+                  <span class="video-item"><i class="fa fa-play" aria-hidden="true"></i></span>
+                </a>
+              </div>-->
+                                            <div class="item audio-main-frame">
+                  <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine?id=i-21501138">
+                    <img src="/profiles/ap/themes/ap_hosted/images/audio-player-image.png">
+                  </a>
+                </div>
+                            
+                                                                                    <!--<div class="item hosted-video">
+                <a href="?id=i-">
+                  <img src="" alt="">
+                  <span class="video-item"><i class="fa fa-play" aria-hidden="true"></i></span>
+                </a>
+              </div>-->
+                                            <div class="item audio-main-frame">
+                  <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine?id=i-21501139">
+                    <img src="/profiles/ap/themes/ap_hosted/images/audio-player-image.png">
+                  </a>
+                </div>
+                            
+                                                                                    <!--<div class="item hosted-video">
+                <a href="?id=i-">
+                  <img src="" alt="">
+                  <span class="video-item"><i class="fa fa-play" aria-hidden="true"></i></span>
+                </a>
+              </div>-->
+                                            <div class="item audio-main-frame">
+                  <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine?id=i-21501140">
+                    <img src="/profiles/ap/themes/ap_hosted/images/audio-player-image.png">
+                  </a>
+                </div>
+                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+      <a href="https://hosted.ap.org/berkshireeagle/gallery/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" id="view-all" class="button" style="width:305px">View all (23)</a>
+    </div>
+  </div>
+<p>Sondland, a wealthy hotelier Trump tapped as his ambassador to the European Union, is more directly entangled than any witness yet in <a href="https://apnews.com/273e46e2fa324eb9ba5d69ab2a2c69cb">the Republican president’s efforts</a> to get Ukraine to investigate political rival Joe Biden and Democrats in the 2016 election. Yet Sondland has already amended his testimony once — <a href="https://apnews.com/f2398dd73d3a444eb2257ba245d83af1">“I now do recall,”</a> he said, talking to Ukraine about investigations.</p><p>Sondland’s appearance at Wednesday morning’s hearing, and his closeness to Trump, is of particular concern to the White House as the <a href="https://apnews.com/cd45ec8474fb4df080f5d98c1ecfba79">historic impeachment inquiry</a> reaches closer to the president, pushing through an intense week with nine witnesses testifying over three days in back-to-back sessions.</p><p>Trump has recently tried to suggest that he barely knows his hand-picked ambassador, but Sondland has said he has spoken several times with the president and was acting on his direction.</p><p>The envoy is likely to face tough questions from lawmakers of both parties about <a href="https://www.documentcloud.org/documents/6429034-White-House-memo-on-Trump-call-with-Ukraine.html">Trump’s July 25 call</a> when he asked Ukraine President Volodymyr Zelenskiy for the political investigations at the same time as U.S. military aid for the ally was being stalled.</p><p>Sondland routinely bragged about his proximity to Trump and drew alarm from the foreign service and national security apparatus as part of an irregular channel of diplomacy led by the president’s lawyer Rudy Giuliani.</p><p>Last week State Department official <a href="https://apnews.com/15001620f4a74b8b8ceb37cbefadfbd0">David Holmes</a> revealed one of those interactions to impeachment investigators, saying he recalled it “vividly.”</p><p>The political counselor was having lunch with Sondland in Kyiv when the ambassador dialed up the president on his cellphone and Holmes could hear Trump’s voice.</p><p>“I then heard President Trump ask, quote, ‘So he’s going to do the investigation?’” Holmes testified. “Ambassador Sondland replied that ‘He’s going to do it,’ adding that President Zelensky will, quote, ‘do anything you ask him to.’”</p><p>Sondland was known for telling others "he was in charge of Ukraine" despite being the U.S. envoy in Brussels, said another witness in the impeachment probe, former White House Russia adviser Fiona Hill.</p><p>"And I asked, well, on whose authority?” said Hill, who will testify Thursday. "And he said, the President."</p><p>Sondland’s appearance follows the testimony Tuesday of four national security and diplomatic officials, including a career Army officer who described Trump’s call with Zelenskiy as “improper.”</p><p>Lt. Col. <a href="https://apnews.com/6097d0d7482940f9b6728a078bfdb8d6">Alexander Vindman</a> told lawmakers it was his “duty” to report his concerns about the call, as he deflected Republican attacks, including from the White House on his loyalty and career in public service.</p><p>It wasn’t the first time Vindman had registered his concerns over Ukraine policy. He testified about a July 10 meeting at the White House when Sondland told visiting Ukraine officials they would need to “deliver” before the administration would agree to a meeting Zelenskiy wanted with Trump.</p><p>“Ambassador Sondland referred to investigations into the Bidens and Burisma in 2016,” Vindman testified, referring to the gas company on whose board Hunter Biden had a seat.</p><p>At the White House, Trump said he had watched part of the day’s testimony and slammed the ongoing impeachment hearings as a “disgrace.” Over the weekend, Trump assailed Williams as part of the “Never Trumpers” who oppose his presidency, though there is no indication she has shown any partisanship.</p><p>Former National Security Council official Timothy Morrison told investigators that he witnessed a key September conversation in Warsaw between Sondland and a top aide to Zelenskiy. Afterward, Sondland said he had relayed to the Ukrainian that U.S. aid might be freed if the country would announce the investigations, Morrison testified.</p><p>Another diplomat, former special envoy to Ukraine Kurt Volker, shifted his own account of the July 10 meeting to say Sondland did, in fact, discuss investigations with the visiting Ukrainians.</p><p>“I think all of us thought it was inappropriate; the conversation did not continue and the meeting concluded,” Volker said.</p><p>A series of text messages Volker provided to lawmakers showed conversations between him, Sondland and other leaders in which they discussed a need for Ukraine to launch investigations, including into Burisma.</p><p>Volker said meeting with Giuliani was just part of the dialogue, and he had one in-person meeting with him, in which Giuliani “raised, and I rejected, the conspiracy theory that Vice President Biden would have been influenced in his duties as vice president by money paid to his son.”</p><p>___</p><p>Associated Press writers Alan Fram, Zeke Miller, Laurie Kellman, Colleen Long, Eric Tucker, Lolita Baldor and Jill Colvin contributed to this report.</p><div class="bottom-social-share">
+  <div class="social-share-top inline">
+  <!-- Twitter -->
+  <a href="http://twitter.com/share?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine&amp;text=Unpredictable%20Sondland%20faces%20questions%20about%20Trump,%20Ukraine" target="_blank" class="share-btn twitter" title="Share on Twitter">
+    <i class="fa fa-twitter"></i>
+  </a>
+
+  <!-- Google Plus -->
+  <a href="https://plus.google.com/share?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn google-plus" title="Share on Google+">
+    <i class="fa fa-google-plus"></i>
+  </a>
+
+  <!-- Facebook -->
+  <a href="http://www.facebook.com/sharer/sharer.php?u=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn facebook" title="Share on Facebook">
+    <i class="fa fa-facebook"></i>
+  </a>
+
+  <!-- Reddit -->
+  <a href="http://www.reddit.com/submit?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn reddit" title="Share on Reddit">
+    <i class="fa fa-reddit"></i>
+  </a>
+
+  <!-- Pinterest -->
+  <a href="http://pinterest.com/pin/create/button/?url=https://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine&amp;description=WASHINGTON%20(AP)%20%E2%80%94%20Ambassador%20Gordon%20Sondland,%20the%20most%20anticipated%20witness%20in%20the%20impeachment%20inquiry,%20is%20likely%20to%20be%20unpredictable%20when%20he%20faces%20questions%20about%20his%20evolving%20accounts%20of%20the%20Trump%20administration%E2%80%99s%20dealings%20with%20Ukraine%20and%20a%20newly%20revealed%20summertime%20phone%20call%20with%20President%20Donald%20Trump." target="_blank" class="share-btn pinterest" title="Share on Pinterest">
+    <i class="fa fa-pinterest"></i>
+  </a>
+
+  <!-- Email -->
+  <a href="mailto:?subject=Hosted:%20Unpredictable%20Sondland%20faces%20questions%20about%20Trump,%20Ukraine&amp;body=%20%0D%0AUnpredictable%20Sondland%20faces%20questions%20about%20Trump,%20Ukraine.%20%0D%0A%20%0D%0AWASHINGTON%20(AP)%20%E2%80%94%20Ambassador%20Gordon%20Sondland,%20the%20most%20anticipated%20witness%20in%20the%20impeachment%20inquiry,%20is%20likely%20to%20be%20unpredictable%20when%20he%20faces%20questions%20about%20his%20evolving%20accounts%20of%20the%20Trump%20administration%E2%80%99s%20dealings%20with%20Ukraine%20and%20a%20newly%20revealed%20summertime%20phone%20call%20with%20President%20Donald%20Trump.%20%20%0D%0A%20%0D%0Ahttps://hosted.ap.org/berkshireeagle/article/6486944b076b4df99a583a3a7c85574d/unpredictable-sondland-faces-questions-about-trump-ukraine" target="_blank" class="share-btn email" title="Email article">
+    <i class="fa fa-envelope"></i>
+  </a>
+
+</div></div>
+          <section class="block block-ap-hosted-rightsidebar-widget blk-bottom-boder block-ap-hosted-rightsidebar-widget-block-below-content-topics">
+
+      
+      <div class="row ap-tags-blk">
+      <div class="small-12 columns">
+      <h3>Topics</h3>
+      <ul class="ap-story-tags">
+                                                                                                                                                                        <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/government-and-politics">Government and politics</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/legal-proceedings">Legal proceedings</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/impeachments">Impeachments</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/military-legal-affairs">Military legal affairs</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/international-relations">International relations</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/trump-impeachment-inquiry">Trump impeachment inquiry</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/diplomacy">Diplomacy</a></li>, <li><a rel="tag" class="topics-tags" data="Topics" href="https://hosted.ap.org/berkshireeagle/tags/national-security">National security</a></li>      </ul>
+    </div>
+        <div class="small-12 medium-6 columns">
+      <h3>Places in this Story</h3>
+      <ul class="ap-story-tags-people">
+                  <li><a rel="tag" class="places-tag" data="Places in this Story" href="https://hosted.ap.org/berkshireeagle/tags/ukraine">Ukraine</a></li>
+                  <li><a rel="tag" class="places-tag" data="Places in this Story" href="https://hosted.ap.org/berkshireeagle/tags/district-columbia">District of Columbia</a></li>
+                  <li><a rel="tag" class="places-tag" data="Places in this Story" href="https://hosted.ap.org/berkshireeagle/tags/united-states">United States</a></li>
+              </ul>
+    </div>
+        <div class="small-12 medium-6 columns">
+      <h3>Organizations in this Story</h3>
+      <ul class="ap-story-tags-companies">
+                  <li><a rel="tag" class="oraganization-tag" data="Organizations in this Story" href="https://hosted.ap.org/berkshireeagle/tags/ukraine-government">Ukraine government</a></li>
+                  <li><a rel="tag" class="oraganization-tag" data="Organizations in this Story" href="https://hosted.ap.org/berkshireeagle/tags/european-union">European Union</a></li>
+              </ul>
+    </div>
+        <div class="small-12 medium-6 columns">
+      <h3>People in the Story</h3>
+      <ul class="ap-story-tags-people">
+                  <li><a rel="tag" class="people-tag" data="People in the Story" href="https://hosted.ap.org/berkshireeagle/tags/rudolph-giuliani">Rudolph Giuliani</a></li>
+                  <li><a rel="tag" class="people-tag" data="People in the Story" href="https://hosted.ap.org/berkshireeagle/tags/joe-biden">Joe Biden</a></li>
+                  <li><a rel="tag" class="people-tag" data="People in the Story" href="https://hosted.ap.org/berkshireeagle/tags/donald-trump">Donald Trump</a></li>
+              </ul>
+    </div>
+    </div>  
+</section>  <section class="block block-ap-hosted-rightsidebar-widget blk-bottom-boder blk-padding-bottom block-ap-hosted-rightsidebar-widget-more-stories-taboola-add">
+
+      
+      <div id="taboola-below-article-stream-thumbnails"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'organic-thumbnails-a',
+    container: 'taboola-below-article-stream-thumbnails',
+    placement: 'Below Article Stream Thumbnails',
+    target_type: 'mix',
+    onclick: onTaboolaClick
+  });
+</script>  
+</section>  <section class="block block-hosted-article block-hosted-article-hosted-trending-articles">
+
+      
+      <!-- Trending -->
+<div class="trending">
+    <h3>Trending</h3>
+    <ol class="rounded-list">
+                    <li><a href="/berkshireeagle/article/75388564292e401abeeb63e708f65099/woman-killed-suspect-shot-home-tarzan-actor-ron-ely">'Tarzan' actor Ron Ely's wife killed; son shot by deputies </a></li>
+                                      <li><a href="/berkshireeagle/article/4ea67dded47d4151bdde549a3e33c033/iowa-man-finds-5-inches-animal-blood-flooding-basement">Iowa man finds 5 inches of animal blood flooding basement </a></li>
+                              <li><a href="/berkshireeagle/article/5ff095b8b9954b03925410680e8c907d/engineer-ethiopian-airlines-went-records-after-crash">Airline went into records after Max crash, engineer says </a></li>
+                              </ol>
+</div>
+  
+</section>  <section class="block block-ap-hosted-rightsidebar-widget taboola-main-ads block-ap-hosted-rightsidebar-widget-block-below-content-taboola-add">
+
+      
+      <div id="taboola-below-article-thumbnails"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'thumbnails-b',
+    container: 'taboola-below-article-thumbnails',
+    placement: 'Below Article Thumbnails',
+    target_type: 'mix'
+  });
+</script>  
+</section>    </block></div>
+    <!--/.main region -->
+
+    
+          <aside role="complementary" class="small-12 medium-5 large-4 sidebar-second columns sidebar"> 
+            <section class="block block-dfp ad-half-page show-for-medium-up block-dfp-half-page block-odd clearfix">
+
+      
+      <div id="dfp-ad-half_page-wrapper" class="dfp-tag-wrapper">
+<div id="dfp-ad-half_page" class="dfp-tag-wrapper">
+    <script type="text/javascript">
+    googletag.cmd.push(function() {
+      googletag.display("dfp-ad-half_page");
+    });
+  </script>
+</div>
+</div>  
+</section>  <section class="block block-ap-hosted-rightsidebar-widget block-ap-hosted-rightsidebar-widget-block-right-rail-taboola-add block-even clearfix">
+
+      
+      <div id="taboola-right-rail-thumbnails"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'thumbnails-rr',
+    container: 'taboola-right-rail-thumbnails',
+    placement: 'Right Rail Thumbnails',
+    target_type: 'mix'
+  });
+</script>  
+</section>  <section class="block block-dfp block-dfp-mediumrectangle block-odd clearfix">
+
+      
+      <div id="dfp-ad-mediumrectangle-wrapper" class="dfp-tag-wrapper">
+<div id="dfp-ad-mediumrectangle" class="dfp-tag-wrapper">
+    <script type="text/javascript">
+    googletag.cmd.push(function() {
+      googletag.display("dfp-ad-mediumrectangle");
+    });
+  </script>
+</div>
+</div>  
+</section>  <section class="block block-ap-hosted-rightsidebar-widget taboola-main block-ap-hosted-rightsidebar-widget-more-stories block-even clearfix">
+
+      
+      
+  <div class="more-feeds-block">
+    <div class="media-header">
+      <h3></h3>
+    </div>
+    <ul class="more-stories media-list list-items">
+          </ul>
+  </div>
+  
+</section>      </aside>
+      </main>
+  <!--/.main-->
+
+  
+  
+  <!--.l-footer-->
+  <footer class="l-footer" role="contentinfo">
+      <div class="">    
+        <div class="footer">
+          <div class="copyright">
+          ©2019 The Associated Press. All rights reserved. <br> <a href="https://apnews.com/termsofservice">Terms</a> under which this site is provided. Learn more about our <a href="https://apnews.com/privacystatement">Privacy Policy</a>.
+          </div>
+        </div>
+      </div>
+  </footer>
+<!--/.footer-->
+
+
+  </div>
+<!--/.page -->
+    <script>
+          var AP_WL_NAME = "The Berkshire Eagle"; </script>
+        <script>
+      (function ($, Drupal, window, document, undefined) {
+        $(document).foundation();
+      })(jQuery, Drupal, this, this.document);
+    </script>
+    <script type="text/javascript">
+      window._taboola = window._taboola || [];
+      _taboola.push({flush: true});
+    </script>
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"560baa128a","applicationID":"236585302","transactionName":"MlRTYkFSWkNUU0EKDQsecFVHWlteGl5aBwc6QVBRVmxCWVBH","queueTime":0,"applicationTime":1684,"atts":"HhNQFAlISU0=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+
+</body></html>

@@ -1,0 +1,1183 @@
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" xmlns:fb="http://www.facebook.com/2008/fbml"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"4b4136998e",applicationID:"90737971"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+    <title>10 things in tech you need to know today, November 19 - Business Insider Deutschland</title>
+    <meta name="date" content="2019-11-19">
+<meta name="sailthru.date" content="2019-11-19">
+<meta name="news_keywords" content="10 things in tech, 10 things in tech SAI, Charlie Wood">
+<meta name="sailthru.tags" content="10 things in tech, 10 things in tech SAI, Charlie Wood">
+<meta name="description" content="The New York state attorney general is investigating WeWork amid layoffs at the company.">
+<meta name="sailthru.description" content="The New York state attorney general is investigating WeWork amid layoffs at the company.">
+<meta name="title" content="10 things in tech you need to know today">
+<meta name="sailthru.verticals" content="international">
+<meta name="sailthru.title" content="10 things in tech you need to know today">
+<meta name="tbi-image" content="https://static4.businessinsider.de/image/5d3255222516e949414ebed2/10-things-in-tech-you-need-to-know-today.jpg">
+<meta name="sailthru.image.full" content="https://static4.businessinsider.de/image/5d3255222516e949414ebed2/10-things-in-tech-you-need-to-know-today.jpg">
+<meta name="sailthru.image.thumb" content="https://static1.businessinsider.de/image/5d3255222516e949414ebed2-50-50/10-things-in-tech-you-need-to-know-today.jpg">
+<meta name="sailthru.author" content="Charlie Wood">
+<meta property="og:title" content="10 things in tech you need to know today">
+<meta property="og:description" content="The New York state attorney general is investigating WeWork amid layoffs at the company.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11">
+<meta property="og:site_name" content="Business Insider Deutschland">
+<meta property="fb:app_id" content="155043519637">
+<meta property="article:publisher" content="Business.Insider.Deutschland">
+<meta property="author" content="Charlie Wood, Business Insider">
+<meta name="twitter:url" content="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11">
+<meta name="twitter:title" content="10 things in tech you need to know today">
+<meta name="twitter:description" content="The New York state attorney general is investigating WeWork amid layoffs at the company.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="https://static4.businessinsider.de/image/5d3255222516e949414ebed2/10-things-in-tech-you-need-to-know-today.jpg">
+<meta name="twitter:creator" content="CWoodJournalist">
+<meta property="article:author" content="https://www.businessinsider.de/autoren/charlie-wood">
+<meta property="og:image" content="https://static4.businessinsider.de/image/5dd3a081695b58675837525e/10-things-in-tech-you-need-to-know-today.jpg">            
+<link rel="canonical" href="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11">
+<link rel="alternate" href="http://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11" hreflang="en-DE">
+<link rel="alternate" href="https://www.businessinsider.com/10-things-in-tech-you-need-to-know-today-november-19-2019-11" hreflang="en-US">
+<link rel="alternate" href="https://www.businessinsider.com/10-things-in-tech-you-need-to-know-today-november-19-2019-11" hreflang="x-default">
+        <link href="https://static3.businessinsider.de/assets/css/min-base-de.css?0" media="screen" rel="stylesheet" type="text/css">
+<link href="https://static6.businessinsider.de/assets/css/min-post-de.css?0" media="screen" rel="stylesheet" type="text/css">
+<link rel="syndication-source">    <link type="text/css" rel="stylesheet" media="print" href="https://static5.businessinsider.de/assets/css/print.css?0">
+
+    <script type="text/javascript">
+        //this should be refactored to the BI.Google_Plus object, however the BI core library will need to be moved to above the headScript call
+        window.gPlusConfigs = {client_id : '551214076990-h27puiaonnlg9a9772gq3qbe9nk6qnno.apps.googleusercontent.com', base_domain: 'businessinsider.de'};
+    </script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="https://static4.businessinsider.de/assets/js/min2.js?0"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    BI.post.isSlideshow=false;    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    post = {"id":"5dd3a086695b58675837525f","uri":"https:\/\/www.businessinsider.de\/10-things-in-tech-you-need-to-know-today-november-19-2019-11","thumb":"https:\/\/static2.businessinsider.de\/image\/5d3255222516e949414ebed2-90-90\/10-things-in-tech-you-need-to-know-today.jpg","author":"Charlie Wood","author_ids":"","post_type":"post"};    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    
+        Author = "Charlie Wood";
+        Category = "10 things in tech|10 things in tech SAI";
+        AuthorType = "Staff";
+        Editor = "knarr_us";
+        BIISub = "none"
+            //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    
+        BI.nav_select = "";
+        BI.highTrafficMode = 0;
+        BI.post.isDraft = 0;
+        BI.post.url = "https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11";
+        BI.post.name = "10-things-in-tech-you-need-to-know-today-november-19-2019-11";
+        BI.comments.currentPage = 0;
+        BI.comments.filterPundits = 1;
+        BI.comments.getAllComments = 1;
+            //]]>
+</script>
+    <!-- AppNexus Ad Script -->
+
+    <script>
+        adSSetup = {
+            view: 'd',
+            partners: true,
+            adPlacements: [
+                    'sky',
+                    'superbanner',
+                    'mrec',
+                    'inpage'
+                ],
+            adSlotSizes: {
+                'sky': [{
+                    'minWidth': 1,
+                    'sizes': [[160,600],[120,600],[300,600],[500,1000],[1000,1000]]
+                }],
+                'superbanner': [{
+                    'minWidth': 799,
+                    'sizes': [[728,90],[728,600],[800,250],[970,250],[1000,600]]
+                }, {
+                    'minWidth': 1,
+                    'sizes': [[800,250],[970,250]]
+                }],
+                'mrec': [{
+                    'minWidth': 1,
+                    'sizes': [[300,250], [300,600]]
+                }],
+                'inpage': [{
+                    'minWidth': 1,
+                    'sizes': [[1,1],[640,360],[1000,300]]
+                }]
+            },
+
+
+            colorBg: true, // enable/disable coloring of the page-background
+            bgClick: true, // enable/disable click on page-background
+            stickySky: true, // enable/disable stickiness for skyscraper
+            pageName: "international_post" , // channel/article name from CMS
+                        target: "10-things-in-tech;10-things-in-tech-SAI"
+            
+        }
+    </script>
+
+    <link rel="preconnect" href="//www.asadcdn.com">
+    <link rel="dns-prefetch" href="//www.asadcdn.com">
+
+    <script src="//www.asadcdn.com/adlib/pages/businessinsider.js"></script>
+
+    <!-- optimizely desktop -->
+        <!-- End optimizely desktop -->
+
+    <!-- Facebook Instant Start -->
+    <meta property="fb:pages" content="1436932876630275">
+    <!-- Facebook Instant End -->
+
+    <!--Tech Insider Pinterest-->
+    
+    
+            <meta name="robots" content="noindex">
+    
+    
+    <meta name="tbi-vertical" content="international">
+
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {
+            filter: none;
+        }
+    </style>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static3.businessinsider.de/assets/css/ie7_or_lower.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static5.businessinsider.de/assets/css/ie8.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="https://static3.businessinsider.de/assets/js/vendor/ie8/placeholders.min.js"></script>
+    <![endif]-->
+
+    <!--[if IE 9]>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static4.businessinsider.de/assets/css/ie9.css" />
+        <script type="text/javascript" src="https://static5.businessinsider.de/assets/js/shims/Element.classList.js"></script>
+    <![endif]-->
+
+    <!--Tech Insider if IE 9 -->
+    
+    <script type="text/javascript">
+        sas_target= '10 things in tech;10 things in tech SAI';        var vertical = 'international';
+        var PageType = 'post';
+        var post_id = '';
+        var _sf_startpt=(new Date()).getTime();
+    </script>
+
+    <!-- Kissmetrics -->
+    <script type="text/javascript">
+        var _kmq = _kmq || [];
+        var _kmk = _kmk || '999f578acebfab6dd29b540ab4ebbcbaafafa774';
+
+        function _kms(u){
+            setTimeout(function(){
+                var s = document.createElement('script');
+                var f = document.getElementsByTagName('script')[0];
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = u;
+                f.parentNode.insertBefore(s, f);
+            }, 1);
+        }
+            </script>
+    <!-- Kissmetrics -->
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.businessinsider.de/international.rss">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://static4.businessinsider.de/assets/images/de/favicons/apple-touch-icon.png?v=BI-DE-2017-08-10">
+<link rel="icon" type="image/png" sizes="32x32" href="https://static3.businessinsider.de/assets/images/de/favicons/favicon-32x32.png?v=BI-DE-2017-08-10">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static3.businessinsider.de/assets/images/de/favicons/favicon-16x16.png?v=BI-DE-2017-08-10">
+<link rel="manifest" href="https://static4.businessinsider.de/assets/images/de/favicons/manifest.json?v=BI-DE-2017-08-10">
+<link rel="mask-icon" href="https://static6.businessinsider.de/assets/images/de/favicons/safari-pinned-tab.svg?v=BI-DE-2017-08-10" color="#1D607C">
+<link rel="shortcut icon" href="https://static5.businessinsider.de/assets/images/de/favicons/favicon.ico?v=BI-DE-2017-08-10">
+<meta name="msapplication-config" content="https://static4.businessinsider.de/assets/images/de/favicons/browserconfig.xml?v=BI-DE-2017-08-10">
+<meta name="theme-color" content="#1D607C">
+<meta name="linkedin:owner" content="mid:1d5f7b">
+
+    <!--[if gte IE 9]>
+        <meta name="application-name" content="Business Insider - international"/>
+        <meta name="msapplication-tooltip" content="Start the page in Site Mode"/>
+        <meta name="msapplication-starturl" content="https://www.businessinsider.de/international"/>
+        <meta name="msapplication-window" content="width=800;height=600"/>
+        <meta name="msapplication-navbutton-color" content="#4C7C8D"/>
+
+        <meta name="msapplication-task" content="name=Tech;action-uri=https://www.businessinsider.de/sai;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Media;action-uri=https://www.businessinsider.de/thewire;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Wall Street;action-uri=https://www.businessinsider.de/clusterstock;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Markets;action-uri=https://www.businessinsider.de/moneygame;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Strategy;action-uri=https://www.businessinsider.de/warroom;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+    <![endif]-->
+
+    <script type="text/javascript">BI.siteURI = 'https://www.businessinsider.de';</script>
+    <script type="text/javascript">BI.secureURI = 'https://www.businessinsider.de';</script>
+    <script type="text/javascript">BI.staticURI = 'https://static1.businessinsider.de';</script>
+    <script type="text/javascript">BI.env.setDomain('https://www.businessinsider.de');</script>
+
+            <!-- *************** ANALYTICS *************** -->
+    <script>
+        BI.ANALYTICS_SERVICE_URL = '//analytics.businessinsider.com';
+    </script>
+    <!-- *************** END ANALYTICS *************** -->
+    
+    
+
+    
+        <!-- Begin IVW Tag -->
+        <script type="text/javascript" src="//script.ioam.de/iam.js?m=1"></script>
+    <!-- End IVW Tag -->
+
+<!-- CLICK PERFORMANCE DFP SETUP -->
+
+    <script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function()
+    { var gads = document.createElement('script'); gads.async = true; gads.type = 'text/javascript'; var useSSL = 'https:' == document.location.protocol; gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js'; var node = document.getElementsByTagName('script')[0]; node.parentNode.insertBefore(gads, node); }
+    )();
+    </script>
+    <script>
+    var gptAdSlots = [];
+    googletag.cmd.push(function()
+    {
+        // Define a size mapping object. The first parameter to addSize is
+        // a viewport size, while the second is a list of allowed ad sizes.
+        var mapping = googletag.sizeMapping().
+        // Desktop
+        addSize([620, 0], [[620, 80], [620, 100], [620, 150], [620, 200], [620, 300], [300, 250], [300, 300], [300, 600]]).
+        // Mobile
+        addSize([0, 0], [[320, 50], [320, 80], [320, 100], [320, 150], [300, 250]]).build();
+
+        gptAdSlots[0] = googletag.defineSlot('/133556709/Article_A', [[620, 80], [620, 100], [620, 150], [620, 200], [320, 50], [320, 80], [320, 100], [320, 150], [300, 250]], 'div-gpt-ad-1445608536739-0').
+            defineSizeMapping([[[620, 0], [[620, 80], [620, 100], [620, 150], [620, 200]]], [[0, 0], [[320, 50], [320, 80], [320, 100], [320, 150], [300, 250]]]]).
+            addService(googletag.pubads());
+
+        gptAdSlots[1] = googletag.defineSlot('/133556709/Article_b', [[300, 600], [300, 250], [300, 300]], 'div-gpt-ad-1445608536739-1').
+            defineSizeMapping([[[620, 0], [[300, 250], [300, 300], [300, 600]]]]).
+            addService(googletag.pubads());
+
+        gptAdSlots[2] = googletag.defineSlot('/133556709/Article_C', [[620, 150], [620, 200], [620, 300], [320, 100], [300, 250]], 'div-gpt-ad-1445608536739-2').
+            defineSizeMapping([[[620, 0], [[620, 150], [620, 200], [620, 300]]], [[0, 0], [[320, 80], [300, 250]]]]).
+            addService(googletag.pubads());
+
+        googletag.pubads().setTargeting("URL", window.location.pathname.substr(0, 40));
+        googletag.pubads().setTargeting("CATEGORY", "10 things in tech,10 things in tech SAI");
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            var slotName = event.slot.getAdUnitPath();
+            if (slotName == '/133556709/Article_A' && event.isEmpty) {
+                document.getElementById(event.slot.getSlotElementId()).style.display = "none";
+            }
+
+            if (slotName == '/133556709/Article_b' && event.isEmpty) {
+                document.getElementById(event.slot.getSlotElementId()).style.display = "none";
+            }
+
+            if (slotName == '/133556709/Article_C' && event.isEmpty) {
+                document.getElementById(event.slot.getSlotElementId()).style.display = "none";
+            }
+
+        });
+
+    }
+        );
+    </script>
+
+<!-- CLICK PERFORMANCE DFP SETUP -->
+
+<!-- Chartbeat -->
+    <script type="text/javascript">
+        // chartbeat wants the vars in global
+        window._sf_async_config = window._sf_async_config || {};
+        window._sf_async_config.uid = 14447;
+        window._sf_async_config.domain = 'businessinsider.de';
+        window._sf_async_config.flickerControl = false;
+        window._sf_async_config.useCanonical = false;
+        window._sf_startpt = (new Date()).getTime();
+    </script>
+    <script async="" src="https://static.chartbeat.com/js/chartbeat_mab.js"></script>
+<!-- / Chartbeat -->
+
+<!-- detect adblock users for Piano and set cookie appropriately -->
+    <script>
+        // CustomEvent polyfill
+        (function () {
+          if ( typeof window.CustomEvent === "function" ) return false;
+
+          function CustomEvent ( event, params ) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent( 'CustomEvent' );
+            evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+            return evt;
+          }
+
+          CustomEvent.prototype = window.Event.prototype;
+
+          window.CustomEvent = CustomEvent;
+        })();
+
+        var setAdblockerCookie = function(adblocker) {
+            var d = new Date();
+            d.setTime(d.getTime() + 60 * 60 * 24 * 30 * 1000);
+            document.cookie = "__adblocker=" + (adblocker ? "true" : "false") + "; expires=" + d.toUTCString() + "; path=/";
+
+            var event = new CustomEvent('piano_set', {'detail' : adblocker});
+            document.dispatchEvent(event);
+        }
+
+        var script = document.createElement("script");
+
+        script.setAttribute("async", true);
+        script.setAttribute("src", "//www.npttech.com/advertising.js");
+        script.setAttribute("onerror", "setAdblockerCookie(true);");
+        script.setAttribute("onload", "setAdblockerCookie(false);");
+        document.getElementsByTagName("head")[0].appendChild(script);
+    </script>
+
+</head>
+
+
+<body class="">
+
+<div data-cookie-notice-container=""></div>
+<!-- print only -->
+<img class="print" src="https://static5.businessinsider.de/assets/images/de/logos/logo-print.png">
+
+<!-- FB Connect -->
+<div id="fb-root" data-bi-facebook-root="155043519637"></div>
+<!-- / FB Connect -->
+
+<!--[if lt IE 9]>
+    <div class="container>
+        <div class="row">
+            <div class="alert alert-error alert-block">
+                <h4>Achtung!</h4>
+                Deine Version des Internet Explorer ist veraltet. Aus Sicherheitsgründen solltest du <a href="http://windows.microsoft.com/de-de/internet-explorer/download-ie" target="_blank" title="Upgrade IE">deinen Browser aktualisieren</a>. Bitte installiere die neueste Version über Windows Update.
+            </div>
+        </div>
+    </div>
+<![endif]-->
+
+<!-- masthead -->
+<div class="masthead">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span4">
+                <div data-hamburger="" class="menu">
+                    <div class="hamburger" data-e2e-name="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <a href="/" class="sprites logo"></a>
+            </div>
+            <div class="span4">
+                                                            <h2 class="vert-name"><a href="https://www.businessinsider.de/international">International</a></h2>
+                                                </div>
+            <!-- links -->
+            <div class="span4 links list-pipes list-right no-pipe">
+
+                <!-- DE masthead promotion -->
+                                                <!-- End DE masthead promotion -->
+
+                <ul class="search">
+                    <li>
+                        <a data-search-icon-open="" href="#" title="Suchen" class="display-none"><span class="svg sprites search-icon"></span></a>
+                        <a data-search-icon-close="" href="#" class="close-x display-none">
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <ul class="links-promo">
+                                                    
+
+    <li class="social">
+        <a href="//www.facebook.com/Business.Insider.Deutschland" title="Folge uns auf Facebook" aria-label="Folge uns auf Facebook" target="_blank"><i class="fa fa-facebook ks-header-facebook"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//twitter.com/BIDeutschland" title="Folge uns auf Twitter" aria-label="Folge uns auf Twitter" target="_blank"><i class="fa fa-twitter ks-header-twitter"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//www.linkedin.com/company/business-insider-deustchland" title="Folge uns auf LinkedIn" aria-label="Folge uns auf LinkedIn" target="_blank"><i class="fa fa-linkedin ks-header-linkedin"></i></a>
+    </li>
+                        
+                        
+                                            </ul>
+
+                    <ul class="links-user">
+                        
+                        
+                        
+                                                <span data-bi-ajax-route="https://www.businessinsider.de/esi/user_menubar?0=json%3A%7B%22viking%22%3Atrue%7D"></span>                </ul></div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Area -->
+    <div data-search-over="" class="nav-over transition">
+        <div class="container transition search">
+            <form method="get" action="/s" class="search-field">
+                <input data-search-input="" name="q" type="text" placeholder="Suchen" autocomplete="off">
+            </form>
+        </div>
+    </div>
+    <!-- Nav area -->
+    <div data-nav-over="" class="nav-over transition">
+
+        <div class="transition">
+            <div class="list-pipes nav-sections">
+                <ul class="verticals">
+
+                                                                <li class="active"><a class="item verticals__anchor" data-dropdown-id="dropdown-Trending" href="/trending">
+                                Trending                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Wirtschaft" href="/wirtschaft">
+                                Wirtschaft                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Tech" href="/tech">
+                                Tech                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Politik" href="/politik">
+                                Politik                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Strategy" href="/strategy">
+                                Strategy                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Wissenschaft" href="/wissenschaft">
+                                Wissenschaft                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Video" href="/video">
+                                Video                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Alles" href="/">
+                                Alles                            </a>
+                        </li>
+                                    </ul>
+            </div>
+            <div class="main-nav-dropdown ks-nav-dropdown"></div>
+        </div>
+    </div>
+</div>
+
+<!-- / masthead -->
+
+
+<div class="site-shim-outer">
+                                        <div class="ad-subnav-container">
+                    <div data-ad-subnav="" class="subnav-content leaderboard" data-sticky="leaderboard">
+                        
+		    <div id="superbanner"></div>    	
+	                    </div>
+                </div>
+                        
+<div class="ad-placeholder-container">
+    <!-- DO NOT REMOVE   -->
+</div>
+
+<div class="tout-wrapper" data-ad-tout="">
+    </div>
+
+<div class="skyscraper-container print-hide">
+                        
+		    <div id="sky"></div>    	
+	            </div>
+
+<div class="site-shim-inner">
+
+<div class="site-content-container">
+
+<div id="main-content">
+    <div class="container">
+        <!-- flash messages -->
+                <div class="siteskin-dropshadow">
+            <div class="row primary-row">
+                                    <div class="breaking-module-rendered" id="breaking-module-rendered">
+                        <div class="page-top">
+                        <span data-bi-ajax-route="https://www.businessinsider.de/esi/breaking_module"></span>                        </div>
+                    </div>
+                                <div class="span8">
+                    <div class="breaking-module-siteskin" id="breaking-module-siteskin"></div>
+    
+<a name="post-top"></a>
+
+
+<div id="share-email-tmpl">
+    <div id="shareEmailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="shareEmailModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="shareEmailModalLabel"></h3>
+      </div>
+      <div class="modal-body">
+        <div class="share-email-error alert alert-error display-none"></div>
+
+        <div class="share-email-body">
+            <div class="register">
+                <form id="form_form" class="form-horizontal" action="#" method="post">
+                    <div class="control-group">
+                        <label for="mail_from" class="control-label">von</label>
+                        <div class="controls">
+                            <input type="text" name="mail_from" class="mail-from" placeholder="Deine E-Mail-Adresse">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="mail_to" class="control-label">an</label>
+                        <div class="controls">
+                            <input type="text" name="mail_to" class="mail-to" placeholder="E-Mail-Adresse des Empfängers">
+                        </div>
+                    </div>
+                    <input type="hidden" name="action" value="email">
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" class="btn submit email-post" value="Senden">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="share-email-success" style="display:none">
+            <div class="alert alert-success">
+                Der Artikel wurde versandt.
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+
+
+<div data-content-post="" class="content post">
+    <div class="sl-layout-post">
+    
+        
+<!-- Sponsored Post Tag -->
+
+    
+<h1>10 things in tech you need to know today</h1>
+
+<div id="content" class="content">
+    <div class="post-top">
+        <!-- Byline -->
+        <div class="flex byline">
+	    
+			<div class="byline-icon">
+							<a target="_blank" href="http://www.businessinsider.com">
+							<img src="https://static3.businessinsider.de/image/Array-50/business-insider.jpg" alt="Business Insider">
+							</a>
+					</div>
+	
+	<div class="flex-item">
+		<div class="list-pipes no-pipe">
+			<ul>
+																		<li class="publication-author ks-author-byline"><a href="https://www.businessinsider.de/autoren/charlie-wood">Charlie Wood</a>, <a target="_blank" href="http://www.businessinsider.com">Business Insider</a></li>
+					                
+				                    </ul>
+                </div>
+                <div class="list-pipes no-pipe">
+                    <ul>
+                		        			        <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1574150260"> 19.11.2019, 08:57 </span>
+</li>		        			
+		    
+			</ul>
+
+		</div>
+	</div>
+</div>
+        <!-- Sharing -->
+        <div class="share">
+			
+<!-- RRSSB start -->
+<div class="rrssb-baseline share-container ks-share-top clearfix" data-share="" style="display:block;">
+    <!-- buttons start here -->
+    <ul class="rrssb-buttons rrssb-top clearfix">
+        <li class="facebook ks-byline-fb">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11" title="facebook" class="popup">
+                <i class="fa fa-facebook-square"></i>
+                <span class="text">facebook</span>
+            </a>
+        </li>
+        <li class="linkedin ks-byline-linkedin">
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11&amp;title=10%20things%20in%20tech%20you%20need%20to%20know%20today&amp;summary=The%20New%20York%20state%20attorney%20general%20is%20investigating%20WeWork%20amid%20layoffs%20at%20the%20company." title="linkedin" class="popup">
+                <i class="fa fa-linkedin"></i>
+                <span class="text">linkedin</span>
+            </a>
+        </li>
+        <li class="twitter ks-byline-tweet">
+            <a href="http://twitter.com/share?url=https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11&amp;via=&amp;text=10+things+in+tech+you+need+to+know+today" title="twitter" class="popup">
+                <i class="fa fa-twitter"></i>
+                <span class="text">twitter</span>
+            </a>
+        </li>
+        <li class="email button-email ks-byline-email" data-href="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11">
+            <a href="#" title="email">
+                <i class="fa fa-envelope"></i>
+                <span class="text">email</span>
+            </a>
+        </li>
+                <li class="printbtn ks-byline-print">
+            <a href="javascript:window.print()" title="print">
+                <i class="fa fa-print"></i>
+                <span class="text">print</span>
+            </a>
+        </li>
+            </ul>
+    <!-- buttons end here -->
+</div>
+<!-- RRSSB end -->        </div>
+    </div>
+
+    <!-- Click Performance content ad-->
+        <!-- /133556709/Article_A -->
+        <div id="div-gpt-ad-1445608536739-0" style="margin:10px 0 10px 0;padding:20px 0 20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+            <script type="text/javascript">
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1445608536739-0'); });
+            </script>
+        </div>
+	<!-- END Click Performance content ad-->
+
+    <div class="clear-both">
+		<div class="KonaBody post-content">
+			
+            
+<p><span class="KonaFilter image-container display-table float_right"><span><span data-post-image="" class="image on-image"><img src="https://static4.businessinsider.de/image/5d3255222516e949414ebed2-2400/2019-11-19t002635z1lynxmpefai00zrtroptp4wework-discrimination.jpg" border="0" alt="FILE PHOTO: The WeWork logo is displayed outside of a co-working space in New York City, New York U.S., January 8, 2019. REUTERS/Brendan McDermid/File Photo" data-mce-source="Reuters" data-mce-caption="FILE PHOTO: The WeWork logo is displayed outside of a co-working space in New York"><span class="caption-source"><span class="caption">The WeWork logo is displayed outside of a co-working space in New York.</span><span class="source"><span>Reuters</span></span></span></span></span></span></p><p></p>
+<p>Good morning! This is the tech news you need to know this Tuesday.</p>
+<ol>
+<li>
+<strong><a href="https://www.businessinsider.com/new-york-state-attorney-general-investigating-wework-2019-11?r=US&amp;IR=T">The New York state attorney general is investigating WeWork amid layoffs</a>.</strong> The company confirmed that it had been contacted by Attorney General Letitia James' office, which will reportedly focus on activities by WeWork's founder and former CEO, Adam Neumann.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/t-mobile-ceo-john-legere-steps-down-2019-11?r=US&amp;IR=T">T-Mobile CEO John Legere is stepping down in May 2020</a>.</strong> Legere will hand over the reins to COO and president Mike Siever.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/softbank-ceo-masayoshi-son-wants-wework-profitable-by-2021-2019-11" data-analytics-position="18" data-analytics-module="featured_post">SoftBank CEO Masayoshi Son has told WeWork executives he wants the company to turn a profit by 2021</a>.</strong> Masayoshi Son told WeWork executives to look for new sources of revenue as SoftBank attempts to rescue the company.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/amazon-now-lets-you-listen-to-music-free-on-smartphones-on-tv-and-online-2019-11" data-analytics-position="6" data-analytics-module="featured_post">Amazon is now letting you listen to music free on smartphones and TV, as well as online and Spotify investors are already nervous</a>.</strong> The company published a blog post that said customers without a Prime membership or subscription to Amazon Music Unlimited could now access ad-supported music for free.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/alibaba-leaders-deny-misreported-singles-day-sales-2019-11" data-analytics-position="17" data-analytics-module="featured_post">Alibaba leaders have denied 'sensational' claims made in viral Weibo post that said the Chinese e-commerce giant misreported its Singles Day sales</a>.</strong> Peng Mei — project manager for communications on Singles Day and PR director of Tmall, the retail site owned by Alibaba — responded to the allegations in a post on WeChat, threatening legal action.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/google-buys-cloudsimple-microsoft-vmware-2019-11?r=US&amp;IR=T">Google has bought CloudSimple, a startup that was once a key part of Microsoft's cloud strategy</a>.</strong> CloudSimple was originally launched to help Microsoft woo VMware customers to compete with Amazon Web Services.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/former-wework-ceo-adam-neumann-can-name-board-directors-report-2019-11" data-analytics-position="20" data-analytics-module="featured_post">Ousted WeWork CEO Adam Neumann can still reportedly name directors to WeWork's board, even though he left the company</a>. </strong>Adam Neumann can still influence the company through its board, according to a new Fast Company report.</li>
+<li>
+<strong><a href="https://www.businessinsider.com/valve-confirms-half-life-alyx-a-flagship-vr-game-2019-11" data-analytics-position="8" data-analytics-module="featured_post">A new 'Half-Life' game is finally coming out after 12 years of waiting — but the catch is that it's for virtual reality only</a>. </strong>Developer Valve called 'Half Life: Alyx' "a flagship VR game."</li>
+<li>
+<strong><a href="https://www.businessinsider.com/apple-airpods-top-teens-holiday-wish-lists-2019-11" data-analytics-position="33" data-analytics-module="featured_post">Teens love Apple's AirPods, and they're putting them on their holiday wish lists more than ever before</a>.</strong> That's according to a new survey from Piper Jaffray. </li>
+<li>
+<strong><a href="https://www.businessinsider.com/apple-nyc-event-announced-december-best-apps-2019-11" data-analytics-position="15" data-analytics-module="featured_post">Apple is holding a surprise event in NYC next month, and it sounds like it will be all about apps and games</a>.</strong> The tech giant is holding an event on December 2 to highlight the best apps and games of the year in an unusual move.</li>
+</ol>
+<p>Have an Amazon Alexa device? Now you can hear 10 Things in Tech each morning. Just search for "Business Insider" in your Alexa's flash briefing settings.</p>
+<p>You can also <a href="https://newsletter.businessinsider.com/join/free">subscribe to this newsletter</a> here — just tick "10 Things in Tech You Need to Know."...</p>
+                                    
+                        
+					</div>
+
+        
+        <!-- Post category tags -->
+		    <div class="category-wrapper" data-category-wrapper="">
+
+        <div class="tags-top align-right">
+            Mehr:
+
+                                                                                <a href="https://www.businessinsider.de/kategorien/10-things-in-tech">10 things in tech</a>
+                                                                                                    <a href="https://www.businessinsider.de/kategorien/10-things-in-tech-sai">10 things in tech SAI</a>
+                                            
+                    </div>
+    </div>
+
+    </div>
+</div>
+
+        <div id="social-reader-notification" class="alert clear-both" style="display:none;"></div>
+
+        <div id="facebook-notification" class="alert" style="display:none;"></div>
+
+                
+        <!-- Click Performance content ad-->
+                    <!-- /133556709/Article_C -->
+            <div id="div-gpt-ad-1445608536739-2" style="margin:10px 0 10px 0;padding:20px 0 20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+                <script type="text/javascript">
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1445608536739-2'); });
+                </script>
+            </div>
+                <!-- END Click Performance content ad-->
+    </div>
+
+    
+        <div id="vendor_5" class="print-hide"></div>
+
+        <div class="bottom-share-module clearfix clear-both">
+            <!-- RRSSB BOTTOM POST CALL -->
+            
+<!-- RRSSB start -->
+<div data-share="" class="rrssb-baseline share-container ks-share-bottom margin-top margin-bottom clearfix" style="display:none;">
+    <!-- buttons start here -->
+    <ul class="rrssb-buttons rrssb-bottom clearfix">
+        <li class="facebook ks-sharemodule-fb">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11" title="facebook" class="popup">
+                <i class="fa fa-facebook-square"></i>
+                <span class="text">facebook</span>
+            </a>
+        </li>
+        <li class="linkedin ks-sharemodule-linkedin">
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11&amp;title=10%20things%20in%20tech%20you%20need%20to%20know%20today&amp;summary=The%20New%20York%20state%20attorney%20general%20is%20investigating%20WeWork%20amid%20layoffs%20at%20the%20company." title="linkedin" class="popup">
+                <i class="fa fa-linkedin"></i>
+                <span class="text">linkedin</span>
+            </a>
+        </li>
+        <li class="twitter ks-sharemodule-tweet">
+            <a href="http://twitter.com/share?url=https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11&amp;via=&amp;text=10%20things%20in%20tech%20you%20need%20to%20know%20today" title="twitter" class="popup">
+                <i class="fa fa-twitter"></i>
+                <span class="text">twitter</span>
+            </a>
+        </li>
+        <li class="email button-email ks-sharemodule-email" data-href="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11">
+            <a href="#" title="email">
+                <i class="fa fa-envelope"></i>
+                <span class="text">email</span>
+            </a>
+        </li>
+                <li class="printbtn ks-byline-print">
+            <a href="javascript:window.print()" title="print">
+                <i class="fa fa-print"></i>
+                <span class="text">print</span>
+            </a>
+        </li>
+            </ul>
+    <!-- buttons end here -->
+</div>
+<!-- RRSSB end -->
+
+<!-- This Empty div tells sailthru where to fly out the concierge promo. -->
+<div id="bottom-share-links"></div>
+        </div>
+
+        
+                
+        
+        
+        <!-- Schema.org/NewsArticle metadata -->
+<div style="display:none;" itemscope="" itemtype="http://schema.org/NewsArticle">
+
+    <h1 itemprop="name">10 things in tech you need to know today</h1>
+
+    <a href="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11" itemprop="url">10 things in tech you need to know today</a>
+
+    <img src="https://static6.businessinsider.de/image/5dd3a081695b58675837525e-500-250/10-things-in-tech-you-need-to-know-today.jpg" itemprop="image">
+
+    <div itemprop="description"><p>Good morning! This is the tech news you need to...</p></div>
+    <div itemprop="headline">10 things in tech you need to know today</div>
+
+    <div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    	<div itemprop="name">Charlie Wood</div>
+    </div>
+
+    <div itemprop="keywords">10 things in tech,10 things in tech SAI</div>
+
+    <div itemprop="mainEntityOfPage">10 things in tech you need to know today</div>
+
+    <div itemprop="datePublished">2019-11-19T08:57:40+01:00</div>
+    <div itemprop="dateCreated">2019-11-19T07:23:12+01:00</div>
+    <div itemprop="dateModified">2019-11-19T08:57:45+01:00</div>
+
+    <div itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+        <div itemprop="url">https://static6.businessinsider.de/image/5dd3a081695b58675837525e-500-250/10-things-in-tech-you-need-to-know-today.jpg</div>
+        <div itemprop="width" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">500</div>
+        </div>
+        <div itemprop="height" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">250</div>
+        </div>
+    </div>
+
+    <div itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+        <div itemprop="name">BusinessInsiderDe</div>
+        <span itemscope="" itemprop="logo" itemtype="http://schema.org/ImageObject">
+            <span itemprop="url">https://www.businessinsider.de/assets/images/logos/og-image-logo.png</span>
+        </span>
+    </div>
+
+    <div itemprop="articleBody">
+Good morning! This is the tech news you need to know this Tuesday.
+
+The New York state attorney general is investigating WeWork amid layoffs. The company confirmed that it had been contacted by Attorney General Letitia James' office, which will reportedly focus on activities by WeWork's founder and former CEO, Adam Neumann.
+T-Mobile CEO John Legere is stepping down in May 2020. Legere will hand over the reins to COO and president Mike Siever.
+SoftBank CEO Masayoshi Son has told WeWork executives he wants the company to turn a profit by 2021. Masayoshi Son told WeWork executives to look for new sources of revenue as SoftBank attempts to rescue the company.
+Amazon is now letting you listen to music free on smartphones and TV, as well as online and Spotify investors are already nervous. The company published a blog post that said customers without a Prime membership or subscription to Amazon Music Unlimited could now access ad-supported music for free.
+Alibaba leaders have denied 'sensational' claims made in viral Weibo post that said the Chinese e-commerce giant misreported its Singles Day sales. Peng Mei — project manager for communications on Singles Day and PR director of Tmall, the retail site owned by Alibaba — responded to the allegations in a post on WeChat, threatening legal action.
+Google has bought CloudSimple, a startup that was once a key part of Microsoft's cloud strategy. CloudSimple was originally launched to help Microsoft woo VMware customers to compete with Amazon Web Services.
+Ousted WeWork CEO Adam Neumann can still reportedly name directors to WeWork's board, even though he left the company. Adam Neumann can still influence the company through its board, according to a new Fast Company report.
+A new 'Half-Life' game is finally coming out after 12 years of waiting — but the catch is that it's for virtual reality only. Developer Valve called 'Half Life: Alyx' "a flagship VR game."
+Teens love Apple's AirPods, and they're putting them on their holiday wish lists more than ever before. That's according to a new survey from Piper Jaffray. 
+Apple is holding a surprise event in NYC next month, and it sounds like it will be all about apps and games. The tech giant is holding an event on December 2 to highlight the best apps and games of the year in an unusual move.
+
+Have an Amazon Alexa device? Now you can hear 10 Things in Tech each morning. Just search for "Business Insider" in your Alexa's flash briefing settings.
+You can also subscribe to this newsletter here — just tick "10 Things in Tech You Need to Know."...</div>
+    <div itemprop="articleSection">international</div>
+
+</div>
+<!-- / Schema.org/NewsArticle metadata -->
+
+
+<!-- Schema.org/Article metadata -->
+<div style="display:none;" itemscope="" itemtype="http://schema.org/Article">
+
+    <h1 itemprop="name">10 things in tech you need to know today</h1>
+
+    <a href="https://www.businessinsider.de/10-things-in-tech-you-need-to-know-today-november-19-2019-11" itemprop="url">10 things in tech you need to know today</a>
+
+    <img src="https://static6.businessinsider.de/image/5dd3a081695b58675837525e-500-250/10-things-in-tech-you-need-to-know-today.jpg" itemprop="image">
+
+    <div itemprop="description"><p>Good morning! This is the tech news you need to...</p></div>
+    <div itemprop="headline">10 things in tech you need to know today</div>
+
+    <div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div itemprop="name">Charlie Wood</div>
+    </div>
+
+    <div itemprop="keywords">10 things in tech,10 things in tech SAI</div>
+
+    <div itemprop="mainEntityOfPage">10 things in tech you need to know today</div>
+
+    <div itemprop="datePublished">2019-11-19T08:57:40+01:00</div>
+    <div itemprop="dateModified">2019-11-19T08:57:45+01:00</div>
+
+    <div itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+        <div itemprop="url">https://static6.businessinsider.de/image/5dd3a081695b58675837525e-500-250/10-things-in-tech-you-need-to-know-today.jpg</div>
+        <div itemprop="width" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">500</div>
+        </div>
+        <div itemprop="height" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">250</div>
+        </div>
+    </div>
+
+    <div itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+        <div itemprop="name">BusinessInsiderDe</div>
+        <span itemscope="" itemprop="logo" itemtype="http://schema.org/ImageObject">
+         <span itemprop="url">https://www.businessinsider.de/assets/images/logos/og-image-logo.png</span>
+        </span>
+    </div>
+
+    <div itemprop="articleBody">
+Good morning! This is the tech news you need to know this Tuesday.
+
+The New York state attorney general is investigating WeWork amid layoffs. The company confirmed that it had been contacted by Attorney General Letitia James' office, which will reportedly focus on activities by WeWork's founder and former CEO, Adam Neumann.
+T-Mobile CEO John Legere is stepping down in May 2020. Legere will hand over the reins to COO and president Mike Siever.
+SoftBank CEO Masayoshi Son has told WeWork executives he wants the company to turn a profit by 2021. Masayoshi Son told WeWork executives to look for new sources of revenue as SoftBank attempts to rescue the company.
+Amazon is now letting you listen to music free on smartphones and TV, as well as online and Spotify investors are already nervous. The company published a blog post that said customers without a Prime membership or subscription to Amazon Music Unlimited could now access ad-supported music for free.
+Alibaba leaders have denied 'sensational' claims made in viral Weibo post that said the Chinese e-commerce giant misreported its Singles Day sales. Peng Mei — project manager for communications on Singles Day and PR director of Tmall, the retail site owned by Alibaba — responded to the allegations in a post on WeChat, threatening legal action.
+Google has bought CloudSimple, a startup that was once a key part of Microsoft's cloud strategy. CloudSimple was originally launched to help Microsoft woo VMware customers to compete with Amazon Web Services.
+Ousted WeWork CEO Adam Neumann can still reportedly name directors to WeWork's board, even though he left the company. Adam Neumann can still influence the company through its board, according to a new Fast Company report.
+A new 'Half-Life' game is finally coming out after 12 years of waiting — but the catch is that it's for virtual reality only. Developer Valve called 'Half Life: Alyx' "a flagship VR game."
+Teens love Apple's AirPods, and they're putting them on their holiday wish lists more than ever before. That's according to a new survey from Piper Jaffray. 
+Apple is holding a surprise event in NYC next month, and it sounds like it will be all about apps and games. The tech giant is holding an event on December 2 to highlight the best apps and games of the year in an unusual move.
+
+Have an Amazon Alexa device? Now you can hear 10 Things in Tech each morning. Just search for "Business Insider" in your Alexa's flash briefing settings.
+You can also subscribe to this newsletter here — just tick "10 Things in Tech You Need to Know."...</div>
+    <div itemprop="articleSection">international</div>
+
+</div>
+<!-- / Schema.org/Article metadata -->
+        
+    
+</div>
+                    </div>
+                                            <div class="span4">
+                            <div class="main-rail">
+                                                                    
+<div id="right-rail" class="right-rail">
+	<div class="sl-layout-post">
+		<!-- PERFECT MARKET RR -->
+		
+			<!-- Only show at uppermost top if skin is active -->
+			
+			<!-- Vertical Host -->
+													<!-- / Vertical Host -->
+
+			<!-- Countdown Clock  -->
+						<!-- / Countdown Clock  -->
+
+			<!-- Top Right Rail Ad -->
+			<div class="ad-display-wrapper ad-upper-300">
+				<div data-ad-top-right="" class="mrec300">
+					
+		    <div id="mrec"></div>    	
+					</div>
+			</div>
+			<!-- / Top Right Rail Ad -->
+
+			<!-- Recommended For You  -->
+            			<!-- / Recommended For You  -->
+
+			<!-- Show here if skin is not active -->
+									    
+			<!-- Your Money -->
+			
+			<!-- Medium Rectangle 2 -->
+			
+			<!-- Dianomi -->
+		 	
+			<!-- Featured -->
+		 	
+			<!-- / Top Right Rail Ad -->
+            <div id="vendor_1"></div>
+
+             <!-- Click Performance content ad-->
+		    			 <!-- END Click Performance content ad-->
+
+			<!-- Finance widget - Main -->
+			<div id="finanzen_right_rail_anchor"></div>			
+			<!-- Editorial Sidebar -->
+			
+            <div id="vendor_2"></div>
+
+			<!-- Editorial Sidebar 2 -->
+							<!-- editorial sidebar 2 -->
+<div id="editorial2" class="ks-rr-editorial-2" data-bi-heatmap="editorial">
+	<h3 class="underlined thin"></h3>
+	<div>
+		<p> </p>
+<!-- Kapilendo-->
+<h3 class="underlined thin">Digitalisierung</h3>
+<div class="ed-widget"><img class="ed-widget-dws-logo" src="https://static.businessinsider.de/image/5ca1f00f1abc097637234313" border="0" alt="Kapilendo"> <!--DO NOT EDIT ABOVE THIS LINE -->
+<ul class="media-list">
+<li class="media"><a href="https://www.businessinsider.de/sc/legen-sie-ihr-vermoegen-in-vertrauensvolle-roboter-haende-2019-11" class="pull-left"> <img src="https://static.businessinsider.de/image/5dc569caf3aa01418337fe14" border="0" alt="Legen Sie Ihr Vermögen in vertrauensvolle (Roboter-)Hände?
+"> </a>
+<div class="media-body">
+<p><a href="https://www.businessinsider.de/sc/legen-sie-ihr-vermoegen-in-vertrauensvolle-roboter-haende-2019-11" class="title">Legen Sie Ihr Vermögen in vertrauensvolle (Roboter-)Hände? </a></p>
+</div>
+</li>
+</ul>
+</div>
+<div style="font-size: 12px; text-align: right;"><em>Anzeige</em></div>
+<div style="font-size: 12px; text-align: right;"><em> </em></div>
+<h3 class="underlined thin"> </h3>
+<p> </p>
+<!-- Flipboard-->
+<h3 class="underlined thin">Flipboard</h3>
+<div class="ed-widget"><img class="ed-widget-dws-logo" src="https://static6.businessinsider.de/image/5cc17ecf0ed03165c35b70b5-105-60/flipboard-logo-105x60x.jpg" border="0" alt="Flipboard"> <!--DO NOT EDIT ABOVE THIS LINE -->
+<ul class="media-list">
+<li class="media"><a href="https://flipboard.com/@flipboardde/tagesausgabe-u8tjdq6jy?utm_source=businessinsiderde&amp;utm_medium=ad&amp;utm_campaign=barter" target="_blank" class="pull-left"> <img src="https://static3.businessinsider.de/image/5ca4bc9a85600624377f9a45-60-45/032819business-insiderthe-daily-edition-ge-1000x750-image-only-flipboard-60.jpg" border="0" alt="Deine Nachrichten an einem Ort: Lies die Geschichten, die heute die Welt bewegen"> </a>
+<div class="media-body">
+<p><a href="https://flipboard.com/@flipboardde/tagesausgabe-u8tjdq6jy?utm_source=businessinsiderde&amp;utm_medium=ad&amp;utm_campaign=barter" target="_blank" class="title">Deine Nachrichten an einem Ort: Lies die Geschichten, die heute die Welt bewegen</a></p>
+</div>
+</li>
+</ul>
+</div>
+<div style="font-size: 12px; text-align: right;"><em>Anzeige</em></div>
+<div style="font-size: 12px; text-align: right;"><em> </em></div>
+<h3 class="underlined thin"> </h3>
+<p> </p>
+<p> </p>
+<!-- Browser-Benachrichtigung-->
+<h3 class="underlined thin">Browser-Benachrichtigung</h3>
+<div class="ed-widget"><img class="ed-widget-dws-logo" src="https://static.businessinsider.de/image/5a548b3fcca1c737251e2b36" border="0" alt="BusinessInsider"> <!--DO NOT EDIT ABOVE THIS LINE -->
+<ul class="media-list">
+<li class="media"><a href="https://www.businessinsider.de/best-of-wirtschaft-so-aktiviert-ihr-die-browser-push-von-business-insider-deutschland-2018-10" class="pull-left"> <img src="https://static.businessinsider.de/image/5bd6df519ba30f797b321635" border="0" alt="Browser-Benachrichtigung"> </a>
+<div class="media-body">
+<p><a href="https://www.businessinsider.de/best-of-wirtschaft-so-aktiviert-ihr-die-browser-push-von-business-insider-deutschland-2018-10" class="title">NEU: Unsere spannendste Story täglich per Browser-Push – so einfach geht´s </a></p>
+</div>
+</li>
+</ul>
+</div>	</div>
+</div>
+<script>amplify.publish('editorial-sidebar-loaded', 'editorial2');</script>
+<!-- / editorial sidebar 2 -->
+			
+            <div id="vendor_3"></div>
+
+			<!-- Medium Rectangle 3-->
+			<div class="ad-display-wrapper">
+						</div>
+			
+            <div id="vendor_4"></div>
+
+			</div>
+</div>
+                                                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+
+            
+            </div>
+        </div>
+
+</div><!-- /.site-content-container -->
+
+</div><!-- /.site-shim-inner -->
+
+</div><!-- /.site-shim-outer -->
+<div class="footer" data-bi-footer="">
+
+    <div class="container">
+
+        <section class="top">
+            <a href="/" class="sprites logo"></a>
+            <section class="social-icons">
+                <span class="social-prompt">Follow us on:</span>
+
+                <ul class="links-user">
+                                            
+
+    <li class="social">
+        <a href="//www.facebook.com/Business.Insider.Deutschland" title="Folge uns auf Facebook" aria-label="Folge uns auf Facebook" target="_blank"><i class="fa fa-facebook ks-header-facebook"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//twitter.com/BIDeutschland" title="Folge uns auf Twitter" aria-label="Folge uns auf Twitter" target="_blank"><i class="fa fa-twitter ks-header-twitter"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//www.linkedin.com/company/business-insider-deustchland" title="Folge uns auf LinkedIn" aria-label="Folge uns auf LinkedIn" target="_blank"><i class="fa fa-linkedin ks-header-linkedin"></i></a>
+    </li>
+                    
+                    
+                                    </ul>
+            </section>
+
+            <div class="sister-sites-container">
+                <span class="sister-site-prompt">Also check out:</span>
+
+                <a href="http://www.thisisinsider.com" class="sister-sites sister-one"></a>
+            </div>
+        </section>
+
+        <div class="list-pipes">
+            <ul>
+            <li>Copyright © 2019 Business Insider Deutschland / finanzen.net GmbH Alle Rechte vorbehalten. </li>
+            <span class="nowrap">Durch die Nutzung dieser Website zeigen Sie an, dass Sie unsere
+                                        <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>                    sowie die
+                                                            <a href="/datenschutz">Datenschutzerklärung</a> akzeptieren und mit deren Einhaltung einverstanden sind.</span>
+                
+
+            </ul>
+        </div>
+        <div class="list-pipes">
+            <ul>
+                <li>  <a href="/werben">Werben auf BI</a>  </li>
+                <li>  <a href="/disclaimer">Disclaimer</a>  </li>
+                <li>  <a href="/impressum">Impressum</a>  </li>
+                <li>  Powered by <a href="http://www.mongodb.org">MongoDB</a> </li>
+            </ul>
+        </div>
+        <div class="international-links list-pipes">
+            <ul><li>International Editions:</li>
+                <li class="no-pipe"><a href="http://www.businessinsider.de">DE</a></li><li><a href="http://www.businessinsider.com?IR=C">US</a></li><li><a href="http://uk.businessinsider.com?IR=C">UK</a></li><li><a href="http://www.businessinsider.com.au/">AUS</a></li><li><a href="http://www.businessinsider.in/">IN</a></li><li><a href="http://www.businessinsider.my/">MY</a></li><li><a href="http://www.businessinsider.sg/">SG</a></li><li><a href="http://www.businessinsider.com.pl/?IR=C">PL</a></li><li><a href="http://nordic.businessinsider.com/?IR=C">SE</a></li><li><a href="http://www.businessinsider.nl?IR=C">NL</a></li><li><a href="http://www.businessinsider.fr/?IR=C">FR</a></li><li><a href="https://it.businessinsider.com">IT</a></li><li><a href="http://www.businessinsider.jp">JP</a></li>            </ul>
+        </div>
+                   </div>
+        </div>
+    
+
+<script type="text/javascript" src="https://static5.businessinsider.de/assets/js/min-foot.js?0"></script>
+
+<!--[if gte IE 9]>
+<script type="text/javascript">amplify.publish("ie9-pinned-site", {"hid":null,"vertical":"international"});</script><![endif]-->
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="" www.googletagmanager.com="" ns.html height="" width="" style="" display:none></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZ7X7V');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Twitter widget.js -->
+<script type="text/javascript">
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){
+        js=d.createElement(s);
+        js.id=id;
+        js.src="https://platform.twitter.com/widgets.js";
+        js.async=true;
+        fjs.parentNode.insertBefore(js,fjs);
+    }}(document,"script","twitter-wjs");
+</script>
+<!-- /Twitter widget.js -->
+
+    
+        <!-- Chartbeat -->
+    <script type="text/javascript">
+        // chartbeat wants the vars in global
+        window._sf_async_config.sections = 'international';
+        window._sf_async_config.authors = 'Charlie Wood';
+
+        //only set the following if on a video post
+        
+        //only set the following if on a sponsored post
+        
+        (function(){
+          function loadChartbeat() {
+            window._sf_endpt=(new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src',
+               (('https:' === document.location.protocol) ? 'https://s3.amazonaws.com/' : 'http://') +
+               'static.chartbeat.com/js/chartbeat_video.js');
+            document.body.appendChild(e);
+          }
+          var oldonload = window.onload;
+          window.onload = (typeof window.onload != 'function') ?
+             loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+    </script>
+    <!-- / Chartbeat -->
+    
+
+                    <!-- SZM VERSION="2.0" -->
+        <script type="text/javascript">
+            var contentPage = 'International-article',
+                questionnaireflag = 'in',
+                comment = 's-news-5dd3a086695b58675837525f';
+
+            if (typeof BI.post !== "undefined" && BI.post.name === "impressum") {
+                contentPage = "Angebot";
+            }
+
+            var iam_data = {
+                "cp" : contentPage,
+                "st" : "businsi",
+                "sv" : questionnaireflag,
+                "co" : comment
+            };
+
+            iom.c(iam_data, 2);
+        </script>
+        <!-- /SZM -->
+    
+<!-- Perfect market JS -->
+    <!-- End Perfect market JS-->
+
+
+<!-- Ads without positioning -->
+<div>
+    
+		    <div id="inpage"></div>    	
+	</div>
+<div>
+    
+		    <div id="inpage"></div>    	
+	</div>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"4b4136998e","applicationID":"90737971","transactionName":"ZVZVZRBVXEJVVkJRDVwcdEQRQF1cG0VZSxY=","queueTime":0,"applicationTime":432,"atts":"SRFWE1hPT0w=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+</body></html>

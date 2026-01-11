@@ -1,0 +1,1369 @@
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" xmlns:fb="http://www.facebook.com/2008/fbml"><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"4b4136998e",applicationID:"90737971"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+    <title>How to retire early, step by step: Earn, save, and invest more - Business Insider Deutschland</title>
+    <meta name="date" content="2019-11-13">
+<meta name="sailthru.date" content="2019-11-13">
+<meta name="news_keywords" content="How to retire early, Early retirement, Retiring early, Your Money Saving, Personal Finance How To, Personal Finance Insider, pfi, PFI-XAMP, PFI SmartAsset, Retirement, Tanza Loudenback">
+<meta name="sailthru.tags" content="How to retire early, Early retirement, Retiring early, Your Money Saving, Personal Finance How To, Personal Finance Insider, pfi, PFI-XAMP, PFI SmartAsset, Retirement, Tanza Loudenback">
+<meta name="description" content="Curious about how to retire early? Focus on earning, saving, and investing as much as you possibly can. But don't forget to make a backup plan.">
+<meta name="sailthru.description" content="Curious about how to retire early? Focus on earning, saving, and investing as much as you possibly can. But don't forget to make a backup plan.">
+<meta name="title" content="How to retire early so you can work, travel, and relax on your own schedule">
+<meta name="sailthru.verticals" content="international">
+<meta name="sailthru.title" content="How to retire early so you can work, travel, and relax on your own schedule">
+<meta name="tbi-image" content="https://static2.businessinsider.de/image/5d1ce1ad2516e9500e130fa7/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg">
+<meta name="sailthru.image.full" content="https://static2.businessinsider.de/image/5d1ce1ad2516e9500e130fa7/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg">
+<meta name="sailthru.image.thumb" content="https://static3.businessinsider.de/image/5d1ce1ad2516e9500e130fa7-50-50/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg">
+<meta name="sailthru.author" content="Tanza Loudenback">
+<meta property="og:title" content="How to retire early so you can work, travel, and relax on your own schedule">
+<meta property="og:description" content="Curious about how to retire early? Focus on earning, saving, and investing as much as you possibly can. But don't forget to make a backup plan.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement">
+<meta property="og:site_name" content="Business Insider Deutschland">
+<meta property="fb:app_id" content="155043519637">
+<meta property="article:publisher" content="Business.Insider.Deutschland">
+<meta property="author" content="Tanza Loudenback, Business Insider">
+<meta name="twitter:url" content="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement">
+<meta name="twitter:title" content="How to retire early so you can work, travel, and relax on your own schedule">
+<meta name="twitter:description" content="Curious about how to retire early? Focus on earning, saving, and investing as much as you possibly can. But don't forget to make a backup plan.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="https://static2.businessinsider.de/image/5d1ce1ad2516e9500e130fa7/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg">
+<meta name="twitter:creator" content="notsoTan_za">
+<meta property="article:author" content="https://www.businessinsider.de/autoren/tanza-loudenback">
+<meta property="og:image" content="https://static3.businessinsider.de/image/5d1ce1ae2516e9500e130fa8/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg">            
+<link rel="canonical" href="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement">
+<link rel="alternate" href="http://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement" hreflang="en-DE">
+<link rel="alternate" href="https://www.businessinsider.com/how-to-retire-early-steps-for-early-retirement" hreflang="en-US">
+<link rel="alternate" href="https://www.businessinsider.com/how-to-retire-early-steps-for-early-retirement" hreflang="x-default">
+        <link href="https://static3.businessinsider.de/assets/css/min-base-de.css?0" media="screen" rel="stylesheet" type="text/css">
+<link href="https://static6.businessinsider.de/assets/css/min-post-de.css?0" media="screen" rel="stylesheet" type="text/css">
+<link rel="syndication-source">    <link type="text/css" rel="stylesheet" media="print" href="https://static5.businessinsider.de/assets/css/print.css?0">
+
+    <script type="text/javascript">
+        //this should be refactored to the BI.Google_Plus object, however the BI core library will need to be moved to above the headScript call
+        window.gPlusConfigs = {client_id : '551214076990-h27puiaonnlg9a9772gq3qbe9nk6qnno.apps.googleusercontent.com', base_domain: 'businessinsider.de'};
+    </script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="https://static4.businessinsider.de/assets/js/min2.js?0"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    BI.post.isSlideshow=false;    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    post = {"id":"5d1ce1b52516e9500e130faa","uri":"https:\/\/www.businessinsider.de\/how-to-retire-early-steps-for-early-retirement","thumb":"https:\/\/static1.businessinsider.de\/image\/5d1ce1ad2516e9500e130fa7-90-90\/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg","author":"Tanza Loudenback","author_ids":"","post_type":"post"};    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    
+        Author = "Tanza Loudenback";
+        Category = "How to retire early|Early retirement|Retiring early|Your Money Saving|Personal Finance How To|Personal Finance Insider|pfi|PFI-XAMP|PFI SmartAsset|Retirement";
+        AuthorType = "Staff";
+        Editor = "knarr_us";
+        BIISub = "none"
+            //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    
+        BI.nav_select = "";
+        BI.highTrafficMode = 0;
+        BI.post.isDraft = 0;
+        BI.post.url = "https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement";
+        BI.post.name = "how-to-retire-early-steps-for-early-retirement";
+        BI.comments.currentPage = 0;
+        BI.comments.filterPundits = 1;
+        BI.comments.getAllComments = 1;
+            //]]>
+</script>
+    <!-- AppNexus Ad Script -->
+
+    <script>
+        adSSetup = {
+            view: 'd',
+            partners: true,
+            adPlacements: [
+                    'sky',
+                    'superbanner',
+                    'mrec',
+                    'inpage'
+                ],
+            adSlotSizes: {
+                'sky': [{
+                    'minWidth': 1,
+                    'sizes': [[160,600],[120,600],[300,600],[500,1000],[1000,1000]]
+                }],
+                'superbanner': [{
+                    'minWidth': 799,
+                    'sizes': [[728,90],[728,600],[800,250],[970,250],[1000,600]]
+                }, {
+                    'minWidth': 1,
+                    'sizes': [[800,250],[970,250]]
+                }],
+                'mrec': [{
+                    'minWidth': 1,
+                    'sizes': [[300,250], [300,600]]
+                }],
+                'inpage': [{
+                    'minWidth': 1,
+                    'sizes': [[1,1],[640,360],[1000,300]]
+                }]
+            },
+
+
+            colorBg: true, // enable/disable coloring of the page-background
+            bgClick: true, // enable/disable click on page-background
+            stickySky: true, // enable/disable stickiness for skyscraper
+            pageName: "international_post" , // channel/article name from CMS
+                        target: "How-to-retire-early;Early-retirement;Retiring-early;Your-Money-Saving;Personal-Finance-How-To;Personal-Finance-Insider;pfi;PFI-XAMP;PFI-SmartAsset;Retirement"
+            
+        }
+    </script>
+
+    <link rel="preconnect" href="//www.asadcdn.com">
+    <link rel="dns-prefetch" href="//www.asadcdn.com">
+
+    <script src="//www.asadcdn.com/adlib/pages/businessinsider.js"></script>
+
+    <!-- optimizely desktop -->
+        <!-- End optimizely desktop -->
+
+    <!-- Facebook Instant Start -->
+    <meta property="fb:pages" content="1436932876630275">
+    <!-- Facebook Instant End -->
+
+    <!--Tech Insider Pinterest-->
+    
+    
+            <meta name="robots" content="noindex">
+    
+    
+    <meta name="tbi-vertical" content="international">
+
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {
+            filter: none;
+        }
+    </style>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static3.businessinsider.de/assets/css/ie7_or_lower.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static5.businessinsider.de/assets/css/ie8.css" />
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="https://static3.businessinsider.de/assets/js/vendor/ie8/placeholders.min.js"></script>
+    <![endif]-->
+
+    <!--[if IE 9]>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static4.businessinsider.de/assets/css/ie9.css" />
+        <script type="text/javascript" src="https://static5.businessinsider.de/assets/js/shims/Element.classList.js"></script>
+    <![endif]-->
+
+    <!--Tech Insider if IE 9 -->
+    
+    <script type="text/javascript">
+        sas_target= 'How to retire early;Early retirement;Retiring early;Your Money Saving;Personal Finance How To;Personal Finance Insider;pfi;PFI-XAMP;PFI SmartAsset;Retirement';        var vertical = 'international';
+        var PageType = 'post';
+        var post_id = '';
+        var _sf_startpt=(new Date()).getTime();
+    </script>
+
+    <!-- Kissmetrics -->
+    <script type="text/javascript">
+        var _kmq = _kmq || [];
+        var _kmk = _kmk || '999f578acebfab6dd29b540ab4ebbcbaafafa774';
+
+        function _kms(u){
+            setTimeout(function(){
+                var s = document.createElement('script');
+                var f = document.getElementsByTagName('script')[0];
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = u;
+                f.parentNode.insertBefore(s, f);
+            }, 1);
+        }
+            </script>
+    <!-- Kissmetrics -->
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.businessinsider.de/international.rss">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://static4.businessinsider.de/assets/images/de/favicons/apple-touch-icon.png?v=BI-DE-2017-08-10">
+<link rel="icon" type="image/png" sizes="32x32" href="https://static3.businessinsider.de/assets/images/de/favicons/favicon-32x32.png?v=BI-DE-2017-08-10">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static3.businessinsider.de/assets/images/de/favicons/favicon-16x16.png?v=BI-DE-2017-08-10">
+<link rel="manifest" href="https://static4.businessinsider.de/assets/images/de/favicons/manifest.json?v=BI-DE-2017-08-10">
+<link rel="mask-icon" href="https://static6.businessinsider.de/assets/images/de/favicons/safari-pinned-tab.svg?v=BI-DE-2017-08-10" color="#1D607C">
+<link rel="shortcut icon" href="https://static5.businessinsider.de/assets/images/de/favicons/favicon.ico?v=BI-DE-2017-08-10">
+<meta name="msapplication-config" content="https://static4.businessinsider.de/assets/images/de/favicons/browserconfig.xml?v=BI-DE-2017-08-10">
+<meta name="theme-color" content="#1D607C">
+<meta name="linkedin:owner" content="mid:1d5f7b">
+
+    <!--[if gte IE 9]>
+        <meta name="application-name" content="Business Insider - international"/>
+        <meta name="msapplication-tooltip" content="Start the page in Site Mode"/>
+        <meta name="msapplication-starturl" content="https://www.businessinsider.de/international"/>
+        <meta name="msapplication-window" content="width=800;height=600"/>
+        <meta name="msapplication-navbutton-color" content="#4C7C8D"/>
+
+        <meta name="msapplication-task" content="name=Tech;action-uri=https://www.businessinsider.de/sai;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Media;action-uri=https://www.businessinsider.de/thewire;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Wall Street;action-uri=https://www.businessinsider.de/clusterstock;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Markets;action-uri=https://www.businessinsider.de/moneygame;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+        <meta name="msapplication-task" content="name=Strategy;action-uri=https://www.businessinsider.de/warroom;icon-uri=https://www.businessinsider.de/favicon.ico"/>
+    <![endif]-->
+
+    <script type="text/javascript">BI.siteURI = 'https://www.businessinsider.de';</script>
+    <script type="text/javascript">BI.secureURI = 'https://www.businessinsider.de';</script>
+    <script type="text/javascript">BI.staticURI = 'https://static1.businessinsider.de';</script>
+    <script type="text/javascript">BI.env.setDomain('https://www.businessinsider.de');</script>
+
+            <!-- *************** ANALYTICS *************** -->
+    <script>
+        BI.ANALYTICS_SERVICE_URL = '//analytics.businessinsider.com';
+    </script>
+    <!-- *************** END ANALYTICS *************** -->
+    
+    
+
+    
+        <!-- Begin IVW Tag -->
+        <script type="text/javascript" src="//script.ioam.de/iam.js?m=1"></script>
+    <!-- End IVW Tag -->
+
+<!-- CLICK PERFORMANCE DFP SETUP -->
+
+    <script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function()
+    { var gads = document.createElement('script'); gads.async = true; gads.type = 'text/javascript'; var useSSL = 'https:' == document.location.protocol; gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js'; var node = document.getElementsByTagName('script')[0]; node.parentNode.insertBefore(gads, node); }
+    )();
+    </script>
+    <script>
+    var gptAdSlots = [];
+    googletag.cmd.push(function()
+    {
+        // Define a size mapping object. The first parameter to addSize is
+        // a viewport size, while the second is a list of allowed ad sizes.
+        var mapping = googletag.sizeMapping().
+        // Desktop
+        addSize([620, 0], [[620, 80], [620, 100], [620, 150], [620, 200], [620, 300], [300, 250], [300, 300], [300, 600]]).
+        // Mobile
+        addSize([0, 0], [[320, 50], [320, 80], [320, 100], [320, 150], [300, 250]]).build();
+
+        gptAdSlots[0] = googletag.defineSlot('/133556709/Article_A', [[620, 80], [620, 100], [620, 150], [620, 200], [320, 50], [320, 80], [320, 100], [320, 150], [300, 250]], 'div-gpt-ad-1445608536739-0').
+            defineSizeMapping([[[620, 0], [[620, 80], [620, 100], [620, 150], [620, 200]]], [[0, 0], [[320, 50], [320, 80], [320, 100], [320, 150], [300, 250]]]]).
+            addService(googletag.pubads());
+
+        gptAdSlots[1] = googletag.defineSlot('/133556709/Article_b', [[300, 600], [300, 250], [300, 300]], 'div-gpt-ad-1445608536739-1').
+            defineSizeMapping([[[620, 0], [[300, 250], [300, 300], [300, 600]]]]).
+            addService(googletag.pubads());
+
+        gptAdSlots[2] = googletag.defineSlot('/133556709/Article_C', [[620, 150], [620, 200], [620, 300], [320, 100], [300, 250]], 'div-gpt-ad-1445608536739-2').
+            defineSizeMapping([[[620, 0], [[620, 150], [620, 200], [620, 300]]], [[0, 0], [[320, 80], [300, 250]]]]).
+            addService(googletag.pubads());
+
+        googletag.pubads().setTargeting("URL", window.location.pathname.substr(0, 40));
+        googletag.pubads().setTargeting("CATEGORY", "How to retire early,Early retirement,Retiring early,Your Money Saving,Personal Finance How To,Personal Finance Insider,pfi,PFI-XAMP,PFI SmartAsset,Retirement");
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            var slotName = event.slot.getAdUnitPath();
+            if (slotName == '/133556709/Article_A' && event.isEmpty) {
+                document.getElementById(event.slot.getSlotElementId()).style.display = "none";
+            }
+
+            if (slotName == '/133556709/Article_b' && event.isEmpty) {
+                document.getElementById(event.slot.getSlotElementId()).style.display = "none";
+            }
+
+            if (slotName == '/133556709/Article_C' && event.isEmpty) {
+                document.getElementById(event.slot.getSlotElementId()).style.display = "none";
+            }
+
+        });
+
+    }
+        );
+    </script>
+
+<!-- CLICK PERFORMANCE DFP SETUP -->
+
+<!-- Chartbeat -->
+    <script type="text/javascript">
+        // chartbeat wants the vars in global
+        window._sf_async_config = window._sf_async_config || {};
+        window._sf_async_config.uid = 14447;
+        window._sf_async_config.domain = 'businessinsider.de';
+        window._sf_async_config.flickerControl = false;
+        window._sf_async_config.useCanonical = false;
+        window._sf_startpt = (new Date()).getTime();
+    </script>
+    <script async="" src="https://static.chartbeat.com/js/chartbeat_mab.js"></script>
+<!-- / Chartbeat -->
+
+<!-- detect adblock users for Piano and set cookie appropriately -->
+    <script>
+        // CustomEvent polyfill
+        (function () {
+          if ( typeof window.CustomEvent === "function" ) return false;
+
+          function CustomEvent ( event, params ) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent( 'CustomEvent' );
+            evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+            return evt;
+          }
+
+          CustomEvent.prototype = window.Event.prototype;
+
+          window.CustomEvent = CustomEvent;
+        })();
+
+        var setAdblockerCookie = function(adblocker) {
+            var d = new Date();
+            d.setTime(d.getTime() + 60 * 60 * 24 * 30 * 1000);
+            document.cookie = "__adblocker=" + (adblocker ? "true" : "false") + "; expires=" + d.toUTCString() + "; path=/";
+
+            var event = new CustomEvent('piano_set', {'detail' : adblocker});
+            document.dispatchEvent(event);
+        }
+
+        var script = document.createElement("script");
+
+        script.setAttribute("async", true);
+        script.setAttribute("src", "//www.npttech.com/advertising.js");
+        script.setAttribute("onerror", "setAdblockerCookie(true);");
+        script.setAttribute("onload", "setAdblockerCookie(false);");
+        document.getElementsByTagName("head")[0].appendChild(script);
+    </script>
+
+</head>
+
+
+<body class="">
+
+<div data-cookie-notice-container=""></div>
+<!-- print only -->
+<img class="print" src="https://static5.businessinsider.de/assets/images/de/logos/logo-print.png">
+
+<!-- FB Connect -->
+<div id="fb-root" data-bi-facebook-root="155043519637"></div>
+<!-- / FB Connect -->
+
+<!--[if lt IE 9]>
+    <div class="container>
+        <div class="row">
+            <div class="alert alert-error alert-block">
+                <h4>Achtung!</h4>
+                Deine Version des Internet Explorer ist veraltet. Aus Sicherheitsgründen solltest du <a href="http://windows.microsoft.com/de-de/internet-explorer/download-ie" target="_blank" title="Upgrade IE">deinen Browser aktualisieren</a>. Bitte installiere die neueste Version über Windows Update.
+            </div>
+        </div>
+    </div>
+<![endif]-->
+
+<!-- masthead -->
+<div class="masthead">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span4">
+                <div data-hamburger="" class="menu">
+                    <div class="hamburger" data-e2e-name="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <a href="/" class="sprites logo"></a>
+            </div>
+            <div class="span4">
+                                                            <h2 class="vert-name"><a href="https://www.businessinsider.de/international">International</a></h2>
+                                                </div>
+            <!-- links -->
+            <div class="span4 links list-pipes list-right no-pipe">
+
+                <!-- DE masthead promotion -->
+                                                <!-- End DE masthead promotion -->
+
+                <ul class="search">
+                    <li>
+                        <a data-search-icon-open="" href="#" title="Suchen" class="display-none"><span class="svg sprites search-icon"></span></a>
+                        <a data-search-icon-close="" href="#" class="close-x display-none">
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <ul class="links-promo">
+                                                    
+
+    <li class="social">
+        <a href="//www.facebook.com/Business.Insider.Deutschland" title="Folge uns auf Facebook" aria-label="Folge uns auf Facebook" target="_blank"><i class="fa fa-facebook ks-header-facebook"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//twitter.com/BIDeutschland" title="Folge uns auf Twitter" aria-label="Folge uns auf Twitter" target="_blank"><i class="fa fa-twitter ks-header-twitter"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//www.linkedin.com/company/business-insider-deustchland" title="Folge uns auf LinkedIn" aria-label="Folge uns auf LinkedIn" target="_blank"><i class="fa fa-linkedin ks-header-linkedin"></i></a>
+    </li>
+                        
+                        
+                                            </ul>
+
+                    <ul class="links-user">
+                        
+                        
+                        
+                                                <span data-bi-ajax-route="https://www.businessinsider.de/esi/user_menubar?0=json%3A%7B%22viking%22%3Atrue%7D"></span>                </ul></div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Area -->
+    <div data-search-over="" class="nav-over transition">
+        <div class="container transition search">
+            <form method="get" action="/s" class="search-field">
+                <input data-search-input="" name="q" type="text" placeholder="Suchen" autocomplete="off">
+            </form>
+        </div>
+    </div>
+    <!-- Nav area -->
+    <div data-nav-over="" class="nav-over transition">
+
+        <div class="transition">
+            <div class="list-pipes nav-sections">
+                <ul class="verticals">
+
+                                                                <li class="active"><a class="item verticals__anchor" data-dropdown-id="dropdown-Trending" href="/trending">
+                                Trending                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Wirtschaft" href="/wirtschaft">
+                                Wirtschaft                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Tech" href="/tech">
+                                Tech                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Politik" href="/politik">
+                                Politik                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Strategy" href="/strategy">
+                                Strategy                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Wissenschaft" href="/wissenschaft">
+                                Wissenschaft                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Video" href="/video">
+                                Video                            </a>
+                        </li>
+                                                                <li><a class="item verticals__anchor" data-dropdown-id="dropdown-Alles" href="/">
+                                Alles                            </a>
+                        </li>
+                                    </ul>
+            </div>
+            <div class="main-nav-dropdown ks-nav-dropdown"></div>
+        </div>
+    </div>
+</div>
+
+<!-- / masthead -->
+
+
+<div class="site-shim-outer">
+                                        <div class="ad-subnav-container">
+                    <div data-ad-subnav="" class="subnav-content leaderboard" data-sticky="leaderboard">
+                        
+		    <div id="superbanner"></div>    	
+	                    </div>
+                </div>
+                        
+<div class="ad-placeholder-container">
+    <!-- DO NOT REMOVE   -->
+</div>
+
+<div class="tout-wrapper" data-ad-tout="">
+    </div>
+
+<div class="skyscraper-container print-hide">
+                        
+		    <div id="sky"></div>    	
+	            </div>
+
+<div class="site-shim-inner">
+
+<div class="site-content-container">
+
+<div id="main-content">
+    <div class="container">
+        <!-- flash messages -->
+                <div class="siteskin-dropshadow">
+            <div class="row primary-row">
+                                    <div class="breaking-module-rendered" id="breaking-module-rendered">
+                        <div class="page-top">
+                        <span data-bi-ajax-route="https://www.businessinsider.de/esi/breaking_module"></span>                        </div>
+                    </div>
+                                <div class="span8">
+                    <div class="breaking-module-siteskin" id="breaking-module-siteskin"></div>
+    
+<a name="post-top"></a>
+
+
+<div id="share-email-tmpl">
+    <div id="shareEmailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="shareEmailModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="shareEmailModalLabel"></h3>
+      </div>
+      <div class="modal-body">
+        <div class="share-email-error alert alert-error display-none"></div>
+
+        <div class="share-email-body">
+            <div class="register">
+                <form id="form_form" class="form-horizontal" action="#" method="post">
+                    <div class="control-group">
+                        <label for="mail_from" class="control-label">von</label>
+                        <div class="controls">
+                            <input type="text" name="mail_from" class="mail-from" placeholder="Deine E-Mail-Adresse">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="mail_to" class="control-label">an</label>
+                        <div class="controls">
+                            <input type="text" name="mail_to" class="mail-to" placeholder="E-Mail-Adresse des Empfängers">
+                        </div>
+                    </div>
+                    <input type="hidden" name="action" value="email">
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" class="btn submit email-post" value="Senden">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="share-email-success" style="display:none">
+            <div class="alert alert-success">
+                Der Artikel wurde versandt.
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+
+
+<div data-content-post="" class="content post">
+    <div class="sl-layout-post">
+    
+        
+<!-- Sponsored Post Tag -->
+
+    
+<h1>How to retire early so you can work, travel, and relax on your own schedule</h1>
+
+<div id="content" class="content">
+    <div class="post-top">
+        <!-- Byline -->
+        <div class="flex byline">
+	    
+			<div class="byline-icon">
+							<a target="_blank" href="http://www.businessinsider.com">
+							<img src="https://static3.businessinsider.de/image/Array-50/business-insider.jpg" alt="Business Insider">
+							</a>
+					</div>
+	
+	<div class="flex-item">
+		<div class="list-pipes no-pipe">
+			<ul>
+																		<li class="publication-author ks-author-byline"><a href="https://www.businessinsider.de/autoren/tanza-loudenback">Tanza Loudenback</a>, <a target="_blank" href="http://www.businessinsider.com">Business Insider</a></li>
+					                
+				                    </ul>
+                </div>
+                <div class="list-pipes no-pipe">
+                    <ul>
+                		        			        <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1573682760"> 13.11.2019, 23:06 </span>
+</li>		        			
+		    
+			</ul>
+
+		</div>
+	</div>
+</div>
+        <!-- Sharing -->
+        <div class="share">
+			
+<!-- RRSSB start -->
+<div class="rrssb-baseline share-container ks-share-top clearfix" data-share="" style="display:block;">
+    <!-- buttons start here -->
+    <ul class="rrssb-buttons rrssb-top clearfix">
+        <li class="facebook ks-byline-fb">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement" title="facebook" class="popup">
+                <i class="fa fa-facebook-square"></i>
+                <span class="text">facebook</span>
+            </a>
+        </li>
+        <li class="linkedin ks-byline-linkedin">
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement&amp;title=How%20to%20retire%20early%20so%20you%20can%20work,%20travel,%20and%20relax%20on%20your%20own%20schedule&amp;summary=Curious%20about%20how%20to%20retire%20early?%20Focus%20on%20earning,%20saving,%20and%20investing%20as%20much%20as%20you%20possibly%20can.%20But%20don't%20forget%20to%20make%20a%20backup%20plan." title="linkedin" class="popup">
+                <i class="fa fa-linkedin"></i>
+                <span class="text">linkedin</span>
+            </a>
+        </li>
+        <li class="twitter ks-byline-tweet">
+            <a href="http://twitter.com/share?url=https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement&amp;via=&amp;text=How+to+retire+early+so+you+can+work%2C+travel%2C+and+relax+on+your+own+schedule" title="twitter" class="popup">
+                <i class="fa fa-twitter"></i>
+                <span class="text">twitter</span>
+            </a>
+        </li>
+        <li class="email button-email ks-byline-email" data-href="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement">
+            <a href="#" title="email">
+                <i class="fa fa-envelope"></i>
+                <span class="text">email</span>
+            </a>
+        </li>
+                <li class="printbtn ks-byline-print">
+            <a href="javascript:window.print()" title="print">
+                <i class="fa fa-print"></i>
+                <span class="text">print</span>
+            </a>
+        </li>
+            </ul>
+    <!-- buttons end here -->
+</div>
+<!-- RRSSB end -->        </div>
+    </div>
+
+    <!-- Click Performance content ad-->
+        <!-- /133556709/Article_A -->
+        <div id="div-gpt-ad-1445608536739-0" style="margin:10px 0 10px 0;padding:20px 0 20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+            <script type="text/javascript">
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1445608536739-0'); });
+            </script>
+        </div>
+	<!-- END Click Performance content ad-->
+
+    <div class="clear-both">
+		<div class="KonaBody post-content">
+			
+            
+<p><span class="KonaFilter image-container display-table"><span><span data-post-image="" class="image on-image"><img src="https://static4.businessinsider.de/image/5d1ce1af2516e9500e130fa9-1470/gettyimages-962565236.jpg" border="0" alt="how to retire early" data-mce-source="Kathrin Ziegler/Getty"><span class="caption-source"><span class="caption">The road to retiring early isn't easy.</span><span class="source"><span>Kathrin Ziegler/Getty</span></span></span></span></span></span></p><p></p><p></p>
+<ul class="summary-list">
+<li>
+<a href="https://www.businessinsider.com/how-to-retire-early-2017-8">Retiring early</a> takes time and incredible discipline.</li>
+<li>If you're planning to <a href="https://www.businessinsider.com/early-retirement-numbers-savings-rate-return-rate-withdrawal-rate">retire early</a>, you should aim to have at least 25 to 30 times your estimated annual expenses saved or invested, though that number may be lower or higher depending on the lifestyle you envision.</li>
+<li>Depending on how much you plan to spend annually, you'll generally fall into one of three <a href="https://www.businessinsider.com/what-is-fatfire-vs-leanfire-early-retirement-fire">FIRE</a> (financial independence, retire early) categories: FIRE, leanFIRE, and fatFIRE.</li>
+<li>To achieve your target number, live below your means, <a href="https://www.businessinsider.com/increase-income-or-cut-expenses-financial-planner-2019-3">increase your income</a>, and <a href="https://www.businessinsider.com/start-building-wealth-max-out-retirement-savings-2019-5">max out your retirement accounts</a>. </li>
+<li>You should also aim to pay off all high-interest debt before retiring, which may include <a href="https://www.businessinsider.com/pay-off-mortgage-early-or-invest-calculation-financial-planner">paying off your mortgage early</a>. And don't forget to make a backup plan.</li>
+<li>
+<a href="https://www.businessinsider.com/?hprecirc-bullet">Visit Business Insider's homepage for more stories</a>.</li>
+</ul>
+<p>The road to retiring early isn't easy. It takes time and incredible discipline to earn, save, and invest as much as you possibly can.</p>
+<p>That said, <a href="https://www.businessinsider.com/category/early-retirement">early retirement</a> comes in various shapes and sizes and what it looks like to you will determine exactly <a href="https://www.businessinsider.com/early-retirees-separate-savings-investments-iras-strategy-2019-7">what you need to do to get there</a>. In general, here are the steps you can take:</p>
+<h2>How to retire early</h2>
+<h3>1. Define early retirement</h3>
+<p>Retiring early doesn't have to mean never earning a paycheck again — unless you want it to. Many early retirees define it as not having to work to live — i.e. <a href="https://www.businessinsider.com/early-retiree-financial-independence-hinges-on-spending">financial independence</a> — but maybe you want to leave your corporate job for something more creative where you can make your own hours. Or perhaps you'd like to focus only on non-income producing hobbies, or work in spurts and travel in between.</p>
+<p>The first step on the path to early retirement is figuring out exactly what that phrase means to you. Establishing your ideal day-to-day will make it easier to plan for — but just so you know, it will probably evolve over time.</p>
+<h3>2. Take inventory</h3>
+<p>Leif Dahleen, the blogger behind the <a href="https://www.physicianonfire.com/">Physician on FIRE</a>, retired from anesthesiology at age 43. He says the first step for any aspiring early retiree is to <a href="https://www.businessinsider.com/first-step-early-retirement-planning-take-inventory">take inventory of their finances</a>. </p>
+<p>"There are two things you need to know in order to make a plan for the future," he told Business Insider. "First, you should <a href="https://www.businessinsider.com/how-to-calculate-net-worth-steps">calculate your net worth</a>. This can be done in a matter of hours."</p>
+<p>"The second thing you need to calculate is your <a href="https://www.businessinsider.com/early-retiree-financial-independence-hinges-on-spending">annual spending</a>. You may be able to guesstimate this based on credit-card statements and your checking account habits," Dahleen says. "It's a good idea to set up semi-automated tracking with an app to verify how much money actually goes out the door every year."</p>
+<h3>3. Establish your target number</h3>
+<p>After outlining your version of early retirement, it's time to establish how much money you need to make it a reality. </p>
+<p>Early retiree and self-made millionaire Grant Sabatier suggests having between 25 and 30 times your expected annual expenses saved or invested, plus a year's worth of expenses in cash. In his book "<a href="https://www.amazon.com/Financial-Freedom-Proven-Path-Money/dp/0525540881?tag=bisafetynet2-20" target="_blank" rel="noopener" data-amzn-asin="0525540881">Financial Freedom: A Proven Path to All the Money You Will Ever Need</a>," Sabatier <a href="https://www.businessinsider.com/financial-freedom-book-millennial-money-early-retirement-formula-2019-2">shares the formula</a> he used to calculate his "target number," which he then broke down into monthly, weekly, and even daily savings goals.</p>
+<p>This part may be difficult to calculate on your own, especially when there are multiple scenarios to consider, like how a possible <a href="https://www.businessinsider.com/how-to-protect-money-from-a-recession">recession</a> would affect your investments. A good financial planner (<a href="https://smartasset.com/retirement/find-a-financial-planner?utm_source=businessinsider&amp;utm_medium=cpc&amp;utm_campaign=bus__falc_bicontent&amp;utm_content=how_to_retire_early">SmartAsset's free tool can help find one</a>) can help you crunch the numbers and send you home with an actionable plan to achieve your goal — and even hold you accountable, if you want.</p>
+<div>
+	<iframe src="https://smartasset.com/captivate/frame/na8gsflv" width="100%" height="650px" scrolling="auto" style="border: none;"></iframe>
+</div>
+<p> </p>
+<h3>4. Live below your means</h3>
+<p>It's very difficult to build substantial, long-term wealth if you spend more than you earn. When you're working toward early retirement, it's imperative to <a href="https://www.businessinsider.com/retire-rich-live-below-your-means-2017-8">live below your means</a> as it's the only way to save and invest aggressively.</p>
+<p>Focusing on reducing your biggest expenses, which are probably housing, transportation, and food, can go a long way in the effort to increase your savings rate.</p>
+<p>Depending on how much you spend, you'll generally aim for one of three categories of early retirement: <a href="https://www.businessinsider.com/what-is-fatfire-vs-leanfire-early-retirement-fire">FIRE, leanFIRE, and fatFIRE</a>. LeanFIRE is when someone has saved up 25 times their annual expenses and lives on a "lean" budget, spending less than the average American. By contrast, someone who achieves FatFIRE spends more than the average person.</p>
+<p>Regular FIRE is someone whose spending is in line with the average US household, around $60,000 a year.</p>
+<h3>5. Leverage your income</h3>
+<p>It's crucial to keep your spending in check, but you can only cut costs to a certain degree, says certified financial planner Eric Roberge. You can make an even bigger difference by <a href="https://www.businessinsider.com/increase-income-or-cut-expenses-financial-planner-2019-3">increasing your income</a>, he and his wife Kali explained on an episode of their podcast "Beyond Finances." Cutting your expenses and daily spending takes continued effort — it's a short-term solution — whereas increasing your positive cash flow is a long-term solution, they said.</p>
+<p>Sabatier encourages taking up a side hustle to diversify your income streams. The most <a href="https://www.businessinsider.com/millionaire-at-35-automatic-savings-side-hustle-strategy-2019-6">lucrative side hustles</a> are those that <a href="https://www.businessinsider.com/financial-freedom-book-passive-income-outsourcing-build-wealth-2019-2" target="_blank" rel="noopener">generate passive income</a>, such as <a href="https://www.businessinsider.com/how-to-invest-in-real-estate-make-money">real estate</a>, he wrote in his book. Building a passive income business that generates a minimum amount of money to cover your monthly expenses "gives you more flexibility and potentially the opportunity to reach financial independence very quickly," he wrote.</p>
+<h3>6. Max out your retirement accounts</h3>
+<p>There's at least <a href="https://www.businessinsider.com/simple-strategy-for-early-retirement-save-invest-2019-5">one common strategy</a> present in nearly every story about financial independence and early retirement: early and frequent savings. Oftentimes the best way optimize your savings is through retirement accounts.</p>
+<p>Employer-sponsored retirement plans and <a href="https://www.businessinsider.com/how-to-open-an-ira-for-retirement">IRAs</a> provide unparalleled tax advantages and investment growth. In 2019, you can contribute up to $19,000 pretax to a <a href="https://www.businessinsider.com/how-to-invest-in-a-401k-for-retirement">401(k)</a> and $6,000 to a traditional IRA for which you can get a tax deduction on your current year's tax return.</p>
+<p>The only caveat to stuffing your retirement accounts to the brim when you're planning to retire early is the restrictions on withdrawals. You won't be able to take any money from your 401(k) without penalty until you've reached age 59 and a half. You can, however, <a href="https://www.businessinsider.com/retirement-savings-accounts-traditional-roth-ira-401k-comparison">dip into your Roth IRA</a>, which is funded with after-tax money, and withdraw your contributions — not including any earnings — tax-free, at any time.</p>
+<h3>7. Invest the money that's left over</h3>
+<p>If you're maxing out your retirement accounts, move on to a brokerage account. This is money you can invest directly in the stock market and cash out when you need it.</p>
+<p>Many <a href="https://www.businessinsider.com/millionaires-investment-strategy-low-cost-stock-index-funds-building-wealth-2018-12">early retirees and self-made millionaires</a> stick to billionaire Warren Buffett's favorite investment: low-cost <a href="https://www.businessinsider.com/how-to-invest-in-index-funds-explained">index funds</a>. Index funds are all-in-one investments that track a specific financial market and are designed to diversify your money and minimize risk.</p>
+<p><em><strong><a href="https://smartasset.com/retirement/find-a-financial-planner?utm_source=businessinsider&amp;utm_medium=cpc&amp;utm_campaign=bus__falc_bicontent&amp;utm_content=how_to_retire_early">Need help crunching the numbers? SmartAsset's free tool can help find a licensed professional near you »</a></strong></em></p>
+<h3>8. If you have a mortgage, consider paying it off</h3>
+<p>In preparing for early retirement, eliminating consumer debt with high interest rates is a no-brainer, but <a href="https://www.businessinsider.com/pay-off-mortgage-early-or-invest-calculation-financial-planner">paying off a mortgage early</a> with good terms isn't so cut-and-dry. For some, the peace of mind of <a href="https://www.businessinsider.com/how-i-paid-off-my-mortgage-early-2017-5">being liability-free is worth it</a>, while others may argue that the money saved in interest payments would pale in comparison to potential investment returns.</p>
+<p>Tommy — who only goes by his first name online — retired nearly 10 years ago at age 51, after a more than three-decade career in telecom. He never earned a six-figure salary, but focused on saving consistently since his 20s and living frugally with his wife and three kids, <a href="https://www.leisurefreak.com/my-ordinary-early-retirement-story-nothing-extreme-to-see-here-folks/">he</a><a href="https://www.leisurefreak.com/my-ordinary-early-retirement-story-nothing-extreme-to-see-here-folks/"> wrote in a blog post</a>. One of his <a href="https://www.businessinsider.com/simple-strategy-for-early-retirement-save-invest-2019-5">biggest regrets</a>? Not paying off his mortgage before retiring.</p>
+<p>"So much of our having a great retirement is mental. Being mortgage free certainly adds another level of mental freedom," he wrote.</p>
+<h3>9. Research your options for <a href="https://www.businessinsider.com/how-to-get-health-insurance-cobra-medicaid-marketplace">health insurance</a>
+</h3>
+<p>Leaving a full-time employer also means bidding farewell to your employer's health insurance. If you're waiting for <a href="https://www.businessinsider.com/category/medicare">Medicare</a> to kick in at 65, usually the most cost-effective option for health insurance — if available to you — is joining a working spouse's employer-sponsored plan.</p>
+<p>Otherwise, you may consider continuing coverage through a former employer under <a href="https://www.businessinsider.com/how-to-retire-early-health-insurance-before-medicare-2019-6">COBRA</a>; browsing coverage options and potential subsidies through the Affordable Care Act marketplace; researching health-sharing plans; or getting a part-time job.</p>
+<h3>10. Make a backup plan</h3>
+<p>No matter how foolproof your plan may seem, consider what could go wrong. You may find you <a href="https://www.businessinsider.com/early-retirement-advice-downsides-drawbacks-going-back-to-work-2019-3">hate the unstructured days of early retirement</a> — would you go back to work? Or the <a href="https://www.businessinsider.com/early-retiree-stock-market-crash-loss-2018-11">economy could tank</a>, taking your net worth with it — would you have room to cut expenses? Running through potential worst-case scenarios is essential when your livelihood is on the line. </p>
+<h3>11. Put Plan A into action — but enjoy the present, too</h3>
+<p>Time and discipline are all you need to execute your plan from here on out. Keep saving and investing, but don't forget to live in the present while you can.</p>
+<p>As early retiree Steve Adcock <a href="https://thinksaveretire.com/early-retirement-extreme/">wrote on his blog Think, Save, Retire</a>, "Sacrifice is necessary to retire early, but it's not <em>all</em> we do, either. It is important to treat and reward ourselves along the way by celebrating those smaller achievements."</p>
+<h3>Related coverage from <a href="https://www.businessinsider.com/category/personal-finance-how-to">How to Do Everything: Money</a>:</h3>
+<ul>
+<li>
+<h3><a href="https://www.businessinsider.com/when-can-i-retire">Here's exactly how to figure out when you can retire</a></h3>
+</li>
+<li>
+<h3><a href="https://www.businessinsider.com/how-to-invest-in-real-estate-make-money">How to invest in real estate to make money and build wealth</a></h3>
+</li>
+<li>
+<h3><a href="https://www.businessinsider.com/what-is-cobra-insurance-healthcare-early-retirement-job-loss">How to get COBRA health insurance if you lose your job or retire early</a></h3>
+</li>
+<li>
+<h3><a href="https://www.businessinsider.com/how-to-invest-in-index-funds-explained">How to invest in index funds, explained</a></h3>
+</li>
+</ul>
+                                    
+                        
+					</div>
+
+        
+        <!-- Post category tags -->
+		    <div class="category-wrapper" data-category-wrapper="">
+
+        <div class="tags-top align-right">
+            Mehr:
+
+                                                                                <a href="https://www.businessinsider.de/kategorien/how-to-retire-early">How to retire early</a>
+                                                                                                    <a href="https://www.businessinsider.de/kategorien/early-retirement">Early retirement</a>
+                                                                                                    <a href="https://www.businessinsider.de/kategorien/retiring-early">Retiring early</a>
+                                                                                                    <a href="https://www.businessinsider.de/kategorien/your-money-saving">Your Money Saving</a>
+                                
+                                                <span href="#" id="tags-top-popover" class="" title=""><i class="fa fa-chevron-down"></i>
+                        <div class="popover bottom">
+                            <div class="popover-content">
+                
+                                    <a href="https://www.businessinsider.de/kategorien/personal-finance-how-to">Personal Finance How To</a>
+                
+                                            
+                                    <a href="https://www.businessinsider.de/kategorien/personal-finance-insider">Personal Finance Insider</a>
+                
+                                            
+                                    <a href="https://www.businessinsider.de/kategorien/pfi">pfi</a>
+                
+                                            
+                                    <a href="https://www.businessinsider.de/kategorien/pfi-xamp">PFI-XAMP</a>
+                
+                                            
+                                    <a href="https://www.businessinsider.de/kategorien/pfi-smartasset">PFI SmartAsset</a>
+                
+                                            
+                                    <a href="https://www.businessinsider.de/kategorien/retirement">Retirement</a>
+                
+                                            </div>
+                        </div>
+                    </span>
+                                    </div>
+    </div>
+
+    </div>
+</div>
+
+        <div id="social-reader-notification" class="alert clear-both" style="display:none;"></div>
+
+        <div id="facebook-notification" class="alert" style="display:none;"></div>
+
+                
+        <!-- Click Performance content ad-->
+                    <!-- /133556709/Article_C -->
+            <div id="div-gpt-ad-1445608536739-2" style="margin:10px 0 10px 0;padding:20px 0 20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+                <script type="text/javascript">
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1445608536739-2'); });
+                </script>
+            </div>
+                <!-- END Click Performance content ad-->
+    </div>
+
+    
+        <div id="vendor_5" class="print-hide"></div>
+
+        <div class="bottom-share-module clearfix clear-both">
+            <!-- RRSSB BOTTOM POST CALL -->
+            
+<!-- RRSSB start -->
+<div data-share="" class="rrssb-baseline share-container ks-share-bottom margin-top margin-bottom clearfix" style="display:none;">
+    <!-- buttons start here -->
+    <ul class="rrssb-buttons rrssb-bottom clearfix">
+        <li class="facebook ks-sharemodule-fb">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement" title="facebook" class="popup">
+                <i class="fa fa-facebook-square"></i>
+                <span class="text">facebook</span>
+            </a>
+        </li>
+        <li class="linkedin ks-sharemodule-linkedin">
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement&amp;title=How%20to%20retire%20early%20so%20you%20can%20work,%20travel,%20and%20relax%20on%20your%20own%20schedule&amp;summary=Curious%20about%20how%20to%20retire%20early?%20Focus%20on%20earning,%20saving,%20and%20investing%20as%20much%20as%20you%20possibly%20can.%20But%20don't%20forget%20to%20make%20a%20backup%20plan." title="linkedin" class="popup">
+                <i class="fa fa-linkedin"></i>
+                <span class="text">linkedin</span>
+            </a>
+        </li>
+        <li class="twitter ks-sharemodule-tweet">
+            <a href="http://twitter.com/share?url=https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement&amp;via=&amp;text=How%20to%20retire%20early%20so%20you%20can%20work,%20travel,%20and%20relax%20on%20your%20own%20schedule" title="twitter" class="popup">
+                <i class="fa fa-twitter"></i>
+                <span class="text">twitter</span>
+            </a>
+        </li>
+        <li class="email button-email ks-sharemodule-email" data-href="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement">
+            <a href="#" title="email">
+                <i class="fa fa-envelope"></i>
+                <span class="text">email</span>
+            </a>
+        </li>
+                <li class="printbtn ks-byline-print">
+            <a href="javascript:window.print()" title="print">
+                <i class="fa fa-print"></i>
+                <span class="text">print</span>
+            </a>
+        </li>
+            </ul>
+    <!-- buttons end here -->
+</div>
+<!-- RRSSB end -->
+
+<!-- This Empty div tells sailthru where to fly out the concierge promo. -->
+<div id="bottom-share-links"></div>
+        </div>
+
+        
+                
+        
+        
+        <!-- Schema.org/NewsArticle metadata -->
+<div style="display:none;" itemscope="" itemtype="http://schema.org/NewsArticle">
+
+    <h1 itemprop="name">How to retire early so you can work, travel, and relax on your own schedule</h1>
+
+    <a href="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement" itemprop="url">How to retire early so you can work, travel, and relax on your own schedule</a>
+
+    <img src="https://static6.businessinsider.de/image/5d1ce1ae2516e9500e130fa8-500-250/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg" itemprop="image">
+
+    <div itemprop="description"><p><a href="https://www.businessinsider.com/category/personal-finance-how-to"></a><img src="https://static.businessinsider.com/image/5d0bf431e3ecba14983d82d4-1200/disclosure%201.png" border="0" alt="PFI Disclosure 1" data-mce-source="Alyssa Powell/Business Insider"></p></div>
+    <div itemprop="headline">How to retire early so you can work, travel, and relax on your own schedule</div>
+
+    <div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    	<div itemprop="name">Tanza Loudenback</div>
+    </div>
+
+    <div itemprop="keywords">How to retire early,Early retirement,Retiring early,Your Money Saving,Personal Finance How To,Personal Finance Insider,pfi,PFI-XAMP,PFI SmartAsset,Retirement</div>
+
+    <div itemprop="mainEntityOfPage">How to retire early so you can work, travel, and relax on your own schedule</div>
+
+    <div itemprop="datePublished">2019-11-13T23:06:00+01:00</div>
+    <div itemprop="dateCreated">2019-07-02T22:14:45+02:00</div>
+    <div itemprop="dateModified">2019-11-13T23:06:08+01:00</div>
+
+    <div itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+        <div itemprop="url">https://static6.businessinsider.de/image/5d1ce1ae2516e9500e130fa8-500-250/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg</div>
+        <div itemprop="width" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">500</div>
+        </div>
+        <div itemprop="height" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">250</div>
+        </div>
+    </div>
+
+    <div itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+        <div itemprop="name">BusinessInsiderDe</div>
+        <span itemscope="" itemprop="logo" itemtype="http://schema.org/ImageObject">
+            <span itemprop="url">https://www.businessinsider.de/assets/images/logos/og-image-logo.png</span>
+        </span>
+    </div>
+
+    <div itemprop="articleBody">
+
+Retiring early takes time and incredible discipline.
+If you're planning to retire early, you should aim to have at least 25 to 30 times your estimated annual expenses saved or invested, though that number may be lower or higher depending on the lifestyle you envision.
+Depending on how much you plan to spend annually, you'll generally fall into one of three FIRE (financial independence, retire early) categories: FIRE, leanFIRE, and fatFIRE.
+To achieve your target number, live below your means, increase your income, and max out your retirement accounts. 
+You should also aim to pay off all high-interest debt before retiring, which may include paying off your mortgage early. And don't forget to make a backup plan.
+Visit Business Insider's homepage for more stories.
+
+The road to retiring early isn't easy. It takes time and incredible discipline to earn, save, and invest as much as you possibly can.
+That said, early retirement comes in various shapes and sizes and what it looks like to you will determine exactly what you need to do to get there. In general, here are the steps you can take:
+How to retire early
+1. Define early retirement
+Retiring early doesn't have to mean never earning a paycheck again — unless you want it to. Many early retirees define it as not having to work to live — i.e. financial independence — but maybe you want to leave your corporate job for something more creative where you can make your own hours. Or perhaps you'd like to focus only on non-income producing hobbies, or work in spurts and travel in between.
+The first step on the path to early retirement is figuring out exactly what that phrase means to you. Establishing your ideal day-to-day will make it easier to plan for — but just so you know, it will probably evolve over time.
+2. Take inventory
+Leif Dahleen, the blogger behind the Physician on FIRE, retired from anesthesiology at age 43. He says the first step for any aspiring early retiree is to take inventory of their finances. 
+"There are two things you need to know in order to make a plan for the future," he told Business Insider. "First, you should calculate your net worth. This can be done in a matter of hours."
+"The second thing you need to calculate is your annual spending. You may be able to guesstimate this based on credit-card statements and your checking account habits," Dahleen says. "It's a good idea to set up semi-automated tracking with an app to verify how much money actually goes out the door every year."
+3. Establish your target number
+After outlining your version of early retirement, it's time to establish how much money you need to make it a reality. 
+Early retiree and self-made millionaire Grant Sabatier suggests having between 25 and 30 times your expected annual expenses saved or invested, plus a year's worth of expenses in cash. In his book "Financial Freedom: A Proven Path to All the Money You Will Ever Need," Sabatier shares the formula he used to calculate his "target number," which he then broke down into monthly, weekly, and even daily savings goals.
+This part may be difficult to calculate on your own, especially when there are multiple scenarios to consider, like how a possible recession would affect your investments. A good financial planner (SmartAsset's free tool can help find one) can help you crunch the numbers and send you home with an actionable plan to achieve your goal — and even hold you accountable, if you want.
+
+ 
+4. Live below your means
+It's very difficult to build substantial, long-term wealth if you spend more than you earn. When you're working toward early retirement, it's imperative to live below your means as it's the only way to save and invest aggressively.
+Focusing on reducing your biggest expenses, which are probably housing, transportation, and food, can go a long way in the effort to increase your savings rate.
+Depending on how much you spend, you'll generally aim for one of three categories of early retirement: FIRE, leanFIRE, and fatFIRE. LeanFIRE is when someone has saved up 25 times their annual expenses and lives on a "lean" budget, spending less than the average American. By contrast, someone who achieves FatFIRE spends more than the average person.
+Regular FIRE is someone whose spending is in line with the average US household, around $60,000 a year.
+5. Leverage your income
+It's crucial to keep your spending in check, but you can only cut costs to a certain degree, says certified financial planner Eric Roberge. You can make an even bigger difference by increasing your income, he and his wife Kali explained on an episode of their podcast "Beyond Finances." Cutting your expenses and daily spending takes continued effort — it's a short-term solution — whereas increasing your positive cash flow is a long-term solution, they said.
+Sabatier encourages taking up a side hustle to diversify your income streams. The most lucrative side hustles are those that generate passive income, such as real estate, he wrote in his book. Building a passive income business that generates a minimum amount of money to cover your monthly expenses "gives you more flexibility and potentially the opportunity to reach financial independence very quickly," he wrote.
+6. Max out your retirement accounts
+There's at least one common strategy present in nearly every story about financial independence and early retirement: early and frequent savings. Oftentimes the best way optimize your savings is through retirement accounts.
+Employer-sponsored retirement plans and IRAs provide unparalleled tax advantages and investment growth. In 2019, you can contribute up to $19,000 pretax to a 401(k) and $6,000 to a traditional IRA for which you can get a tax deduction on your current year's tax return.
+The only caveat to stuffing your retirement accounts to the brim when you're planning to retire early is the restrictions on withdrawals. You won't be able to take any money from your 401(k) without penalty until you've reached age 59 and a half. You can, however, dip into your Roth IRA, which is funded with after-tax money, and withdraw your contributions — not including any earnings — tax-free, at any time.
+7. Invest the money that's left over
+If you're maxing out your retirement accounts, move on to a brokerage account. This is money you can invest directly in the stock market and cash out when you need it.
+Many early retirees and self-made millionaires stick to billionaire Warren Buffett's favorite investment: low-cost index funds. Index funds are all-in-one investments that track a specific financial market and are designed to diversify your money and minimize risk.
+Need help crunching the numbers? SmartAsset's free tool can help find a licensed professional near you »
+8. If you have a mortgage, consider paying it off
+In preparing for early retirement, eliminating consumer debt with high interest rates is a no-brainer, but paying off a mortgage early with good terms isn't so cut-and-dry. For some, the peace of mind of being liability-free is worth it, while others may argue that the money saved in interest payments would pale in comparison to potential investment returns.
+Tommy — who only goes by his first name online — retired nearly 10 years ago at age 51, after a more than three-decade career in telecom. He never earned a six-figure salary, but focused on saving consistently since his 20s and living frugally with his wife and three kids, he wrote in a blog post. One of his biggest regrets? Not paying off his mortgage before retiring.
+"So much of our having a great retirement is mental. Being mortgage free certainly adds another level of mental freedom," he wrote.
+9. Research your options for health insurance
+Leaving a full-time employer also means bidding farewell to your employer's health insurance. If you're waiting for Medicare to kick in at 65, usually the most cost-effective option for health insurance — if available to you — is joining a working spouse's employer-sponsored plan.
+Otherwise, you may consider continuing coverage through a former employer under COBRA; browsing coverage options and potential subsidies through the Affordable Care Act marketplace; researching health-sharing plans; or getting a part-time job.
+10. Make a backup plan
+No matter how foolproof your plan may seem, consider what could go wrong. You may find you hate the unstructured days of early retirement — would you go back to work? Or the economy could tank, taking your net worth with it — would you have room to cut expenses? Running through potential worst-case scenarios is essential when your livelihood is on the line. 
+11. Put Plan A into action — but enjoy the present, too
+Time and discipline are all you need to execute your plan from here on out. Keep saving and investing, but don't forget to live in the present while you can.
+As early retiree Steve Adcock wrote on his blog Think, Save, Retire, "Sacrifice is necessary to retire early, but it's not all we do, either. It is important to treat and reward ourselves along the way by celebrating those smaller achievements."
+Related coverage from How to Do Everything: Money:
+
+
+Here's exactly how to figure out when you can retire
+
+
+How to invest in real estate to make money and build wealth
+
+
+How to get COBRA health insurance if you lose your job or retire early
+
+
+How to invest in index funds, explained
+
+</div>
+    <div itemprop="articleSection">international</div>
+
+</div>
+<!-- / Schema.org/NewsArticle metadata -->
+
+
+<!-- Schema.org/Article metadata -->
+<div style="display:none;" itemscope="" itemtype="http://schema.org/Article">
+
+    <h1 itemprop="name">How to retire early so you can work, travel, and relax on your own schedule</h1>
+
+    <a href="https://www.businessinsider.de/how-to-retire-early-steps-for-early-retirement" itemprop="url">How to retire early so you can work, travel, and relax on your own schedule</a>
+
+    <img src="https://static6.businessinsider.de/image/5d1ce1ae2516e9500e130fa8-500-250/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg" itemprop="image">
+
+    <div itemprop="description"><p><a href="https://www.businessinsider.com/category/personal-finance-how-to"></a><img src="https://static.businessinsider.com/image/5d0bf431e3ecba14983d82d4-1200/disclosure%201.png" border="0" alt="PFI Disclosure 1" data-mce-source="Alyssa Powell/Business Insider"></p></div>
+    <div itemprop="headline">How to retire early so you can work, travel, and relax on your own schedule</div>
+
+    <div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div itemprop="name">Tanza Loudenback</div>
+    </div>
+
+    <div itemprop="keywords">How to retire early,Early retirement,Retiring early,Your Money Saving,Personal Finance How To,Personal Finance Insider,pfi,PFI-XAMP,PFI SmartAsset,Retirement</div>
+
+    <div itemprop="mainEntityOfPage">How to retire early so you can work, travel, and relax on your own schedule</div>
+
+    <div itemprop="datePublished">2019-11-13T23:06:00+01:00</div>
+    <div itemprop="dateModified">2019-11-13T23:06:08+01:00</div>
+
+    <div itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+        <div itemprop="url">https://static6.businessinsider.de/image/5d1ce1ae2516e9500e130fa8-500-250/how-to-retire-early-so-you-can-work-travel-and-relax-on-your-own-schedule.jpg</div>
+        <div itemprop="width" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">500</div>
+        </div>
+        <div itemprop="height" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+            <div itemprop="value">250</div>
+        </div>
+    </div>
+
+    <div itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+        <div itemprop="name">BusinessInsiderDe</div>
+        <span itemscope="" itemprop="logo" itemtype="http://schema.org/ImageObject">
+         <span itemprop="url">https://www.businessinsider.de/assets/images/logos/og-image-logo.png</span>
+        </span>
+    </div>
+
+    <div itemprop="articleBody">
+
+Retiring early takes time and incredible discipline.
+If you're planning to retire early, you should aim to have at least 25 to 30 times your estimated annual expenses saved or invested, though that number may be lower or higher depending on the lifestyle you envision.
+Depending on how much you plan to spend annually, you'll generally fall into one of three FIRE (financial independence, retire early) categories: FIRE, leanFIRE, and fatFIRE.
+To achieve your target number, live below your means, increase your income, and max out your retirement accounts. 
+You should also aim to pay off all high-interest debt before retiring, which may include paying off your mortgage early. And don't forget to make a backup plan.
+Visit Business Insider's homepage for more stories.
+
+The road to retiring early isn't easy. It takes time and incredible discipline to earn, save, and invest as much as you possibly can.
+That said, early retirement comes in various shapes and sizes and what it looks like to you will determine exactly what you need to do to get there. In general, here are the steps you can take:
+How to retire early
+1. Define early retirement
+Retiring early doesn't have to mean never earning a paycheck again — unless you want it to. Many early retirees define it as not having to work to live — i.e. financial independence — but maybe you want to leave your corporate job for something more creative where you can make your own hours. Or perhaps you'd like to focus only on non-income producing hobbies, or work in spurts and travel in between.
+The first step on the path to early retirement is figuring out exactly what that phrase means to you. Establishing your ideal day-to-day will make it easier to plan for — but just so you know, it will probably evolve over time.
+2. Take inventory
+Leif Dahleen, the blogger behind the Physician on FIRE, retired from anesthesiology at age 43. He says the first step for any aspiring early retiree is to take inventory of their finances. 
+"There are two things you need to know in order to make a plan for the future," he told Business Insider. "First, you should calculate your net worth. This can be done in a matter of hours."
+"The second thing you need to calculate is your annual spending. You may be able to guesstimate this based on credit-card statements and your checking account habits," Dahleen says. "It's a good idea to set up semi-automated tracking with an app to verify how much money actually goes out the door every year."
+3. Establish your target number
+After outlining your version of early retirement, it's time to establish how much money you need to make it a reality. 
+Early retiree and self-made millionaire Grant Sabatier suggests having between 25 and 30 times your expected annual expenses saved or invested, plus a year's worth of expenses in cash. In his book "Financial Freedom: A Proven Path to All the Money You Will Ever Need," Sabatier shares the formula he used to calculate his "target number," which he then broke down into monthly, weekly, and even daily savings goals.
+This part may be difficult to calculate on your own, especially when there are multiple scenarios to consider, like how a possible recession would affect your investments. A good financial planner (SmartAsset's free tool can help find one) can help you crunch the numbers and send you home with an actionable plan to achieve your goal — and even hold you accountable, if you want.
+
+ 
+4. Live below your means
+It's very difficult to build substantial, long-term wealth if you spend more than you earn. When you're working toward early retirement, it's imperative to live below your means as it's the only way to save and invest aggressively.
+Focusing on reducing your biggest expenses, which are probably housing, transportation, and food, can go a long way in the effort to increase your savings rate.
+Depending on how much you spend, you'll generally aim for one of three categories of early retirement: FIRE, leanFIRE, and fatFIRE. LeanFIRE is when someone has saved up 25 times their annual expenses and lives on a "lean" budget, spending less than the average American. By contrast, someone who achieves FatFIRE spends more than the average person.
+Regular FIRE is someone whose spending is in line with the average US household, around $60,000 a year.
+5. Leverage your income
+It's crucial to keep your spending in check, but you can only cut costs to a certain degree, says certified financial planner Eric Roberge. You can make an even bigger difference by increasing your income, he and his wife Kali explained on an episode of their podcast "Beyond Finances." Cutting your expenses and daily spending takes continued effort — it's a short-term solution — whereas increasing your positive cash flow is a long-term solution, they said.
+Sabatier encourages taking up a side hustle to diversify your income streams. The most lucrative side hustles are those that generate passive income, such as real estate, he wrote in his book. Building a passive income business that generates a minimum amount of money to cover your monthly expenses "gives you more flexibility and potentially the opportunity to reach financial independence very quickly," he wrote.
+6. Max out your retirement accounts
+There's at least one common strategy present in nearly every story about financial independence and early retirement: early and frequent savings. Oftentimes the best way optimize your savings is through retirement accounts.
+Employer-sponsored retirement plans and IRAs provide unparalleled tax advantages and investment growth. In 2019, you can contribute up to $19,000 pretax to a 401(k) and $6,000 to a traditional IRA for which you can get a tax deduction on your current year's tax return.
+The only caveat to stuffing your retirement accounts to the brim when you're planning to retire early is the restrictions on withdrawals. You won't be able to take any money from your 401(k) without penalty until you've reached age 59 and a half. You can, however, dip into your Roth IRA, which is funded with after-tax money, and withdraw your contributions — not including any earnings — tax-free, at any time.
+7. Invest the money that's left over
+If you're maxing out your retirement accounts, move on to a brokerage account. This is money you can invest directly in the stock market and cash out when you need it.
+Many early retirees and self-made millionaires stick to billionaire Warren Buffett's favorite investment: low-cost index funds. Index funds are all-in-one investments that track a specific financial market and are designed to diversify your money and minimize risk.
+Need help crunching the numbers? SmartAsset's free tool can help find a licensed professional near you »
+8. If you have a mortgage, consider paying it off
+In preparing for early retirement, eliminating consumer debt with high interest rates is a no-brainer, but paying off a mortgage early with good terms isn't so cut-and-dry. For some, the peace of mind of being liability-free is worth it, while others may argue that the money saved in interest payments would pale in comparison to potential investment returns.
+Tommy — who only goes by his first name online — retired nearly 10 years ago at age 51, after a more than three-decade career in telecom. He never earned a six-figure salary, but focused on saving consistently since his 20s and living frugally with his wife and three kids, he wrote in a blog post. One of his biggest regrets? Not paying off his mortgage before retiring.
+"So much of our having a great retirement is mental. Being mortgage free certainly adds another level of mental freedom," he wrote.
+9. Research your options for health insurance
+Leaving a full-time employer also means bidding farewell to your employer's health insurance. If you're waiting for Medicare to kick in at 65, usually the most cost-effective option for health insurance — if available to you — is joining a working spouse's employer-sponsored plan.
+Otherwise, you may consider continuing coverage through a former employer under COBRA; browsing coverage options and potential subsidies through the Affordable Care Act marketplace; researching health-sharing plans; or getting a part-time job.
+10. Make a backup plan
+No matter how foolproof your plan may seem, consider what could go wrong. You may find you hate the unstructured days of early retirement — would you go back to work? Or the economy could tank, taking your net worth with it — would you have room to cut expenses? Running through potential worst-case scenarios is essential when your livelihood is on the line. 
+11. Put Plan A into action — but enjoy the present, too
+Time and discipline are all you need to execute your plan from here on out. Keep saving and investing, but don't forget to live in the present while you can.
+As early retiree Steve Adcock wrote on his blog Think, Save, Retire, "Sacrifice is necessary to retire early, but it's not all we do, either. It is important to treat and reward ourselves along the way by celebrating those smaller achievements."
+Related coverage from How to Do Everything: Money:
+
+
+Here's exactly how to figure out when you can retire
+
+
+How to invest in real estate to make money and build wealth
+
+
+How to get COBRA health insurance if you lose your job or retire early
+
+
+How to invest in index funds, explained
+
+</div>
+    <div itemprop="articleSection">international</div>
+
+</div>
+<!-- / Schema.org/Article metadata -->
+        
+    
+</div>
+                    </div>
+                                            <div class="span4">
+                            <div class="main-rail">
+                                                                    
+<div id="right-rail" class="right-rail">
+	<div class="sl-layout-post">
+		<!-- PERFECT MARKET RR -->
+		
+			<!-- Only show at uppermost top if skin is active -->
+			
+			<!-- Vertical Host -->
+													<!-- / Vertical Host -->
+
+			<!-- Countdown Clock  -->
+						<!-- / Countdown Clock  -->
+
+			<!-- Top Right Rail Ad -->
+			<div class="ad-display-wrapper ad-upper-300">
+				<div data-ad-top-right="" class="mrec300">
+					
+		    <div id="mrec"></div>    	
+					</div>
+			</div>
+			<!-- / Top Right Rail Ad -->
+
+			<!-- Recommended For You  -->
+            			<!-- / Recommended For You  -->
+
+			<!-- Show here if skin is not active -->
+									    
+			<!-- Your Money -->
+			
+			<!-- Medium Rectangle 2 -->
+			
+			<!-- Dianomi -->
+		 	
+			<!-- Featured -->
+		 	
+			<!-- / Top Right Rail Ad -->
+            <div id="vendor_1"></div>
+
+             <!-- Click Performance content ad-->
+		    				<!-- /133556709/Article_b -->                        
+				<script type="text/javascript">
+					var cpgClientWidth = document.documentElement.clientWidth;
+					if (cpgClientWidth>1000) {
+					    document.write("<div id='div-gpt-ad-1445608536739-1' style='margin:10px 0 10px 0;padding:20px 0 20px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;'>");
+					    document.write("<scr"+"ipt>googletag.cmd.push(function() { googletag.display('div-gpt-ad-1445608536739-1'); });</scr"+"ipt>");
+					    document.write("</div>");
+					}
+				</script>
+		    			 <!-- END Click Performance content ad-->
+
+			<!-- Finance widget - Main -->
+			<div id="finanzen_right_rail_anchor"></div>			
+			<!-- Editorial Sidebar -->
+			
+            <div id="vendor_2"></div>
+
+			<!-- Editorial Sidebar 2 -->
+							<!-- editorial sidebar 2 -->
+<div id="editorial2" class="ks-rr-editorial-2" data-bi-heatmap="editorial">
+	<h3 class="underlined thin"></h3>
+	<div>
+		<p> </p>
+<!-- Kapilendo-->
+<h3 class="underlined thin">Digitalisierung</h3>
+<div class="ed-widget"><img class="ed-widget-dws-logo" src="https://static.businessinsider.de/image/5ca1f00f1abc097637234313" border="0" alt="Kapilendo"> <!--DO NOT EDIT ABOVE THIS LINE -->
+<ul class="media-list">
+<li class="media"><a href="https://www.businessinsider.de/sc/legen-sie-ihr-vermoegen-in-vertrauensvolle-roboter-haende-2019-11" class="pull-left"> <img src="https://static.businessinsider.de/image/5dc569caf3aa01418337fe14" border="0" alt="Legen Sie Ihr Vermögen in vertrauensvolle (Roboter-)Hände?
+"> </a>
+<div class="media-body">
+<p><a href="https://www.businessinsider.de/sc/legen-sie-ihr-vermoegen-in-vertrauensvolle-roboter-haende-2019-11" class="title">Legen Sie Ihr Vermögen in vertrauensvolle (Roboter-)Hände? </a></p>
+</div>
+</li>
+</ul>
+</div>
+<div style="font-size: 12px; text-align: right;"><em>Anzeige</em></div>
+<div style="font-size: 12px; text-align: right;"><em> </em></div>
+<h3 class="underlined thin"> </h3>
+<p> </p>
+<!-- Flipboard-->
+<h3 class="underlined thin">Flipboard</h3>
+<div class="ed-widget"><img class="ed-widget-dws-logo" src="https://static6.businessinsider.de/image/5cc17ecf0ed03165c35b70b5-105-60/flipboard-logo-105x60x.jpg" border="0" alt="Flipboard"> <!--DO NOT EDIT ABOVE THIS LINE -->
+<ul class="media-list">
+<li class="media"><a href="https://flipboard.com/@flipboardde/tagesausgabe-u8tjdq6jy?utm_source=businessinsiderde&amp;utm_medium=ad&amp;utm_campaign=barter" target="_blank" class="pull-left"> <img src="https://static3.businessinsider.de/image/5ca4bc9a85600624377f9a45-60-45/032819business-insiderthe-daily-edition-ge-1000x750-image-only-flipboard-60.jpg" border="0" alt="Deine Nachrichten an einem Ort: Lies die Geschichten, die heute die Welt bewegen"> </a>
+<div class="media-body">
+<p><a href="https://flipboard.com/@flipboardde/tagesausgabe-u8tjdq6jy?utm_source=businessinsiderde&amp;utm_medium=ad&amp;utm_campaign=barter" target="_blank" class="title">Deine Nachrichten an einem Ort: Lies die Geschichten, die heute die Welt bewegen</a></p>
+</div>
+</li>
+</ul>
+</div>
+<div style="font-size: 12px; text-align: right;"><em>Anzeige</em></div>
+<div style="font-size: 12px; text-align: right;"><em> </em></div>
+<h3 class="underlined thin"> </h3>
+<p> </p>
+<p> </p>
+<!-- Browser-Benachrichtigung-->
+<h3 class="underlined thin">Browser-Benachrichtigung</h3>
+<div class="ed-widget"><img class="ed-widget-dws-logo" src="https://static.businessinsider.de/image/5a548b3fcca1c737251e2b36" border="0" alt="BusinessInsider"> <!--DO NOT EDIT ABOVE THIS LINE -->
+<ul class="media-list">
+<li class="media"><a href="https://www.businessinsider.de/best-of-wirtschaft-so-aktiviert-ihr-die-browser-push-von-business-insider-deutschland-2018-10" class="pull-left"> <img src="https://static.businessinsider.de/image/5bd6df519ba30f797b321635" border="0" alt="Browser-Benachrichtigung"> </a>
+<div class="media-body">
+<p><a href="https://www.businessinsider.de/best-of-wirtschaft-so-aktiviert-ihr-die-browser-push-von-business-insider-deutschland-2018-10" class="title">NEU: Unsere spannendste Story täglich per Browser-Push – so einfach geht´s </a></p>
+</div>
+</li>
+</ul>
+</div>	</div>
+</div>
+<script>amplify.publish('editorial-sidebar-loaded', 'editorial2');</script>
+<!-- / editorial sidebar 2 -->
+			
+            <div id="vendor_3"></div>
+
+			<!-- Medium Rectangle 3-->
+			<div class="ad-display-wrapper">
+						</div>
+			
+            <div id="vendor_4"></div>
+
+			</div>
+</div>
+                                                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+
+            
+            </div>
+        </div>
+
+</div><!-- /.site-content-container -->
+
+</div><!-- /.site-shim-inner -->
+
+</div><!-- /.site-shim-outer -->
+<div class="footer" data-bi-footer="">
+
+    <div class="container">
+
+        <section class="top">
+            <a href="/" class="sprites logo"></a>
+            <section class="social-icons">
+                <span class="social-prompt">Follow us on:</span>
+
+                <ul class="links-user">
+                                            
+
+    <li class="social">
+        <a href="//www.facebook.com/Business.Insider.Deutschland" title="Folge uns auf Facebook" aria-label="Folge uns auf Facebook" target="_blank"><i class="fa fa-facebook ks-header-facebook"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//twitter.com/BIDeutschland" title="Folge uns auf Twitter" aria-label="Folge uns auf Twitter" target="_blank"><i class="fa fa-twitter ks-header-twitter"></i></a>
+    </li>
+
+    <li class="social">
+        <a href="//www.linkedin.com/company/business-insider-deustchland" title="Folge uns auf LinkedIn" aria-label="Folge uns auf LinkedIn" target="_blank"><i class="fa fa-linkedin ks-header-linkedin"></i></a>
+    </li>
+                    
+                    
+                                    </ul>
+            </section>
+
+            <div class="sister-sites-container">
+                <span class="sister-site-prompt">Also check out:</span>
+
+                <a href="http://www.thisisinsider.com" class="sister-sites sister-one"></a>
+            </div>
+        </section>
+
+        <div class="list-pipes">
+            <ul>
+            <li>Copyright © 2019 Business Insider Deutschland / finanzen.net GmbH Alle Rechte vorbehalten. </li>
+            <span class="nowrap">Durch die Nutzung dieser Website zeigen Sie an, dass Sie unsere
+                                        <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>                    sowie die
+                                                            <a href="/datenschutz">Datenschutzerklärung</a> akzeptieren und mit deren Einhaltung einverstanden sind.</span>
+                
+
+            </ul>
+        </div>
+        <div class="list-pipes">
+            <ul>
+                <li>  <a href="/werben">Werben auf BI</a>  </li>
+                <li>  <a href="/disclaimer">Disclaimer</a>  </li>
+                <li>  <a href="/impressum">Impressum</a>  </li>
+                <li>  Powered by <a href="http://www.mongodb.org">MongoDB</a> </li>
+            </ul>
+        </div>
+        <div class="international-links list-pipes">
+            <ul><li>International Editions:</li>
+                <li class="no-pipe"><a href="http://www.businessinsider.de">DE</a></li><li><a href="http://www.businessinsider.com?IR=C">US</a></li><li><a href="http://uk.businessinsider.com?IR=C">UK</a></li><li><a href="http://www.businessinsider.com.au/">AUS</a></li><li><a href="http://www.businessinsider.in/">IN</a></li><li><a href="http://www.businessinsider.my/">MY</a></li><li><a href="http://www.businessinsider.sg/">SG</a></li><li><a href="http://www.businessinsider.com.pl/?IR=C">PL</a></li><li><a href="http://nordic.businessinsider.com/?IR=C">SE</a></li><li><a href="http://www.businessinsider.nl?IR=C">NL</a></li><li><a href="http://www.businessinsider.fr/?IR=C">FR</a></li><li><a href="https://it.businessinsider.com">IT</a></li><li><a href="http://www.businessinsider.jp">JP</a></li>            </ul>
+        </div>
+                   </div>
+        </div>
+    
+
+<script type="text/javascript" src="https://static5.businessinsider.de/assets/js/min-foot.js?0"></script>
+
+<!--[if gte IE 9]>
+<script type="text/javascript">amplify.publish("ie9-pinned-site", {"hid":null,"vertical":"international"});</script><![endif]-->
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="" www.googletagmanager.com="" ns.html height="" width="" style="" display:none></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZ7X7V');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Twitter widget.js -->
+<script type="text/javascript">
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){
+        js=d.createElement(s);
+        js.id=id;
+        js.src="https://platform.twitter.com/widgets.js";
+        js.async=true;
+        fjs.parentNode.insertBefore(js,fjs);
+    }}(document,"script","twitter-wjs");
+</script>
+<!-- /Twitter widget.js -->
+
+    
+        <!-- Chartbeat -->
+    <script type="text/javascript">
+        // chartbeat wants the vars in global
+        window._sf_async_config.sections = 'international';
+        window._sf_async_config.authors = 'Tanza Loudenback';
+
+        //only set the following if on a video post
+        
+        //only set the following if on a sponsored post
+        
+        (function(){
+          function loadChartbeat() {
+            window._sf_endpt=(new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src',
+               (('https:' === document.location.protocol) ? 'https://s3.amazonaws.com/' : 'http://') +
+               'static.chartbeat.com/js/chartbeat_video.js');
+            document.body.appendChild(e);
+          }
+          var oldonload = window.onload;
+          window.onload = (typeof window.onload != 'function') ?
+             loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+    </script>
+    <!-- / Chartbeat -->
+    
+
+                    <!-- SZM VERSION="2.0" -->
+        <script type="text/javascript">
+            var contentPage = 'International-article',
+                questionnaireflag = 'in',
+                comment = 's-news-5d1ce1b52516e9500e130faa';
+
+            if (typeof BI.post !== "undefined" && BI.post.name === "impressum") {
+                contentPage = "Angebot";
+            }
+
+            var iam_data = {
+                "cp" : contentPage,
+                "st" : "businsi",
+                "sv" : questionnaireflag,
+                "co" : comment
+            };
+
+            iom.c(iam_data, 2);
+        </script>
+        <!-- /SZM -->
+    
+<!-- Perfect market JS -->
+    <!-- End Perfect market JS-->
+
+
+<!-- Ads without positioning -->
+<div>
+    
+		    <div id="inpage"></div>    	
+	</div>
+<div>
+    
+		    <div id="inpage"></div>    	
+	</div>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"4b4136998e","applicationID":"90737971","transactionName":"ZVZVZRBVXEJVVkJRDVwcdEQRQF1cG0VZSxY=","queueTime":0,"applicationTime":433,"atts":"SRFWE1hPT0w=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+</body></html>

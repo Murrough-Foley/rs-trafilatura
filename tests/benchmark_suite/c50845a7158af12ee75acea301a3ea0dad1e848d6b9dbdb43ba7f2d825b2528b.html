@@ -1,0 +1,939 @@
+<html lang="en" dir="ltr" data-locale="US"><head>
+<script>
+if(window&&!("Promise"in window)){var xhr=new XMLHttpRequest;xhr.open("GET",'/media/shared/js/promise.js',false);xhr.onerror=function(){console.log(xhr.statusText)};xhr.send("");eval(xhr.responseText);}
+</script> <script>window.usingBordeauxAds = true</script>
+<!-- Consent Manager Tag : Stubbed (minified) (updated 2018-04-27T17:00) -->
+<script type="text/javascript">
+/*! CMP 2.18.0 Copyright 2018 Oath Holdings, Inc. */
+!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=2)}({2:function(e,t){!function(){var e=!1;function t(e){var t="string"==typeof e.data,n=e.data;if(t)try{n=JSON.parse(e.data)}catch(e){}if(n&&n.__cmpCall){var r=n.__cmpCall;window.__cmp(r.command,r.parameter,function(n,o){var a={__cmpReturn:{returnValue:n,success:o,callId:r.callId}};e&&e.source&&e.source.postMessage(t?JSON.stringify(a):a,"*")})}}"function"==typeof __cmp||(window.__cmp=function(){var t=arguments;if(__cmp.a=__cmp.a||[],!t.length)return __cmp.a;"ping"===t[0]?t[2]({gdprAppliesGlobally:e,cmpLoaded:!1},!0):__cmp.a.push([].slice.apply(t))},function e(){if(document.body&&document.body.firstChild){var t=document.body,n=document.createElement("iframe");n.style.display="none",n.height=n.width=0,n.name="__cmpLocator",t.insertBefore(n,t.firstChild)}else setTimeout(e,5)}(),window.addEventListener?window.addEventListener("message",t,!1):window.attachEvent("onmessage",t))}()}});
+</script>
+<!-- End Consent Manager Tag : Stubbed (minified) -->
+<script>
+window.askForConsent = true;
+window.waitForConsent = true;
+window.indexExchangeEnabled = true;
+window.amazonA9Enabled = true;
+window.rampS2SEnabled = null;
+window.iasOptimiseEnabled = true;
+window.bluekaiEnabled = true;
+window.cmpConfig = {"cookieDomain":"space.com","gdprAppliesGlobally":false,"uiUrl":"https:\/\/consent.cmp.space.com\/cmpui.html"};
+/*! begin dom-promises (v1.0.0) */
+(function(){function v(a){n||(n=!0,w.forEach(m(a)))}function x(a){p||(p=!0,y.forEach(m(a)))}function g(){return q&&q.now&&q.now()||0}function m(){for(var a=arguments.length,c=Array(a),b=0;b<a;b++)c[b]=arguments[b];return function(a){return a.apply(void 0,c)}}function B(a){"cmp_request_translation_data"===a.data&&Promise.resolve(window.reliablePageLoad).then(function(){var a=window.__translator.trans;a={tag:"cmp_translations_data",main:{heading:a("cmp_main_heading"),description:a("cmp_main_description"),
+btnAccept:a("cmp_main_btn_accept"),btnMoreInfo:a("cmp_main_btn_moreinfo")},confirm:{heading:a("cmp_confirm_heading"),description:a("cmp_confirm_description"),btnGoBack:a("cmp_confirm_btn_goback"),btnLeave:a("cmp_confirm_btn_leave")},purposes:{heading:a("cmp_purposes_heading"),description:a("cmp_purposes_description"),btnAcceptAll:a("cmp_purposes_btn_acceptall"),btnRejectAll:a("cmp_purposes_btn_rejectall"),btnSave:a("cmp_purposes_btn_save"),btnAndContinue:a("cmp_purposes_btn_andcontinue"),btnAndContinueShort:a("cmp_purposes_btn_andcontinueshort"),
+list:{1:a("cmp_purposes_list_1"),"1_description":a("cmp_purposes_list_1_description"),2:a("cmp_purposes_list_2"),"2_description":a("cmp_purposes_list_2_description"),3:a("cmp_purposes_list_3"),"3_description":a("cmp_purposes_list_3_description"),4:a("cmp_purposes_list_4"),"4_description":a("cmp_purposes_list_4_description"),5:a("cmp_purposes_list_5"),"5_description":a("cmp_purposes_list_5_description")}},vendors:{heading:a("cmp_vendors_heading"),description:a("cmp_vendors_description"),btnAcceptAll:a("cmp_vendors_btn_acceptall"),
+btnRejectAll:a("cmp_vendors_btn_rejectall"),btnSave:a("cmp_vendors_btn_save"),btnBack:a("cmp_vendors_btn_back"),privacyPolicy:a("cmp_vendors_privacy_policy")}};document.getElementById("cmp-ui-iframe").contentWindow.postMessage(a,"*")});"cmp_request_ffte_data"===a.data&&Promise.resolve(window.reliablePageLoad).then(function(){var a={tag:"cmp_ffte_data",ffte:window.ffte||{}};document.getElementById("cmp-ui-iframe").contentWindow.postMessage(a,"*")})}function C(a,c,b){a.performance&&a.performance.timing&&
+Date.now();a.__cmp("init",a.cmpConfig);a.__cmp("getVendorConsents",null,function(e,D){D?(c({askedForConsent:!0,consent:e}),a.reliablePageLoad.then(function(){if(e.gdprApplies&&.33>Math.random()){var b=E(e.vendorConsents);a.ga&&a.ga("send","event","CMP","getVendorConsents",b.label,b.consented,{nonInteraction:!0,dimension123:b.consented})}})):b(Error("Failed to get vendor consents"))})}function F(a,c,b){function e(a,b){return null===b||void 0===b?a:b}JSON.parse(e("true",h("mock_consent_success")(a)))?
+(b=parseInt(h("mock_consent_timeout")(a),10),a={askedForConsent:!0,consent:{gdprApplies:JSON.parse(e("true",h("mock_gdpr_applies")(a))),hasGlobalScope:JSON.parse(e("false",h("mock_has_global_scope")(a))),metadata:"AAAAAAA",purposeConsents:JSON.parse(e(JSON.stringify({1:!0,2:!0,3:!0,4:!0,5:!0}),h("mock_purpose_consents")(a))),vendorConsents:JSON.parse(e("{}",h("mock_vendor_consents")(a)))}},isNaN(b)?c(a):setTimeout(c,b,a)):b(Error("Failed to get vendor consents"))}function E(a){var c=1<arguments.length&&
+void 0!==arguments[1]?arguments[1]:"none";if(!(a instanceof Object))return a?{label:"all",total:0,consented:0}:{label:c,total:0,consented:0};var b=G(a);b.label=0===b.total?"n/a":0===b.consented?c:b.consented===b.total?"all":"some";return b}function G(a){if(!(a instanceof Object))return{total:0,consented:0};var c=Object.keys(a),b=c.length;c=c.filter(function(b){return a[b]}).length;return{total:b,consented:c}}function r(a){return function(c){return 0<=c.location.search.indexOf(a)}}function h(a){return function(c){return z(a,
+c.location.search)}}function z(a,c){var b=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"\x26";if(""===a)return!1;var e=c.indexOf(a+"\x3d");return 0<=e?(e=c.indexOf("\x3d",e),b=c.indexOf(b,e+1),0<=b?c.substring(e+1,b):c.substring(e+1)):!1}function H(a){return a.split("").map(function(a){return I(J.call(a,0)-1)}).join("")}var K=function(a){return a.split("").map(function(a){return String.fromCharCode(a.charCodeAt(0)+1)}).join("")}("sp.blocking"),f=String,I=f.fromCharCode,J=f.prototype.charCodeAt,
+d=window,A=d.document,q=d.performance;f=d.Promise;var t=g();performance.mark("DOMPromises - Initialising");d.resolveFEP=null;d.processFEP=f?new f(function(a){d.resolveFEP=a}):{then:function(){}};var k=!(-1<window.location.href.indexOf("disable_dom_promise_timeouts")),p=!1,y=[];k&&setTimeout(function(){return x({timeStamp:g()})},5E3);A.addEventListener("DOMContentLoaded",x);d.reliableDOMContentLoaded=f?new f(function(a){k&&setTimeout(function(){return a({timeStamp:g()})},5E3);A.addEventListener("DOMContentLoaded",
+a)}):{then:function(a){p?a():y.push(a)}};d.reliableDOMContentLoaded.then(function(a){console.log("DOMContentLoaded at",a.timeStamp-t|0)});var n=!1,w=[];k&&setTimeout(function(){return v({timeStamp:g()})},7E3);d.addEventListener("load",v);d.reliablePageLoad=f?new f(function(a){k&&setTimeout(function(){return a({timeStamp:g()})},7E3);d.addEventListener("load",a)}):{then:function(a){n?a():w.push(a);return d.reliablePageLoad},catch:function(){return d.reliablePageLoad}};d.reliablePageLoad.then(function(a){console.log("PageLoad at",
+a.timeStamp-t|0)});var l=!1,u=[];k&&setTimeout(function(){var a={timeStamp:g()};l||(l=!0,u.forEach(m(a)))},1E4);d.resolveBordeauxDone=function(){var a={timeStamp:g()};l||(l=!0,u.forEach(m(a)))};d.bordeauxDone=f?new f(function(a){k&&setTimeout(function(){return a({timeStamp:g()})},1E4);d.resolveBordeauxDone=function(){return a({timeStamp:g()})}}):{then:function(a){l?a():u.push(a)}};d.bordeauxDone.then(function(a){console.log("BordeauxDone at",a.timeStamp-t|0)});(function(a){var c=a.Promise;a.addEventListener("message",
+B,!1);a.reliableConsentGiven=c?c.resolve(a.reliableDOMContentLoaded).then(function(){return new c(function(b,c){r("force_clear_consent")(a)&&(document.cookie="EuConsent\x3d; path\x3d/; Max-Age\x3d0",document.cookie="cmp\x3d; path\x3d/; Max-Age\x3d0",document.cookie="TestingHideEUConsent\x3d; path\x3d/; Max-Age\x3d0");r("force_hide_consent")(a)&&(document.cookie="TestingHideEUConsent\x3dtrue;");var e=r("mock_consent")(a);"true"===z("TestingHideEUConsent",document.cookie,";")?b({askedForConsent:!1}):
+e?F(a,b,c):a.askForConsent?C(a,b,c):b({askedForConsent:!1})})}):{then:function(){}};a.reliableConsentGiven.then(function(){a.bdx&&a.bdx.metrics&&a.bdx.metrics.mark("Reliable consent")});a.reliableConsentGiven.then(function(b){b.askedForConsent&&b.consent.gdprApplies&&a.reliablePageLoad.then(function(){var b=a.document.querySelector("#document-footer-content \x3e nav \x3e ul");if(b){var c=a.document.createElement("a");c.addEventListener("click",function(){a.__cmp("renderConsents",function(){})});c.href=
+"#";c.textContent=a.__translator.trans("cmp_footer_link");var d=a.document.createElement("li");d.appendChild(c);b.appendChild(d)}if(b=a.document.querySelector("ul.footer__listcontainer"))c=a.document.createElement("a"),c.className="footer__link",c.addEventListener("click",function(){a.__cmp("renderConsents",function(){})}),c.href="#",c.textContent=a.__translator.trans("cmp_footer_link"),d=a.document.createElement("li"),d.className="footer__list-item",d.appendChild(c),b.appendChild(d);if(b=a.document.querySelector("#gawker-contact-block ul"))c=
+a.document.createElement("a"),c.className="is-reversed",c.addEventListener("click",function(){a.__cmp("renderConsents",function(){})}),c.href="#",c.textContent=a.__translator.trans("cmp_footer_link"),d=a.document.createElement("li"),d.appendChild(c),b.appendChild(d)})})})(d);(function(){var a=window,c=a.document,b=a.Promise;a.wadoinawdoijzxioznelknsdf=b?new b(function(a){var b=parseInt(h("mock_tiberius")(window),10);isNaN(b)||setTimeout(a,b,!0);c.addEventListener(H(K),function(){a(!0)})}):{then:function(){}}})()})();
+/*! end dom-promises (v1.0.0) */</script>
+<script>
+window.hawk_css_endpoint = "https://widgets.fie-data.co.uk";
+</script>
+<script id="hawk-script">
+function loadHawk(src) {
+!function (e, f, u) {
+e.async = 1;
+e.src = u;
+f.parentNode.insertBefore(e, f);
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+src);
+}
+window.reliableDOMContentLoaded.then(function() {
+loadHawk("https://widgets.fie-data.co.uk/js/w/space.js");
+});
+</script>
+<link rel="preload" href="https://widgets.fie-data.co.uk/js/w/space.js" as="script">
+<script>
+window.adParameters = {
+site: 'space',
+content: 'unknown',
+type: 'standard',
+};
+</script>
+<script>window.gaCookieSet=/(?:^|;\\s*)_ga/.test(document.cookie);</script>
+<script>window.vanilla = window.vanilla || {}</script>
+<script>'use strict';(function(){function g(c,a){return function(){return setTimeout(c,a)}}function h(c,a,b){b=void 0===b?function(){}:b;return function(){var d=c.createElement("script"),e=c.getElementsByTagName("script")[0],f=k({},a,{async:1});Object.keys(f).forEach(function(a){return d.setAttribute(a,f[a])});e.parentNode.insertBefore(d,e);b()}}var k=Object.assign||function(c){for(var a=1;a<arguments.length;a++){var b=arguments[a],d;for(d in b)Object.prototype.hasOwnProperty.call(b,d)&&(c[d]=b[d])}return c};
+window.vanilla.addJs=function(c,a,b,d){b=void 0===b?!1:b;c=h(document,c,d);a=null!==a?g(c,a):c;b?window.reliablePageLoad.then(a):a()}})();</script>
+<script>'use strict';(function(){function f(a,d){return function(){var c=a.createElement("link"),b=g({},d,{rel:"stylesheet",type:"text/css"});Object.keys(b).forEach(function(a){return c.setAttribute(a,b[a])});var e=a.getElementsByTagName("head")[0];e.parentNode.insertBefore(c,e)}}var g=Object.assign||function(a){for(var d=1;d<arguments.length;d++){var c=arguments[d],b;for(b in c)Object.prototype.hasOwnProperty.call(c,b)&&(a[b]=c[b])}return a},h=window.requestAnimationFrame||window.webkitRequestAnimationFrame||
+window.mozRequestAnimationFrame||window.msRequestAnimationFrame||function(a){return window.reliablePageLoad.then(a)};window.vanilla.addCss=function(a){return h(f(document,a))}})();</script>
+<link rel="amphtml" href="https://www.space.com/amp/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html">
+<script>
+function handleHeaderError() {
+if (window.amIIE && !window.amIIE()) {
+window.wadoinawdoijzxioznelknsdf.then(function () {
+window._sp_ = window._sp_ || {};
+window._sp_.config = window._sp_.config || {};
+if (window._sp_.bootstrap && !window.headerExecuted) {
+window._sp_.bootstrap('//vanilla.futurecdn.net/space/145110/media/js/header/header.js');
+}
+})
+}
+}
+</script>
+<script>
+window.bordeaux = window.bordeaux || {};
+window.bordeaux.cmd = window.bordeaux.cmd || [];
+window.bordeaux.cmd.push(function(){
+window.bordeaux.setPlacement(null);
+});
+</script>
+<script defer src="//vanilla.futurecdn.net/space/145110/media/js/header/header.js" onerror="handleHeaderError()" crossorigin="anonymous"></script>
+<!-- tag factory //-->
+<meta charset="utf-8">
+<link rel="dns-prefetch" href="//cdn.mos.cms.futurecdn.net">
+<meta data-static-host="//vanilla.futurecdn.net/space/145110" id="static-host-pattern">
+<script async="1" src="https://consent.cmp.oath.com/cmp3p.js"></script>
+<meta id="gpt-api-script-location" data-src="//securepubads.g.doubleclick.net/tag/js/gpt.js">
+<meta id="index-exchange-script-location" data-src="//js-sec.indexww.com/ht/p/184056-27935757131282.js">
+<meta id="amazon-a9-script-location" data-src="//c.amazon-adsystem.com/aax2/apstag.js">
+<meta id="ias-optimise-script-location" data-src="//cdn.adsafeprotected.com/iasPET.1.js">
+<meta id="bluekai-script-location" data-src="//tags.bkrtx.com/js/bk-coretag.js">
+<script>
+var vanFontLoader=function(e){if("undefined"==typeof e||"object"!=typeof e)return!1;var t=document.getElementsByTagName("head")[0],n=function(e,n){var o=document.createElement("style");o.type="text/css","undefined"!=typeof n&&(o.id=n,o.classList.add("font-style")),o.styleSheet?o.styleSheet.cssText=e:o.appendChild(document.createTextNode(e)),t.appendChild(o)},o=function(){"undefined"!=typeof e.hideKey&&n(e.hideKey+"{visibility:visible}")};if("undefined"!=typeof e.hideKey&&n(e.hideKey+"{visibility:hidden}"),"undefined"!=typeof e.fontKey&&"undefined"!=typeof e.staticHost&&"undefined"!=typeof e.version&&"undefined"!=typeof e.woff2Version){var i=e.fontKey,a=e.version,f=e.woff2Version,r=e.staticHost,d="woff",s=!1;f&&(s=function(e){if(!("FontFace"in e))return!1;var t=new e.FontFace("t",'url( "data:application/font-woff2," ) format( "woff2" )',{});try{var n=t.load();"undefined"!=typeof n.then&&n.then(function(){},function(){})}catch(o){return!1}return"loading"==t.status}(window)),s?d="woff2":navigator.userAgent.indexOf("Android")>-1&&(d="ttf");var c="vanFont-"+i+"-"+d,u=c+".json",y=function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//"+r+"/"+a+"/media/fonts/json/"+u,t.appendChild(e)},l=!1,v=!1;try{if(l=localStorage.getItem(c)){var v=JSON.parse(l);v.version!=a&&(localStorage.removeItem(c),v=!1)}}catch(p){console.error("Error when parsing font in vanFontLoader",p)}v&&"undefined"!=typeof v.value?(n(v.value,i),o()):y()}this.store=function(e){e.version=a;var t=JSON.stringify(e);localStorage.setItem(c,t),n(e.value),o()}}; try {
+var OpenSans_vanFontLoader = new vanFontLoader({fontKey: 'OpenSans', version: 1, woff2Version: true, staticHost: 'vanilla.futurecdn.net/space' });
+var space_vanFontLoader = new vanFontLoader({fontKey: 'space', version: 5, woff2Version: false, staticHost: 'vanilla.futurecdn.net/space' ,hideKey: '.icon' });
+} catch(e) {
+console.warn('Failed to load fonts: '+ e.message);
+}
+</script>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta content="" name="news_keywords">
+<title>NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project | Space</title>
+<meta name="pub_date" content="2019-11-18T22:05:36+00:00">
+<meta name="description" content="NASA has picked SpaceX, Blue Origin and three other companies to join its private moon lander project to deliver big payloads to the moon.">
+<link rel="canonical" href="https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html">
+<style id="critical-styles">.newsletter-signup,.mag-banner-wrap,.popular-box{display:none;}html,body,div,span,iframe,h1,h2,h3,h4,p,a,abbr,img,small,i,ul,li,form{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}label{padding:0;border:0;font:inherit;font-size:100%}label,table{vertical-align:baseline}table,caption{margin:0;padding:0;border:0;font:inherit;font-size:100%}tbody,thead,tr{vertical-align:baseline}tbody,thead,tr,th,td{margin:0;padding:0;border:0;font:inherit;font-size:100%}article,aside,figure,figcaption,footer,header,nav,section,time{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:400;vertical-align:middle}a img{border:none}article,aside,figcaption,figure,footer,header,nav,section{display:block}.container{margin:auto}.container:after{content:"";display:table;clear:both}.container.full{clear:both;max-width:100%}@media screen and (min-width:1000px){.container.full{max-width:970px}}@media screen and (min-width:1574px){.container.full{max-width:1200px}body.limit-width .container.full{max-width:970px}}#main{background:#fff;outline:none}#sidebar{width:100%}@media screen and (min-width:1000px){#sidebar{width:300px;margin-top:.875em}}@media only screen and (min-width:700px){html{font-size:100%}}html{font-family:"Open Sans",Arial,sans-serif;color:#333}h1,h2,h3,h4{font-weight:700}.block-link{display:block;position:relative;color:#3669c9;background:#ddd;line-height:22px;padding:11px 12px;margin:0 12px 12px 0;text-align:center;font-size:14px;font-weight:600;text-transform:uppercase}.block-link .chunk{display:inline-block;vertical-align:middle;max-width:80%}.block-link:hover{color:#3669c9;text-decoration:none;background:#666}.block-link:visited{color:#3669c9;text-decoration:none}.block-link.full{width:-webkit-calc(100% - 24px);width:calc(100% - 24px)}.separator-heading{border-top:1px solid #ccc;border-bottom:1px solid #ccc}.news-article header h1{font-weight:600;font-size:24px;line-height:30px;margin-bottom:.25rem}@media (min-width:700px){.news-article header h1{margin-bottom:.5rem;font-size:28px;line-height:34px}}@media (min-width:1574px){.news-article header h1{margin-bottom:.75rem;font-size:34px;line-height:42px}body.limit-width .news-article header h1{margin-bottom:.5rem;font-size:28px;line-height:34px}}.news-article header h2{font-size:18px;line-height:26px;font-weight:300;margin-bottom:20px}@media (min-width:1000px){.news-article header h2{font-size:20px;line-height:28px}}@media (min-width:1574px){.news-article header h2{font-size:24px;line-height:30px}body.limit-width .news-article header h2{font-size:20px;line-height:28px}}.fallback{display:none}.icon:before{font-family:"space",arial;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style:normal;font-variant:normal;font-weight:400;text-decoration:none;text-transform:none}.icon-arrow-down:before{content:"\f104"}.icon-arrow-right:before{content:"\f106"}.icon-envelope-solid:before{content:"\f11b"}.icon-envelope:before{content:"\f11c"}.icon-facebook:before{content:"\f11e"}.icon-filled-envelope:before{content:"\f11f"}.icon-flipboard:before{content:"\f120"}.icon-google-plus:before{content:"\f122"}.icon-home:before{content:"\f123"}.icon-instagram:before{content:"\f124"}.icon-search:before{content:"\f12b"}.icon-twitter:before{content:"\f132"}.icon-whats-app:before{content:"\f134"}.icon-youtube:before{content:"\f135"}.icon-circle{border-radius:50%;display:block}.media-list{margin-top:1rem}.media-list li{-webkit-box-sizing:border-box;box-sizing:border-box;margin-bottom:1rem;float:left;width:100%}@media (min-width:575px){.media-list li{width:50%}}.media-list li a{float:left;width:100%;color:#3669c9;text-decoration:none}.media-list li a:hover{text-decoration:underline}.media-list li img,.media-list li h4{-webkit-box-sizing:border-box;box-sizing:border-box;float:left;width:50%;text-transform:none;padding-right:20px;font-weight:300;line-height:24px;font-size:16px}.media-list li:nth-child(odd){clear:both}.news-article{position:relative}.news-article .box>img{width:100%}.news-article .text-copy{clear:both;position:relative;word-break:break-word;margin-bottom:40px}.news-article .text-copy p,.news-article .text-copy img{width:100%;height:auto}.news-article .text-copy img.lft{width:auto}.news-article .text-copy figure{margin-bottom:1em}.news-article .text-copy p{font-size:16px;line-height:1.5;margin-bottom:1em}.news-article .text-copy figcaption{font-size:13px;line-height:16px;color:#ccc}.news-article .text-copy>*:last-child{margin-bottom:0}@media (min-width:1000px){.news-article{float:left;max-width:650px}}@media (min-width:1574px){.news-article{max-width:832px}body.limit-width .news-article{max-width:650px}}.news-article footer{clear:both}.news-article header{margin-top:30px}.news-article header .byline{clear:both;line-height:23px;margin-bottom:.625rem;font-size:13px}@media (min-width:1000px){.news-article header .byline{margin-bottom:.5rem}}@media (min-width:1574px){.news-article header .byline{margin-bottom:.75rem}}.news-article header .byline .chunk{margin-right:1ex}.news-article header,.news-article section,.news-article footer,.news-article .partner-banner{margin-left:20px;margin-right:20px}.news-article footer #article-comments{margin:2em 0 0;overflow:visible;width:100%}@media (min-width:1000px){.news-article header,.news-article section,.news-article footer,.news-article .partner-banner{margin-left:1.5em;margin-right:1.5em}}@media (min-width:1574px){.news-article header,.news-article section,.news-article footer,.news-article .partner-banner{margin-left:125px;margin-right:70px}body.limit-width .news-article header,body.limit-width .news-article section,body.limit-width .news-article footer,body.limit-width .news-article .partner-banner{margin-left:1.5em;margin-right:1.5em}}.news-article header,.news-article section{overflow:visible}@media (min-width:1000px){#content-after-image{width:645px;float:left}}.no-sidebar .news-article{max-width:100%!important}#article-body figure,article figure{margin-bottom:15px}#article-body figure p.vanilla-image-block,article figure p.vanilla-image-block{line-height:0;margin-bottom:15px}#article-body figure p.vanilla-image-block,#article-body figure figcaption,article figure p.vanilla-image-block,article figure figcaption{display:inline-block}#article-body figure figcaption,article figure figcaption{width:100%}figure{position:relative}figure img{top:0;left:0}img.lft{float:left;margin:0 20px 10px 0;width:auto}.dfp-leaderboard-container{margin:auto;max-width:970px;height:auto}.dfp-leaderboard-container:empty{display:none}#burgerbar-none{display:none}#burgerbar{background:#1b1b1b}#burgerbar,#burgerbar~.burgerbar .button-menu.checked{display:none}@media only screen and (max-width:699px){#burgerbar:checked~.burgerbar .button-menu.unchecked{display:none}#burgerbar:checked~.burgerbar .button-menu.checked,#burgerbar:checked~.wrapper .menuitems{display:block}}.button-search{position:absolute;top:0;right:0;min-width:60px;height:60px;margin-bottom:0;line-height:60px}@media only screen and (min-width:700px){.button-search{position:relative}}*:checked+.button-search{background-color:#3669c9}.search-box{z-index:1000001;position:absolute;right:0;top:60px;width:100%;border:2px solid #3669c9;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:#fff;padding:1em 18px;font-size:16px;display:none;line-height:44px}.search-box .search-submit{position:absolute;right:18px;width:44px;height:44px;background-color:#333;color:#fff;border:none;padding:0}.search-box .search-submit .icon:before{font-size:20px}*:checked~.search-box{display:block}.burgerbar .burgerbar-small .search-box{width:100%}@media screen and (min-width:575px){.burgerbar .burgerbar-small .search-box{width:480px}}.search-checkbox{display:none}.masthead-item{width:auto;text-align:center;font-size:0}@media only screen and (min-width:700px){.masthead-item{padding-right:1rem;padding-left:1rem;position:relative;height:100%;float:right}}.masthead-item .desktop-text{display:none}@media only screen and (min-width:700px){.masthead-item .desktop-text{display:inline-block;zoom:1;*display:inline;padding-right:8px;font-size:14px;vertical-align:middle;line-height:60px}}.masthead-item .icon-search{display:inline-block;zoom:1;*display:inline;vertical-align:middle;font-size:1.4rem}@media only screen and (min-width:700px){.masthead-item .icon-search{font-size:1rem}}.burgerbar{background-color:#1b1b1b;color:#fff;font-size:24px;line-height:60px;max-height:60px;height:60px}.pro .burgerbar{background-color:#8c2b5e}@media only screen and (min-width:700px){.burgerbar{border-bottom:1px solid #1b1b1b}.pro .burgerbar{border-bottom:1px solid #8c2b5e}}.burgerbar .other-links{display:none}@media only screen and (min-width:700px){.burgerbar .other-links{display:block;float:right;clear:none;margin-right:10px;height:24px;line-height:24px;margin-top:18px;font-size:14px}.burgerbar .other-links a{float:left;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff}.burgerbar .other-links a:visited{color:#fff}}.burgerbar .buttons-social{display:none}@media only screen and (min-width:700px){.burgerbar .buttons-social{display:block}.burgerbar .buttons-social a{float:left;border:1px solid #fff;width:24px;height:24px;margin-top:18px;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;margin-right:10px}.burgerbar .buttons-social a:visited{color:#fff}.burgerbar .buttons-social a:before{font-size:12px;line-height:22px;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;width:22px;text-align:center}}.burgerbar .buttons-social .icon-youtube{display:none}@media screen and (min-width:750px){.burgerbar .buttons-social .icon-youtube{display:block}}.burgerbar .logo{text-align:left}.burgerbar .logo .site-logo{vertical-align:middle;line-height:25px;height:27px;display:inline-block}.pro .burgerbar .logo .site-logo{line-height:16px}.pro .burgerbar .logo .site-logo:after{bottom:-1px}.burgerbar .logo .site-logo:after{position:absolute;content:'';text-transform:uppercase;font-size:9.11px;bottom:-4px;left:3px;line-height:0}@media only screen and (max-width:360px){.pro .burgerbar .logo svg{width:185px}.pro .burgerbar .logo svg path{-webkit-transform:scale(.93);-ms-transform:scale(.93);transform:scale(.93)}}.burgerbar .logo h1,.burgerbar .logo .hidden-header{display:none}.burgerbar .logo .strapline{font-size:13px;font-weight:400;text-transform:uppercase;float:right;line-height:13px;margin-top:27px;margin-left:13px}@media only screen and (max-width:699px){.burgerbar .logo{text-align:center;margin:auto}.burgerbar .logo .strapline{display:none}}.burgerbar .logo a{color:#fff}.burgerbar .logo a:hover{color:#fff;text-decoration:none}.burgerbar .logo a:visited{color:#fff}.burgerbar .logo a:visited:hover{color:#fff}.burgerbar .button-menu{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-o-user-select:none;-ms-user-select:none;user-select:none;position:absolute;left:0;width:60px}.burgerbar .burgerbar-small{width:100%;max-height:60px;height:60px}@media only screen and (min-width:700px){.burgerbar .burgerbar-small{position:relative}.burgerbar .burgerbar-small>.button-menu{display:none}.burgerbar .burgerbar-small .logo{padding:0 16px;position:absolute}}.burgerbar .site-logo{position:relative}.trending-wrapper{margin:30px 24px 0;display:block;font-weight:600}.trending-wrapper .trending-bar{*zoom:1;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;background-color:transparent;position:relative;clear:both;white-space:nowrap;width:100%;height:40px;font-size:14px;background:#ededed;overflow:hidden}.trending-wrapper .trending-items{overflow:hidden;height:100%;display:inline-block;text-align:center}.trending-wrapper .trending-items:hover{overflow:auto;overflow-y:hidden}@media screen and (max-width:900px){.trending-wrapper .trending-items{overflow:auto;overflow-y:hidden}.trending-wrapper .trending-items::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 2px rgba(0,0,0,.3);background-color:#F5F5F5;border-radius:10px}.trending-wrapper .trending-items::-webkit-scrollbar{height:6px;background-color:#F5F5F5}.trending-wrapper .trending-items::-webkit-scrollbar-thumb{background-color:#3669c9;border-radius:10px}}.trending-wrapper .trending-lead{text-transform:uppercase;margin:0 0 0 10px;padding:0 10px 0 0;display:inline-block;line-height:40px;cursor:pointer;background:#ededed;color:#3669c9;vertical-align:top}.trending-wrapper .trending-item{display:inline-block;*display:inline;margin-left:-2px;line-height:40px}.trending-wrapper .trending-item:first-of-type{margin-left:0}.trending-wrapper .trending-item a{line-height:40px;padding:0 14px;display:block}.trending-wrapper .trending-item a,.trending-wrapper .trending-item a:hover,.trending-wrapper .trending-item a:visited,.trending-wrapper .trending-item a:hover:visited{color:#1b1b1b}.trending.pro{width:100%;max-width:927px;display:table;overflow:hidden;border-collapse:separate;border-spacing:2px;margin-left:22px;margin-top:30px}@media only screen and (max-width:999px){.trending.pro{display:none}}.trending.pro .menu-item-container{background:#ededed;padding:0 12px;line-height:40px;font-size:13px;display:table-cell;text-align:center}.trending.pro .menu-item-container a{color:#333}.trending.pro .menu-item{font-size:inherit;display:inline}.trending.pro .menu-item a{font-size:inherit;padding-left:0;padding-right:0;line-height:40px}.trending.pro .menu-item a:hover{background-color:inherit}.breadcrumb{font-size:13px;margin-bottom:30px}@media (max-width:700px){.breadcrumb{display:none}}.breadcrumb li{display:inline-block}.breadcrumb li:after{content:'>';margin-left:1ex;margin-right:1ex}.breadcrumb li:last-child:after{content:none;margin:0}.box{display:table;margin-bottom:40px;float:left;clear:both;width:100%}.box.less-space{margin-bottom:30px}.box h3,.box h4{font-weight:600;font-size:16px;line-height:40px;text-transform:uppercase;vertical-align:middle}.box p{font-size:16px;line-height:24px;margin-bottom:1rem;color:#333}.box li{font-size:16px;line-height:28px}.box ul{margin-bottom:1rem}#sidebar .box{margin-bottom:30px}.button{text-transform:uppercase;font-size:.875em;text-align:center;font-weight:700;line-height:3em;display:block}.button:hover,.button:hover:visited{background-color:#666;text-decoration:none}.button.dark{color:#fff;background-color:#3669c9}.button.dark:hover,.button.dark:visited:hover{color:#fff}.load-comments:hover{color:#fff}input[type="search"]{-webkit-appearance:none;border:1px solid #ddd;font-size:1em;padding-right:3em;line-height:2.5em;padding-left:.75em;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;outline-offset:0;border-radius:0;margin-top:0;margin-bottom:0}input[type="search"]:focus{outline-offset:0}@media screen and (min-width:700px){input[type="search"]{padding-right:0}}@media screen and (min-width:900px){input[type="search"]{padding-right:54px;padding-top:13px;padding-bottom:11px;line-height:16px;font-size:16px}}label{line-height:1.4;display:block;margin:0 0 5px}.sponsored-bar{height:44px;text-align:center;background:#1b1b1b;text-transform:uppercase;color:#fff;font-size:10px;vertical-align:middle}.sponsored-bar span{line-height:44px;vertical-align:middle}.sponsored-bar .sponsor-logo-img{height:20px;margin-left:8px;vertical-align:middle}.byline{display:block;margin-bottom:4px;line-height:23px;font-size:13px}.byline .relative-date{margin-left:4px}.primary-nav.pro .wrapper,.primary-nav.pro .menuitems.container,.primary-nav.pro .wrapper .menu-item-container a{background:#601948!important}.primary-nav{position:relative;z-index:1600}.primary-nav .wrapper{background:#3669c9}.primary-nav .menuitems{display:none;position:absolute;width:100%;left:0;top:60px;z-index:999}.primary-nav .menuitems:hover{z-index:999}@media screen and (min-width:700px){.primary-nav .menuitems{z-index:auto;display:block;position:relative;top:0}}.nav-list{font-size:0}@media screen and (min-width:700px){.nav-list{height:44px;overflow:hidden}}.nav-list.component-loaded{height:auto;overflow:visible}.menu-item{background-color:#3669c9}@media screen and (min-width:700px){.menu-item{display:inline-block;zoom:1;*display:inline;vertical-align:top;font-size:0;background-color:transparent}}.menu-item a{display:block;line-height:44px;font-size:1rem;padding-left:1rem}.menu-item a:not(.maglink){padding-right:1rem}@media screen and (min-width:700px){.menu-item a{display:inline-block;zoom:1;*display:inline;vertical-align:top}}.menu-item a,.menu-item a:visited,.menu-item a:hover,.menu-item a:visited:hover{color:#fff}@media screen and (min-width:700px){.menu-item a:not(.menu-item-magazines):hover{background-color:#3669c9}}.menu-item a:not(.menu-item-magazines):active{background-color:#1b1b1b}.menu-item .icon-home{font-size:1.3em;line-height:1}.pro .menu-item{background-color:transparent}.menu-item.menu-item-main-pro{background-color:#8c2b5e}@media screen and (min-width:700px){.menu-item.menu-item-main-pro{min-width:70px;text-align:center}}.menu-item.menu-item-main-pro a{background-color:transparent}.pro .menu-item.menu-item-main-pro{background-color:#2f6e91}.sub-menu{vertical-align:top;display:none;background-color:#3669c9;font-size:0}.sub-menu-item{font-size:1rem}.menu-hamburger{height:60px;margin-bottom:0}.menu-hamburger:before,.menu-hamburger:after{content:"";position:absolute;width:18px;margin-left:-9px;top:50%;left:50%}.menu-hamburger:before{height:8px;border-top:2px solid #fff;border-bottom:2px solid #fff;margin-top:-6px}.menu-hamburger:after{height:2px;background:#fff;margin-top:-1px}.menu-hamburger.checked:before{border-top:none;border-bottom:none;border-left:2px solid #fff;border-right:2px solid #fff;width:8px;height:18px;margin-top:-9px;margin-left:-6px}.menu-hamburger.checked:after{width:2px;height:18px;margin-top:-9px;margin-left:-1px}.menu-item-hover-reveal,.menu-item-magazines{line-height:44px;color:#fff;padding-left:1rem;padding-right:1rem;white-space:nowrap;cursor:default}.menu-item-hover-reveal.menu-item,.menu-item-magazines.menu-item{font-size:1rem}@media screen and (min-width:700px){.menu-item-hover-reveal:hover .sub-menu,.menu-item-hover-reveal:focus .sub-menu,.menu-item-magazines:hover .sub-menu,.menu-item-magazines:focus .sub-menu{display:block;position:absolute;margin-left:-16px}}.menu-item-hover-reveal .icon,.menu-item-magazines .icon{font-size:11px;line-height:1;position:relative;top:-1px;left:1px}@media screen and (min-width:700px){.menu-item-hover-reveal .icon-arrow-right,.menu-item-magazines .icon-arrow-right{display:none}}.menu-item-hover-reveal .icon-arrow-down,.menu-item-magazines .icon-arrow-down{display:none}@media screen and (min-width:700px){.menu-item-hover-reveal .icon-arrow-down,.menu-item-magazines .icon-arrow-down{display:inline}}@media screen and (min-width:700px){.nav-sub-set-container{position:absolute;top:0;right:0}}@media screen and (min-width:700px){.menu-item-nav-sub-set{float:right}}#sidebar{-webkit-box-sizing:border-box;box-sizing:border-box;float:left}@media screen and (min-width:700px){#sidebar{padding-left:20px;padding-right:20px}}@media screen and (min-width:1000px){#sidebar{padding-left:0;padding-right:0;width:300px}#sidebar>*:first-child{margin-top:1em}}.pagination.internal{border-top:1px solid #ddd;width:100%}.socialite-widget-item{display:inline-block;zoom:1;*display:inline;vertical-align:middle;width:24px;height:24px;line-height:24px;font-size:1rem;margin-left:8px}.socialite-widget-item:first-child{margin-left:0}.socialite-widget-item a{background-color:#333;display:block;line-height:24px;width:100%;height:100%;text-align:center;color:#fff;border-radius:50%;text-decoration:none}.socialite-widget-item a:visited,.socialite-widget-item a:hover,.socialite-widget-item a:visited:hover{color:#fff;text-decoration:none}.socialite-widget-item .icon{font-size:.9em;width:100%;height:100%;line-height:24px}.socialite-widget-item .icon:before{display:block}.socialite-widget-item .facebook,.socialite-widget-item .icon-facebook,.buttons-social .icon-facebook{background:#3B5998}.socialite-widget-item .facebook:hover,.socialite-widget-item .icon-facebook:hover,.buttons-social .icon-facebook:hover{background:#4c70ba}.socialite-widget-item .twitter,.socialite-widget-item .icon-twitter,.buttons-social .icon-twitter{background:#4099FF}.socialite-widget-item .twitter:hover,.socialite-widget-item .icon-twitter:hover,.buttons-social .icon-twitter:hover{background:#73b4ff}.socialite-widget-item .whatsapp{background:#64D448}.socialite-widget-item .whatsapp:hover{background:#87de71}.buttons-social .icon-youtube{background:#CD201F}.buttons-social .icon-youtube:hover{background:#e23e3d}.socialite-widget-item .email{background:#333}.socialite-widget-item .email:hover{background:#4d4d4d}.buttons-social .icon-instagram{background:#de3073}.buttons-social .icon-instagram:hover{background:#e55c91}.socialite-widget-item .flipboard,.socialite-widget-item .icon-flipboard,.buttons-social .icon-flipboard{background:#e12828}.socialite-widget-item .flipboard:hover,.socialite-widget-item .icon-flipboard:hover,.buttons-social .icon-flipboard:hover{background:#e75555}.buttons-social .icon-envelope{background:#3669c9}.socialite-widget-item .icon.icon-flipboard,.buttons-social .icon.icon-flipboard{font-size:12px}.burgerbar .buttons-social a{border:none}.burgerbar .buttons-social a:before{font-size:14px;line-height:24px;width:100%;height:100%}.burgerbar .buttons-social .icon.icon-flipboard:before{font-size:12px}.newsletter-signup{display:block!important;background-color:#ededed;border-bottom:1px solid #1b1b1b}@media (max-width:900px){.newsletter-signup{float:none!important}}.newsletter-signup .grey-box{color:#666}.newsletter-signup>h3{min-height:36px;font-size:16px;line-height:1.25em;font-family:"Open Sans",Arial,sans-serif;padding:8px 0;border-top:1px solid #1b1b1b;border-bottom:1px solid #1b1b1b}.newsletter-signup>h3 span{display:block;-webkit-box-sizing:border-box;box-sizing:border-box;width:300px;margin:0 auto}.newsletter-signup .icon-envelope{float:left;background-color:#3669c9;color:#fff;text-align:center;border-radius:50%;font-size:25px;line-height:36px;width:38px;height:38px;margin-right:10px;margin-left:10px}.newsletter-signup small{font-size:10px;line-height:12px}@media screen and (min-width:700px){.newsletter-signup{float:none}}@media screen and (min-width:900px){.newsletter-signup{float:none;width:100%}}@media screen and (max-width:900px){.newsletter-signup .icon-envelope{margin-left:0}.newsletter-signup .grey-box{padding-left:0;padding-right:0}.newsletter-signup h3 span{width:300px;margin:0 auto}}.newsletter-signup .newsletter-logo{text-align:center}.newsletter-signup .newsletter-logo img{height:20px;padding-top:2px}.newsletter-signup.product-newsletter{border:solid 1px #333;-webkit-box-sizing:border-box;box-sizing:border-box}.newsletter-signup.product-newsletter h3,.newsletter-signup.product-newsletter h4{color:#fff;text-transform:none;font-family:"Open Sans",Arial,sans-serif}.newsletter-signup.product-newsletter h3{background:#333;font-size:15px;line-height:20px;border-top:none;border-bottom:none}.newsletter-signup.product-newsletter .icon-filled-envelope{float:left}.newsletter-signup.product-newsletter .product-cta{font-weight:700;display:inline}.newsletter-signup.product-newsletter .product-info{font-weight:400;display:inline}.newsletter-signup.product-newsletter .reduce{font-size:80%;display:inline}.newsletter-signup.product-newsletter h4{background-color:#666;font-size:.75em;line-height:33px}.newsletter-signup.product-newsletter p{color:#333;text-align:center;font-size:13px;line-height:17px;width:58%;margin-top:.5rem;display:inline-block;margin-left:5px}.newsletter-signup.product-newsletter p .jump-out-text{font-weight:700;display:block}.newsletter-signup.product-newsletter footer{color:#666;margin:.75rem 0 .5rem}.newsletter-signup .newsletter-image{display:inline-block;height:102px;width:35%;margin-left:8px;background:url("/media/img/newsletter-image.png") no-repeat;background-size:auto 102px;background-repeat:no-repeat;image-rendering:-moz-crisp-edges;image-rendering:-o-crisp-edges;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;-ms-interpolation-mode:nearest-neighbor}.newsletter-signup .newsletter-button{-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;padding:0 17px;background:-webkit-gradient(linear,left bottom,left top,color-stop(50%,#E94E1B),color-stop(50%,#ed724a));background:-webkit-linear-gradient(bottom,#E94E1B 50%,#ed724a 50%);background:linear-gradient(to top,#E94E1B 50%,#ed724a 50%);height:44px;text-align:center}.newsletter-signup .newsletter-button a{color:#fff;font-size:1em;font-weight:900;display:inline-block;padding-top:14px;height:100%;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.newsletter-signup .newsletter-button a:hover,.newsletter-signup .newsletter-button a:visited{color:#fff;text-decoration:none}.newsletter-signup .newsletter-button .icon{color:#fff;font-size:12px;position:relative;top:-2px;padding-left:3px}.newsletter-signup .subtitle{display:block;padding-left:10px;width:300px;margin:auto}.icon-filled-envelope{float:left;text-align:center;border-radius:50%;font-size:40px;line-height:36px;width:38px;height:38px;margin-right:10px;margin-left:10px;background-color:#3669c9;color:#fff}.menu-item.menu-item-nextup a,.menu-item.menu-item-nextup a:hover{background-color:#1DAFEC}@media screen and (min-width:700px){.menu-item.menu-item-nextup a,.menu-item.menu-item-nextup a:hover{background-color:#1DAFEC}}#article-body .inlinegallery{visibility:hidden;margin-bottom:30px;width:100%}#article-body .inlinegallery,#article-body .inlinegallery .inlinegallery-wrap{position:relative;overflow:hidden}#article-body .inlinegallery .inlinegallery-item{position:relative;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;float:left;width:100%}#article-body .inlinegallery .inlinegallery-item,#article-body .inlinegallery .inlinegallery-item figure{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column}#article-body .inlinegallery .inlinegallery-item figure{-webkit-box-pack:start;-webkit-justify-content:flex-start;-ms-flex-pack:start;justify-content:flex-start;max-height:90vh;margin-bottom:1em;border-bottom:1px solid #232128}#article-body .inlinegallery .inlinegallery-item figure p.vanilla-image-block{position:relative;margin-bottom:15px;background-color:#232128}#article-body .inlinegallery .inlinegallery-item figure p.vanilla-image-block img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain}.news-article #article-body .inlinegallery .inlinegallery-item>*:last-child{margin-bottom:0}.newsletter-signup,.newsletter-signup>h3{background-color:#fff}.newsletter-signup .grey-box{padding:1ex;margin:0 auto;width:300px;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column}#article-body .widthsetter{width:100%}#article-body .widthsetter .articletable{display:inline-block;width:100%;margin-bottom:20px;word-break:normal;overflow-x:scroll}#article-body .widthsetter .articletable::-webkit-scrollbar{-webkit-appearance:none;-moz-appearance:none}#article-body .widthsetter .articletable::-webkit-scrollbar-thumb{border-radius:8px;border:2px solid #fff;background-color:rgba(0,0,0,.5)}#article-body .widthsetter .articletable::-webkit-scrollbar-track{background-color:#fff;border-radius:8px}#article-body .widthsetter .articletable table{margin-left:150px}#article-body .widthsetter .articletable table caption{width:100%;padding:14px;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;font-weight:800;font-size:16px;line-height:18px;background-color:#fff}#article-body .widthsetter .articletable table tbody,#article-body .widthsetter .articletable table thead{text-align:center}#article-body .widthsetter .articletable table th,#article-body .widthsetter .articletable table td{padding:14px;min-width:10px;max-width:150px;font-size:13px;line-height:13px}@media (min-width:575px){#article-body .widthsetter .articletable table th,#article-body .widthsetter .articletable table td{font-size:15px;line-height:15px;max-width:200px}}#article-body .widthsetter .articletable table thead>tr{background-color:#3669c9;color:#fff}#article-body .widthsetter .articletable table thead>tr th{background-color:#3669c9}#article-body .widthsetter .articletable table tr .firstcol{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;max-width:120px;min-height:30px;left:0;padding:0 14px;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:100;cursor:default}@media (min-width:575px){#article-body .widthsetter .articletable table tr .firstcol{max-width:200px}}#article-body .widthsetter .articletable table tbody>tr:nth-of-type(2n+1),#article-body .widthsetter .articletable table tbody>tr:nth-of-type(2n+1) td{background-color:#fff}body{background-color:#fff;-webkit-text-size-adjust:100%}a{color:#3669c9;text-decoration:none}a:hover{text-decoration:underline}a:visited{color:#afc3e9}a:visited:hover{color:#afc3e9}button{font-size:.875em;line-height:3em;border:solid 1px #3669c9;color:#fff;background-color:#3669c9;text-transform:uppercase;font-family:"Open Sans",Arial,sans-serif;margin:0;padding:1ex 1em}button:focus{outline:0}button::-moz-focus-inner{border:0}@media screen and (min-width:700px){.mobile-only{display:none}}#affiliateDisclaimer{text-align:left;font-size:12px;line-height:16px;padding:0;margin:15px 24px 0;color:#3669c9}@media screen and (min-width:700px){#affiliateDisclaimer{font-size:13px;line-height:18px;margin-top:15px}}@media screen and (min-width:1000px){#affiliateDisclaimer{font-size:13px;line-height:18px;margin-top:20px}}#affiliateDisclaimer a{color:#3669c9;text-decoration:underline}.pagination.internal,article .pagination.internal{display:block}.search-box .search-submit{top:16px}.sub-menu{visibility:hidden;position:absolute;display:block;margin-left:-16px;right:0}@media screen and (min-width:700px){.menu-item-hover-reveal:hover .sub-menu{visibility:visible}}article section .box{margin-bottom:1em}article .text-copy figcaption,.news-article .text-copy figcaption{margin-top:0;padding:0;display:inline}img{display:block}article section .box img{margin-bottom:15px}.news-article .partner-banner{margin-top:30px;margin-bottom:-8px}.news-article .partner-banner img{width:100%}@media (min-width:575px) and (max-width:1000px){.news-article .partner-banner img{max-width:540px;margin-left:auto;margin-right:auto}}.pagination.internal{border-bottom:none;display:block;text-align:center}@media screen and (min-width:700px){.nav-list.component-loaded{overflow:hidden;height:44px}}</style>
+<link rel="apple-touch-icon" href="https://vanilla.futurecdn.net/space/145110/apple-touch-icon.png">
+<link rel="shortcut icon" href="https://vanilla.futurecdn.net/space/145110/favicon.ico">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="https://vanilla.futurecdn.net/space/145110/apple-touch-icon.png">
+<meta property="og:title" content="NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project">
+<meta property="og:site_name" content="Space.com">
+<meta property="og:url" content="https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-1200-80.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:type" content="article">
+<meta property="article:publisher" content="https://www.facebook.com/spacecom">
+<meta property="article:author" content="https://www.facebook.com/spacecom">
+<meta property="fb:app_id" content="">
+<meta property="fb:pages" content="">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:site" content="@SPACEdotcom">
+<meta property="twitter:title" content="NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project">
+<meta property="twitter:description" content="">
+<meta property="twitter:creator" content="@SPACEdotcom">
+<meta property="twitter:image" content="https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-1200-80.jpg">
+<meta property="twitter:account_id" content="9696142">
+<meta name="google-site-verification" content="nrpIn3a0BMjdgL7in8p4mOAxuGhxv_djn9luMGspEvE">
+<meta name="p:domain_verify" content="6873911a0960244b0806d7a9a2aba69b">
+<meta name="taboola:url" content="https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html">
+<meta name="botify-site-verification" content="2pzcQZFibLjk9GJgSZgweA8MU9al6utA">
+<meta name="msvalidate.01" content="CC462E6DF91492086145CA5EBDCB615E">
+<script type="text/javascript">
+window.missingImage = function(){var missingImage = document.createElement('img');missingImage.src = '//vanilla.futurecdn.net/space/media/img/missing-image.svg';return missingImage;}
+VAN={};
+var FEP_object;
+;
+VAN.gaDimensions=function(e,i,a,o){ga("create",e,"auto",{useAmpClientId:!0}),null!=a&&ga("set",{dimension57:a}),ga("require","displayfeatures"),o.fepPrimaryProduct&&ga("set",{dimension40:o.fepPrimaryProduct}),o.fepSecondaryProducts.length&&ga("set",{dimension41:o.fepSecondaryProducts.join("|")}),o.fepPrimaryProduct[0]&&ga("set",{dimension42:o.fepPrimaryCompany}),o.fepCompanies.length>=1&&ga("set",{dimension43:o.fepCompanies.join("|")}),o.fepPrimaryProduct&&ga("set",{dimension45:o.fepPrimaryProduct}),o.fepCategory&&ga("set",{dimension46:o.fepCategory}),o.fepArticleName.length>0&&ga("set",{dimension47:o.fepArticleName}),o.fepAlgorithm&&ga("set",{dimension50:o.fepAlgorithm}),o.fepNullified?ga("set",{dimension51:"true"}):ga("set",{dimension51:"false"}),"object"==typeof o.fepGroups&&Array.isArray(o.fepGroups)&&ga("set",{dimension58:o.fepGroups.join("|")}),o.thirdCategories&&ga("set",{dimension74:o.thirdCategories.join("|")}),void 0!==VAN.abTest&&void 0!==VAN.abTest.variationId&&ga("set",{dimension26:VAN.abTest.variationId});var t="false";try{void 0!==window.vanilla&&void 0!==window.vanilla.aft&&(t=!0===window.vanilla.aft.logged_in?"true":"false")}catch(e){console.error("Badly structured aft object",e)}ga("set",{dimension13:t}),ga("set",{dimension10:document.querySelector("html").getAttribute("data-locale").replace("_","-")});try{var n=document.cookie.replace(/(?:(?:^|.*;\s*)_ga\s*\=\s*([^;]*).*$)|^.*$/,"$1");n&&ga("set",{dimension59:n})}catch(e){console.log("GA ID error: ",e)}ga("send","pageview",i)}; VAN.assignFep=function(a){try{var e=e||{fepPrimaryProduct:"",fepSecondaryProducts:Array(),fepCompanies:Array(),fepHawk:{},fepCategory:"",fepGroups:Array(),kwMunge:Array(),fepArticleName:"",fepPrimaryCompany:"",fepAlgorithm:"",fepNullified:"",ready:!1,primaryCategory:"",secondaryCategories:Array(),thirdCategories:Array()};if(window.FEP=e,!e.ready){if("undefined"==typeof a)throw"FEPNotReady";e.fepPrimaryProduct=a[0].adTags.primaryProduct,e.fepSecondaryProducts=a[0].adTags.secondaryProducts,e.fepCompanies=a[0].adTags.companies,e.fepCategory="object"==typeof a[0].adTags.category?"":a[0].adTags.category,e.fepGroups="undefined"!=typeof a[0].adTags.groups?a[0].adTags.groups:Array(),e.fepArticleName=a[0].articleName,e.fepAlgorithm=a[0].strategy,e.fepNullified=a[0].nullified,e.fepPrimaryCompany=null!==a[0].adTags.primaryCompany&&a[0].adTags.primaryCompany.length>=1?a[0].adTags.primaryCompany:" ","undefined"!=typeof a[0].adTags.primaryCategory&&"undefined"!=typeof a[0].adTags.secondaryCategories&&"undefined"!=typeof a[0].adTags.thirdCategories&&(e.primaryCategory=a[0].adTags.primaryCategory,e.secondaryCategories=a[0].adTags.secondaryCategories,e.thirdCategories=a[0].adTags.thirdCategories),e.fepIAB=[],e.ready=!0;var r=["fepPrimaryProduct","fepSecondaryProducts","fepCompanies","fepCategory"];r.forEach(function(a){var r=e[a];"object"==typeof r&&(r=r),e.kwMunge=e.kwMunge.concat(r)}),e.kwMunge=e.kwMunge.filter(function(a,r){return e.kwMunge.indexOf(a)==r}),"undefined"!=typeof a[0].hawkTags.primaryProduct&&(e.fepHawk.primaryProduct=a[0].hawkTags.primaryProduct),"undefined"!=typeof a[0].hawkTags.secondaryProducts&&(e.fepHawk.secondaryProducts=a[0].hawkTags.secondaryProducts),"undefined"!=typeof a[0].hawkTags.companies&&(e.fepHawk.companies=a[0].hawkTags.companies),"undefined"!=typeof a[0].hawkTags.groups&&(e.fepHawk.groups=a[0].hawkTags.groups),"undefined"!=typeof a[0].hawkTags.category&&(e.fepHawk.category=a[0].hawkTags.category)}return window.FEP=e,e}catch(o){console.log("fep ga exc "+o.message)}};;
+</script>
+<script>
+try{
+var FEP_object = [{"acceptableLanguage":true,"adTags":{"category":"moon_2024","companies":["SpaceX","Sierra_Nevada_Corporation","Astrobotic_Technology","Intuitive_Machines"],"groups":["moon_2024","clps","commercial_lunar_payload_services","nasa_commercial_moon_partners","nasa_moon_return","moon_by_2024","commercial_moon_landers","commercial_moon_payloads","private_spaceflight","commercial_space","SpaceX","blue_origin","tyvak_nano-satellite_systems","sierra_nevada","ceres_robotics","Moon"],"primaryCategory":"moon_2024","primaryCompany":"Blue_Origin","primaryProduct":"Blue_Origin","secondaryCategories":["moon_2024","clps","commercial_lunar_payload_services","nasa_commercial_moon_partners","nasa_moon_return","moon_by_2024","commercial_moon_landers","commercial_moon_payloads","private_spaceflight","commercial_space","SpaceX","blue_origin","tyvak_nano-satellite_systems","sierra_nevada","ceres_robotics","Moon"],"secondaryCompanies":["SpaceX","Sierra_Nevada_Corporation","Astrobotic_Technology","Intuitive_Machines"],"secondaryProducts":["SpaceX","Moon_landing","Blue_Moon","Blue_moon","Lander_spacecraft"],"thirdCategories":[]},"articleName":"NASA_Picks_SpaceX_Blue_Origin_and_More_to_Join_Private_Moon_Lander_Project","articleType":"news","dataSource":"provided","hawkTags":{"primaryProduct":"Blue_Origin","secondaryProducts":["SpaceX","Moon_landing","Blue_Moon","Blue_moon","Lander_spacecraft"],"companies":["Blue_Origin","SpaceX","Sierra_Nevada_Corporation","Astrobotic_Technology","Intuitive_Machines"],"category":"moon_2024","groups":["moon_2024","clps","commercial_lunar_payload_services","nasa_commercial_moon_partners","nasa_moon_return","moon_by_2024","commercial_moon_landers","commercial_moon_payloads","private_spaceflight","commercial_space","SpaceX","blue_origin","tyvak_nano-satellite_systems","sierra_nevada","ceres_robotics","Moon"],"internalProductName":""},"internalProductName":"","nullified":false,"origSite":"space","overrides":[],"rampTags":{"primaryProduct":"Blue Origin","secondaryProducts":["SpaceX","Moon landing","Blue Moon","Blue moon","Lander spacecraft"],"companies":["Blue Origin","SpaceX","Sierra Nevada Corporation","Astrobotic Technology","Intuitive Machines"],"category":"moon 2024","groups":["moon 2024","clps","commercial lunar payload services","nasa commercial moon partners","nasa moon return","moon by 2024","commercial moon landers","commercial moon payloads","private spaceflight","commercial space","SpaceX","blue origin","tyvak nano-satellite systems","sierra nevada","ceres robotics","Moon"]},"site":"space","strategy":5,"timestamp":1574121087,"topProductVsproductName":"0"}];
+}catch(ex){
+if (typeof console == "object") {
+console.log(ex);
+}
+}
+</script>
+<!-- GA TPL PREMIUM -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+// Optimizely Universal Analytics Integration
+window.optimizely = window.optimizely || [];
+window.optimizely.push("activateUniversalAnalytics");
+// Setup the FEP global object form the FEP_object
+// @TODO - can the format of FEP_object be changed server side?
+VAN.assignFep(FEP_object);
+var ga_code = 'UA-72111741-9';
+var analytics_ga_data = {"dimension1":"news","dimension2":"spaceflight","dimension3":"moon|spacex","dimension4":"Know_Space\/","dimension5":"RQavgdQtfSQjbfVSFytUX7","dimension6":"|moon_2024|clps|commercial_lunar_payload_services|nasa_commercial_moon_partners|nasa_moon_return|moon_by_2024|commercial_moon_landers|commercial_moon_payloads|private_spaceflight|commercial_space|spacex|blue_origin|tyvak_nano-satellite_systems|sierra_nevada|ceres_robotics|channel_other|type_news|syndicate|serversidehawk|videoarticle","dimension7":"tariq_malik,mike_wall","dimension8":"18-11-2019","dimension9":"1","dimension10":"EN-US","dimension95":"news","dimension106":"2","dimension126":"en","dimension127":"GB|US|AU|SG","dimension128":"18-11-2019"};
+var version = 'null';
+// Make sure all the GA dimensions are setup and correct
+VAN.gaDimensions(ga_code, analytics_ga_data, version, window.FEP);
+</script>
+<!-- END GA PREMIUM -->
+<script>
+var trailingSlash = false;
+</script>
+<link rel="manifest" href="/manifest.json">
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+var OneSignal = window.OneSignal || [];
+OneSignal.push(function() {
+OneSignal.init({
+appId: "33e14929-fc6a-44ea-ae7c-8cc69df3e88e",
+autoRegister: true
+});
+OneSignal.registerForPushNotifications();
+});
+OneSignal.push(["addListenerForNotificationOpened", function(data) {
+OneSignal.getUserId( function(userId) {
+ga('send', 'event', 'OneSignal Notification_Clicked', data.id, userId);
+});
+}]);
+</script>
+<!-- Hawk Elements' styles -->
+<style id="hawkStyles">body .hawk-widget{--trd-blue:#2f6e91;width:100%;letter-spacing:normal;}</style>
+<!-- End Hawk Elements' styles -->
+<script type="application/ld+json">
+{
+"@type": "NewsArticle",
+"name": "NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project",
+"headline": "NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project",
+"articleBody": "NASA has recruited SpaceX&apos;s Starship, Blue Origin&apos;s Blue Moon and three other commercial lunar lander ideas to join its Arte mis m oon program .&nbsp; Today (Nov. 18), NASA announced the selection of SpaceX, Blue Origin, Sierra Nevada Corp., Ceres Robotics and Tyvak Nano-Satellite Systems, Inc. to join its Commercial Lunar Payload Services program (CLPS). The five companies can now vie to deliver robotic payloads to the lunar surface for NASA, helping to pave the way for the return of&hellip;",
+"datePublished": "2019-11-18T22:05:36Z",
+"image": "https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65.jpg",
+"author": {
+"@type": "Person",
+"name": "Tariq Malik"
+},
+"creator": {
+"@type": "Person",
+"name": "Tariq Malik"
+},
+"publisher": {
+"@type": "Organization",
+"name": "Space",
+"url": "https://www.space.com",
+"logo": {
+"@type": "ImageObject",
+"url": "https://vanilla.futurecdn.net/space/media/img/spc-logo-w.svg",
+"caption": "Space logo"
+}
+},
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html"
+},
+"url": "https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html",
+"thumbnailUrl": "https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-320-80.jpg",
+"articleSection": "Moon",
+"keywords": [
+"Category: Moon",
+"Category: SpaceX",
+"moon 2024",
+"clps",
+"commercial lunar payload services",
+"nasa commercial moon partners",
+"nasa moon return",
+"moon by 2024",
+"commercial moon landers",
+"commercial moon payloads",
+"private spaceflight",
+"commercial space",
+"SpaceX",
+"blue origin",
+"tyvak nano-satellite systems",
+"sierra nevada",
+"ceres robotics",
+"channel_other",
+"type_news",
+"syndicate",
+"serversidehawk",
+"videoarticle"
+],
+"@context": "http://schema.org"
+}
+</script>
+</head>
+<body class="limit-width ">
+<script>window.isIE = false</script>
+<!--[IE]><script>window.isIE = true</script><![endif]-->
+<script>
+window.amIIE = function() {
+return navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') !== -1 || window.isIE;
+}
+</script>
+<a href="#main" class="skip-to-main-content" style="position:absolute;">Skip to main content</a>
+<!-- contentType : //-->
+<nav class="primary-nav">
+<input type="radio" name="burgerbar-expand" class="burgerbar-none-radio" id="burgerbar-none" checked>
+<input type="radio" name="burgerbar-expand" class="burgerbar-radio" id="burgerbar">
+<div class="burgerbar ">
+<div class="container full burgerbar-small">
+<label class="button-menu unchecked menu-hamburger" for="burgerbar" onclick=""></label>
+<label class="button-menu checked menu-hamburger" for="burgerbar-none" onclick=""></label>
+<script type="application/ld+json">
+[
+{
+"@type": "Organization",
+"name": "Space",
+"url": "https://www.space.com",
+"logo": {
+"@type": "ImageObject",
+"url": "https://vanilla.futurecdn.net/space/media/img/spc-logo-w.svg",
+"caption": "Space logo"
+},
+"@context": "http://schema.org"
+},
+{
+"@type": "WebSite",
+"name": "Space",
+"url": "https://www.space.com",
+"potentialAction": {
+"@type": "SearchAction",
+"target": "https://www.space.com/search?searchTerm={query}",
+"query-input": "required name=query"
+},
+"@context": "http://schema.org"
+}
+]
+</script>
+<div class="logo" id="publisherDetails">
+<a href="https://www.space.com/">
+<span class="site-logo">
+<!--?xml version="1.0" encoding="utf-8"?-->
+<!-- Generator: Adobe Illustrator 16.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) -->
+
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="132px" height="30px" viewbox="0 0 132 30" enable-background="new 0 0 132 30" xml:space="preserve">
+<title>space</title>
+<desc>Created with Sketch.</desc>
+<g id="vector">
+<g id="space">
+<g id="Shape">
+<polygon fill="#FFFFFF" points="75.8789062,29.6386719 63.6210938,0.4140625 57.1552734,0.4140625 44.8447266,29.6386719
+51.3613281,29.6386719 60.3613281,8.1210938 69.4140625,29.6386719 "></polygon>
+<path fill="#FFFFFF" d="M12.3105469,29.9482422c-4.3964844,0-8.8457031-1.5517578-12.3105469-4.6552734l3.7753906-4.5
+c2.5859375,2.171875,5.328125,3.5175781,8.6386719,3.5175781c2.5859375,0,4.1894531-1.0351562,4.1894531-2.7421875v-0.1035156
+c0-1.6035156-0.9824219-2.4296875-5.8457031-3.671875c-5.84375-1.5-9.6201172-3.1035156-9.6201172-8.8447266V8.8447266
+c0-5.2763672,4.2412109-8.7412109,10.1376953-8.7412109c4.2421875,0,7.8105469,1.3447266,10.7587891,3.671875
+l-3.3095703,4.8105469c-2.5869141-1.7578125-5.1210938-2.8447266-7.5527344-2.8447266
+c-2.4306641,0-3.7236328,1.1376953-3.7236328,2.5341797V8.328125c0,1.9130859,1.2412109,2.5341797,6.2587891,3.8271484
+c5.8964844,1.5517578,9.2070312,3.6728516,9.2070312,8.6904297v0.1025391
+C22.9648438,26.6894531,18.5683594,29.9482422,12.3105469,29.9482422z"></path>
+<path fill="#FFFFFF" d="M37.0341797,20.7929688H32.171875v8.7421875h-6.3613281V0.5175781h11.8447266
+c6.9306641,0,11.1201172,4.0859375,11.1201172,10.0341797v0.1035156
+C48.7246094,17.328125,43.5517578,20.7929688,37.0341797,20.7929688z M42.2587891,10.6552734
+c0-2.8447266-1.9658203-4.3964844-5.1728516-4.3964844H32.171875v8.8447266h5.0693359
+c3.2070312,0,5.0693359-1.9140625,5.0693359-4.3964844v-0.0517578H42.2587891z"></path>
+<path fill="#FFFFFF" d="M89.1210938,30c-8.5351562,0-14.8964844-6.5683594-14.8964844-14.8964844V15
+c0-8.2246094,6.2070312-15,15.1035156-15c5.4824219,0,8.7402344,1.8105469,11.4296875,4.5l-4.0332031,4.7070312
+c-2.2246094-2.0175781-4.5-3.2587891-7.3964844-3.2587891c-4.9140625,0-8.4316406,4.0869141-8.4316406,9.0517578v0.1035156
+c0,4.9658203,3.4658203,9.1035156,8.4316406,9.1035156c3.3105469,0,5.3271484-1.3447266,7.6035156-3.4140625l4.0332031,4.0859375
+C98.0683594,28.0351562,94.7070312,30,89.1210938,30z"></path>
+<polygon fill="#FFFFFF" points="104.328125,29.5351562 104.328125,0.5175781 121.6542969,0.5175781 121.6542969,6.2070312
+110.6376953,6.2070312 110.6376953,12.1035156 119.7929688,12.1035156 119.7929688,17.7929688 110.6376953,17.7929688
+110.6376953,23.8447266 121.8623047,23.8447266 121.8623047,29.5351562 "></polygon>
+<polygon fill="#FFFFFF" points="125.0175781,0.4140625 127.0351562,0.4140625 127.0351562,2.4824219 125.0175781,2.4824219
+"></polygon>
+<path fill="#FFFFFF" d="M124.8613281,7.0351562c0-2.0175781,1.5527344-3.5175781,3.5175781-3.5175781l0,0
+c1.9140625,0,3.5175781,1.5,3.5175781,3.5683594c0,1.2929688-0.4140625,2.0693359-1.1386719,2.6894531l-1.2402344-1.1894531
+c0.4648438-0.4140625,0.7236328-0.8789062,0.7236328-1.5507812c0-0.9833984-0.8271484-1.65625-1.8623047-1.65625l0,0
+c-1.0341797,0-1.8613281,0.6728516-1.8613281,1.7070312c0,0.6210938,0.2578125,1.0859375,0.7236328,1.5527344
+l-1.1376953,1.1367188C125.3789062,9.1552734,124.8613281,8.3789062,124.8613281,7.0351562z"></path>
+<path fill="#FFFFFF" d="M124.8613281,14.2246094c0-2.1210938,1.5527344-3.6728516,3.5175781-3.6728516l0,0
+c1.9658203,0,3.5175781,1.5517578,3.5175781,3.6728516c0,2.1201172-1.5517578,3.671875-3.5175781,3.671875l0,0
+C126.4140625,17.8964844,124.8613281,16.2929688,124.8613281,14.2246094z M128.3789062,15.9824219
+c0.9833984,0,1.8623047-0.7236328,1.8623047-1.7578125c0-1.0859375-0.8271484-1.7597656-1.8623047-1.7597656l0,0
+c-0.9824219,0-1.8613281,0.7246094-1.8613281,1.7597656C126.5175781,15.3105469,127.3447266,15.9824219,128.3789062,15.9824219
+L128.3789062,15.9824219z"></path>
+<path fill="#FFFFFF" d="M125.0175781,27.671875h3.7753906c0.9316406,0,1.3964844-0.4130859,1.3964844-1.1367188
+c0-0.7246094-0.4648438-1.1904297-1.3964844-1.1904297h-3.7753906v-1.9130859h3.7753906
+c0.9316406,0,1.3964844-0.4140625,1.3964844-1.1386719s-0.4648438-1.1376953-1.3964844-1.1376953h-3.7753906v-1.9130859
+h6.7753906v1.9130859h-0.9824219c0.5683594,0.4658203,1.0859375,1.0341797,1.0859375,2.0166016
+c0,0.8798828-0.4140625,1.5527344-1.0859375,1.9140625c0.671875,0.5693359,1.0859375,1.2929688,1.0859375,2.2246094
+c0,1.4482422-0.8789062,2.2753906-2.4824219,2.2753906h-4.3964844V27.671875L125.0175781,27.671875z"></path>
+</g>
+</g>
+</g>
+</svg>
+<img class="fallback" src="" data-fallback-src="https://vanilla.futurecdn.net/space/media/img/spc-logo-w.svg">
+</span>
+<span class="hidden-header" itemprop="name">Space</span> <span class="strapline"></span>
+</a>
+</div>
+<input type="checkbox" name="burgerbar-expand" class="search-checkbox" id="search-checkbox">
+<label class="button-search masthead-item " for="search-checkbox" onclick="">
+<span class="desktop-text">Search</span><span class="icon icon-search"></span>
+</label>
+<form class="search-box" action="https://www.space.com/search" method="GET">
+<input type="search" name="searchTerm" placeholder="Search Space" class="search-input">
+<button type="submit" class="search-submit">
+<span class="icon icon-search"></span>
+</button>
+</form>
+<div class="other-links">
+<a href="https://www.space.com/feeds/all">
+<abbr title="Really Simple Syndication">RSS</abbr>
+</a>
+</div>
+<div class="buttons-social masthead-item">
+<a target="_blank" href="https://www.facebook.com/spacecom" class="icon icon-circle icon-facebook" aria-label="Facebook"></a>
+<a target="_blank" href="https://twitter.com/SPACEdotcom" class="icon icon-circle icon-twitter" aria-label="Twitter"></a>
+<a target="_blank" href="https://www.instagram.com/spacedotcom/" rel="nofollow" class="icon icon-circle icon-instagram" aria-label="Instagram"></a>
+<a target="_blank" href="https://www.youtube.com/user/VideoFromSpace" class="icon icon-circle icon-youtube" aria-label="YouTube"></a>
+<a target="_blank" href="https://flipboard.com/@Spacecom" class="icon icon-circle icon-flipboard" aria-label="Flipboard"></a>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div class="menuitems container full">
+<ul class="nav-list" data-component="nav">
+<li class="menu-item menu-item-home" data-menuitem="">
+<a class="home" href="https://www.space.com/">
+<i class="icon icon-home"></i>
+</a>
+</li>
+<li class="menu-item menu-item-news" data-menuitem="">
+<a class="" href="https://www.space.com/news">
+<span>News</span>
+</a>
+</li>
+<li class="menu-item menu-item-tech" data-menuitem="">
+<a class="" href="https://www.space.com/tech-robots">
+<span>Tech</span>
+</a>
+</li>
+<li class="menu-item menu-item-spaceflight" data-menuitem="">
+<a class="" href="https://www.space.com/spaceflight">
+<span>Spaceflight</span>
+</a>
+</li>
+<li class="menu-item menu-item-science &amp; astronomy" data-menuitem="">
+<a class="" href="https://www.space.com/science-astronomy">
+<span>Science &amp; Astronomy</span>
+</a>
+</li>
+<li class="menu-item menu-item-search for life" data-menuitem="">
+<a class="" href="https://www.space.com/search-for-life">
+<span>Search For Life</span>
+</a>
+</li>
+<li class="menu-item menu-item-skywatching" data-menuitem="">
+<a class="" href="https://www.space.com/skywatching">
+<span>Skywatching</span>
+</a>
+</li>
+<li class="menu-item menu-item-forums" data-menuitem="">
+<a class="" href="https://forums.space.com">
+<span>Forums</span>
+</a>
+</li>
+<li class="menu-item menu-item-videos" data-menuitem="">
+<a class="" href="https://videos.space.com/">
+<span>Videos</span>
+</a>
+</li>
+<li class="menu-item menu-item-entertainment" data-menuitem="">
+<a class="" href="https://www.space.com/entertainment">
+<span>Entertainment</span>
+</a>
+</li>
+<li class="menu-item menu-item-expert voices" data-menuitem="">
+<a class="" href="https://www.space.com/topics/expert-voices">
+<span>Expert Voices</span>
+</a>
+</li>
+<li class='menu-item menu-item-read "all about space" magazine!' data-menuitem="">
+<a class="" href="https://www.space.com/43203-all-about-space-free-issue.html">
+<span>Read "All About Space" Magazine!</span>
+</a>
+</li>
+<li class="menu-item menu-item-reference" data-menuitem="">
+<a class="" href="https://www.space.com/references">
+<span>Reference</span>
+</a>
+</li>
+<li class="menu-item menu-item-all topics" data-menuitem="">
+<a class="" href="https://www.space.com/topics">
+<span>All Topics</span>
+</a>
+</li>
+<li class="menu-item menu-item-about us" data-menuitem="">
+<a class="" href="https://www.space.com/41418-about-us.html">
+<span>About Us</span>
+</a>
+</li>
+<li class="menu-item menu-item-more menu-level-1 has-submenu
+menu-item-hover-reveal more-hide" data-more="">
+<span tabindex="0">
+More
+<i class="icon icon-arrow-down"></i><i class="icon icon-arrow-right"></i>
+</span>
+<ul class="sub-menu" data-more-submenu="">
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="dfp-leaderboard-container"></div>
+<div id="main" class="container full " tabindex="-1">
+<div class="trending-wrapper ">
+<div class="trending-bar container full">
+<div class="trending-lead brands-disabled">
+Trending
+</div>
+<ul class="trending-items ">
+<li class="trending-item"> <a href="https://www.space.com/16830-full-moon-calendar.html">Full Moons 2019</a></li>
+<li class="trending-item"> <a href="https://www.space.com/39251-on-this-day-in-space.html">On This Day in Space!</a></li>
+<li class="trending-item"> <a href="https://forums.space.com">Forums!</a></li>
+<li class="trending-item"> <a href="https://videos.space.com/">Videos</a></li>
+<li class="trending-item"> <a href="https://www.space.com/32286-space-calendar.html">Space Calendar</a></li>
+<li class="trending-item"> <a href="https://www.space.com/43203-all-about-space-free-issue.html">Subscribe to 'All About Space'</a></li>
+<!-- Start Trending Subset //-->
+<!-- End Trending Subset //-->
+</ul>
+</div>
+</div>
+<aside id="affiliateDisclaimer"><small>Space is supported by its audience. When you purchase through links on our site, we may earn an affiliate commission. <a href="https://www.futureplc.com/terms-conditions/">Learn more</a></small></aside>
+<article class="news-article " data-id="RQavgdQtfSQjbfVSFytUX7">
+<header>
+<nav class="breadcrumb" aria-label="Breadcrumbs">
+<ol>
+<li><a href="https://www.space.com/">Home</a></li>
+<li><a href="https://www.space.com/news">News</a></li>
+<li><a href="https://www.space.com/spaceflight">Spaceflight</a></li>
+</ol>
+</nav>
+<h1>NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project</h1>
+<div class="byline-social">
+<p class="byline">
+By
+<span class="no-wrap by-author"><a href="https://www.space.com/author/tariq-malik" rel="author"><span style="white-space: nowrap">Tariq Malik</span></a>, </span>
+<span class="no-wrap by-author"><a href="https://www.space.com/author/mike-wall" rel="author"><span style="white-space: nowrap">Mike Wall</span></a></span>
+<time class="no-wrap relative-date chunk" datetime="2019-11-18T22:05:36+00:00">2019-11-18T22:05:36Z</time>
+<span class="no-wrap"><a class="chunk category" href="https://www.space.com/spaceflight">Spaceflight</a> <i class="icon icon-category-spaceflight"></i></span>
+</p>
+<p class="strapline"></p>
+<nav class="socialite-widget box less-space " data-contexturl="https://www.space.com/https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html">
+<ul class="socialite-widget-ul">
+<li class="socialite-widget-item">
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html" data-platform="facebook" target="_blank" class="facebook socialite" data-action="share" aria-label="Facebook">
+<i class="icon icon-facebook"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="https://twitter.com/intent/tweet?text=NASA%20Picks%20SpaceX%2C%20Blue%20Origin%20and%20More%20to%20Join%20Private%20Moon%20Lander%20Project&amp;url=https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html" data-platform="twitter" target="_blank" class="twitter socialite" data-action="tweet" aria-label="Twitter">
+<i class="icon icon-twitter"></i>
+</a>
+</li>
+<li class="socialite-widget-item mobile-only">
+<a href="whatsapp://send?text=NASA%20Picks%20SpaceX,%20Blue%20Origin%20and%20More%20to%20Join%20Private%20Moon%20Lander%20Projecthttps://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html?fwa" data-platform="whatsapp" class="whatsapp socialite" data-action="message" aria-label="WhatsApp">
+<i class="icon icon-whats-app"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="http://www.reddit.com/submit?url=https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html&amp;title=NASA%20Picks%20SpaceX,%20Blue%20Origin%20and%20More%20to%20Join%20Private%20Moon%20Lander%20Project" data-platform="reddit" target="_blank" class="reddit socialite" data-action="submit" aria-label="Reddit">
+<i class="icon icon-reddit"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="http://pinterest.com/pin/create/button/?url=https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html&amp;media=https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-1200-80.jpg" data-platform="pinterest" target="_blank" class="pinterest socialite" data-action="pin" aria-label="Pinterest">
+<i class="icon icon-pinterest"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="https://share.flipboard.com/bookmarklet/popout?title=NASA%20Picks%20SpaceX%2C%20Blue%20Origin%20and%20More%20to%20Join%20Private%20Moon%20Lander%20Project&amp;url=https%3A%2F%2Fwww.space.com%2Fnasa-picks-spacex-blue-origin-private-moon-lander-companies.html" data-platform="flipboard" target="_blank" class="flipboard socialite" data-action="flip" aria-label="Flipboard">
+<i class="icon icon-flipboard"></i>
+</a>
+</li>
+<li class="socialite-widget-item">
+<a href="mailto:?subject=I%20found%20this%20webpage&amp;body=Hi,%20I%20found%20this%20webpage%20and%20thought%20you%20might%20like%20it%20https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html" class="email socialite" data-platform="email" aria-label="Email">
+<i class="icon icon-envelope-solid"></i>
+</a>
+</li>
+</ul>
+<div class="num-shares-wrapper"><i class="icon icon-share"></i> <span class="num-shares-label">Shares</span> <span class="num-shares-value"></span></div>
+</nav>
+</div>
+</header>
+<section class="content-wrapper">
+<div id="article-body" class="text-copy bodyCopy auto">
+<div id="futr_botr_mdjJXAE6_bQHItauA_div" class="future__jwplayer"><div id="botr_mdjJXAE6_bQHItauA_div"></div></div><p>NASA has recruited SpaceX's Starship, Blue Origin's Blue Moon and three other commercial lunar lander ideas to join its <a href="https://www.space.com/artemis-program.html">Arte</a><a href="https://www.space.com/artemis-program.html">mis m</a><a href="https://www.space.com/artemis-program.html">oon program</a>. </p><p>Today (Nov. 18), NASA announced the selection of SpaceX, Blue Origin, Sierra Nevada Corp., Ceres Robotics and Tyvak Nano-Satellite Systems, Inc. to join its Commercial Lunar Payload Services program (CLPS). The five companies can now vie to deliver robotic payloads to the lunar surface for NASA, helping to pave the way for the return of astronauts to the moon by 2024.</p><aside class="hawk-widget" data-render-type="fte" data-widget-type="seasonal"></aside><p>"American aerospace companies of all sizes are joining the Artemis program," NASA Administrator Jim Bridenstine <a href="https://www.nasa.gov/press-release/new-companies-join-growing-ranks-of-nasa-partners-for-artemis-program" target="_blank">said in a statement</a>. "Expanding the group of companies who are eligible to bid on sending payloads to the moon's surface drives innovation and reduces costs to NASA and American taxpayers. We anticipate opportunities to deliver a wide range of science and technology payloads to help make our vision for lunar exploration a reality and advance our goal of sending humans to explore Mars."</p><p><strong>Related: </strong><a href="https://www.space.com/38315-spacex-mars-colonization-architecture-bfr-images.html"><strong>SpaceX's Starship and Super Heavy Mars Rocket in Pictures</strong></a></p><p>The five companies join nine others <a href="https://www.space.com/42582-nasa-moon-partners-private-companies-unveiled.html">selected by CLPS in November 2018</a>, bringing the total number of private moon lander hopefuls to 14 firms. </p><p>The newly selected five are: </p><div class="inlinegallery"><div class="inlinegallery-wrap"><div class="inlinegallery-item"><span class="slidecount">Image 1 of 5</span><figure data-bordeaux-image-check=""><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="NASA has picked SpaceX, Blue Origin, Sierra Nevada Corp., Ceres Robotics and Tyvak Nano-Satellite Systems to build the private moon landers needed to help return astronauts to the moon in 2024." class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/qPCNDHwDBdDhnpAnfKBEM5-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/qPCNDHwDBdDhnpAnfKBEM5-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/qPCNDHwDBdDhnpAnfKBEM5-650-80.jpg 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/qPCNDHwDBdDhnpAnfKBEM5.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/qPCNDHwDBdDhnpAnfKBEM5.jpg"></p><figcaption><div class="caption-text">NASA has picked SpaceX, Blue Origin, Sierra Nevada Corp., Ceres Robotics and Tyvak Nano-Satellite Systems to build the private moon landers needed to help return astronauts to the moon in 2024.</div></figcaption><div class="credit">(Image credit: Future/SpaceX/Blue Origin, Sierra Nevada)</div></figure></div><div class="inlinegallery-item"><span class="slidecount">Image 2 of 5</span><figure data-bordeaux-image-check=""><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="An artist's concept of Blue Origin's Blue Moon lander." class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/RjqqHiWsQBxXSUW4Xp2HB5-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/RjqqHiWsQBxXSUW4Xp2HB5-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/RjqqHiWsQBxXSUW4Xp2HB5-650-80.jpg 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/RjqqHiWsQBxXSUW4Xp2HB5.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/RjqqHiWsQBxXSUW4Xp2HB5.jpg"></p><figcaption><div class="caption-text">An artist's concept of Blue Origin's Blue Moon lander.</div></figcaption><div class="credit">(Image credit: Blue Origin)</div></figure></div><div class="inlinegallery-item"><span class="slidecount">Image 3 of 5</span><figure data-bordeaux-image-check=""><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="This Sierra Nevada Corp. illustration shows a concept of the company's commercial lunar lander for NASA." class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/FV4vekSFgTsoqeKYNMsZH5-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/FV4vekSFgTsoqeKYNMsZH5-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/FV4vekSFgTsoqeKYNMsZH5-650-80.jpg 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/FV4vekSFgTsoqeKYNMsZH5.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/FV4vekSFgTsoqeKYNMsZH5.jpg"></p><figcaption><div class="caption-text">This Sierra Nevada Corp. illustration shows a concept of the company's commercial lunar lander for NASA.</div></figcaption><div class="credit">(Image credit: Sierra Nevada Corp.)</div></figure></div><div class="inlinegallery-item"><span class="slidecount">Image 4 of 5</span><figure data-bordeaux-image-check=""><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="An artist's concept of a Ceres Robotics moon lander and lunar rover on the moon's surface." class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/GzpuiaWfkUeviRmVHpUVE5-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/GzpuiaWfkUeviRmVHpUVE5-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/GzpuiaWfkUeviRmVHpUVE5-650-80.jpg 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/GzpuiaWfkUeviRmVHpUVE5.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/GzpuiaWfkUeviRmVHpUVE5.jpg"></p><figcaption><div class="caption-text">An artist's concept of a Ceres Robotics moon lander and lunar rover on the moon's surface.</div></figcaption><div class="credit">(Image credit: Ceres Robotics)</div></figure></div><div class="inlinegallery-item"><span class="slidecount">Image 5 of 5</span><figure data-bordeaux-image-check=""><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="This illustration shows a concept moon lander by Tyvak Nano-Satellite Systems, Inc." class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/poDQzeSGhWDXUkuTYThdP5-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/poDQzeSGhWDXUkuTYThdP5-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/poDQzeSGhWDXUkuTYThdP5-650-80.jpg 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/poDQzeSGhWDXUkuTYThdP5.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/poDQzeSGhWDXUkuTYThdP5.jpg"></p><figcaption><div class="caption-text">This illustration shows a concept moon lander by Tyvak Nano-Satellite Systems, Inc.</div></figcaption><div class="credit">(Image credit: Tyvak Nano-Satellite Systems, Inc.)</div></figure></div></div></div><ul><li>Blue Origin, Kent, Washington</li><li>Ceres Robotics, Palo Alto, California</li><li>Sierra Nevada Corporation, Louisville, Colorado</li><li>SpaceX, Hawthorne, California</li><li>Tyvak Nano-Satellite Systems Inc., Irvine, California</li></ul><p class="mid__article"></p><p>They include moon lander concepts of all sizes. They range from the truly massive — SpaceX's towering <a href="https://www.space.com/spacex-starship-super-heavy.html">Starship vehicle</a> — to land multiple rovers on the moon, to the smaller one-off probes like the boxy concept proposed by Tyvak Nano-Satellite Systems. </p><p>"The CLPS initiative was designed to leverage the expertise and innovation of private industry to get to the Moon quickly," Thomas Zurbuchen, NASA's associate administrator of the Science Mission Directorate, said in the statement. "As we build a steady cadence of deliveries, we’ll expand our ability to do new science on the lunar surface, develop new technologies, and support human exploration objectives."</p><p>Blue Origin's lander concept is based on its <a href="https://www.space.com/blue-origin-blue-moon-lander-explained.html">Blue Moon uncrewed vehicle</a>, which the company's billionaire founder Jeff Bezos announced earlier this year. </p><p>Sierra Nevada Corp. and Ceres Robotics are developing mid-sized landers that could potentially be scaled up to larger vehicles in the future. </p><div id="futr_botr_nTHgcvM9_bQHItauA_div" class="future__jwplayer"><div id="botr_nTHgcvM9_bQHItauA_div"></div></div><p>NASA plans to use private moon landers built by these partner companies to deliver rovers like the agency's new <a href="https://www.space.com/nasa-viper-moon-rover-launching-in-2022.html">Volatiles Investigating Polar Exploration Rover</a> (VIPER) to the moon's south pole. Other payloads could include power stations, science experiments and other lunar infrastructure. </p><p>NASA plans to spend a total of $2.6 billion on its CLPS contracts through November 2028, agency officials said. The 14 companies currently in the program can bid on NASA delivery services. </p><p>"All of them bring to the table different strengths and different ideas," Clarke said in a telecon with reporters today. "That's the intent, is to really broaden the pool — to bring on additional capabilities with new, innovative ideas so that our solution set is somewhat broader now."</p><p>In July, NASA awarded the first three contracts under the program, awarding lander missions to companies Astrobotic, Intuitive Machines and Orbit Beyond. Orbit Beyond dropped out of that contract but remains eligible to bid on future opportunities.</p><p>"Buying rides to the Moon to conduct science investigations and test new technology systems, instead of owning the delivery systems, enables NASA to do much more, sooner and for less cost, while being one of many customers on our commercial partners' landers," NASA's Steve Clarke, deputy associate administrator for exploration in the science directorate, said in the statement.</p><p>Artemis aims to put the first woman, and the next man, <a href="https://www.space.com/nasa-2024-moon-mission-difficult.html">on the lunar surface by 2024 </a>and to establish a long-term, sustainable human presence on and around the moon by 2028. </p><p>Such activities will help NASA develop the expertise necessary to put boots on Mars, something the agency wants to do in the 2030s, agency officials have stressed.</p><p>NASA is also looking to the private sector to develop crewed moon landers. This past May, the agency selected 11 companies to conduct studies and build prototypes. These 11 had until Nov. 1 to submit detailed proposals for the Artemis human lander, and NASA is expected to pick up to four finalists early next year.</p><ul><li><a href="https://www.space.com/39398-moon-rush-private-lunar-landings-future.html">Moon Rush: Private Lunar Lander Plans</a></li><li><a href="https://www.space.com/nasa-commercial-moon-landing-sites-target.html">Here's Where Commercial Landers Will Land on the Moon for NASA</a> </li><li><a href="https://www.space.com/nasa-international-space-station-commercial-use.html">NASA: The International Space Station Is Open for Business in Orbit</a></li></ul><p><em>Editor's note: This story was updated at 5:45 p.m. ET to include details from the NASA telecon.</em></p><p><em>Email Tariq Malik at tmalik@space.com or follow him </em><a href="http://twitter.com/tariqjmalik"><em>@tariqjmalik</em></a><a href="https://plus.google.com/111911477909418119993/posts"><em>.</em></a><em> Follow us on Twitter </em><a href="http://twitter.com/spacedotcom"><u><em>@Spacedotcom</em></u></a><em> and on </em><a href="http://www.facebook.com/pages/Spacecom/17610706465"><u><em>Facebook</em></u></a><em>.  </em></p><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace"></a><figure data-bordeaux-image-check=""><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace"><p class="vanilla-image-block"><img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="All About Space Holiday 2019" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW-320-80.png" data-srcset="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW-320-80.png 320w, https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW-650-80.png 650w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW.png" data-pin-media="https://cdn.mos.cms.futurecdn.net/9w3KUMoJj2ajCG3hFSWcW.png"></p></a><figcaption><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace"></a><div class="caption-text"><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace"></a><p><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace"><em>Need more space? </em></a><a href="https://www.myfavouritemagazines.co.uk/knowledge/all-about-space-magazine-subscription/?utm_source=livescience&amp;utm_medium=affiliates&amp;utm_campaign=allaboutspace" target="_blank"><em>Subscribe to our sister title "All About Space" Magazine</em></a><em> for the latest amazing news from the final frontier!</em></p></div></figcaption><div class="credit">(Image credit: All About Space)</div></figure>
+</div>
+<div class="text-copy">
+<p><em><a href="https://forums.space.com/">Join our Space Forums</a> to keep talking space on the latest missions, night sky and more! And if you have a news tip, correction or comment, let us know at: <a href="mailto:community@space.com">community@space.com.</a></em></p>
+</div>
+<div class="read-more-container"></div>
+<div id="this-will-be-used-for-mpu-2"></div>
+</section>
+<script>
+window._taboola = window._taboola || [];
+var taboola_lists = [];
+function taboola_is_device(device) {
+if ((! device) || device === null || (typeof device) === 'undefined') return true
+if (device === 'amp') return false
+if (device === 'desktop' && window.screen.width >= 700) return true
+if (device === 'mobile' && window.screen.width < 700) return true
+return false
+}
+</script>
+<footer class="van_taboola" id="taboola-below-article-thumbnails"></footer>
+<script>
+if (taboola_is_device("desktop")) {
+taboola_lists.push({
+mode: "thumbnails-b",
+container: "taboola-below-article-thumbnails",
+placement: "Below Article Thumbnails",
+target_type: "mix"
+});
+}
+</script>
+<footer class="van_taboola" id="taboola-mobile-below-article-thumbnails"></footer>
+<script>
+if (taboola_is_device("mobile")) {
+taboola_lists.push({
+mode: "thumbnails-a",
+container: "taboola-mobile-below-article-thumbnails",
+placement: "Mobile Below Article Thumbnails",
+target_type: "mix"
+});
+}
+</script>
+<footer class="van_taboola" id=""></footer>
+<script>
+if (taboola_is_device("amp")) {
+taboola_lists.push({
+mode: "thumbnails-a",
+container: "",
+placement: "below-main-column",
+target_type: ""
+});
+}
+</script>
+<script>
+for(var i = 0; i < taboola_lists.length; i++){
+_taboola.push(taboola_lists[i]);
+}
+</script>
+<div class="related-articles-block">
+<div id="expanding-articles"></div> <!-- No tag-links --> </div>
+<footer id="comment-jump">
+</footer>
+</article>
+<aside id="sidebar">
+<section class="box newsletter-signup">
+<h3 class="separator-heading">
+<span>
+<i class="icon icon-envelope white"></i><span class="newsletter-title">Sign Up for e-mail newsletters</span>
+</span>
+</h3>
+<div class="grey-box">
+<p>Get breaking space news and the latest updates on rocket launches, skywatching events and more!</p>
+<iframe style="width:100%" height="100" sandbox="allow-scripts allow-forms" data-lazy-src="https://futureplc.slgnt.eu/optiext/optiextension.dll?ID=s6XsWnyjpNGgHmS9IDSe4kGMs9Z0hv5kXjNQUQiRO2tDkDpIITWHetB5caZtol9br5fEOvs9fVr9oPM92i&amp;BRAND=SDC" data-lazy-priority="low" scrolling="no">
+</iframe>
+<footer>
+<small>No spam, we promise. You can unsubscribe at any time and we'll never share your details without your permission.</small>
+</footer>
+</div>
+</section>
+<section class="popular-box">
+<div id="popular-box-wrapper" class="style1">
+<div class="most-popular-tab-bar">
+<input type="radio" name="popradio" id="popradio-1" checked>
+<div id="popularcontent">
+<div class="flex-row">
+<label class="poplabel" id="poplabel-1" for="popradio-1">
+<span>More from Space...</span>
+</label>
+</div>
+<ol class="popular-list active" id="poplist-1">
+<li class="most-popular-item first-article">
+<div style="width:100%">
+<a href="https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html" aria-label="NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project">
+<img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/6akNcfqrEFGMDZP72kDa65.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-1">1</span><h4><a href="https://www.space.com/nasa-picks-spacex-blue-origin-private-moon-lander-companies.html">NASA Picks SpaceX, Blue Origin and More to Join Private Moon Lander Project</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.space.com/physicists-model-reheating-universe.html" aria-label="We May Finally Understand the Moments Before the Big Bang">
+<img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/NVCEe4fHkFzfNrNLkSTUBH.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-2">2</span><h4><a href="https://www.space.com/physicists-model-reheating-universe.html">We May Finally Understand the Moments Before the Big Bang</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.space.com/rocket-lab-rosie-robot-build-rocket-12-hours.html" aria-label="Rocket Lab's 'Rosie' the Robot Can Build a Booster in Just 12 Hours ">
+<img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU-320-80.jpeg" data-srcset="https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU-320-80.jpeg 320w, https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU-450-80.jpeg 450w, https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU-970-80.jpeg 970w, https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU-1024-80.jpeg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU.jpeg" data-pin-media="https://cdn.mos.cms.futurecdn.net/hsbjAyKD9PLWCSSbsDqbBU.jpeg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-3">3</span><h4><a href="https://www.space.com/rocket-lab-rosie-robot-build-rocket-12-hours.html">Rocket Lab's 'Rosie' the Robot Can Build a Booster in Just 12 Hours </a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.space.com/jupiter-moon-europa-water-vapor-confirmed.html" aria-label="The Weird Plumes of Jupiter's Moon Europa Are Spewing Water Vapor">
+<img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/7xe2LTnY3AL2pRdr2ACgSN.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-4">4</span><h4><a href="https://www.space.com/jupiter-moon-europa-water-vapor-confirmed.html">The Weird Plumes of Jupiter's Moon Europa Are Spewing Water Vapor</a></h4>
+</div>
+</div>
+</li>
+<li class="most-popular-item ">
+<div style="width:100%">
+<a href="https://www.space.com/space-art-nasa-scientist-ed-belbruno-nyc-art-exhibit.html" aria-label="Space and Art Collide in NYC Exhibit with Artist Ed Belbruno">
+<img src="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" alt="" class=" lazy-image lazy-image-loading lazyload optional-image" onerror="if(this.src &amp;&amp; this.src.indexOf('missing-image.svg') !== -1){return true;};this.parentNode.replaceChild(window.missingImage(),this)" sizes="auto" data-normal="https://vanilla.futurecdn.net/space/media/img/missing-image.svg" data-src="https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ-320-80.jpg" data-srcset="https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ-320-80.jpg 320w, https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ-450-80.jpg 450w, https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ-970-80.jpg 970w, https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ-1024-80.jpg 1024w" data-sizes="auto" data-original-mos="https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ.jpg" data-pin-media="https://cdn.mos.cms.futurecdn.net/DBcNp6auFQ6etDYkuMtSpQ.jpg" data-pin-nopin="true">
+</a>
+<div class="popular-listings">
+<span class="number-5">5</span><h4><a href="https://www.space.com/space-art-nasa-scientist-ed-belbruno-nyc-art-exhibit.html">Space and Art Collide in NYC Exhibit with Artist Ed Belbruno</a></h4>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</section> </aside>
+</div>
+<script id="hawklinks-script">
+function loadHawklinks(src) {
+!function (e, f, u) {
+e.async = 1;
+e.src = u;
+f.parentNode.insertBefore(e, f);
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+src);
+}
+window.reliableDOMContentLoaded.then(function() {
+loadHawklinks("https://gizmos.files-hawk.co.uk/hl/hawklinks.js");
+});
+</script>
+<link rel="preload" href="https://gizmos.files-hawk.co.uk/hl/hawklinks.js" as="script">
+<script type="text/javascript">
+if (!window.amIIE()) {
+var targeting = {};
+var siteTargeting = [];
+for (var attrname in siteTargeting) { targeting[attrname] = siteTargeting[attrname]; }
+var pageTags = "moon 2024,clps,commercial lunar payload services,nasa commercial moon partners,nasa moon return,moon by 2024,commercial moon landers,commercial moon payloads,private spaceflight,commercial space,SpaceX,blue origin,tyvak nano-satellite systems,sierra nevada,ceres robotics";
+targeting.tags = pageTags;
+window.reliablePageLoad.then(function(){
+(function(){
+/* bootstrap---start */
+var _sp_=function(n){function t(e){if(o[e])return o[e].exports;var r=o[e]={i:e,l:!1,exports:{}};return n[e].call(r.exports,r,r.exports,t),r.l=!0,r.exports}var o={};return t.m=n,t.c=o,t.i=function(n){return n},t.d=function(n,o,e){t.o(n,o)||Object.defineProperty(n,o,{configurable:!1,enumerable:!0,get:e})},t.n=function(n){var o=n&&n.__esModule?function(){return n["default"]}:function(){return n};return t.d(o,"a",o),o},t.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},t.p="",t(t.s=2)}([function(n,t){function o(n,t){e&&console[n].apply(console,["[bootstrap]"].concat(Array.prototype.slice.call(t)))}var e=!1;n.exports={debug:function(){o("debug",arguments)},info:function(){o("info",arguments)},time:function(){o("time",arguments)},warn:function(){o("warn",arguments)},error:function(){o("error",arguments)},useDefaults:function(){e=!0},DEBUG:1}},function(n,t,o){"use strict";function e(){S||(S=!0,D=b.config=b.config||{},s(),F=D.bootstrap&&D.bootstrap.contentControlCallback||D.content_control_callback,q=D.accountId||D.account_id||D.client_id||window.sp_cid,N=D.beacon&&D.beacon.contentControlEndpoint||D.content_control_beacon_endpoint||v.a,D.debug_level&&"OFF"!==D.debug_level.toString().toUpperCase()||D.debug&&D.debug.level&&"OFF"!==D.debug.level.toString().toUpperCase()?j=!0:window.location.search&&null!=window.location.search.match(/_sp_debug_level=(?!off|OFF)/)&&(j=!0),j&&m.useDefaults({defaultLevel:m.DEBUG}))}function r(n,t,e){function r(o,e){var r=new Image;r.src="//"+N+"/cct?v="+encodeURIComponent(v.b)+"&ct="+h+"&cid="+encodeURIComponent(q)+"&l="+encodeURIComponent(n.toString())+"&rc="+encodeURIComponent(t)+(o?"&d1="+encodeURIComponent(o):"")+(null==e?"":"&d2="+encodeURIComponent(e)),g.info("sending beacon: "+r.src),a&&a()}var i=(arguments.length>3&&void 0!==arguments[3]&&arguments[3],arguments[4]),a=arguments[5];if(i){var c=e.lastIndexOf("."),d=e.lastIndexOf("/"),u=-1===c||d>c?e+".png":e.substring(0,c)+".png",s=new Image;s.addEventListener("load",function(){r("1",u)}),s.addEventListener("error",function(){o.i(f.a)(u,function(n,t,o){r("0",u+"::"+o)})}),s.src=u}else r()}function i(n,t,o,e){var r=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{},a=arguments.length>5&&void 0!==arguments[5]&&arguments[5],c=function(){i(n,t,o,e,r,!0)};n(t,a?o:c,e,r)}function a(n,t,o,e){function r(o,r){t(o,n,r,e.enableImageLoad)}function i(t,r){o(t,n,r,e.enableImageLoad),e.onError&&e.onError(r)}var a=document.createElement("script");a.src=n,a.onload=function(){e.onLoad&&e.onLoad()},a.onerror=function(){function t(n){return o.indexOf(n)>-1}var o=(navigator.userAgent||navigator.vendor||window.opera).toLowerCase();t("mobi")||t("ipad")||t("android")||t("iphone")?i(L):t("exabot")?i(O):t("bingbot")||t("bingpreview")?i(k):t("googlebot")||t("adsbot-google")||t("mediapartners-google")?i(C):t("googleweblight")?i(E):window.location.host===w?i(x):t("msie 10")||t("msie 9")||t("msie 8")?i(I):c(n,r,i)},document.head.appendChild(a)}function c(n,t,e){o.i(f.a)(n,function(o,r,i,a){(o||r?t:e)(a,n+"::"+i)})}function d(n,t,o,e){if(R)return void u(U+"::"+n,o);r(y,n,t,o,e,function(){if(F){if(j){g.error("bootstrap locking",y,n,t,o,e);debugger}setTimeout(function(){F()},250)}})}function u(n,t,o,e){r(_,n,t,o,e)}function s(){b._networkListenerData||(b._networkListenerData=o.i(p.a)())}function l(n,t){e(),g.info("bootstrap called with",n,t),i(a,n,d,u,t)}Object.defineProperty(t,"__esModule",{value:!0});var f=o(4),p=o(5),v=o(3),g=o(0),m=void 0;m=o(0);var w=["w","e","b","c","a","c","h","e",".","g","o","o","g","l","e","u","s","e","r","c","o","n","t","e","n","t",".","c","o","m"].join(""),b=window._sp_||{},h=1,_=0,y=1,L="m",C="g",x="gw",E="gl",I="i",k="b",O="e",U="n",S=!1,R=!1,j=!1,D=void 0,F=void 0,q=void 0,N=void 0;window.addEventListener("beforeunload",function(){R=!0}),window._sp_=b,b.setupNetworkListeners=s,b.bootstrap=l,window.spBootstrap=l,t["default"]=b},function(n,t,o){o(0);n.exports=o(1)["default"]},function(n,t,o){"use strict";function e(n){return n.join("")}o.d(t,"b",function(){return r}),o.d(t,"a",function(){return i});var r=(o(0),"2.0.1195"),i=(e(["w","w","w",".","s","u","m","m","e","r","h","a","m","s","t","e","r",".","c","o","m"]),e(["w","w","w",".","r","o","o","s","t","e","r","f","i","r","e","w","o","r","k",".","c","o","m"]));e(["/","/","f","s","m","1","0","1","9",".","g","l","o","b","a","l",".","s","s","l",".","f","a","s","t","l","y",".","n","e","t","/","f","s","m","/","d","s"]),e(["h","t","t","p","s",":","/","/","d","2","z","v","5","r","k","i","i","4","6","m","i","q",".","c","l","o","u","d","f","r","o","n","t",".","n","e","t","/","0","/","2",".","0",".","1","1","9","5","/","r","e","c","o","v","e","r","y","_","d","f","p","_","i","n","t","e","r","n","a","l","-","v","2",".","0",".","1","1","9","5",".","j","s"]),e(["h","t","t","p","s",":","/","/","d","2","z","v","5","r","k","i","i","4","6","m","i","q",".","c","l","o","u","d","f","r","o","n","t",".","n","e","t","/","0","/","2",".","0",".","1","1","9","5","/","r","e","c","o","v","e","r","y","_","l","i","b","_","a","p","i","_","i","f","r","a","m","e","-","v","2",".","0",".","1","1","9","5",".","h","t","m","l"]),e(["h","t","t","p","s",":","/","/","d","2","z","v","5","r","k","i","i","4","6","m","i","q",".","c","l","o","u","d","f","r","o","n","t",".","n","e","t","/","0","/","2",".","0",".","1","1","9","5","/","r","e","c","o","v","e","r","y","_","l","i","b","_","r","i","d","_","i","f","r","a","m","e","-","v","2",".","0",".","1","1","9","5",".","h","t","m","l"])},function(n,t,o){"use strict";function e(n,t){function o(n){try{return n&&n.timeStamp?n.timeStamp:window.performance.now()}catch(n){return Date.now()}}var e=arguments.length>2&&void 0!==arguments[2]?arguments[2]:window.location,l=arguments.length>3&&void 0!==arguments[3]?arguments[3]:window.navigator,f=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{},p=document.createElement("a");if(p.href=n,"https:"===e.protocol&&p.protocol&&p.protocol!==e.protocol)return r.debug("location.protocol",e.protocol),r.error("protocol mismatch in https environment, standing down"),void t(!1,!1,p.protocol,u);var v=new XMLHttpRequest,g=f.withCredentials;null!=g&&(v.withCredentials=g);try{v.open(f.method||"GET",n)}catch(n){return void t(!0,!1,n.toString(),c,v)}if(null!=f.headers){var m=f.headers;Object.keys(m).forEach(function(n){v.setRequestHeader(n,m[n])})}var w=void 0,b=void 0;v.onloadstart=function(n){w=o(n)},v.onreadystatechange=function(n){if(4===this.readyState){b=o(n)-w;var e=0===this.status&&!1!==l.onLine,r="2"===this.status.toString()[0],c=void 0;return c=r?a:!1===l.onLine?s:i,void t(e,r,this.status+"::"+b,c,v)}};try{v.send(f.body)}catch(n){return void t(!0,!1,n.toString(),d,v)}}t.a=e;var r=o(0),i="n",a="nx",c="xo",d="xs",u="p",s="of"},function(n,t,o){"use strict";function e(){var n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:document,t=[],o=[],e=r.bind(null,t),i=r.bind(null,o);return n.addEventListener("load",e,!0),n.addEventListener("error",i,!0),{load:{events:t,listener:e},error:{events:o,listener:i}}}function r(n,t){if(t.target){var o="string"==typeof t.target.tagName?t.target.tagName.toLowerCase():"",e="string"==typeof t.target.src?t.target.src:"";"iframe"!==o&&n.push({tagName:o,src:e})}}t.a=e;o(0)}]);
+//# sourceMappingURL=https://s3.amazonaws.com/d3jlsadfjkuern/2.0.1195/Ym9vdHN0cmFwLmpz.map
+/* bootstrap---end */
+})();
+(function(){
+(function(){ return (function(){function t(a){window._sp_.config.content_control_callback=function(){u[k("mpdbujpo")][k("isfg")]="//"+a+k("0dd/iunm")};window._sp_.config.enable_rid=!0;window._sp_.config.enable_vid=!0;window._sp_.config.vid_control_callback=function(){console.warn("vid detected")}}function k(a){return a.split("").map(function(a){return v(w.call(a,0)-1)}).join("")}function x(a,b){return"choice"===b?Promise.resolve(a):"off"===b?Promise.resolve(a).then(function(a){return"recovery"===a?"continue-with-adblocker":
+a}):"force"===b?Promise.resolve("recovery"):Promise.reject(Error("Invalid recovery mode: "+b))}function y(){window.pppasoeommmsmzrvbr=new Promise(function(a){window.hiriyyyteetaqgthyu=a})}function z(){window.asdinwawisuihzejsahzl=new Promise(function(a){window.zkckcosdoiaioawqnmzsdqw=a})}function A(a,b){a.then(function(a){a=a.info;n(a)&&(q.sendEvent("tiberius","seen",a.msg_desc),window.localStorage.setItem("adblock","disabled"))});Promise.all([a,b]).then(function(a){var b=a[0].info;q.sendEvent("tiberius",
+a[1],n(b)?b.msg_desc:"")})}function n(a){a=a.msg_id;return 0!==(void 0===a?0:a)}function B(a,b,c){window._sp_.config.mms_domain=a;window._sp_.mms=window._sp_.mms||{};window._sp_.mms.cmd=window._sp_.mms.cmd||[];window._sp_.mms.cmd.push(function(){Object.keys(b).forEach(function(a){window._sp_.mms.setTargeting(a,b[a])});window.vanilla&&window.vanilla.aft?window._sp_.mms.setTargeting("club_loggedin",window.vanilla.aft.logged_in):window._sp_.mms.setTargeting("club_loggedin",!1)});var d=parseInt(g("mock_tiberius_choice")(window),
+10),e=!isNaN(d)&&d in l;a={choice:new Promise(function(a){if(e){var b=l[d]||"choice-"+d,c=parseInt(g("mock_tiberius_choice_timeout")(window),10);isNaN(c)?a(b):window.setTimeout(a,c,b)}else window._sp_.config.mms_choice_selected_callback=function(b){a(l[b]||"choice-"+b)}}),message:new Promise(function(a){function b(a){var b=1<arguments.length&&void 0!==arguments[1]?arguments[1]:0;return isNaN(a)?b:a}var d=parseInt(g("mock_tiberius_campaign_id")(window),10),c=parseInt(g("mock_tiberius_message_id")(window),
+10);isNaN(d)&&isNaN(c)?window._sp_.config.mms_client_data_callback=function(b){a(b)}:(d={msgID:b(c),info:{cmpgn_id:b(d),msg_id:b(c)}},c=parseInt(g("mock_tiberius_campaign_timeout")(window),10),isNaN(c)?a(d):window.setTimeout(a,c,d))})};c&&!e&&window._sp_.mms.cmd.push(function(){return window._sp_.mms.startMsg()});return a}function g(a){return function(b){return C(a,b.location.search)}}function C(a,b){var c=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"\x26";if(""===a)return!1;var d=b.indexOf(a+
+"\x3d");return 0<=d?(d=b.indexOf("\x3d",d),c=b.indexOf(c,d+1),0<=c?b.substring(d+1,c):b.substring(d+1)):!1}var l={1:"whitelist",2:"recovery",3:"alt-ad",4:"publisher-custom",5:"redirect",6:"continue-with-adblocker"},D=Object.assign||function(a){for(var b=1;b<arguments.length;b++){var c=arguments[b],d;for(d in c)Object.prototype.hasOwnProperty.call(c,d)&&(a[d]=c[d])}return a},q={sendEvent:function(a,b,c){if("undefined"!==typeof window.ga){var d=window.ga,e=window.analytics_ga_data||{};d("set","nonInteraction",
+!0);d("send",D({},e,{hitType:"event",eventCategory:a,eventAction:b,eventLabel:c}))}}},r=String,v=r.fromCharCode,w=r.prototype.charCodeAt,u=window;return function(a,b,c,d,e,k,l){var h=7<arguments.length&&void 0!==arguments[7]?arguments[7]:"off";window._sp_=window._sp_||{};window._sp_.config=window._sp_.config||{};window._sp_.config.account_id=a;var p=h,f=g("force_recovery_mode")(window);h="force"===f||"choice"===f||"off"===f?f:p;p="choice"===h||"force"===h;t(b);var m=B(d,l,"force"!==h);f=m.message;
+m=m.choice;A(f,m);void 0===window.asdinwawisuihzejsahzl&&z();var n=window.zkckcosdoiaioawqnmzsdqw;x(m,h).then(n);void 0===window.pppasoeommmsmzrvbr&&y();f.then(window.hiriyyyteetaqgthyu);p&&(window._sp_.config.gpt_auto_load=!1,window._sp_.config.publisher_base=k);p?(window._sp_.bootstrap(c+"/media/js/b"+e+"-gb.js"),window._sp_.bootstrap(c+"/media/js/c"+e+"-gb.js")):(window._sp_.bootstrap(c+"/media/js/a"+e+"-gb.js"),window._sp_.bootstrap(c+"/media/js/b"+e+"-gb.js"))}})(); })()(
+200,
+"www.space.com",
+"https://www.space.com/145110",
+"ttauri.space.com",
+"space",
+"",
+targeting,
+"off"
+);
+})();
+});
+window.vanilla.tiberius = {
+enabled: true,
+}
+} else {
+window.vanilla.tiberius = {
+enabled: false,
+}
+}
+</script>
+<footer id="document-footer" class="container full">
+<div id="document-footer-content">
+<p>Space is part of Future US Inc, an international media group and leading digital publisher. <a href="http://www.futureus.com" target="_blank">Visit our corporate site</a>.</p>
+<nav>
+<ul>
+<li><a href="http://www.futureplc.com/terms-conditions/" target="_blank">Terms and conditions</a></li>
+<li><a href="http://www.futureplc.com/privacy-policy/" target="_blank">Privacy policy</a></li>
+<li><a href="http://www.futureplc.com/cookies-policy/" target="_blank">Cookies policy</a></li>
+<li><a href="http://www.futureplc.com/accessibility-statement/" target="_blank">Accessibility Statement</a></li>
+<li><a href="https://www.space.com/topics" target="_blank">Topics</a></li>
+</ul>
+</nav>
+<p>©
+<span>
+<span>
+<span>Future US, Inc.</span> </span>
+<span>11 West 42nd Street, 15th Floor</span>,
+<span>New York,</span>
+<span class="region">NY</span> <span>10036</span></span>. </p>
+</div>
+</footer>
+<script>
+window.vanL10N = [];
+</script><script>
+if (document.cookie.indexOf("EuConsent") < 0) {
+if (!window._comscore) {
+window._comscore = window._comscore || [];
+}
+window._comscore.push({
+c1: "2",
+c2: "10055482",
+cs_ucfr: '' });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+} else {
+window.reliableConsentGiven.then(function(value) {
+if (!window._comscore) {
+window._comscore = window._comscore || [];
+}
+var cs_ucfr_value = '';
+if (value.consent && value.consent.purposeConsents[5]) {
+cs_ucfr_value = 1;
+} else {
+cs_ucfr_value = 0;
+}
+window._comscore.push({
+c1: "2",
+c2: "10055482",
+cs_ucfr: cs_ucfr_value });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+});
+}
+</script>
+<script>
+var dfp_config = {
+"keystone": "",
+"ad_unit": "10518929/Know_Space/",
+"live_ad_unit": "10518929/Know_Space/",
+"test_ad_unit": "10518929/Know_Space_Test/",
+"recovery_ad_unit": "",
+"recovery_test_ad_unit": "",
+"incremental": true,
+"gptBeta": "",
+"max_incremental_ads": 20,
+"max_incremental_ads_mobile": 20,
+"max_concurrent_ads": 4,
+"refresh": true,
+"site_platform": "vanilla",
+"tiberius": true,
+"tiberius_mode": "off",
+"keywords": "channel_other,type_news,syndicate,serversidehawk,videoarticle,Spaceflight,moon 2024,clps,commercial lunar payload services,nasa commercial moon partners,nasa moon return,moon by 2024,commercial moon landers,commercial moon payloads,private spaceflight,commercial space,SpaceX,blue origin,tyvak nano-satellite systems,sierra nevada,ceres robotics",
+"article_id": "RQavgdQtfSQjbfVSFytUX7",
+"vanilla_article_id": "RQavgdQtfSQjbfVSFytUX7",
+"page_type": "news",
+"product_brand": "",
+"product_category": "",
+"product": "",
+"vertical": "spaceflight",
+"source": "",
+"provertical": "",
+"single_request": true,
+"onscroll": {
+"refresh" : "",
+"mpu": ""
+},
+"jwplayer": "carousel,article"
+}
+</script> <script>
+dfp_config.gallery_refresh_interval = 2;
+</script> <script>window.vanillaComponents = [{"trackable":[{"type":"click","identifier":".menuitems a","name":"Link clicked","countTotal":true}],"name":"Primary Nav","excludeHidden":false,"identifier":".primary-nav"},{"trackable":[{"type":"click","identifier":".feature-block-item-wrapper a","name":"Article clicked","countTotal":false}],"name":"Featured articles","excludeHidden":false,"identifier":".top-featured"},{"trackable":[{"type":"click","identifier":"a","name":"Logo clicked","countTotal":false}],"name":"Site Logo","identifier":".logo"},{"trackable":[{"type":"click","identifier":".most-popular-item","name":"Most read article clicked","countTotal":true}],"name":"Most Popular - Popular","identifier":"#poplist-1"},{"trackable":[{"type":"click","identifier":".most-popular-item","name":"Most shared article clicked","countTotal":true}],"name":"Most Popular - Shared","identifier":"#poplist-2"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":false}],"name":"Prev/Next","identifier":".next-prev-container"},{"trackable":[{"type":"click","identifier":"a","name":"Number clicked","countTotal":true}],"name":"Paginated Review Numerical pagination - Number","identifier":".pagination-numerical-list"},{"trackable":[{"type":"click","identifier":".prev,.next","name":"Prev/Next clicked","countTotal":false}],"name":"Paginated Review Numerical pagination - Prev/Next","identifier":".navigation-sequential"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Inline Pagination","identifier":".swipe-pages-wrapper"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Article Tags","identifier":"#articleTag"},{"trackable":[{"type":"click","identifier":".recommended-article a","name":"Link clicked","countTotal":true}],"name":"Recommended article","identifier":".recommendation-articles"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Trending bar","identifier":".trending-items"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-1","identifier":".club-boilerplate-1"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-2","identifier":".club-boilerplate-2"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-3","identifier":".club-boilerplate-3"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Boilerplate-4","identifier":".club-boilerplate-4"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Inline links","identifier":"#article-body"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Social links","identifier":".socialite-widget"},{"trackable":[{"type":"click","identifier":"a","name":"Link clicked","countTotal":true}],"name":"Avatar","identifier":"#club-login"},{"trackable":[{"type":"click","identifier":".fwd-link","name":"FWD link clicked","countTotal":true}],"name":"Forward Linker","identifier":"#article-body"},{"trackable":[{"type":"click","identifier":"div .brands-lead","name":"Extending Trending Bar","countTotal":true}],"name":"Trending Bar Parent","excludeHidden":false,"identifier":"div .trending-bar"},{"trackable":[{"type":"click","identifier":"a[data-event-label=elkInjectedRelatedBlock]","name":"Link clicked","countTotal":true}],"name":"ELK Injected Related Block","identifier":"#article-body"}]</script> <script>
+var require = {waitSeconds:0};
+</script> <!-- Google Tag Manager -->
+<script>
+(function(){
+function loadGTM(){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WBMJWKG');
+}
+// Can't be in asset loader until we can call custom loader functions
+;(window.Promise
+? Promise.all([
+window.reliablePageLoad,
+window.reliableConsentGiven
+])
+: window.reliableConsentGiven
+).then(function(){
+setTimeout(loadGTM, 1500);
+});
+})();
+</script>
+<!-- End Google Tag Manager -->
+<script type="text/javascript">
+(function(){
+if(typeof window._taboola !== 'undefined'
+&& typeof taboola_lists !== 'undefined'
+&& Array.isArray(taboola_lists)
+&& taboola_lists.length)
+{
+function loadTaboola()
+{
+!function (e, f, u) {
+e.async = 1;
+e.src = u;
+f.parentNode.insertBefore(e, f);
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+'//cdn.taboola.com/libtrc/futureplc-network/loader.js');
+_taboola.push({article: 'auto'});
+_taboola.push({flush: true});
+}
+// Can't be in asset loader until we can call custom loader functions
+(window.Promise
+? Promise.all([window.reliablePageLoad, window.reliableConsentGiven])
+: window.reliableConsentGiven
+).then(function(){
+setTimeout(loadTaboola, 6000);
+});
+}
+})();
+</script>
+<script>window.addEventListener("load",function(){if(!window.askForConsent){var e=document.createElement("script");e.src="https://vanilla.futurecdn.net/space/cookieconsent.min.js",e.onload=function(){var e=window.innerWidth>=700?"bottom":"top";window.cookieconsent.initialise({palette:{popup:{background:"#000"},button:{background:"#666666"}},position:e,content:{message:"We use cookies on this website to deliver content to you, personalise content and ads, provide social media features, and analyse our traffic. Click 'I accept' to consent to the use of cookies. More information on cookies and how to manage them",link:"click here",href:"http://www.futureplc.com/cookies-policy/",dismiss:"I accept"}})},document.body.appendChild(e);var o=document.createElement("link");o.rel="stylesheet",o.type="text/css",o.href="https://vanilla.futurecdn.net/space/cookieconsent.min.css",document.body.appendChild(o);var t=document.createElement("style");t.appendChild(document.createTextNode(".cc-window {z-index:10000000}")),document.body.appendChild(t)}});</script>
+<!-- document assets - added by the article itself -->
+<script>
+window.vanilla.addJs({"id":"main-js","src":"\/\/vanilla.futurecdn.net\/space\/145110\/media\/js\/main.min.js"}, null, 0)
+window.vanilla.addJs({"id":"responsive-js","src":"\/responsive.d911f142.js"}, null, 0)
+window.vanilla.addJs({"id":"ffte-js","src":"\/\/vanilla.futurecdn.net\/space\/145110\/media\/shared\/js\/app.js"}, 2000, 1)
+window.vanilla.addCss({"href":"\/\/vanilla.futurecdn.net\/space\/145110\/media\/css\/space.min.css"})
+</script> <script>
+window.ffte = {"site":"space","endpoint":"\/\/api.vanilla.futurecdn.net\/article","locale":"US","gaCode":"UA-72111741-9","debug":[],"serverEnvironment":"live","regionLink":"","isGlobal":false,"properties":{"articleProduct":[],"articleProductHandle":[],"articleType":"news","articleTemplate":"standard","articleTagHandle":["moon-2024","clps","commercial-lunar-payload-services","nasa-commercial-moon-partners","nasa-moon-return","moon-by-2024","commercial-moon-landers","commercial-moon-payloads","private-spaceflight","commercial-space","spacex","blue-origin","tyvak-nano-satellite-systems","sierra-nevada","ceres-robotics"],"articleTagType":["freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform","freeform"],"articleControlTag":["channel_other","type_news","syndicate","serversidehawk","videoarticle"],"articleVerticalHandle":["spaceflight"],"articleCategoryHandle":["moon","spacex"],"subSite":"","articleVertical":"spaceflight","id":"RQavgdQtfSQjbfVSFytUX7","legacyId":"RQavgdQtfSQjbfVSFytUX7"}}
+</script>
+<script id="parsely-cfg" src="//cdn.parsely.com/keys/space.com/p.js"></script>
+<script>
+window.xkeys = ["space-platform-responsive","space-core-version-21.5.0","space-core-ftefrontprod02","space-article-RQavgdQtfSQjbfVSFytUX7","space-articletype-news","space-article-age-recent","space-region-US","space-language-en","space-author-5Viv39noKQhN6iXKGbkgBQ","space-author-eqxmhfnkmdK8rDt4YgfXiD","space-tag-sAiG5piEmaaSPubdpXpEqf","space-tag-U9RjTEq47BPWhYStt3kHz7","space-tag-p7Z4NK963qM3imTsYnLJhM","space-tag-qLUGrys4xmoWW5sNyNrk8f","space-tag-ZtJoLFvz8a9QyfBvuBGNtn","space-tag-F3ZCDi4KTGhFnsiDekUxRn","space-tag-V3TT7dwJBVPJPKwPViMwhD","space-tag-iF3xPhQMsy2m5k8aLvzowe","space-tag-CxFRwm2bFDewo3jK7AJAKQ","space-tag-ov7XQTcLTkeT3xviZ7VAPh","space-tag-8xAcmJDFuzizySVTsBN5nG","space-tag-PGCK4yKMtenP4Mb3539Pp","space-tag-9WZSwT5RXvPdtapEpHyw2M","space-tag-cU8ypKJE2cBnjXsoHLSRy3","space-tag-prD9rKtWznqYaHtYJ67gtE","space-tag-oVRng74gM8pSQ9MEesjtFE","space-tag-AzST2VhBAZGfFKbMrnMmbg","space-tag-WrC8JuVCndk7cbFz2PjhYF"];
+window.templateVariables = {};
+</script>
+
+<script>
+window.ftr_request_id = "";
+</script> 
+</body></html>

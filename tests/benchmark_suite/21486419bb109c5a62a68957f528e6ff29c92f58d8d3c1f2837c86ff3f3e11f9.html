@@ -1,0 +1,1396 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id-ID"><!--<![endif]--><head profile="http://gmpg.org/xfn/11">
+
+<title>Jangan Membenci Satu Kaum Secara Berlebihan | Kabar tentang Dunia Islam</title>
+<link rel="pingback" href="https://kabarislamia.com/xmlrpc.php">
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.remove(); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[i].remove();
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+						+ '//' + window.location.hostname;
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9rYWJhcmlzbGFtaWEuY29t"
+		+ "&wpcomid=4817886"
+		+ "&time=1574250731";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel="dns-prefetch" href="//s2.wp.com">
+<link rel="dns-prefetch" href="//s1.wp.com">
+<link rel="dns-prefetch" href="//s0.wp.com">
+<link rel="dns-prefetch" href="//kabarislam.wordpress.com">
+<link rel="dns-prefetch" href="//widgets.wp.com">
+<link rel="dns-prefetch" href="//s.pubmine.com">
+<link rel="dns-prefetch" href="//x.bidswitch.net">
+<link rel="dns-prefetch" href="//static.criteo.net">
+<link rel="dns-prefetch" href="//ib.adnxs.com">
+<link rel="dns-prefetch" href="//aax.amazon-adsystem.com">
+<link rel="dns-prefetch" href="//bidder.criteo.com">
+<link rel="dns-prefetch" href="//cas.criteo.com">
+<link rel="dns-prefetch" href="//gum.criteo.com">
+<link rel="dns-prefetch" href="//ads.pubmatic.com">
+<link rel="dns-prefetch" href="//gads.pubmatic.com">
+<link rel="dns-prefetch" href="//tpc.googlesyndication.com">
+<link rel="dns-prefetch" href="//ad.doubleclick.net">
+<link rel="dns-prefetch" href="//googleads.g.doubleclick.net">
+<link rel="dns-prefetch" href="//www.googletagservices.com">
+<link rel="dns-prefetch" href="//cdn.switchadhub.com">
+<link rel="dns-prefetch" href="//delivery.g.switchadhub.com">
+<link rel="dns-prefetch" href="//delivery.swid.switchadhub.com">
+<link rel="alternate" type="application/rss+xml" title="Kabar tentang Dunia Islam » Feed" href="https://kabarislamia.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Kabar tentang Dunia Islam » Umpan Komentar" href="https://kabarislamia.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Kabar tentang Dunia Islam » Jangan Membenci Satu Kaum Secara Berlebihan Umpan Komentar" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s0.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1573557586h&ver=5.3-RC5-46726"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="all-css-0-1" href="https://s0.wp.com/_static/??-eJyNkd1uAiEQhV+ogHRrjRdNnwWWkaL8hRlq9+3LLpoaTTfeEAbONxzOiHNmY4oEkUSoLPtqXURxzmMKDIPzMN1VfER8ETeY9sn+gakYZVBYn7Tyz2mNs3Zg368P6htDBbwiMCwnpLtqDfPuBCiOQFmNJ7ZUa3IXDy46mgR9QWhgrrq7e4CuhK2t1FBsuykg3vmeb4Suzpv5r8ubuqgyCaTJwxNtFuoa+aVYZ8d0kUkud1yyBW22kboF5J1fXP3b5VC9Z+gIGBhHLl7HJDZcbsUSdPsLUvfU29+frkU7x9POQ1Y0K0J7RYFvKUdaw87OWGgTb5LLnhH8rCM9Op0LILK2BlcD6xOduc/wIbe7N7nfymE4/gLruh9H?cssminify=yes" type="text/css" media="all">
+<link rel="stylesheet" id="wpcom-block-editor-styles-css" href="//widgets.wp.com/wpcom-block-editor/common.min.css?ver=20191119220153" media="all">
+<link rel="stylesheet" id="all-css-2-1" href="https://s2.wp.com/_static/??-eJyVjEEOwjAMBD9EsAqlnBBvSVM3mDpx1Dgq/J5wQeVSwW1Wu7OwJOMkKkYFvWHADKn0MJD3R8j6ZNy7nHewmoViEhdPMcNCg0fNoJJMklzpZwVLbWUiNGwXUAyJreIfB6N12NcHwzRVeKxNgihKVc4f2Lr0KIbFWSWJX8GMbGneUmfsWXxFD3W1im/pGi7N6XDujm3TdvcXyvCH/g==?cssminify=yes" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-3-1" href="https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&amp;cssminify=yes" type="text/css" media="print">
+<link rel="stylesheet" id="all-css-4-1" href="https://s0.wp.com/_static/??-eJx9i0EKAjEMRS9kjYUZBhfiWTKltpE0KU0Grz+4EBHF1X8f3oNHD0nFszi0LXTeCokBJieVFcebjsnsAL/1rubhxkgDrOIgKa/9V5kmQg6sRT/PV+Q1t2xQJyisK/JTuLZLnJfTEs/zFO87xWJJtA==?cssminify=yes" type="text/css" media="all">
+<script>
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script type="text/javascript" src="https://s0.wp.com/_static/??-eJyFj9EOwiAMRX9Ihntw0wfjtyCrpAgFKbjo1wuJPrgsmjRpbnpy762co0DSrkzA0ta5FUiP9+osb+QvQHg0SWXoPNIH1oEyUG5sDJw9MCsDK1cfzuhAFIZUAco15hKWnC8iumKQWCZwNWoSzXWhVty/H0G6I8x/MQs5Kn0VCRifrfPJH/vd2B+24zDs7QszQHB9"></script>
+<link rel="stylesheet" id="all-css-0-2" href="https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1530132353h&amp;cssminify=yes" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kabarislam.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Najd (Arab Saudi) Serang Yaman dan Syam" href="https://kabarislamia.com/2015/03/30/najd-arab-saudi-serang-yaman-dan-syam/">
+<link rel="next" title="Location of Najd is in Iraq or in Najd?" href="https://kabarislamia.com/2015/03/30/location-of-najd-is-in-iraq-or-in-najd/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/">
+<link rel="shortlink" href="https://wp.me/pkdlQ-1kJ">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fkabarislamia.com%2F2015%2F03%2F30%2Fjangan-membenci-satu-kaum-secara-berlebihan%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fkabarislamia.com%2F2015%2F03%2F30%2Fjangan-membenci-satu-kaum-secara-berlebihan%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jangan Membenci Satu Kaum Secara Berlebihan">
+<meta property="og:url" content="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/">
+<meta property="og:description" content="Mudah2an kita bisa memahami dan mengamalkan Al Qur’an dan Hadits ini. Jangan cuma di kerongkongan. Jangan lebay dalam mencintai atau membenci sesuatu. Biasa biasa saja. Jangan sampai karena k…">
+<meta property="article:published_time" content="2015-03-30T02:40:29+00:00">
+<meta property="article:modified_time" content="2015-12-30T01:11:00+00:00">
+<meta property="og:site_name" content="Kabar tentang Dunia Islam">
+<meta property="og:image" content="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png">
+<meta property="og:image:width" content="752">
+<meta property="og:image:height" content="515">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:creator" content="@nizaminz">
+<meta name="twitter:site" content="@nizaminz">
+<meta name="twitter:text:title" content="Jangan Membenci Satu Kaum Secara Berlebihan">
+<meta name="twitter:card" content="summary">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=32" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=32" sizes="16x16">
+<link rel="apple-touch-icon-precomposed" href="https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=114">
+<link rel="openid.server" href="https://kabarislamia.com/?openidserver=1">
+<link rel="openid.delegate" href="https://kabarislamia.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="https://kabarislamia.com/osd.xml" title="Kabar tentang Dunia Islam">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+		<style id="wpcom-hotfix-masterbar-style">
+			@media screen and (min-width: 783px) {
+				#wpadminbar .quicklinks li#wp-admin-bar-my-account.with-avatar > a img {
+					margin-top: 5px;
+				}
+			}
+		</style>
+		<meta name="application-name" content="Kabar tentang Dunia Islam"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Menyediakan Informasi yang Tepat agar Ummat Tidak Tersesat oleh Berita orang Fasiq/Kafir"><meta name="msapplication-task" content="name=Berlangganan;action-uri=https://kabarislamia.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=16"><meta name="msapplication-task" content="name=Mendaftar untuk blog gratis;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Dukungan WordPress.com;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Forum WordPress.com;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="description" content="Mudah2an kita bisa memahami dan mengamalkan Al Qur'an dan Hadits ini. Jangan cuma di kerongkongan. Jangan lebay dalam mencintai atau membenci sesuatu. Biasa biasa saja. Jangan sampai karena kita amat membenci satu kaum, akhirnya kita justru menganiaya mereka secara keji / biadab: &quot;...Dan janganlah sekali-kali kebencian(mu) kepada sesuatu kaum karena mereka menghalang-halangi kamu dari Masjidilharam,…">
+<style type="text/css">
+#header h1 a, #header .description {
+display: none;
+}
+</style>
+		<script type="text/javascript">
+		function __ATA_CC() {var v = document.cookie.match('(^|;) ?personalized-ads-consent=([^;]*)(;|$)');return v ? 1 : 0;}
+		var __ATA_PP = { pt: 1, ht: 1, tn: 'digg3', amp: false, siteid: 4817886, consent: __ATA_CC() };
+		var __ATA = __ATA || {};
+		__ATA.cmd = __ATA.cmd || [];
+		__ATA.criteo = __ATA.criteo || {};
+		__ATA.criteo.cmd = __ATA.criteo.cmd || [];
+		</script>
+		<script type="text/javascript">
+		(function(){function g(a,c){a:{for(var b=a.length,d="string"==typeof a?a.split(""):a,e=0;e<b;e++)if(e in d&&c.call(void 0,d[e],e,a)){c=e;break a}c=-1}return 0>c?null:"string"==typeof a?a.charAt(c):a[c]};function h(a,c,b){b=null!=b?"="+encodeURIComponent(String(b)):"";if(c+=b){b=a.indexOf("#");0>b&&(b=a.length);var d=a.indexOf("?");if(0>d||d>b){d=b;var e=""}else e=a.substring(d+1,b);a=[a.substr(0,d),e,a.substr(b)];b=a[1];a[1]=c?b?b+"&"+c:c:b;a=a[0]+(a[1]?"?"+a[1]:"")+a[2]}return a};var k=0;function l(a,c){var b=document.createElement("script");b.src=a;b.onload=function(){c&&c(void 0)};b.onerror=function(){c("error")};a=document.getElementsByTagName("head");var d;a&&0!==a.length?d=a[0]:d=document.documentElement;d.appendChild(b)}function m(a){return"string"==typeof a&&0<a.length}
+		function p(a,c,b){c=void 0===c?"":c;b=void 0===b?".":b;var d=[];Object.keys(a).forEach(function(e){var f=a[e],n=typeof f;"object"==n&&null!=f||"function"==n?d.push(p(f,c+e+b)):null!==f&&void 0!==f&&(e=encodeURIComponent(c+e),d.push(e+"="+encodeURIComponent(f)))});return d.filter(m).join("&")}function q(){return window.__ATA||{}}function r(a,c){a||(q().config=c.c,l(c.url))}var t=Math.floor(1E13*Math.random());q().rid=t;
+		var u=q().pageParams,v="//"+(q().serverDomain||"s.pubmine.com")+"/conf",w=window.top===window,x;try{var y=JSON.parse(document.getElementById("cmp-configuration").innerText);if("boolean"!==typeof y.gdpr_applies)throw Error("Config doesn't contain gdpr_applies");x=y.gdpr_applies?1:0}catch(a){x=null}
+		var z=x,A=window.__ATA_PP||u||null,B=w?document.referrer?document.referrer:null:null,C=w?null:document.referrer?document.referrer:null,D=function(){var a=void 0===a?document.cookie:a;return(a=g(a.split("; "),function(c){return-1!=c.indexOf("__ATA_tuuid=")}))?a.split("=")[1]:""}(),E=p({gdpr:z,pp:A,rid:t,src:B,ref:C,tuuid:D?D:null,vp:window.innerWidth+"x"+window.innerHeight},"",".");
+		(function(a){var c;k++;var b="callback__"+Date.now().toString(36)+"_"+k.toString(36);a=h(a,void 0===c?"cb":c,b);window[b]=function(d){r(void 0,d)};l(a,function(d){d&&r(d)})})(v+"?"+E);}).call(this);
+		</script><link rel="amphtml" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/amp/"></head>
+<body class="post-template-default single single-post postid-5129 single-format-standard customizer-styles-applied highlander-enabled highlander-light"><div id="container">
+		<div class="wpcnt">
+			<div class="wpa top">
+				<span class="wpa-about">Iklan</span>
+				<div class="u">
+						<div style="padding-bottom:15px;width:728px;height:90px;">
+			<div id="atatags-48178862-5dd528ebb7fa8">
+				<script type="text/javascript">
+				__ATA.cmd.push(function() {
+					__ATA.initSlot('atatags-48178862-5dd528ebb7fa8',  {
+						collapseEmpty: 'before',
+						sectionId: '48178862',
+						location: 110,
+						width: 728,
+						height: 90
+					});
+				});
+				</script>
+			</div>
+		</div>
+				</div>
+				
+			</div>
+		</div>
+		
+<div id="header">
+
+	<div id="menu">
+		<ul class="menu">
+	<li class="page_item"><a href="https://kabarislamia.com/">Beranda</a></li>
+	<li class="page_item page-item-4019"><a href="https://kabarislamia.com/khawarij/">Khawarij</a></li>
+<li class="page_item page-item-2"><a href="https://kabarislamia.com/about/">Tentang Kami</a></li>
+</ul>
+	</div>
+
+	<div id="header-box">
+	<div id="header-image">
+		<img src="https://kabarislam.files.wordpress.com/2010/04/cropped-header.jpg" alt="">
+	</div>
+	<div id="header-overlay">
+		<img src="https://s2.wp.com/wp-content/themes/pub/digg3/images/bg_header_overlay.png" alt="">
+	</div>
+
+	<div id="pagetitle">
+		<h1><a href="https://kabarislamia.com/" title="Kabar tentang Dunia Islam">Kabar tentang Dunia Islam</a></h1>
+	</div>
+
+	<div id="syndication">
+		<a href="https://kabarislamia.com/feed/" title="Syndicate this site using RSS" class="feed">Entries <abbr title="Really Simple Syndication">RSS</abbr></a> | <a href="https://kabarislamia.com/comments/feed/" title="Syndicate comments using RSS">Comments RSS</a>
+	</div>
+	<div id="searchbox">
+		<form method="get" id="searchform" action="https://kabarislamia.com/">
+<div>
+	<input type="text" value="" name="s" id="s">
+	<input type="submit" id="searchsubmit" value="Cari">
+</div>
+</form>	</div>
+	</div>
+</div>
+
+<div class="pagewrapper"><div id="page">
+
+<!-- Start Obar -->
+
+	<div class="obar">
+<ul>
+
+		<div class="wpcnt">
+			<div class="wpa wpwidesky">
+				<span class="wpa-about">Iklan</span>
+				<div class="u">
+							<div style="padding-bottom:15px;width:160px;height:600px;">
+			<div id="atatags-48178863-5dd528ebb88be">
+				<script type="text/javascript">
+				__ATA.cmd.push(function() {
+					__ATA.initSlot('atatags-48178863-5dd528ebb88be',  {
+						collapseEmpty: 'before',
+						sectionId: '48178863',
+						location: 140,
+						width: 160,
+						height: 600
+					});
+				});
+				</script>
+			</div>
+		</div>
+				</div>
+				
+			</div>
+		</div><li id="text-5" class="widget widget_text">			<div class="textwidget"><ul class="widgets-list-layout no-grav">
+<li><a class="bump-view" title="Cara Nabi Menjaga Kesehatan dan Berobat" href="https://bekamasysyifaholistik.com/2010/06/22/cara-nabi-menjaga-kesehatan-dan-berobat/"><img class="widgets-list-layout-blavatar" src="https://i2.wp.com/bekamasysyifaholistik.files.wordpress.com/2010/06/darahbekam.jpg?resize=40%2C40" alt="Cara Nabi Menjaga Kesehatan dan Berobat"></a>
+<div class="widgets-list-layout-links"><a class="bump-view" href="https://bekamasysyifaholistik.com/2010/06/22/cara-nabi-menjaga-kesehatan-dan-berobat/">Cara Nabi Menjaga Kesehatan dan Berobat</a></div>
+</li>
+<li><a class="bump-view" title="Beberapa Hal Penting Sebelum dan Setelah Dibekam" href="https://bekamasysyifaholistik.com/2010/12/29/beberapa-hal-penting-sebelum-dan-setelah-dibekam/"><img class="widgets-list-layout-blavatar" src="https://i0.wp.com/bekamasysyifaholistik.files.wordpress.com/2010/12/hal-penting-bekam.jpg?resize=40%2C40&amp;ssl=1" alt="Beberapa Hal Penting Sebelum dan Setelah Dibekam"></a>
+<div class="widgets-list-layout-links"><a class="bump-view" href="https://bekamasysyifaholistik.com/2010/12/29/beberapa-hal-penting-sebelum-dan-setelah-dibekam/">Beberapa Hal Penting Sebelum dan Setelah Dibekam</a></div>
+</li>
+<li><a class="bump-view" title="Berapa Kali/Sering Kita Harus Bekam?" href="https://bekamasysyifaholistik.com/2011/03/07/berapa-kalisering-kita-harus-bekam/"><img class="widgets-list-layout-blavatar" src="https://i1.wp.com/bekamasysyifaholistik.files.wordpress.com/2016/09/bekam-idul-adha.jpg?resize=40%2C40&amp;ssl=1" alt="Berapa Kali/Sering Kita Harus Bekam?"></a>
+<div class="widgets-list-layout-links"><a class="bump-view" href="https://bekamasysyifaholistik.com/2011/03/07/berapa-kalisering-kita-harus-bekam/">Berapa Kali/Sering Kita Harus Bekam?</a></div>
+</li>
+<li><a class="bump-view" title="Memperbaiki Penglihatan Mata dengan Bekam" href="https://bekamasysyifaholistik.com/2012/05/27/memperbaiki-penglihatan-mata-dengan-bekam/"><img class="widgets-list-layout-blavatar" src="https://i0.wp.com/agusnizami.files.wordpress.com/2012/05/mata.jpg?resize=40%2C40" alt="Memperbaiki Penglihatan Mata dengan Bekam"></a>
+<div class="widgets-list-layout-links"><a class="bump-view" href="https://bekamasysyifaholistik.com/2012/05/27/memperbaiki-penglihatan-mata-dengan-bekam/">Memperbaiki Penglihatan Mata dengan Bekam</a></div>
+</li>
+<li><a class="bump-view" title="Apakah Bekam itu Sakit?" href="https://bekamasysyifaholistik.com/2011/04/04/apakah-bekam-itu-sakit/"><img class="widgets-list-layout-blavatar" src="https://i1.wp.com/agusnizami.files.wordpress.com/2011/01/anakkecildibekanakkecildibekam3.jpg?resize=40%2C40" alt="Apakah Bekam itu Sakit?"></a>
+<div class="widgets-list-layout-links"><a class="bump-view" href="https://bekamasysyifaholistik.com/2011/04/04/apakah-bekam-itu-sakit/">Apakah Bekam itu Sakit?</a></div>
+</li>
+<li><a class="bump-view" title="Mencegah Tersumbat dan Pecahnya Pembuluh Darah" href="https://bekamasysyifaholistik.com/2010/12/24/mencegah-tersumbat-dan-pecahnya-pembuluh-darah/"><img class="widgets-list-layout-blavatar" src="https://i2.wp.com/bekamasysyifaholistik.files.wordpress.com/2010/12/pembuluhdarahpecah.jpg?resize=40%2C40" alt="Mencegah Tersumbat dan Pecahnya Pembuluh Darah"></a>
+<div class="widgets-list-layout-links"><a class="bump-view" href="https://bekamasysyifaholistik.com/2010/12/24/mencegah-tersumbat-dan-pecahnya-pembuluh-darah/">Mencegah Tersumbat dan Pecahnya Pembuluh Darah</a></div>
+</li>
+</ul>
+<p><a href="https://infoindonesiakita.com/2017/04/05/jual-beli-sepeda-motor-cash-atau-kredit-untuk-jakarta-dan-jabodetabek/" rel="nofollow" title="Jual Beli Sepeda Motor"><img src="https://infoindonesia.files.wordpress.com/2017/04/eva21.jpg" border="0" alt="">Jual Beli Sepeda Motor EVA 085920594986</a></p>
+<p><a title="Budget Traveler, Ini Lho Rekomendasi Kuliner Murah dan Menggugah Selera di Jogja" href="https://agusnizami.com/2017/02/22/budget-traveler-ini-lho-rekomendasi-kuliner-murah-dan-menggugah-selera-di-jogja/" rel="bookmark">Budget Traveler, Ini Lho Rekomendasi Kuliner Murah dan Menggugah Selera di Jogja</a></p>
+<p><strong>Ayo Infaq Dakwah</strong></p>
+<p>Rekening BCA 0061947069 a/n Nizami</p>
+<p><a title="Sejarah Melempar Jumrah" href="http://munatour.co.id/sejarah-melempar-jumrah/">Sejarah Melempar Jumrah</a></p>
+<p><a title="Rukun-Rukun Haji" href="http://munatour.co.id/rukun-rukun-haji/">Rukun-Rukun Haji</a></p>
+<p><a title="Biro Haji dan Umrah Munatour" href="http://munatour.co.id">Biro Haji dan Umrah Munatour</a></p>
+<p><a title="Jual Nasi Kebuli" href="http://nasi-kebuli.com/2016/04/08/jual-nasi-kebuli" rel="nofollow"><img src="https://agusnizami.files.wordpress.com/2016/04/nasi-kebuli-jakarta-kecil.jpg" alt="Jual Nasi Kebuli" width="180" border="0">Jual Nasi Kebuli Jakarta</a></p>
+<p><a title="Buku “Membangun IMAN Di Zaman Modern” oleh Agus Nizami" href="http://media-islam.or.id/2015/11/11/buku-membangun-iman-di-zaman-modern-oleh-agus-nizami" rel="nofollow"><img src="https://agusnizami.files.wordpress.com/2016/04/buku-iman-terbit.jpg" alt="Buku “Membangun IMAN Di Zaman Modern” oleh Agus Nizami" width="180" height="260" border="0">Buku “Membangun IMAN Di Zaman Modern” oleh Agus Nizami</a></p>
+<a id="pd_a_9815281"></a><div class="CSS_Poll PDS_Poll" id="PDI_container9815281" style="display:inline-block;"></div><div id="PD_superContainer"></div><noscript><a href="https://polldaddy.com/p/9815281" target="_blank" rel="noopener noreferrer">Take Our Poll</a></noscript>
+<h3><a title="Diskusi Islam" href="https://groups.yahoo.com/neo/groups/syiar-islam/info">Diskusi Islam</a></h3>
+<p><a href="https://www.change.org/p/presiden-joko-widodo-turunkan-tarif-listrik-pln-yang-amat-mahal/">Petisi Turunkan Tarif Listrik PLN yang Amat Mahal</a></p>
+</div>
+		</li>
+<li id="rss-2" class="widget widget_rss"><h2 class="widgettitle"><a class="rsswidget" href="https://media-islam.or.id/feed/" title="Sindikasikan konten ini"><img style="background: orange; color: white; border: none;" width="14" height="14" src="https://s-ssl.wordpress.com/wp-includes/images/rss.png?m=1354137473h" alt="RSS"></a> <a class="rsswidget" href="https://media-islam.or.id" title="Belajar Islam sesuai Al Qur'an dan Hadits serta Ulama Salaf">Media Islam</a></h2>
+<ul><li><a class="rsswidget" href="https://media-islam.or.id/2019/09/02/jadwal-majelis-talim-di-kebon-nanas-selatan-jakarta-timur/" title="Jadwal Majelis Ta’lim di Kebon Nanas Selatan Jakarta Timur. Acara biasanya usai sholat Maghrib dan selesai saat azan Isya’. Malam Senin di Masjid At Taubah oleh KH Dr Mohamad Hidayat MBA, MH Malam Selasa...">Jadwal Majelis Ta’lim di Kebon Nanas Selatan Jakarta Timur</a></li><li><a class="rsswidget" href="https://media-islam.or.id/2019/08/17/album-foto-a-ridwan-sjarkawie/" title="Album Foto A Ridwan Sjarkawie Album">Album Foto A Ridwan Sjarkawie</a></li><li><a class="rsswidget" href="https://media-islam.or.id/2019/02/06/mencari-aliran-islam-yang-lurus/" title="Agama yang dirihoi Allah adalah Islam. Saat seseorang sudah masuk Islam, dia cari lagi aliran Islam manakah yang lurus? Sebab banyak juga aliran Islam yang sesat. Nah bagaimana caranya agar kita menganut aliran Islam...">Mencari Aliran Islam yang Lurus</a></li></ul></li>
+<li id="rss-8" class="widget widget_rss"><h2 class="widgettitle"><a class="rsswidget" href="https://infozaman.blogspot.com/feeds/posts/default" title="Sindikasikan konten ini"><img style="background: orange; color: white; border: none;" width="14" height="14" src="https://s-ssl.wordpress.com/wp-includes/images/rss.png?m=1354137473h" alt="RSS"></a> <a class="rsswidget" href="https://infozaman.blogspot.com/" title="">INFO ZAMAN</a></h2>
+<ul><li><a class="rsswidget" href="https://infozaman.blogspot.com/2018/05/moeldoko-minta-tak-ada-upaya-melemahkan.html" title="Kalau pemerintah bisa mensejahterakan rakyatnya shg dapat gaji &gt; rp 3 juta/bln tak masalah. Masalahnya puluhan juta rakyat nganggur dan tak punya penghasilan. Kok uang tsb dihambur2kan jadi gaji pejabat bikinan dgn gaji rp 100 juta/orang?Subsidi rakyat dicabut. Premium dan Pertalite langka hingga saya harus beli Pertamax rp 8900/ltr.Pancasila nya di mana […]">Moeldoko Minta Tak Ada Upaya Melemahkan BPIP dengan Isu Gaji</a></li><li><a class="rsswidget" href="https://infozaman.blogspot.com/2016/07/modus-operansi-korupsi-produk-cina.html" title="Modus korupsi sekarang: produk Cina dijual dgn harga Amrik.Ibaratnya HP Huawei rp 3 juta dijual seharga IPhone rp 9 juta. Selisihnya dinikmati rame2.Bis Cina rp 1 miyar dijual rp 4 miyar. Kalau 1000 bis, koruptor ini untung rp 3 trilyun.Pesawat ARJ21 Cina yg harganya rp 400 milyar dihargai rp 990 milyar. Untuk 30 pesawat untung hampr rp 18 trilyun.Proyek KA […]">Modus Operandi Korupsi: Produk Cina Dijual dgn Harga Amerika</a></li><li><a class="rsswidget" href="https://infozaman.blogspot.com/2015/08/demo-buruh-tuntut-naikkan-umr.html" title="Kalau turunkan harga barang saya setuju.Kalau naikkan upah/gaji jadi 22%, saya tidak setuju. Sebab tak semua perusahaan menaikkan gaji karyawan dan harga2 barang pasti naik.Bukannya tidak suka gaji naik. Suka sekali. Cuma meski UMR dinaikkan 100% pun, belum tentu semua perusahaan menaikkan gaji karyawannya. Banyak karyawan yang gajinya naik 0%. Tidak naik sa […]">Demo Buruh Tuntut Naikkan UMR?</a></li><li><a class="rsswidget" href="https://infozaman.blogspot.com/2015/05/kenapa-arab-jepang-korsel-kaya-dan.html" title="Boleh dikata 95% kiri kanan di Arab itu jika tidak pasir ya batu. Tapi mereka makmur.Jepang, Korsel, Swiss tak punya minyak juga makmur.Indonesia dgn tanah dan laut yang luas, berbagai pepohonan tersedia,, punya minyak, gas, batubara, perak, emas, dsb dan juga mutiara. Berbagai batu permata, zamrud, intan, dsb ada di Indonesia.Padi, jagung, cabe, dsb tumbuh […]">Kenapa Arab, Jepang, Korsel Kaya dan Indonesia Miskin?</a></li><li><a class="rsswidget" href="https://infozaman.blogspot.com/2015/04/menkeu-tarif-pajak-penghasilan-di.html" title="Ekspresi MenkeuSaya seneng lihat ekspresi Menkeu kita ini.... :)Kira2 apalagi ya yang bisa diperas dari rakyat?GDP per kapita Inggris sekitar 41 ribu dollar/tahun. Indonesia USD 3470. Artinya pendapatan rakyat Inggris 11x lipat Indonesia. Kalau rakyat Indonesia Rp 2 juta/bulan, kena pph 50% tinggal rp 1 juta/bulan, bisa mencret. Kalau Inggris dgn pendapatan […]">Menkeu: Tarif Pajak Penghasilan di Indonesia Terlalu Rendah</a></li></ul></li>
+<li id="rss-7" class="widget widget_rss"><h2 class="widgettitle"><a class="rsswidget" href="http://talkandchats.blogspot.com/feeds/posts/default" title="Sindikasikan konten ini"><img style="background: orange; color: white; border: none;" width="14" height="14" src="https://s-ssl.wordpress.com/wp-includes/images/rss.png?m=1354137473h" alt="RSS"></a> <a class="rsswidget" href="http://talkandchats.blogspot.com/" title="">All About LIfe</a></h2>
+<ul><li><a class="rsswidget" href="http://talkandchats.blogspot.com/2019/02/indonesian-woman-taxi-motorbike-bring.html" title="Indonesian Woman Taxi Motorbike driver, Wa Ode Siti Zuhro Badia, Bring Her 2 Children, while driving her motorbike to pick up and deliver the goods from her customer.Her children, a girl age 4 years and a half, and a boy age 1 year and 9 month. They live in Depok city, Indonesia.Badia become Taxi motorbike driver after her husband left her and marry another […]">Indonesian Woman Taxi Motorbike Bring Her 2 Children</a></li><li><a class="rsswidget" href="http://talkandchats.blogspot.com/2019/02/how-to-bring-sick-people-to-doctor-in.html" title="This is how the Indonesians bring sick people to a doctor in Indonesia. The road is heavily damaged so the car can't get through or maybe they don't have a care at all. They use saroong to bring the sick people.They use 2 saroongs so the man can fit in and a bamboo to bring the sick people.">How to Bring Sick People to a Doctor in Indonesia</a></li><li><a class="rsswidget" href="http://talkandchats.blogspot.com/2019/01/how-to-get-your-body-taller.html" title="To get taller, you must know whether your body still grow or not. Usually people stop growing taller at the age of 18 to 21.To prevent the growing stop, avoid cold bath in the nightDo not lift heavy weight things (things that weight more than 7 kgs)If you want to excercise to increase your strength, do push up, pulling up, and joggingJogging around 30-60 min […]">How to Get Your Body Taller</a></li><li><a class="rsswidget" href="http://talkandchats.blogspot.com/2017/08/the-delicious-food-pecel-bawal.html" title="The Delicious Food Pecel Bawal. The price is only USD 1 only. It has Bawal Fish, Tahu (Tofu), Sambal (Chilli Sauce), Vegetables such as cucumber, and rice.It's delicious food from Indonesia.I bought this Pecel Bawal from Bude restaurant in Blok M Square, Jakarta.">The Delicious Food Pecel Bawal</a></li><li><a class="rsswidget" href="http://talkandchats.blogspot.com/2017/03/curing-vertigo-and-migraine-with-hijama.html" title="Many patients with vertigo and migraine are healed with Hijama (blood cupping). One of the patient is Mr Aan Parhan (65 years old) who live on Swadaya Street, East of Jakarta. Mr. Aan said he used to cry because he cannot pray in the mosque for weeks. He cannot walk straightly since he has vertigo for months. His vision is spinning around. He get headaches.T […]">Curing Vertigo and Migraine with Hijama (Blood Cupping)</a></li></ul></li>
+<li id="media_image-3" class="widget widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><a href="http://www.grosirsolomukena.com"><img width="156" height="200" src="https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg?w=156" class="image wp-image-5085 aligncenter attachment-160x200 size-160x200" alt="GrosirSoloMukena.com: Pusat Mukena Modern" style="max-width: 100%; height: auto;" srcset="https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg?w=156 156w, https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg?w=117 117w, https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg 269w" sizes="(max-width: 156px) 100vw, 156px" data-attachment-id="5085" data-permalink="https://kabarislamia.com/grosirsolomukenabaru/" data-orig-file="https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg" data-orig-size="269,344" data-comments-opened="1" data-image-meta='{"aperture":"0","credit":"","camera":"","caption":"","created_timestamp":"0","copyright":"","focal_length":"0","iso":"0","shutter_speed":"0","title":"","orientation":"0"}' data-image-title="GrosirSoloMukenaBaru" data-image-description="" data-medium-file="https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg?w=269" data-large-file="https://kabarislam.files.wordpress.com/2015/03/grosirsolomukenabaru.jpg?w=269"></a></li>
+<li id="text-3" class="widget widget_text">			<div class="textwidget"><a href="http://media-islam.or.id"><img src="https://agusnizami.files.wordpress.com/2009/12/mediaislamgif.gif"></a>
+
+<p>Nabi: Sesungguhnya diantara ummatku ada orang yang membaca Alquran tapi tidak melampaui tenggorokan mereka. Mereka membunuh orang Islam dan membiarkan penyembah berhala. Mereka keluar dari Islam secepat anak panah melesat dari busurnya. Sungguh jika aku mendapati mereka, pasti aku akan bunuh mereka seperti terbunuhnya kaum Aad. (Shahih Muslim No.1762) </p>
+
+
+<strong><a href="https://www.facebook.com/groups/mediaislam">Buat yang ingin gabung ke grup Islam silahkan klik:
+https://www.facebook.com/groups/mediaislam
+Dan klik Join/Gabung....</a></strong>
+
+
+<h2>
+<a href="http://ummatipress.com">Ummati Press</a></h2>
+
+<h2><span>
+<a href="http://salafytobat.wordpress.com">Salafy Tobat</a></span></h2>
+</div>
+		</li>
+<li id="facebook-likebox-4" class="widget widget_facebook_likebox"><h2 class="widgettitle"><a href="https://www.facebook.com/KabarIslamyangBenar">Kabar Islam</a></h2>
+		<div id="fb-root"></div>
+		<div class="fb-page" data-href="https://www.facebook.com/KabarIslamyangBenar" data-width="200" data-height="580" data-hide-cover="false" data-show-facepile="true" data-tabs="timeline">
+		<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/KabarIslamyangBenar"><a href="https://www.facebook.com/KabarIslamyangBenar">Kabar Islam</a></blockquote></div>
+		</div>
+		</li>
+<li id="rss-6" class="widget widget_rss"><h2 class="widgettitle"><a class="rsswidget" href="http://rss.groups.yahoo.com/group/syiar-islam/rss" title="Sindikasikan konten ini"><img style="background: orange; color: white; border: none;" width="14" height="14" src="https://s-ssl.wordpress.com/wp-includes/images/rss.png?m=1354137473h" alt="RSS"></a> <a class="rsswidget" href="" title="">Syiar Islam</a></h2>
+<ul><li>Sebuah galat telah terjadi; umpan tersebut kemungkinan sedang anjlok. Coba lagi nanti.</li></ul></li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">Meta</h2>
+			<ul>
+			<li><a href="https://wordpress.com/start/id?ref=wplogin">Daftar</a></li>			<li><a href="https://kabarislam.wordpress.com/wp-login.php">Masuk</a></li>
+			<li><a href="https://kabarislamia.com/feed/">Entries feed</a></li>
+			<li><a href="https://kabarislamia.com/comments/feed/">Feed Komentar</a></li>
+			<li><a href="https://wordpress.com/" title="Didukung oleh WordPress, state-of-the-art semantic personal publishing platform.">WordPress.com</a></li>			</ul>
+			</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Kategori</h2>
+		<ul>
+				<li class="cat-item cat-item-1288194"><a href="https://kabarislamia.com/category/akhir-zaman/" title="Akhir Zaman">Akhir Zaman</a> (15)
+</li>
+	<li class="cat-item cat-item-58994"><a href="https://kabarislamia.com/category/akhlaq/">Akhlaq</a> (47)
+</li>
+	<li class="cat-item cat-item-2542961"><a href="https://kabarislamia.com/category/aliran-islam/">Aliran Islam</a> (160)
+<ul class="children">
+	<li class="cat-item cat-item-495599"><a href="https://kabarislamia.com/category/aliran-islam/hizbut-tahrir/">Hizbut Tahrir</a> (5)
+</li>
+	<li class="cat-item cat-item-495598"><a href="https://kabarislamia.com/category/aliran-islam/ikhwanul-muslimin/">Ikhwanul Muslimin</a> (68)
+</li>
+	<li class="cat-item cat-item-888466"><a href="https://kabarislamia.com/category/aliran-islam/khawarij/">Khawarij</a> (50)
+</li>
+	<li class="cat-item cat-item-606245"><a href="https://kabarislamia.com/category/aliran-islam/syiah/">Syi'ah</a> (44)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-1080059"><a href="https://kabarislamia.com/category/aliran-sesat/">Aliran Sesat</a> (225)
+<ul class="children">
+	<li class="cat-item cat-item-132290"><a href="https://kabarislamia.com/category/aliran-sesat/bidah/">Bid'ah</a> (15)
+</li>
+	<li class="cat-item cat-item-2745"><a href="https://kabarislamia.com/category/aliran-sesat/liberal/">Liberal</a> (3)
+</li>
+	<li class="cat-item cat-item-356654"><a href="https://kabarislamia.com/category/aliran-sesat/wahabi/">Wahabi</a> (185)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-6052883"><a href="https://kabarislamia.com/category/amal-shaleh/">Amal Shaleh</a> (1)
+</li>
+	<li class="cat-item cat-item-393144"><a href="https://kabarislamia.com/category/bulan-ramadhan/">Bulan Ramadhan</a> (1)
+</li>
+	<li class="cat-item cat-item-34922661"><a href="https://kabarislamia.com/category/dakwah-2/">Dakwah</a> (60)
+</li>
+	<li class="cat-item cat-item-48878"><a href="https://kabarislamia.com/category/doa/">Do'a</a> (1)
+</li>
+	<li class="cat-item cat-item-386993"><a href="https://kabarislamia.com/category/dosa/">Dosa</a> (3)
+</li>
+	<li class="cat-item cat-item-35019"><a href="https://kabarislamia.com/category/dunia-islam/">Dunia Islam</a> (195)
+<ul class="children">
+	<li class="cat-item cat-item-218346202"><a href="https://kabarislamia.com/category/dunia-islam/arab-saudi-dunia-islam/">Arab Saudi</a> (15)
+</li>
+	<li class="cat-item cat-item-154294"><a href="https://kabarislamia.com/category/dunia-islam/cina/">Cina</a> (1)
+</li>
+	<li class="cat-item cat-item-6645"><a href="https://kabarislamia.com/category/dunia-islam/iran/">Iran</a> (8)
+</li>
+	<li class="cat-item cat-item-16272"><a href="https://kabarislamia.com/category/dunia-islam/libya/">Libya</a> (10)
+</li>
+	<li class="cat-item cat-item-678168"><a href="https://kabarislamia.com/category/dunia-islam/mesir/">Mesir</a> (42)
+</li>
+	<li class="cat-item cat-item-55667"><a href="https://kabarislamia.com/category/dunia-islam/palestina/">Palestina</a> (4)
+</li>
+	<li class="cat-item cat-item-1741429"><a href="https://kabarislamia.com/category/dunia-islam/suriah/">Suriah</a> (88)
+</li>
+	<li class="cat-item cat-item-1073792"><a href="https://kabarislamia.com/category/dunia-islam/turki/">Turki</a> (7)
+</li>
+	<li class="cat-item cat-item-1254594"><a href="https://kabarislamia.com/category/dunia-islam/yaman/" title="Berita-berita tentang Yaman">Yaman</a> (8)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-53033"><a href="https://kabarislamia.com/category/ekonomi/">Ekonomi</a> (16)
+<ul class="children">
+	<li class="cat-item cat-item-350548"><a href="https://kabarislamia.com/category/ekonomi/riba/">Riba</a> (1)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-3205"><a href="https://kabarislamia.com/category/english/">English</a> (11)
+</li>
+	<li class="cat-item cat-item-1304065"><a href="https://kabarislamia.com/category/fitnah/">FITNAH</a> (26)
+</li>
+	<li class="cat-item cat-item-123955"><a href="https://kabarislamia.com/category/google-ads/">Google Ads</a> (1)
+</li>
+	<li class="cat-item cat-item-41411"><a href="https://kabarislamia.com/category/haji/">Haji</a> (2)
+</li>
+	<li class="cat-item cat-item-1136307"><a href="https://kabarislamia.com/category/hari-akhir/">Hari Akhir</a> (3)
+</li>
+	<li class="cat-item cat-item-75990"><a href="https://kabarislamia.com/category/holocaust/">Holocaust</a> (1)
+</li>
+	<li class="cat-item cat-item-275377"><a href="https://kabarislamia.com/category/ht/">HT</a> (1)
+</li>
+	<li class="cat-item cat-item-118190"><a href="https://kabarislamia.com/category/hukum/">Hukum</a> (7)
+</li>
+	<li class="cat-item cat-item-26605"><a href="https://kabarislamia.com/category/ilmu/">Ilmu</a> (4)
+</li>
+	<li class="cat-item cat-item-57955"><a href="https://kabarislamia.com/category/iman/">Iman</a> (17)
+</li>
+	<li class="cat-item cat-item-122"><a href="https://kabarislamia.com/category/indonesia/">Indonesia</a> (27)
+</li>
+	<li class="cat-item cat-item-29003"><a href="https://kabarislamia.com/category/internasional/">Internasional</a> (6)
+</li>
+	<li class="cat-item cat-item-420"><a href="https://kabarislamia.com/category/islam/">Islam</a> (103)
+<ul class="children">
+	<li class="cat-item cat-item-241267"><a href="https://kabarislamia.com/category/islam/puasa/">Puasa</a> (6)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-9937"><a href="https://kabarislamia.com/category/israel/">israel</a> (9)
+</li>
+	<li class="cat-item cat-item-44409"><a href="https://kabarislamia.com/category/jihad/">Jihad</a> (24)
+</li>
+	<li class="cat-item cat-item-7032541"><a href="https://kabarislamia.com/category/kabar-islam/">Kabar Islam</a> (3)
+</li>
+	<li class="cat-item cat-item-1835656"><a href="https://kabarislamia.com/category/kebiadaban-israel/">Kebiadaban Israel</a> (3)
+</li>
+	<li class="cat-item cat-item-1253985"><a href="https://kabarislamia.com/category/kejahatan/">Kejahatan</a> (7)
+</li>
+	<li class="cat-item cat-item-14791"><a href="https://kabarislamia.com/category/keluarga/">Keluarga</a> (1)
+</li>
+	<li class="cat-item cat-item-70395"><a href="https://kabarislamia.com/category/kemiskinan/">Kemiskinan</a> (2)
+</li>
+	<li class="cat-item cat-item-31272"><a href="https://kabarislamia.com/category/kesehatan/">Kesehatan</a> (14)
+</li>
+	<li class="cat-item cat-item-5399053"><a href="https://kabarislamia.com/category/kesesatan/">Kesesatan</a> (5)
+</li>
+	<li class="cat-item cat-item-20367402"><a href="https://kabarislamia.com/category/khilafiyyah/">Khilafiyyah</a> (1)
+</li>
+	<li class="cat-item cat-item-923909"><a href="https://kabarislamia.com/category/kitab-suci/">Kitab Suci</a> (1)
+</li>
+	<li class="cat-item cat-item-786126"><a href="https://kabarislamia.com/category/kristenisasi/">Kristenisasi</a> (6)
+</li>
+	<li class="cat-item cat-item-797743"><a href="https://kabarislamia.com/category/larangan/">Larangan</a> (1)
+</li>
+	<li class="cat-item cat-item-13993390"><a href="https://kabarislamia.com/category/media-massa-islam/">Media Massa Islam</a> (3)
+</li>
+	<li class="cat-item cat-item-5546353"><a href="https://kabarislamia.com/category/mubazir/">Mubazir</a> (7)
+</li>
+	<li class="cat-item cat-item-1285133"><a href="https://kabarislamia.com/category/nahdlatul-ulama/">Nahdlatul Ulama</a> (1)
+</li>
+	<li class="cat-item cat-item-5568319"><a href="https://kabarislamia.com/category/pemimpin-islam/">Pemimpin Islam</a> (13)
+</li>
+	<li class="cat-item cat-item-30193"><a href="https://kabarislamia.com/category/pendidikan/">Pendidikan</a> (2)
+</li>
+	<li class="cat-item cat-item-270972"><a href="https://kabarislamia.com/category/pengajian/">Pengajian</a> (7)
+</li>
+	<li class="cat-item cat-item-13975839"><a href="https://kabarislamia.com/category/penjajahan-as/">Penjajahan AS</a> (12)
+</li>
+	<li class="cat-item cat-item-32622573"><a href="https://kabarislamia.com/category/pentingnya-bermazhab/">Pentingnya BerMazhab</a> (2)
+</li>
+	<li class="cat-item cat-item-498658"><a href="https://kabarislamia.com/category/perumahan/">Perumahan</a> (1)
+</li>
+	<li class="cat-item cat-item-98584528"><a href="https://kabarislamia.com/category/perumahan-islam/">Perumahan Islam</a> (1)
+</li>
+	<li class="cat-item cat-item-6861"><a href="https://kabarislamia.com/category/politik/">Politik</a> (3)
+</li>
+	<li class="cat-item cat-item-146133"><a href="https://kabarislamia.com/category/pornografi/">Pornografi</a> (4)
+</li>
+	<li class="cat-item cat-item-376258"><a href="https://kabarislamia.com/category/sedekah/">Sedekah</a> (3)
+</li>
+	<li class="cat-item cat-item-14661"><a href="https://kabarislamia.com/category/sejarah/">Sejarah</a> (1)
+</li>
+	<li class="cat-item cat-item-313029"><a href="https://kabarislamia.com/category/siyasah/">Siyasah</a> (3)
+</li>
+	<li class="cat-item cat-item-26280187"><a href="https://kabarislamia.com/category/syiah-sesat/">Syi'ah Sesat</a> (2)
+</li>
+	<li class="cat-item cat-item-2061775"><a href="https://kabarislamia.com/category/syiar-islam/">Syiar Islam</a> (3)
+</li>
+	<li class="cat-item cat-item-1484299"><a href="https://kabarislamia.com/category/tawuran/">Tawuran</a> (1)
+</li>
+	<li class="cat-item cat-item-3815492"><a href="https://kabarislamia.com/category/toleransi-beragama/">Toleransi Beragama</a> (3)
+</li>
+	<li class="cat-item cat-item-1"><a href="https://kabarislamia.com/category/uncategorized/">Uncategorized</a> (51)
+</li>
+	<li class="cat-item cat-item-30117309"><a href="https://kabarislamia.com/category/undangan-pengajian/">Undangan Pengajian</a> (1)
+</li>
+	<li class="cat-item cat-item-62856"><a href="https://kabarislamia.com/category/usaha/">Usaha</a> (1)
+</li>
+	<li class="cat-item cat-item-172720"><a href="https://kabarislamia.com/category/zakat/">Zakat</a> (3)
+</li>
+		</ul>
+			</li>
+<li id="linkcat-1356" class="widget widget_links"><h2 class="widgettitle">Blogroll</h2>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://wordpress.com/">WordPress.com</a></li>
+<li><a href="http://wordpress.org/">WordPress.org</a></li>
+
+	</ul>
+</li>
+
+<li id="rss_links-3" class="widget widget_rss_links"><h2 class="widgettitle">RSS Feed</h2>
+<ul><li><a href="https://kabarislamia.com/feed/" title="Berlangganan pada Pos">RSS - Pos</a></li><li><a href="https://kabarislamia.com/comments/feed/" title="Berlangganan pada Komentar">RSS - Komentar</a></li></ul>
+</li>
+		<div class="wpcnt">
+			<div class="wpa wpwidesky">
+				<span class="wpa-about">Iklan</span>
+				<div class="u">
+							<div style="padding-bottom:15px;width:160px;height:600px;">
+			<div id="atatags-48178863-5dd528ebc55bb">
+				<script type="text/javascript">
+				__ATA.cmd.push(function() {
+					__ATA.initSlot('atatags-48178863-5dd528ebc55bb',  {
+						collapseEmpty: 'before',
+						sectionId: '48178863',
+						location: 140,
+						width: 160,
+						height: 600
+					});
+				});
+				</script>
+			</div>
+		</div>
+				</div>
+				
+			</div>
+		</div>
+</ul>
+	</div>
+
+<!-- End Obar -->
+	<div class="wrapper"><!-- This wrapper class appears only on Page and Single Post pages. -->
+	<div class="narrowcolumnwrapper"><div class="narrowcolumn">
+
+		<div class="content">
+
+			
+			<div class="post-5129 post type-post status-publish format-standard hentry category-khawarij" id="post-5129">
+
+				<h2><a href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/" rel="bookmark" title="Jangan Membenci Satu Kaum Secara Berlebihan">Jangan Membenci Satu Kaum Secara Berlebihan</a></h2>
+
+				<div class="postinfo">
+					Posted on <span class="postdate">Maret 30, 2015</span> by Admin									</div>
+
+				<div class="entry">
+
+					<p style="text-align:justify;"><a href="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png"><img data-attachment-id="5130" data-permalink="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/komentar-isis/" data-orig-file="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png" data-orig-size="752,515" data-comments-opened="1" data-image-meta='{"aperture":"0","credit":"","camera":"","caption":"","created_timestamp":"0","copyright":"","focal_length":"0","iso":"0","shutter_speed":"0","title":"","orientation":"0"}' data-image-title="KOMENTAR ISIS" data-image-description="" data-medium-file="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png?w=468" data-large-file="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png?w=468" class="aligncenter size-large wp-image-5130" src="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png?w=468&amp;h=321" alt="KOMENTAR ISIS" width="468" height="321" srcset="https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png?w=468&amp;h=321 468w, https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png?w=150&amp;h=103 150w, https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png?w=500&amp;h=342 500w, https://kabarislam.files.wordpress.com/2015/03/komentar-isis.png 752w" sizes="(max-width: 468px) 100vw, 468px"></a></p>
+<p style="text-align:justify;">Mudah2an kita bisa memahami dan mengamalkan Al Qur’an dan Hadits ini. Jangan cuma di kerongkongan.<br>
+Jangan lebay dalam mencintai atau membenci sesuatu. Biasa biasa saja. Jangan sampai karena kita amat membenci satu kaum, akhirnya kita justru menganiaya mereka secara keji / biadab:</p>
+<blockquote>
+<p style="text-align:justify;"><strong>“…Dan janganlah sekali-kali kebencian(mu) kepada sesuatu kaum karena mereka menghalang-halangi kamu dari Masjidilharam, mendorongmu berbuat aniaya (kepada mereka)…” [Al Maa-idah 2]</strong></p>
+<p style="text-align:justify;">
+<strong>“… Dan janganlah sekali-kali kebencianmu terhadap sesuatu kaum, mendorong kamu untuk berlaku tidak adil. Berlaku adillah, karena adil itu lebih dekat kepada takwa…” [Al Maa-idah 8]</strong></p>
+</blockquote>
+<p style="text-align:justify;">Kita harus hati2 terhadap aliran ekstrim “Penegak Sunnah” yang menanamkan kebencian yang amat sangat pada satu kaum sehingga akhirnya membantai kaum tsb dgn berbagai bom bunuh diri. Nabi dan para sahabat meng-Islam-kan Orang Kafir tanpa paksaan. Laa ikroha fid diin. Bukan membantai orang kafir.</p>
+<p style="text-align:justify;"><span id="more-5129"></span>Dari hadits Abu Hurairah ra, Rasulullah SAW bersabda :</p>
+<p style="text-align:justify;">ْﺐِﺒْﺣَﺃ َﻚَﺒﻴِﺒَﺣ ﺎًﻧْﻮَﻫ ﺎَﻣ ﻰَﺴَﻋ ْﻥَﺃ َﻥﻮُﻜَﻳ َﻚَﻀْﻴِﻐَﺑ ﺎًﻣْﻮَﻳ ،ﺎَﻣ<br>
+ْﺾِﻐْﺑَﺃَﻭ َﻚَﻀْﻴِﻐَﺑ ﺎًﻧْﻮَﻫ ﺎَﻣ ﻰَﺴَﻋ ْﻥَﺃ َﻥﻮُﻜَﻳ َﻚَﺒﻴِﺒَﺣ ﺎًﻣْﻮَﻳ<br>
+ﺎَﻣ</p>
+<p style="text-align:justify;">“Cintailah orang yang kamu cintai sekadarnya. Bisa jadi orang yang sekarang kamu cintai suatu hari nanti harus kamu benci. Dan bencilah orang yang kamu benci sekadarnya, bisa jadi di satu hari nanti dia menjadi orang yang harus kamu cintai.”</p>
+<p style="text-align:justify;">[HR. At-Tirmidzi no.1997 dan dishahihkan Asy-Syaikh Al-Albani<br>
+dalam Shahih Al-Jami’ no. 178]</p>
+<p style="text-align:justify;">Umar bin Al-Khaththab ra berkata, “Wahai Aslam, janganlah rasa cintamu berlebihan dan jangan sampai kebencianmu membinasakan.” Aslam berkata, “Bagaimana itu?” Umar radiallohu anhu berkata, “Jika engkau mencintai seseorang, janganlah berlebihan seperti halnya anak kecil yang menyenangi sesuatu dengan berlebihan. Jika engkau membenci seseorang, jangan sampai kebencian menimbulkan keinginan orang yang kamu<br>
+benci celaka atau binasanya.”</p>
+<p style="text-align:justify;">Al-Hasan Al-Bashri ra berkata, “Hendaknya kalian mencintai jangan berlebihan dan membenci tidak berlebihan. Telah ada orang-orang yang berlebihan dalam mencintai satu kaum akhirnya binasa. Ada pula yang berlebihan dalam membenci satu kaum dan mereka pun binasa.”</p>
+<p style="text-align:justify;">[Ni’matul Ukhuwah hal. 41]</p>
+<p style="text-align:justify;">
+		</p><div class="wpcnt">
+			<div class="wpa wpmrec">
+				<span class="wpa-about">Iklan</span>
+				<div class="u">		<div style="padding-bottom:15px;width:300px;height:250px;float:left;margin-right:5px;margin-top:0px">
+			<div id="atatags-48178861-5dd528ebc6443">
+				<script type="text/javascript">
+				__ATA.cmd.push(function() {
+					__ATA.initSlot('atatags-48178861-5dd528ebc6443',  {
+						collapseEmpty: 'before',
+						sectionId: '48178861',
+						location: 120,
+						width: 300,
+						height: 250
+					});
+				});
+				</script>
+			</div>
+		</div>		<div style="padding-bottom:15px;width:300px;height:250px;float:left;margin-top:0px">
+			<div id="atatags-48178864-5dd528ebc6450">
+				<script type="text/javascript">
+				__ATA.cmd.push(function() {
+					__ATA.initSlot('atatags-48178864-5dd528ebc6450',  {
+						collapseEmpty: 'before',
+						sectionId: '48178864',
+						location: 130,
+						width: 300,
+						height: 250
+					});
+				});
+				</script>
+			</div>
+		</div></div>
+				
+			</div>
+		</div><div id="atatags-48178865-5dd528ebc6469">
+        <script type="text/javascript">
+            __ATA.cmd.push(function() {
+                __ATA.initVideoSlot('atatags-48178865-5dd528ebc6469', {
+                    sectionId: '48178865',
+                    format: 'inread'
+                });
+            });
+        </script>
+    </div><div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-5129" class="share-facebook sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-5129" class="share-twitter sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=twitter" target="_blank" title="Klik untuk berbagi pada Twitter"><span>Twitter</span></a></li><li class="share-print"><a rel="nofollow noopener noreferrer" data-shared="" class="share-print sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/#print" target="_blank" title="Klik untuk mencetak"><span>Cetak</span></a></li><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=email" target="_blank" title="Klik untuk mengirim email pada teman"><span>Surat elektronik</span></a></li><li><a href="#" class="sharing-anchor sd-button share-more"><span>Lagi</span></a></li><li class="share-end"></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-5129" class="share-linkedin sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=linkedin" target="_blank" title="Klik untuk berbagi di Linkedln"><span>LinkedIn</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=tumblr" target="_blank" title="Klik untuk berbagi pada Tumblr"><span>Tumblr</span></a></li><li class="share-end"><li class="share-reddit"><a rel="nofollow noopener noreferrer" data-shared="" class="share-reddit sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=reddit" target="_blank" title="Klik untuk berbagi pada Reddit"><span>Reddit</span></a></li><li class="share-pinterest"><a rel="nofollow noopener noreferrer" data-shared="sharing-pinterest-5129" class="share-pinterest sd-button share-icon" href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?share=pinterest" target="_blank" title="Klik untuk berbagi pada Pinterest"><span>Pinterest</span></a></li><li class="share-end"><li class="share-end"></ul></div></div></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded" id="like-post-wrapper-4817886-5129-5dd528ebc6cbd" data-src="//widgets.wp.com/likes/index.html?ver=20190321#blog_id=4817886&amp;post_id=5129&amp;origin=kabarislam.wordpress.com&amp;obj_id=4817886-5129-5dd528ebc6cbd&amp;domain=kabarislamia.com" data-name="like-post-frame-4817886-5129-5dd528ebc6cbd"><h3 class="sd-title">Sukai ini:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px;"><span class="button"><span>Suka</span></span> <span class="loading">Memuat...</span></div><span class="sd-text-color"></span><a class="sd-link-color"></a></div>
+<div id="jp-relatedposts" class="jp-relatedposts">
+	<h3 class="jp-relatedposts-headline"><em>Terkait</em></h3>
+</div></div>					
+					<p class="postinfo">
+						Filed under: <a href="https://kabarislamia.com/category/aliran-islam/khawarij/" rel="category tag">Khawarij</a> |					</p>
+
+				</div>
+			</div>
+
+
+
+			<div class="browse">« <a href="https://kabarislamia.com/2015/03/30/najd-arab-saudi-serang-yaman-dan-syam/" rel="prev">Najd (Arab Saudi) Serang Yaman dan Syam</a>  <a href="https://kabarislamia.com/2015/03/30/location-of-najd-is-in-iraq-or-in-najd/" rel="next">Location of Najd is in Iraq or in Najd?</a> »</div>
+
+
+
+		</div><!-- End content -->
+
+	</div></div><!-- End narrowcolumnwrapper and narrowcolumn classes -->
+
+	
+<div class="narrowcolumnwrapper"><div class="narrowcolumn">
+	<div class="content">
+	<div class="post post-5129 type-post status-publish format-standard hentry category-khawarij">
+
+	<h3 id="comments">Satu Tanggapan</h3>
+
+	<ol class="commentlist">
+	
+<li class="pingback even thread-even depth-1 highlander-comment" id="comment-5755">
+<div id="div-comment-5755">
+	<div class="comment-meta commentmetadata">
+		<div class="avatar"></div>		<span class="comment-author vcard"><strong class="fn"><a href="http://islami.gosiphot.com/pembuat-film-fitna-dirikan-partai-islam-di-eropa/" rel="external nofollow ugc" class="url">Pembuat Film Fitna Dirikan Partai Islam Di Eropa | Berita Islami</a></strong>, on <a href="#comment-5755" title="">Desember 30, 2015 at 4:36 am</a> said:		</span>
+			</div>
+
+	<p>[…] <a href="https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/" rel="nofollow ugc">https://kabarislamia.com/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/</a> […]</p>
+
+	<div class="reply">
+		<a class="comment-reply-link" href="/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/?replytocom=5755#respond" onclick='return addComment.moveForm("div-comment-5755", "5755", "respond", "5129")'>Balas</a>	</div>
+</div>
+</li><!-- #comment-## -->
+	</ol>
+
+	<div class="navigation">
+	<div class="alignleft"></div>
+	<div class="alignright"></div>
+	</div>
+
+	
+
+
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Tinggalkan Balasan <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/#respond" style="display:none;">Batalkan balasan</a></small></h3>		<form action="https://kabarislamia.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+														
+
+
+						<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="f725f141e0"><input type="hidden" name="_wp_http_referer" value="/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Ketikkan komentar di sini...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Ketikkan komentar di sini..."></textarea></div>
+</div>
+
+<div id="comment-form-identity" class="comment_registration">
+	<div id="comment-form-nascar">
+		<p>Please log in using one of these methods to post your comment:</p>
+		<ul>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link" title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewbox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"></path></g></svg>				</a>
+			</li>
+			<li>
+			</li><li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link" title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewbox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"></path></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link" title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewbox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"></path></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Surel <span class="required">(wajib)</span> <span class="nopublish">(Alamat takkan pernah dipublikasikan)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Nama <span class="required">(wajib)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Situs Web</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value=""></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Logo WordPress.com" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				( <a href="javascript:HighlanderComments.doExternalLogout(%20'wordpress'%20);">Logout</a> / 
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Ubah</a> )
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewbox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"></path></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Foto Google" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				( <a href="javascript:HighlanderComments.doExternalLogout(%20'googleplus'%20);">Logout</a> / 
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Ubah</a> )
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewbox="0 0 60 60"><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z"></path><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z"></path><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z"></path><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z"></path></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gambar Twitter" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				( <a href="javascript:HighlanderComments.doExternalLogout(%20'twitter'%20);">Logout</a> / 
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Ubah</a> )
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewbox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"></path></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Foto Facebook" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				( <a href="javascript:HighlanderComments.doExternalLogout(%20'facebook'%20);">Logout</a> / 
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Ubah</a> )
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewbox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"></path></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Batal</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Beri tahu saya komentar baru melalui email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Beritahu saya pos-pos baru lewat surat elektronik.</label></p></div>
+
+						<p class="form-submit">
+				<input name="submit" type="submit" id="comment-submit" value="Kirim Komentar">
+				<input type="hidden" name="comment_post_ID" value="5129" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+			</p>
+			<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="bc829cb1b5"></p>
+<input type="hidden" name="genseq" value="1574250731">
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="82"></p>		</form>
+	</div><!-- #respond -->
+	<div style="clear: both"></div>
+	</div>
+	</div>
+</div></div>
+
+
+	</div><!-- End wrapper class -->
+
+	<div class="sidebar">
+	<ul>
+
+<li id="blog-stats-2" class="widget widget_blog-stats"><h2 class="widgettitle">Blog Stats</h2>
+		<ul>
+			<li>10.423.242 hits</li>
+		</ul>
+		</li>
+<li id="top-posts-3" class="widget widget_top-posts"><h2 class="widgettitle">Top Posts &amp; Halaman</h2>
+<ul class="widgets-list-layout no-grav">
+					<li>
+						<a href="https://kabarislamia.com/2012/02/11/mengenal-imam-hanafi-imam-malik-imam-syafii-dan-imam-hambali/" title="Mengenal Imam Hanafi, Imam Malik, Imam Syafi'i, dan Imam Hambali" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=40" alt="Mengenal Imam Hanafi, Imam Malik, Imam Syafi'i, dan Imam Hambali" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2012/02/11/mengenal-imam-hanafi-imam-malik-imam-syafii-dan-imam-hambali/" title="Mengenal Imam Hanafi, Imam Malik, Imam Syafi'i, dan Imam Hambali" class="bump-view" data-bump-view="tp">Mengenal Imam Hanafi, Imam Malik, Imam Syafi'i, dan Imam Hambali</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2018/04/30/contoh-sanad-hadits-shahih-bukhari/" title="Contoh Sanad Hadits Shahih Bukhari" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2018/04/sanadhadits.jpg?w=1200&amp;resize=40%2C40" alt="Contoh Sanad Hadits Shahih Bukhari" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2018/04/30/contoh-sanad-hadits-shahih-bukhari/" title="Contoh Sanad Hadits Shahih Bukhari" class="bump-view" data-bump-view="tp">Contoh Sanad Hadits Shahih Bukhari</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2014/09/18/4-sifat-nabi-shiddiq-amanah-fathonah-dan-tabligh/" title="4 Sifat Nabi: Shiddiq, Amanah, Fathonah, dan Tabligh" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=40" alt="4 Sifat Nabi: Shiddiq, Amanah, Fathonah, dan Tabligh" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2014/09/18/4-sifat-nabi-shiddiq-amanah-fathonah-dan-tabligh/" title="4 Sifat Nabi: Shiddiq, Amanah, Fathonah, dan Tabligh" class="bump-view" data-bump-view="tp">4 Sifat Nabi: Shiddiq, Amanah, Fathonah, dan Tabligh</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2015/04/09/kenapa-imam-mazhab-tidak-pakai-hadits-bukhari-dan-muslim/" title="Kenapa Imam Mazhab Tidak Pakai Hadits Bukhari dan Muslim?" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2015/04/tahun-lahir-imam-mazhab-dan-hadits1.jpg?resize=40%2C40" alt="Kenapa Imam Mazhab Tidak Pakai Hadits Bukhari dan Muslim?" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2015/04/09/kenapa-imam-mazhab-tidak-pakai-hadits-bukhari-dan-muslim/" title="Kenapa Imam Mazhab Tidak Pakai Hadits Bukhari dan Muslim?" class="bump-view" data-bump-view="tp">Kenapa Imam Mazhab Tidak Pakai Hadits Bukhari dan Muslim?</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2014/12/13/siapakah-ulama-salaf-dan-pengikut-salaf-sebenarnya/" title="Siapakah Ulama Salaf dan Pengikut Salaf Sebenarnya?" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2014/12/khawarij-bunuh-muslim.jpg?resize=40%2C40" alt="Siapakah Ulama Salaf dan Pengikut Salaf Sebenarnya?" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2014/12/13/siapakah-ulama-salaf-dan-pengikut-salaf-sebenarnya/" title="Siapakah Ulama Salaf dan Pengikut Salaf Sebenarnya?" class="bump-view" data-bump-view="tp">Siapakah Ulama Salaf dan Pengikut Salaf Sebenarnya?</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2013/11/29/mengenal-ulama-wahabi-di-indonesia/" title="Mengenal Ulama Wahabi di Indonesia" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2013/11/ulama-wahabi.jpg?w=468&amp;resize=40%2C40" alt="Mengenal Ulama Wahabi di Indonesia" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2013/11/29/mengenal-ulama-wahabi-di-indonesia/" title="Mengenal Ulama Wahabi di Indonesia" class="bump-view" data-bump-view="tp">Mengenal Ulama Wahabi di Indonesia</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2017/03/10/nabi-menggauli-budaknya-tanpa-nikah/" title="Nabi Menggauli Budaknya Tanpa Nikah???" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2017/03/an-nisaa.jpg?resize=40%2C40" alt="Nabi Menggauli Budaknya Tanpa Nikah???" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2017/03/10/nabi-menggauli-budaknya-tanpa-nikah/" title="Nabi Menggauli Budaknya Tanpa Nikah???" class="bump-view" data-bump-view="tp">Nabi Menggauli Budaknya Tanpa Nikah???</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2014/09/18/hati-hati-terhadap-doa-orang-yang-dizalimi-teraniaya/" title="Hati-hati Terhadap Doa Orang yang Dizalimi / Teraniaya" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2014/09/doa.jpg?resize=40%2C40" alt="Hati-hati Terhadap Doa Orang yang Dizalimi / Teraniaya" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2014/09/18/hati-hati-terhadap-doa-orang-yang-dizalimi-teraniaya/" title="Hati-hati Terhadap Doa Orang yang Dizalimi / Teraniaya" class="bump-view" data-bump-view="tp">Hati-hati Terhadap Doa Orang yang Dizalimi / Teraniaya</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2010/10/08/beberapa-kesesatan-paham-islam-liberal-sepilis-sekularisme-pluralisme-liberalisme/" title="Beberapa Kesesatan Paham Islam Liberal (SEPILIS: Sekularisme, Pluralisme, Liberalisme)" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://secure.gravatar.com/blavatar/55bf7238e39ec9fd72a2f40d67d77e99?s=40" alt="Beberapa Kesesatan Paham Islam Liberal (SEPILIS: Sekularisme, Pluralisme, Liberalisme)" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2010/10/08/beberapa-kesesatan-paham-islam-liberal-sepilis-sekularisme-pluralisme-liberalisme/" title="Beberapa Kesesatan Paham Islam Liberal (SEPILIS: Sekularisme, Pluralisme, Liberalisme)" class="bump-view" data-bump-view="tp">Beberapa Kesesatan Paham Islam Liberal (SEPILIS: Sekularisme, Pluralisme, Liberalisme)</a>
+							</div>
+													</li>
+										<li>
+						<a href="https://kabarislamia.com/2016/07/19/sejarah-syai-antara-bukit-shofa-dan-marwah/" title="Sejarah Sya'i antara Bukit Shofa dan Marwah" class="bump-view" data-bump-view="tp">
+								<img width="40" height="40" src="https://kabarislam.files.wordpress.com/2016/07/syai.jpg?resize=40%2C40" alt="Sejarah Sya'i antara Bukit Shofa dan Marwah" data-pin-nopin="true" class="widgets-list-layout-blavatar">
+							</a>
+							<div class="widgets-list-layout-links">
+								<a href="https://kabarislamia.com/2016/07/19/sejarah-syai-antara-bukit-shofa-dan-marwah/" title="Sejarah Sya'i antara Bukit Shofa dan Marwah" class="bump-view" data-bump-view="tp">Sejarah Sya'i antara Bukit Shofa dan Marwah</a>
+							</div>
+													</li>
+					</ul>
+</li>
+<li id="custom_html-3" class="widget_text widget widget_custom_html"><h2 class="widgettitle">Polling Capres</h2>
+<div class="textwidget custom-html-widget"><a id="pd_a_9946174"></a><div class="CSS_Poll PDS_Poll" id="PDI_container9946174" style="display:inline-block;"></div><div id="PD_superContainer"></div><noscript><a href="https://polldaddy.com/p/9946174" target="_blank" rel="noopener noreferrer">Take Our Poll</a></noscript></div></li>
+<li id="rss-5" class="widget widget_rss"><h2 class="widgettitle"><a class="rsswidget" href="http://mediaislamraya.blogspot.com/feeds/posts/default" title="Sindikasikan konten ini"><img style="background: orange; color: white; border: none;" width="14" height="14" src="https://s-ssl.wordpress.com/wp-includes/images/rss.png?m=1354137473h" alt="RSS"></a> <a class="rsswidget" href="http://mediaislamraya.blogspot.com/" title="">Media Islam Raya</a></h2>
+<ul><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2018/04/kok-ahok-dan-sukmawati-dituntut-oleh.html" title="Kok Ahok dan Sukmawati dituntut oleh ummat Islam tapi Rocky Gerung tidak?Ahok dan Sukmawati jelas hina Islam. Buktinya? Al Maaidah 51 yg disebut Ahok itu jelas Al Qur'an milik ummat Islam. Disandingkan dgn kata yg buruk: DIBOHONGI. Adakah Abu Janda yg sekarang melaporkan Rocky Gerung melaporkan Ahok? Tidak. Arya Permadi ini malah dukung Ahok.Sukmawati j […]">Kok Ahok dan Sukmawati Dituntut oleh Ummat Islam tapi Rocky Gerung Tidak?</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2015/03/jangan-minta-dalil-untuk-berbuat.html" title='Untuk berbuat kebaikan, jangan minta dalil, kemudian akhirnya tidak berbuat kebaikan hanya karena "tidak ada dalilnya".Dari 1 juta kebaikan yang dilakukan Nabi, belum tentu 1000 yang terekam oleh para sahabat di dalam hadits.Cukuplah firman Allah ini:Dan dirikanlah shalat dan tunaikanlah zakat. Dan kebaikan apa saja yang kamu usahakan bagi dirimu, […]'>Jangan Minta Dalil untuk Berbuat Kebaikan</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2015/01/agar-amal-tidak-sia-sia.html" title="Ini adalah hadits yang menghebohkan. Karena menjelaskan hadits ini, KH Quraisy Shihab dicaci kaum Wahabi sbg sesat karena menyatakan Nabi tidak dijamin masuk surga karena AMALNYA. Padahal Nabi Muhammad SAW pasti masuk surga tapi karena RAHMAT ALLAH. Bukan karena AMALNYA (ini menurut hadits di bawah):Dari Abu Hurairah, bahwa Nabi SAW bersabda: “Tidak ada sese […]">Agar Amal Tidak Sia-sia...</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/12/jangan-merasa-paling-benar-atau-paling.html" title="Jangan Merasa Paling Benar atau Paling Suci. Allah melarang kita begitu:“…Janganlah kamu mengatakan dirimu suci. Dialah yang paling mengetahui tentang orang yang bertakwa.” [An Najm 32] Mengapa Iblis yang dulu begitu mulia dan rajin bertasbih dan beribadah kepada Allah di surga dengan para malaikat akhirnya diusir Allah dari surga dan dikutuk selama-lamanya? […]">Jangan Merasa Paling Benar atau Paling Suci</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/12/sunat-bagi-perempuan-itu-sunnah.html" title="Ceramah agama Islam oleh KH Ismail bin Abdulghoni saat khitanan keponakan. Di antaranya sunat itu wajib bagi kaum pria. Ini agar bersih sehingga kotoran tidak menumpuk di kulfa/kulub.Ada pun khitanan untuk wanita, 99% ulama berpendapat sunnah. Ini pendapat yang kuat. Khitan untuk wanita ini sebetulnya sekedar ditoreh saja hingga luka. Jadi tidak begitu sakit […]">Sunat Bagi Perempuan itu Sunnah</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/11/tidak-usah-mengurusi-orang-lain.html" title="Tidak usah mengurusi orang lain. Urus saja dirimu sendiri?Negara ini ibarat kapal laut yang berlayar di tengah lautan. Ada 1000 orang penumpang. Andai ada 1 orang saja yang membolongi kapal dengan bornya, apakah yang 999 orang lainnya harus diam saja dan mengurusi diri sendiri? Jika kapal tenggelam, semua penumpang ikut tenggelam. Bukan cuma orang yang membo […]">Tidak Usah Mengurusi Orang Lain?</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/09/hati-hati-terhadap-doa-orang-yang.html" title="Meski Allah melarang kita mendoakan orang lain agar celaka / dapat bencana, namun khusus terhadap orang-orang yang dizalimi / dianiaya Allah membolehkannya. Jadi saat seseorang dizalimi dan disakiti dan dia mendoakan orang yang menyakitinya agar ditimpa musibah, Allah akan mengabulkannya.Allah swt telah berfirman:لا يحب الله الجهر بالسوء من القول إلا من ظلم […]">Hati-hati Terhadap Doa Orang yang Dizalimi / Teraniaya</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/09/sholat-malam.html" title="Ceramah KH Dr Mohamad Hidayat MBAMajelis Taklim di Masjid At Taubah Malam Senin 14 September 2014.KH Dr Mohamad Hidayat MBA menerangkan bahwa setelah usia 40 tahun, kemungkinan besar manusia itu sudah stabil. Jika di usia 40 tahun dia saleh, insya Allah saleh seterusnya. Tapi jika maksiat, niscaya maksiat seumur hidupnya. Di Al Qur'an 3x disebut hal 40 […]">Sholat Malam</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/08/bersyukur-kepada-allah.html" title="Bersyukur artinya berterimakasih kepada yang memberi nikmat/hadiah kepada kita melalui hati yang tulus, dengan pujian secara lisan, dan perbuatan yang menyenangkan si pemberi nikmat tersebut.Iman terbagi menjadi dua, separuh dalam sabar dan separuh dalam syukur. (HR. Al-Baihaqi)Jika kita mendapat kurnia dari Allah, hendaklah kita ucapkan “Alhamdulillah” (seg […]">Bersyukur Kepada Allah</a></li><li><a class="rsswidget" href="http://mediaislamraya.blogspot.com/2014/08/introspeksi-diri-muhasabah.html" title="Dalam beragama, sebetulnya kita tidak perlu menuduh orang, misalnya KH Said Aqil Siradj, KH Quraisy Shihab, dr Joserizal Jurnalis sbg Syi'ah. Kenapa? Andai mereka benar Syi'ah, apakah anda masuk surga? Dan jika bukan Syi'ah, bukankah anda berdosa dan masuk neraka? Tidak ada untungnya.Di dalam kubur dan di akhirat, anda tidak ditanyai apakah or […]">Introspeksi Diri / Muhasabah</a></li></ul></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">Tulisan Terkini</h2>
+		<ul>
+											<li>
+					<a href="https://kabarislamia.com/2018/12/19/ciri-ciri-aliran-sesat/">Ciri-ciri Aliran Sesat</a>
+									</li>
+											<li>
+					<a href="https://kabarislamia.com/2018/12/15/sholat-al-fatihah-kurang-2-huruf/">Sholat Al Fatihah Kurang 2 Huruf</a>
+									</li>
+											<li>
+					<a href="https://kabarislamia.com/2018/04/30/contoh-sanad-hadits-shahih-bukhari/">Contoh Sanad Hadits Shahih Bukhari</a>
+									</li>
+											<li>
+					<a href="https://kabarislamia.com/2018/04/04/heboh-puisi-sukmawati-yang-dianggap-menghina-azan/">Heboh Puisi Sukmawati yang Dianggap Menghina Azan</a>
+									</li>
+											<li>
+					<a href="https://kabarislamia.com/2017/11/11/doa-berlindung-kepada-allah-dari-kejahatan-makhluqnya/">Doa Berlindung Kepada Allah dari Kejahatan MakhluqNya</a>
+									</li>
+					</ul>
+		</li>
+<li id="wp_tag_cloud-2" class="widget wp_widget_tag_cloud"><h2 class="widgettitle">Topik</h2>
+<div style="overflow:hidden"><a href="https://kabarislamia.com/tag/afghanistan/" class="tag-cloud-link tag-link-4338 tag-link-position-1" style="font-size: 10.27027027027pt;" aria-label="Afghanistan (2 item)">Afghanistan</a>
+<a href="https://kabarislamia.com/tag/ahmad-heryawan/" class="tag-cloud-link tag-link-5495136 tag-link-position-2" style="font-size: 8pt;" aria-label="Ahmad Heryawan (1 item)">Ahmad Heryawan</a>
+<a href="https://kabarislamia.com/tag/akhlaq/" class="tag-cloud-link tag-link-58994 tag-link-position-3" style="font-size: 10.27027027027pt;" aria-label="Akhlaq (2 item)">Akhlaq</a>
+<a href="https://kabarislamia.com/tag/aliran-sesat-2/" class="tag-cloud-link tag-link-52022741 tag-link-position-4" style="font-size: 10.27027027027pt;" aria-label="aliran sesat (2 item)">aliran sesat</a>
+<a href="https://kabarislamia.com/tag/arab-saudi/" class="tag-cloud-link tag-link-190436 tag-link-position-5" style="font-size: 14.936936936937pt;" aria-label="arab saudi (6 item)">arab saudi</a>
+<a href="https://kabarislamia.com/tag/barack-obama/" class="tag-cloud-link tag-link-60416 tag-link-position-6" style="font-size: 10.27027027027pt;" aria-label="Barack Obama (2 item)">Barack Obama</a>
+<a href="https://kabarislamia.com/tag/bekam/" class="tag-cloud-link tag-link-1407963 tag-link-position-7" style="font-size: 15.567567567568pt;" aria-label="Bekam (7 item)">Bekam</a>
+<a href="https://kabarislamia.com/tag/bidah/" class="tag-cloud-link tag-link-132290 tag-link-position-8" style="font-size: 14.936936936937pt;" aria-label="Bid'ah (6 item)">Bid'ah</a>
+<a href="https://kabarislamia.com/tag/bidah-hasanah/" class="tag-cloud-link tag-link-4744483 tag-link-position-9" style="font-size: 13.045045045045pt;" aria-label="Bid'ah Hasanah (4 item)">Bid'ah Hasanah</a>
+<a href="https://kabarislamia.com/tag/buku-iman/" class="tag-cloud-link tag-link-33966150 tag-link-position-10" style="font-size: 10.27027027027pt;" aria-label="Buku Iman (2 item)">Buku Iman</a>
+<a href="https://kabarislamia.com/tag/caleg/" class="tag-cloud-link tag-link-2531591 tag-link-position-11" style="font-size: 8pt;" aria-label="Caleg (1 item)">Caleg</a>
+<a href="https://kabarislamia.com/tag/caleg-ppp/" class="tag-cloud-link tag-link-8120339 tag-link-position-12" style="font-size: 8pt;" aria-label="Caleg PPP (1 item)">Caleg PPP</a>
+<a href="https://kabarislamia.com/tag/dajjal/" class="tag-cloud-link tag-link-370294 tag-link-position-13" style="font-size: 10.27027027027pt;" aria-label="Dajjal (2 item)">Dajjal</a>
+<a href="https://kabarislamia.com/tag/dinar/" class="tag-cloud-link tag-link-58053 tag-link-position-14" style="font-size: 10.27027027027pt;" aria-label="Dinar (2 item)">Dinar</a>
+<a href="https://kabarislamia.com/tag/doa/" class="tag-cloud-link tag-link-48878 tag-link-position-15" style="font-size: 10.27027027027pt;" aria-label="Do'a (2 item)">Do'a</a>
+<a href="https://kabarislamia.com/tag/download-hadits-digital/" class="tag-cloud-link tag-link-7189259 tag-link-position-16" style="font-size: 10.27027027027pt;" aria-label="Download Hadits Digital (2 item)">Download Hadits Digital</a>
+<a href="https://kabarislamia.com/tag/ekonomi-islam/" class="tag-cloud-link tag-link-473493 tag-link-position-17" style="font-size: 10.27027027027pt;" aria-label="Ekonomi Islam (2 item)">Ekonomi Islam</a>
+<a href="https://kabarislamia.com/tag/erdogan/" class="tag-cloud-link tag-link-548297 tag-link-position-18" style="font-size: 11.783783783784pt;" aria-label="Erdogan (3 item)">Erdogan</a>
+<a href="https://kabarislamia.com/tag/fpi/" class="tag-cloud-link tag-link-1861918 tag-link-position-19" style="font-size: 11.783783783784pt;" aria-label="FPI (3 item)">FPI</a>
+<a href="https://kabarislamia.com/tag/haji-bekasi/" class="tag-cloud-link tag-link-10984924 tag-link-position-20" style="font-size: 8pt;" aria-label="Haji Bekasi (1 item)">Haji Bekasi</a>
+<a href="https://kabarislamia.com/tag/hamas/" class="tag-cloud-link tag-link-55270 tag-link-position-21" style="font-size: 13.045045045045pt;" aria-label="Hamas (4 item)">Hamas</a>
+<a href="https://kabarislamia.com/tag/hizbullah/" class="tag-cloud-link tag-link-168871 tag-link-position-22" style="font-size: 10.27027027027pt;" aria-label="Hizbullah (2 item)">Hizbullah</a>
+<a href="https://kabarislamia.com/tag/homoseks/" class="tag-cloud-link tag-link-1825938 tag-link-position-23" style="font-size: 10.27027027027pt;" aria-label="Homoseks (2 item)">Homoseks</a>
+<a href="https://kabarislamia.com/tag/hukuman-mati/" class="tag-cloud-link tag-link-594720 tag-link-position-24" style="font-size: 10.27027027027pt;" aria-label="Hukuman Mati (2 item)">Hukuman Mati</a>
+<a href="https://kabarislamia.com/tag/iran/" class="tag-cloud-link tag-link-6645 tag-link-position-25" style="font-size: 11.783783783784pt;" aria-label="Iran (3 item)">Iran</a>
+<a href="https://kabarislamia.com/tag/isis/" class="tag-cloud-link tag-link-12871 tag-link-position-26" style="font-size: 10.27027027027pt;" aria-label="ISIS (2 item)">ISIS</a>
+<a href="https://kabarislamia.com/tag/islam/" class="tag-cloud-link tag-link-420 tag-link-position-27" style="font-size: 14.054054054054pt;" aria-label="Islam (5 item)">Islam</a>
+<a href="https://kabarislamia.com/tag/israel/" class="tag-cloud-link tag-link-9937 tag-link-position-28" style="font-size: 14.936936936937pt;" aria-label="israel (6 item)">israel</a>
+<a href="https://kabarislamia.com/tag/jihad/" class="tag-cloud-link tag-link-44409 tag-link-position-29" style="font-size: 10.27027027027pt;" aria-label="Jihad (2 item)">Jihad</a>
+<a href="https://kabarislamia.com/tag/jokowi/" class="tag-cloud-link tag-link-12397800 tag-link-position-30" style="font-size: 11.783783783784pt;" aria-label="Jokowi (3 item)">Jokowi</a>
+<a href="https://kabarislamia.com/tag/joserizal-jurnalis/" class="tag-cloud-link tag-link-16600646 tag-link-position-31" style="font-size: 10.27027027027pt;" aria-label="Joserizal Jurnalis (2 item)">Joserizal Jurnalis</a>
+<a href="https://kabarislamia.com/tag/khawarij/" class="tag-cloud-link tag-link-888466 tag-link-position-32" style="font-size: 15.567567567568pt;" aria-label="Khawarij (7 item)">Khawarij</a>
+<a href="https://kabarislamia.com/tag/kurban/" class="tag-cloud-link tag-link-61081 tag-link-position-33" style="font-size: 10.27027027027pt;" aria-label="Kurban (2 item)">Kurban</a>
+<a href="https://kabarislamia.com/tag/makam-nabi-muhammad/" class="tag-cloud-link tag-link-59492822 tag-link-position-34" style="font-size: 10.27027027027pt;" aria-label="Makam Nabi Muhammad (2 item)">Makam Nabi Muhammad</a>
+<a href="https://kabarislamia.com/tag/maulid-nabi/" class="tag-cloud-link tag-link-1892045 tag-link-position-35" style="font-size: 10.27027027027pt;" aria-label="Maulid Nabi (2 item)">Maulid Nabi</a>
+<a href="https://kabarislamia.com/tag/mendukung-uu-pornografi/" class="tag-cloud-link tag-link-11445926 tag-link-position-36" style="font-size: 8pt;" aria-label="mendukung UU Pornografi (1 item)">mendukung UU Pornografi</a>
+<a href="https://kabarislamia.com/tag/mui/" class="tag-cloud-link tag-link-1874599 tag-link-position-37" style="font-size: 10.27027027027pt;" aria-label="MUI (2 item)">MUI</a>
+<a href="https://kabarislamia.com/tag/najd/" class="tag-cloud-link tag-link-4422449 tag-link-position-38" style="font-size: 13.045045045045pt;" aria-label="Najd (4 item)">Najd</a>
+<a href="https://kabarislamia.com/tag/pdip/" class="tag-cloud-link tag-link-2589239 tag-link-position-39" style="font-size: 8pt;" aria-label="PDIP (1 item)">PDIP</a>
+<a href="https://kabarislamia.com/tag/pds/" class="tag-cloud-link tag-link-36375 tag-link-position-40" style="font-size: 8pt;" aria-label="PDS (1 item)">PDS</a>
+<a href="https://kabarislamia.com/tag/pembagian-zakat/" class="tag-cloud-link tag-link-11114290 tag-link-position-41" style="font-size: 8pt;" aria-label="Pembagian zakat (1 item)">Pembagian zakat</a>
+<a href="https://kabarislamia.com/tag/pemukulan-caleg-ppp/" class="tag-cloud-link tag-link-10984199 tag-link-position-42" style="font-size: 8pt;" aria-label="Pemukulan Caleg PPP (1 item)">Pemukulan Caleg PPP</a>
+<a href="https://kabarislamia.com/tag/penjajahan-ekonomi/" class="tag-cloud-link tag-link-2104912 tag-link-position-43" style="font-size: 10.27027027027pt;" aria-label="Penjajahan Ekonomi (2 item)">Penjajahan Ekonomi</a>
+<a href="https://kabarislamia.com/tag/perang-petasan/" class="tag-cloud-link tag-link-11114701 tag-link-position-44" style="font-size: 8pt;" aria-label="perang petasan (1 item)">perang petasan</a>
+<a href="https://kabarislamia.com/tag/perumahan-islami/" class="tag-cloud-link tag-link-21014537 tag-link-position-45" style="font-size: 10.27027027027pt;" aria-label="Perumahan Islami (2 item)">Perumahan Islami</a>
+<a href="https://kabarislamia.com/tag/petasan/" class="tag-cloud-link tag-link-2353456 tag-link-position-46" style="font-size: 8pt;" aria-label="petasan (1 item)">petasan</a>
+<a href="https://kabarislamia.com/tag/pks/" class="tag-cloud-link tag-link-389329 tag-link-position-47" style="font-size: 10.27027027027pt;" aria-label="PKS (2 item)">PKS</a>
+<a href="https://kabarislamia.com/tag/pluralisme/" class="tag-cloud-link tag-link-605172 tag-link-position-48" style="font-size: 10.27027027027pt;" aria-label="Pluralisme (2 item)">Pluralisme</a>
+<a href="https://kabarislamia.com/tag/puasa/" class="tag-cloud-link tag-link-241267 tag-link-position-49" style="font-size: 10.27027027027pt;" aria-label="Puasa (2 item)">Puasa</a>
+<a href="https://kabarislamia.com/tag/pusing/" class="tag-cloud-link tag-link-603788 tag-link-position-50" style="font-size: 10.27027027027pt;" aria-label="pusing (2 item)">pusing</a>
+<a href="https://kabarislamia.com/tag/rukun-iman/" class="tag-cloud-link tag-link-830359 tag-link-position-51" style="font-size: 10.27027027027pt;" aria-label="Rukun Iman (2 item)">Rukun Iman</a>
+<a href="https://kabarislamia.com/tag/rusia/" class="tag-cloud-link tag-link-53378 tag-link-position-52" style="font-size: 10.27027027027pt;" aria-label="Rusia (2 item)">Rusia</a>
+<a href="https://kabarislamia.com/tag/ruu-pornografi/" class="tag-cloud-link tag-link-5662770 tag-link-position-53" style="font-size: 10.27027027027pt;" aria-label="RUU Pornografi (2 item)">RUU Pornografi</a>
+<a href="https://kabarislamia.com/tag/salafi/" class="tag-cloud-link tag-link-256998 tag-link-position-54" style="font-size: 15.567567567568pt;" aria-label="Salafi (7 item)">Salafi</a>
+<a href="https://kabarislamia.com/tag/salafi-wahabi/" class="tag-cloud-link tag-link-34650063 tag-link-position-55" style="font-size: 17.333333333333pt;" aria-label="Salafi Wahabi (10 item)">Salafi Wahabi</a>
+<a href="https://kabarislamia.com/tag/sholat/" class="tag-cloud-link tag-link-242122 tag-link-position-56" style="font-size: 10.27027027027pt;" aria-label="Sholat (2 item)">Sholat</a>
+<a href="https://kabarislamia.com/tag/sifat-20/" class="tag-cloud-link tag-link-1923053 tag-link-position-57" style="font-size: 11.783783783784pt;" aria-label="Sifat 20 (3 item)">Sifat 20</a>
+<a href="https://kabarislamia.com/tag/sistem-ekonomi-islam/" class="tag-cloud-link tag-link-1180256 tag-link-position-58" style="font-size: 10.27027027027pt;" aria-label="Sistem Ekonomi Islam (2 item)">Sistem Ekonomi Islam</a>
+<a href="https://kabarislamia.com/tag/sk-gubernur-jabar/" class="tag-cloud-link tag-link-10984926 tag-link-position-59" style="font-size: 8pt;" aria-label="SK Gubernur Jabar (1 item)">SK Gubernur Jabar</a>
+<a href="https://kabarislamia.com/tag/sunnah-nabi/" class="tag-cloud-link tag-link-1059970 tag-link-position-60" style="font-size: 11.783783783784pt;" aria-label="sunnah nabi (3 item)">sunnah nabi</a>
+<a href="https://kabarislamia.com/tag/suriah/" class="tag-cloud-link tag-link-1741429 tag-link-position-61" style="font-size: 14.936936936937pt;" aria-label="Suriah (6 item)">Suriah</a>
+<a href="https://kabarislamia.com/tag/syiah/" class="tag-cloud-link tag-link-606245 tag-link-position-62" style="font-size: 16.828828828829pt;" aria-label="Syi'ah (9 item)">Syi'ah</a>
+<a href="https://kabarislamia.com/tag/syirik/" class="tag-cloud-link tag-link-396958 tag-link-position-63" style="font-size: 10.27027027027pt;" aria-label="syirik (2 item)">syirik</a>
+<a href="https://kabarislamia.com/tag/tawasul/" class="tag-cloud-link tag-link-470619 tag-link-position-64" style="font-size: 10.27027027027pt;" aria-label="tawasul (2 item)">tawasul</a>
+<a href="https://kabarislamia.com/tag/tawuran/" class="tag-cloud-link tag-link-1484299 tag-link-position-65" style="font-size: 8pt;" aria-label="Tawuran (1 item)">Tawuran</a>
+<a href="https://kabarislamia.com/tag/tawuran-pamulang/" class="tag-cloud-link tag-link-11114702 tag-link-position-66" style="font-size: 8pt;" aria-label="tawuran pamulang (1 item)">tawuran pamulang</a>
+<a href="https://kabarislamia.com/tag/turki/" class="tag-cloud-link tag-link-1073792 tag-link-position-67" style="font-size: 13.045045045045pt;" aria-label="Turki (4 item)">Turki</a>
+<a href="https://kabarislamia.com/tag/ulama/" class="tag-cloud-link tag-link-132296 tag-link-position-68" style="font-size: 10.27027027027pt;" aria-label="Ulama (2 item)">Ulama</a>
+<a href="https://kabarislamia.com/tag/ulama-salaf/" class="tag-cloud-link tag-link-3016213 tag-link-position-69" style="font-size: 13.045045045045pt;" aria-label="ulama salaf (4 item)">ulama salaf</a>
+<a href="https://kabarislamia.com/tag/uu-pornografi/" class="tag-cloud-link tag-link-11146336 tag-link-position-70" style="font-size: 10.27027027027pt;" aria-label="UU Pornografi (2 item)">UU Pornografi</a>
+<a href="https://kabarislamia.com/tag/valentine/" class="tag-cloud-link tag-link-150944 tag-link-position-71" style="font-size: 10.27027027027pt;" aria-label="Valentine (2 item)">Valentine</a>
+<a href="https://kabarislamia.com/tag/valentines-day/" class="tag-cloud-link tag-link-13766 tag-link-position-72" style="font-size: 10.27027027027pt;" aria-label="Valentine's day (2 item)">Valentine's day</a>
+<a href="https://kabarislamia.com/tag/visi-ekonomi-partai-islam/" class="tag-cloud-link tag-link-18169023 tag-link-position-73" style="font-size: 10.27027027027pt;" aria-label="Visi Ekonomi Partai Islam (2 item)">Visi Ekonomi Partai Islam</a>
+<a href="https://kabarislamia.com/tag/wahabi/" class="tag-cloud-link tag-link-356654 tag-link-position-74" style="font-size: 22pt;" aria-label="Wahabi (25 item)">Wahabi</a>
+<a href="https://kabarislamia.com/tag/yaman/" class="tag-cloud-link tag-link-1254594 tag-link-position-75" style="font-size: 13.045045045045pt;" aria-label="Yaman (4 item)">Yaman</a></div></li>
+<li id="facebook-likebox-3" class="widget widget_facebook_likebox"><h2 class="widgettitle"><a href="https://www.facebook.com/pages/Media-Islam/134525519920049">Media Islam</a></h2>
+		<div id="fb-root"></div>
+		<div class="fb-page" data-href="https://www.facebook.com/pages/Media-Islam/134525519920049" data-width="190" data-height="580" data-hide-cover="false" data-show-facepile="true" data-tabs="timeline">
+		<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/pages/Media-Islam/134525519920049"><a href="https://www.facebook.com/pages/Media-Islam/134525519920049">Media Islam</a></blockquote></div>
+		</div>
+		</li>
+
+</ul>
+	</div>
+</div><!-- End pagewrapper -->
+
+<div id="footer">
+<p><a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog di WordPress.com.</a> WP Designer.</p>
+</div>
+
+</div><!-- end page -->
+
+</div><!-- End container id -->
+
+<!--  -->
+<script src="//0.gravatar.com/js/gprofiles.js?ver=201947y"></script>
+<script>
+var WPGroHo = {"my_hash":""};
+</script>
+<script type="text/javascript" src="https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1380573781h"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	</div>
+<script>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Memposkan Komentar\u2026","postCommentText":"Kirim Komentar","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Keluar","loginText":"Login","connectURL":"https:\/\/kabarislam.wordpress.com\/public.api\/connect\/?action=request&domain=kabarislamia.com","logoutURL":"https:\/\/kabarislam.wordpress.com\/wp-login.php?action=logout&_wpnonce=ae096ad615","homeURL":"https:\/\/kabarislamia.com\/","postID":"5129","gravDefault":"identicon","enterACommentError":"Silakan masukkan komentar","enterEmailError":"Masukkan alamat email di sini","invalidEmailError":"Alamat email tidak valid","enterAuthorError":"Masukkan nama Anda di sini","gravatarFromEmail":"Gambar ini akan tampil ketika Anda memberi komentar. Klik untuk mengubahnya.","logInToExternalAccount":"Log in untuk memakai data dari salah satu akun ini.","change":"Ubah","changeAccount":"Ubah Akun","comment_registration":"1","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script type="text/javascript" src="https://s0.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1573483029j"></script>
+		<script type="text/javascript">
+			( function( $ ) {
+	            $( document.body ).on( 'post-load', function () {
+	                __ATA.insertInlineAds();
+	            } );
+			} )( jQuery );
+		</script>
+	<div id="carousel-reblog-box">
+		<form action="#" name="carousel-reblog">
+			<textarea id="carousel-reblog-content" name="carousel-reblog-content" placeholder="Tambahkan pemikiran Anda di sini... (opsional)"></textarea>
+			<label for="carousel-reblog-to-blog-id" id="carousel-reblog-lblogid">Tuliskan ke</label>
+			<select name="carousel-reblog-to-blog-id" id="carousel-reblog-to-blog-id">
+						</select>
+
+			<div class="submit">
+				<span class="canceltext"><a href="#" class="cancel">Batal</a></span>
+				<input type="submit" name="carousel-reblog-submit" class="button" id="carousel-reblog-submit" value="Blog Ulang Pos">
+				<input type="hidden" id="carousel-reblog-blog-id" value="4817886">
+				<input type="hidden" id="carousel-reblog-blog-url" value="https://kabarislamia.com">
+				<input type="hidden" id="carousel-reblog-blog-title" value="Kabar tentang Dunia Islam">
+				<input type="hidden" id="carousel-reblog-post-url" value="">
+				<input type="hidden" id="carousel-reblog-post-title" value="">
+			</div>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="832157565f"><input type="hidden" name="_wp_http_referer" value="/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/">		</form>
+
+		<div class="arrow"></div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/kabarislamia.com\/2015\/03\/30\/jangan-membenci-satu-kaum-secara-berlebihan\/":5129};
+	</script>
+					<div id="sharing_email" style="display: none;">
+		<form action="/2015/03/30/jangan-membenci-satu-kaum-secara-berlebihan/" method="post">
+			<label for="target_email">Kirim ke Alamat Surat Elektronik</label>
+			<input type="email" name="target_email" id="target_email" value="">
+
+			
+				<label for="source_name">Nama Anda</label>
+				<input type="text" name="source_name" id="source_name" value="">
+
+				<label for="source_email">Alamat Email Anda</label>
+				<input type="email" name="source_email" id="source_email" value="">
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed">
+			
+			<div class="g-recaptcha" data-sitekey="6LcmyE0UAAAAALID28yVNg7pFCodGaArJzHitez_" data-theme="light" data-type="image" data-tabindex="0"></div>
+			<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=id" async=""></script>
+			
+			<img style="float: right; display: none" class="loading" src="https://s2.wp.com/wp-content/mu-plugins/post-flair/sharing/images/loading.gif" alt="loading" width="16" height="16">
+			<input type="submit" value="Kirim Surat Elektronik" class="sharing_send">
+			<a rel="nofollow" href="#cancel" class="sharing_cancel" role="button">Batal</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Tulisan tidak terkirim - cek alamat surel Anda!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Cek surel gagal, silahkan coba kembali			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Maaf, blog Anda tidak dapat berbagi tulisan lewat surel.			</div>
+		</form>
+	</div>
+		<link rel="stylesheet" id="all-css-0-3" href="https://s2.wp.com/_static/??/wp-content/plugins/gutenberg-blocks/wpcom-blocks/blocks/front.css,/wp-content/mu-plugins/carousel/jetpack-carousel.css?m=1573041421j&amp;cssminify=yes" type="text/css" media="all">
+<script>
+var jpfbembed = {"appid":"249643311490","locale":"id_ID"};
+</script>
+<script>
+var actionbardata = {"siteID":"4817886","siteName":"Kabar tentang Dunia Islam","siteURL":"https:\/\/kabarislamia.com","icon":"<img alt='' src='https:\/\/secure.gravatar.com\/blavatar\/55bf7238e39ec9fd72a2f40d67d77e99?s=50&d=https%3A%2F%2Fs2.wp.com%2Fi%2Flogo%2Fwpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/digg3","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fkabarislamia.com%2F2015%2F03%2F30%2Fjangan-membenci-satu-kaum-secara-berlebihan%2F&signup_flow=account&domain=kabarislamia.com","themeURL":"","xhrURL":"https:\/\/kabarislamia.com\/wp-admin\/admin-ajax.php","nonce":"ecaef6b0b7","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"23cdb0e5d1\" \/>","referer":"https:\/\/kabarislamia.com\/2015\/03\/30\/jangan-membenci-satu-kaum-secara-berlebihan\/","canFollow":"1","feedID":"18618306","statusMessage":"","customizeLink":"https:\/\/kabarislam.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fkabarislam.wordpress.com%2F2015%2F03%2F30%2Fjangan-membenci-satu-kaum-secara-berlebihan%2F","postID":"5129","shortlink":"https:\/\/wp.me\/pkdlQ-1kJ","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/kabarislamia.com\/5129","statsLink":"https:\/\/wordpress.com\/stats\/post\/5129\/kabarislamia.com","i18n":{"view":"Lihat Situs","follow":"Ikuti","following":"Mengikuti","edit":"Sunting","login":"Masuk","signup":"Mulai","customize":"Sesuaikan","report":"Laporkan isi ini","themeInfo":"Dapatkan tema: Digg 3 Column","shortlink":"Salin shortlink","copied":"Tersalin","followedText":"Pos baru dari situs ini sekarang akan ditampilkan di <a href=\"https:\/\/wordpress.com\/\">Pembaca<\/a> Anda","foldBar":"Ciutkan bilah ini","unfoldBar":"Perluas bilah ini","editSubs":"Kelola langganan","viewReader":"Lihat situs dalam Pembaca","viewReadPost":"View post in Reader","subscribe":"Daftarkan saya","enterEmail":"Masukkan alamat email Anda","followers":"Bergabunglah dengan 5.420 pengikut lainnya","alreadyUser":"Sudah punya akun WordPress.com? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fkabarislamia.com%2F2015%2F03%2F30%2Fjangan-membenci-satu-kaum-secara-berlebihan%2F&signup_flow=account&domain=kabarislamia.com\">Login sekarang.<\/a>","stats":"Statistik"}};
+</script>
+<script type="text/javascript" src="https://s0.wp.com/_static/??-eJyVj9tOwzAQRH8Id1VQhHhAfAryZUid+Ia9Tsrfs5GaCvUhEk/ey5zZMa1F2ZwYiWlq5LB4i3I9Te2J/qxiVyX00adGwc9o9N3RcdHJBdRH8a4cu7QGdVQmZDs30dgc9+b2YBFE0J7Y5TXtXj7Z0J0cklACxU1UUcLPKfp0kG71bgSLbZdtnj1U0CsxYgma8TA/8JnARduZPiUIfWkLI5RCNHAHlHaSThldKerGqFKpvKBWv33lPvunA1dJ0o4gyz6nDbpXov6I7+fh9WUYnt+G8/QLU9u3Wg=="></script>
+<script src="https://secure.polldaddy.com/p/9815281.js?ver=wpcom"></script>
+<script>
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"id","ajaxurl":"https:\/\/kabarislamia.com\/wp-admin\/admin-ajax.php","nonce":"818b0a6cb7","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Komentar","post_comment":"Kirim Komentar","write_comment":"Tulis Komentar...","loading_comments":"Memuat Komentar...","download_original":"Tampilkan ukuran penuh <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Pastikan memasukkan teks sebelum mengirimkan komentar Anda.","no_comment_email":"Silakan masukkan alamat email ke form komentar.","no_comment_author":"Silakan masukkan nama ke form komentar.","comment_post_error":"Maaf, terjadi galat saat menerbitkan komentar Anda. Silakan coba lagi.","comment_approved":"Komentar Anda telah disetujui.","comment_unapproved":"Komentar Anda sedang dimoderasi.","camera":"Kamera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"1","require_name_email":"1","login_url":"https:\/\/kabarislam.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fkabarislamia.com%2F2015%2F03%2F30%2Fjangan-membenci-satu-kaum-secara-berlebihan%2F","blog_id":"4817886","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<p id=\"jp-carousel-commenting-as\">Anda harus <a href=\"#\" class=\"jp-carousel-comment-login\">login<\/a> untuk menerbitkan komentar.<\/p>","reblog":"Blog Ulang","reblogged":"Diblog Ulang","reblog_add_thoughts":"Tambahkan pemikiran Anda di sini... (opsional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=4817886&v=wpcom&tz=0&user_id=0&subd=kabarislam","is_public":"1","reblog_enabled":""};
+</script>
+<script type="text/javascript" src="https://s2.wp.com/_static/??-eJx9jUEKwjAQRS9kMi1iqAvxKBLiKJkmk5jJULy9XbQgLlx9eLzHh6WayCHpHQVIQGpkS3KAH04vxfbexn5boXBH7pDV1KTPyALBt6KCCQh79WE2O/jT+DlKxm6OdoDb+gyP0vLqX/NlPLnz5KbBjfQBgtk/fA=="></script>
+<script src="https://secure.polldaddy.com/p/9946174.js?ver=wpcom"></script>
+<script>
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script type="text/javascript" src="https://s1.wp.com/wp-content/mu-plugins/post-flair/sharing/sharing.js?m=1564557884h"></script>
+<script type="text/javascript">
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-tumblr', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>		<iframe src="https://widgets.wp.com/likes/master.html?ver=20190321#ver=20190321&amp;lang=id" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> blogger menyukai ini:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+<script src="//stats.wp.com/w.js?60" type="text/javascript" async="" defer></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'4817886','blog_tz':'0','user_lang':'id','blog_lang':'id','user_id':'0'}]);
+_stq.push(['view', {'blog':'4817886','v':'wpcom','tz':'0','user_id':'0','post':'5129','subd':'kabarislam'}]);
+_stq.push(['extra', {'crypt':'UE5tW3cvZGRSL0cvLmQ0STdUUWozaEtUazZ0Y1MlPTguflNEQWw3MF8xQlszKzJfflJicWhaV35CeSZ6QVlXZ1dwRmFaV0E0NmZPTV9GQj18YjZiLi1waHhhUlkrNGRQaHhtTlRTaHJ6SkFda2FYRG1UM0tfPzNRNm9oMSwxJnF8VU1ULFV+YnV3Z21kJmdaTEg5Uk9jbX45d0QxQj9NQ2xYWWx8Qm94VjY1QjJqV04uMS9hLFRSJmkyR1czVS4zU2cmLCsrQ2V3JVJscC0zc2FbSWZlQm1sfkUyZ3J6QWlNZFAtfD92VERxVVZoXS5QdWl5TiZGYXB0XWNVen5yRXwzQ0FtNHJBQnh1azFQVjQ='}]);
+_stq.push([ 'clickTrackerInit', '4817886', '5129' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt=""></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+
+</body></html>

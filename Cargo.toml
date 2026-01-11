@@ -1,0 +1,64 @@
+[package]
+name = "rs-trafilatura"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Rust port of trafilatura - web content extraction library"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Murrough-Foley/rs-trafilatura"
+keywords = ["html", "content-extraction", "web-scraping", "trafilatura", "readability"]
+categories = ["parser-implementations", "web-programming", "text-processing"]
+
+[features]
+default = ["readability"]
+readability = ["dep:dom_smoothie"]
+
+[dependencies]
+html-cleaning = { git = "https://github.com/Murrough-Foley/html-cleaning" }
+quick_html2md = { git = "https://github.com/Murrough-Foley/quick_html2md" }
+dom_query = "0.24"         # Primary DOM manipulation
+tendril = "0.4"            # EPIC-04: Zero-copy text operations via StrTendril
+thiserror = "2.0"
+regex = "1.11"
+chrono = "0.4"
+encoding_rs = "0.8"
+serde = { version = "1.0", features = ["derive"] }  # JSON-LD parsing (Epic 5)
+serde_json = "1.0"                                   # JSON-LD parsing (Epic 5)
+url = "2.5"                                          # URL resolution (Epic 5)
+dom_smoothie = { version = "0.14", optional = true }  # Readability fallback (Story 4-7)
+
+[dev-dependencies]
+criterion = "0.5"
+flate2 = "1.0"
+tendril = "0.4"  # For EPIC-04 StrTendril verification
+
+[[bin]]
+name = "benchmark_extract"
+path = "src/bin/benchmark_extract.rs"
+
+[[bin]]
+name = "profile_extract"
+path = "src/bin/profile_extract.rs"
+
+[[bench]]
+name = "benchmark"
+harness = false
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+# Allow these pedantic lints - they're too strict or low-value for this codebase
+needless_raw_string_hashes = "allow"    # Stylistic preference
+similar_names = "allow"                  # matched/matches, text_len/text_length are clear
+cast_precision_loss = "allow"            # Intentional in scoring calculations
+items_after_statements = "allow"         # Valid Rust style for inline helpers
+doc_markdown = "allow"                   # Too strict about backticks
+float_cmp = "allow"                      # Approximate comparisons are intentional
+too_many_lines = "allow"                 # Some complex functions need to be long
+missing_errors_doc = "allow"             # Error types are self-explanatory
+missing_panics_doc = "allow"             # We don't panic in production code
