@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article with Duplicate Content</title>
+</head>
+<body>
+    <article>
+        <h1>Testing Deduplication</h1>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+        <p>This is unique content that should appear in the output. It provides important information for the reader.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+        <p>Another unique paragraph with different content. This adds value to the article.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+        <p>Yet more unique content here. The deduplication should keep this but remove repeated Lorem ipsum.</p>
+
+        <div class="repeated-section">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <p>Final unique paragraph to conclude the article with original thoughts.</p>
+    </article>
+</body>
+</html>
