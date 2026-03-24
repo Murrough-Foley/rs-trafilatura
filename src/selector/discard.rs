@@ -336,7 +336,7 @@ pub fn teaser_rule_1(sel: &Selection) -> bool {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::discard;
 /// use rs_trafilatura::dom;
 ///
@@ -356,7 +356,7 @@ pub fn should_discard(sel: &Selection) -> bool {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::discard;
 /// use rs_trafilatura::dom;
 ///

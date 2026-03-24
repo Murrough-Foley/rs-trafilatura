@@ -77,7 +77,7 @@ impl PageType {
     /// this type of content — which elements to preserve, how aggressively
     /// to filter boilerplate, fallback thresholds, etc.
     #[must_use]
-    pub fn extraction_profile(&self) -> ExtractionProfile {
+    pub(crate) fn extraction_profile(&self) -> ExtractionProfile {
         match self {
             Self::Article => ExtractionProfile::ARTICLE,
             Self::Forum => ExtractionProfile::FORUM,
@@ -96,7 +96,7 @@ impl PageType {
 /// how strictly to filter boilerplate, and fallback thresholds. Each page
 /// type has a static profile accessed via [`PageType::extraction_profile`].
 #[derive(Debug, Clone)]
-pub struct ExtractionProfile {
+pub(crate) struct ExtractionProfile {
     /// Whether elements with comment-like classes are considered content.
     ///
     /// `true` for forums (comments ARE the content), `false` for articles
@@ -657,7 +657,7 @@ pub fn classify_url(url: &str) -> PageType {
 /// These are cheap to extract (only scan `<head>`) and provide strong
 /// signals for product/category pages that have ambiguous URLs.
 #[derive(Debug, Default)]
-pub struct HtmlSignals {
+pub(crate) struct HtmlSignals {
     /// Value of `<meta property="og:type" content="...">`.
     pub og_type: Option<String>,
 
@@ -719,7 +719,7 @@ pub struct HtmlSignals {
 const MIN_PRODUCT_ELEMENTS_FOR_CATEGORY: usize = 5;
 
 #[must_use]
-pub fn refine_with_html_signals(url_type: PageType, signals: &HtmlSignals) -> PageType {
+pub(crate) fn refine_with_html_signals(url_type: PageType, signals: &HtmlSignals) -> PageType {
     // Only refine when URL classification was ambiguous (defaulted to Article)
     if url_type != PageType::Article {
         return url_type;
@@ -1080,7 +1080,7 @@ const ADD_TO_CART_PATTERNS: &[&str] = &[
 /// This is intentionally lightweight — it avoids re-parsing the full
 /// metadata and only looks for signals relevant to page type refinement.
 #[must_use]
-pub fn extract_html_signals(doc: &Document, metadata: &Metadata) -> HtmlSignals {
+pub(crate) fn extract_html_signals(doc: &crate::dom::Document, metadata: &crate::result::Metadata) -> HtmlSignals {
     let mut signals = HtmlSignals::default();
 
     // 1. og:type — already extracted by metadata module
@@ -2067,4 +2067,4 @@ mod tests {
 }
 
 
-pub mod ml;
+pub(crate) mod ml;

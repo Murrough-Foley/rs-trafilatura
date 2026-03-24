@@ -19,7 +19,7 @@ use dom_query::Selection;
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::utils;
 /// use rs_trafilatura::dom;
 ///
@@ -131,7 +131,7 @@ pub fn tag(sel: &Selection) -> String {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::utils;
 /// use rs_trafilatura::dom;
 ///
@@ -165,7 +165,7 @@ pub fn is_tag(sel: &Selection, expected: &str) -> bool {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::utils;
 /// use rs_trafilatura::dom;
 ///

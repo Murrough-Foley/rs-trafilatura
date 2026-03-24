@@ -41,41 +41,25 @@ mod result;
 /// Page type classification (URL heuristics, HTML signals, ML classifier).
 pub mod page_type;
 
-/// DOM operations adapter providing go-shiori/dom-style operations.
-pub mod dom;
+/// F-Score calculation for accuracy benchmarking.
+pub mod scoring;
 
-/// Element tree utilities with text/tail model support.
-pub mod etree;
-
-/// LRU cache for text deduplication.
-pub mod lru;
-
-/// Selector infrastructure and rules for content finding and boilerplate detection.
-pub mod selector;
-
-/// HTML processing and pruning functions.
-pub mod html_processing;
-
-/// Main content extraction module (tag constants, state tracking, handlers).
-pub mod extractor;
-
-/// Metadata extraction (JSON-LD, HTML meta tags, Open Graph).
-pub mod metadata;
-
-/// URL utilities for validation, resolution, and normalization.
-pub mod url_utils;
+/// Markdown processing utilities (escaping, table conversion).
+pub mod markdown;
 
 /// Character encoding detection and transcoding.
 pub mod encoding;
 
-/// F-Score calculation for accuracy benchmarking.
-pub mod scoring;
-
-/// Link density testing for boilerplate detection.
-pub mod link_density;
-
-/// Markdown processing utilities (escaping, table conversion).
-pub mod markdown;
+// Internal modules — not part of the public API
+pub(crate) mod dom;
+pub(crate) mod etree;
+pub(crate) mod lru;
+pub(crate) mod selector;
+pub(crate) mod html_processing;
+pub(crate) mod extractor;
+pub(crate) mod metadata;
+pub(crate) mod url_utils;
+pub(crate) mod link_density;
 
 // Public API - re-exports
 pub use error::{Error, Result};

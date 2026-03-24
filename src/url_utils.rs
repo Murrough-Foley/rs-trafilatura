@@ -217,7 +217,7 @@ pub fn urls_match(url1: &str, url2: &str) -> bool {
 /// * The filename portion of the URL path, or empty string if none found
 ///
 /// # Examples
-/// ```
+/// ```ignore
 /// use rs_trafilatura::url_utils::extract_filename;
 ///
 /// assert_eq!(extract_filename("https://example.com/images/photo.jpg"), "photo.jpg");

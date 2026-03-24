@@ -33,7 +33,7 @@ pub type Rule = fn(&Selection) -> bool;
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::{self, utils};
 /// use rs_trafilatura::dom;
 ///
@@ -68,7 +68,7 @@ pub fn query<'a>(root: &Selection<'a>, rule: Rule) -> Option<Selection<'a>> {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::{self, utils};
 /// use rs_trafilatura::dom;
 ///

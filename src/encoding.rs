@@ -31,7 +31,7 @@ static CONTENT_TYPE_CHARSET_RE: LazyLock<Regex> = LazyLock::new(|| {
 ///
 /// Only examines the first 1024 bytes for performance.
 #[must_use]
-pub fn detect_encoding(html: &[u8]) -> &'static Encoding {
+pub(crate) fn detect_encoding(html: &[u8]) -> &'static Encoding {
     // Only look at first 1024 bytes for performance
     let head = &html[..html.len().min(1024)];
 

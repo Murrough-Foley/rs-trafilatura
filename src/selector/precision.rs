@@ -162,7 +162,7 @@ pub fn discarded_image_rule_1(sel: &Selection) -> bool {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::precision;
 /// use rs_trafilatura::dom;
 ///
@@ -182,7 +182,7 @@ pub fn should_discard_precision(sel: &Selection) -> bool {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::precision;
 /// use rs_trafilatura::dom;
 ///
@@ -202,7 +202,7 @@ pub fn is_teaser(sel: &Selection) -> bool {
 ///
 /// # Example
 ///
-/// ```rust
+/// ```ignore
 /// use rs_trafilatura::selector::precision;
 /// use rs_trafilatura::dom;
 ///
