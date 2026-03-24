@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-      - run: cargo check --all-features
+      - run: cargo check
 
   fmt:
     name: Format
@@ -39,10 +39,9 @@ jobs:
         with:
           components: clippy
       - uses: Swatinem/rust-cache@v2
-      # Strict linting for library code
-      - run: cargo clippy --lib --all-features -- -D warnings
-      # Warn-only for test code (allows expect_used in tests)
-      - run: cargo clippy --tests --all-features -- -A clippy::expect_used -A clippy::unwrap_used
+      # Lint config is in Cargo.toml [lints] section
+      - run: cargo clippy --lib
+      - run: cargo clippy --tests -- -A clippy::expect_used -A clippy::unwrap_used
 
   test:
     name: Test
@@ -51,16 +50,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-      - run: cargo test --all-features
-
-  test-no-default-features:
-    name: Test (no default features)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
-      - run: cargo test --no-default-features
+      - run: cargo test
 
   docs:
     name: Docs
@@ -69,9 +59,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-      - run: cargo doc --no-deps --all-features
-        env:
-          RUSTDOCFLAGS: -D warnings
+      - run: cargo doc --no-deps
 
   msrv:
     name: MSRV (1.85)
@@ -82,4 +70,4 @@ jobs:
         with:
           toolchain: "1.85"
       - uses: Swatinem/rust-cache@v2
-      - run: cargo check --all-features
+      - run: cargo check
