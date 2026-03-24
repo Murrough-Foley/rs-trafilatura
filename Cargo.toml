@@ -3,9 +3,13 @@ name = "rs-trafilatura"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"
+authors = ["Murrough Foley"]
 description = "Rust port of trafilatura - web content extraction library"
 license = "MIT OR Apache-2.0"
+homepage = "https://murroughfoley.com"
 repository = "https://github.com/Murrough-Foley/rs-trafilatura"
+documentation = "https://docs.rs/rs-trafilatura"
+readme = "README.md"
 keywords = ["html", "content-extraction", "web-scraping", "trafilatura", "boilerplate-removal"]
 categories = ["parser-implementations", "web-programming", "text-processing"]
 
