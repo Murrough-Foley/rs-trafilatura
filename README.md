@@ -6,15 +6,15 @@ A high-performance Rust port of [trafilatura](https://github.com/adbar/trafilatu
 
 ## Features
 
-- **Fast**: 7x faster than go-trafilatura, pure Rust with compile-time regex optimization
-- **Accurate**: F1 0.860 on a 1,502-page multi-type benchmark
+- **Fast**: 71 files/s for articles, 46 files/s overall on a 1,497-page benchmark (pure Rust, compile-time regex)
+- **Accurate**: F1 0.966 on ScrapingHub benchmark, F1 0.860 across 7 page types
 - **Page Type Classification**: ML classifier (Random Forest, 200 trees, 163 features) detects 7 page types: article, forum, product, collection, listing, documentation, service
 - **Per-Type Extraction**: Specialized extraction profiles tuned for each page type
 - **Extraction Confidence**: Quality scoring (0.0-1.0) for each extraction, enabling hybrid pipelines with LLM fallback
-- **Markdown Output**: GitHub Flavored Markdown output preserving headings, lists, tables, formatting
-- **Rich Metadata**: Extracts title, author, date, description, tags, and more from JSON-LD, Open Graph, Dublin Core, and HTML meta tags
-- **Configurable**: 20+ options to tune precision/recall tradeoff
-- **Robust**: Handles malformed HTML gracefully with automatic encoding detection
+- **Markdown Output**: GitHub Flavored Markdown preserving headings, lists, tables, bold/italic, code blocks
+- **Rich Metadata**: Title, author, date, description, categories, tags, license, images from JSON-LD, Open Graph, Dublin Core, and HTML meta tags
+- **Configurable**: 28 options to tune precision/recall tradeoff, content selection, and output format
+- **Robust**: Handles malformed HTML gracefully with automatic character encoding detection (UTF-8, ISO-8859-1, Windows-1252)
 
 ## Quick Start
 
@@ -190,14 +190,20 @@ The `ExtractResult` struct contains:
 
 ### Performance
 
-Benchmarked on 2,339 HTML files (669 MB total) on Linux x86_64:
+Benchmarked on 1,497 HTML files (462 MB total) on Linux x86_64:
 
-| Implementation | Total Time | Per File | Throughput |
-|----------------|------------|----------|------------|
-| **rs-trafilatura (Rust)** | 39.3s | 16.8ms | 59.6 files/s |
-| go-trafilatura (Go) | 282.3s | 120.7ms | 8.3 files/s |
+| Page Type | Count | ms/file | Avg Size | files/s |
+|-----------|-------|---------|----------|---------|
+| article | 782 | 14.1 | 225 KB | 71.0 |
+| service | 164 | 22.3 | 286 KB | 44.8 |
+| product | 124 | 34.9 | 718 KB | 28.7 |
+| collection | 116 | 43.8 | 656 KB | 22.8 |
+| forum | 113 | 29.4 | 260 KB | 34.1 |
+| listing | 107 | 26.7 | 339 KB | 37.5 |
+| documentation | 91 | 26.7 | 209 KB | 37.5 |
+| **Overall** | **1,497** | **21.8** | **316 KB** | **45.8** |
 
-**rs-trafilatura is 7.2x faster than go-trafilatura.**
+Extraction speed scales with page size. Articles (the most common page type) process at 71 files/s.
 
 ### ScrapingHub Article Extraction Benchmark
 
@@ -211,7 +217,7 @@ Tested on [scrapinghub/article-extraction-benchmark](https://github.com/scraping
 
 ### Multi-Type Benchmark
 
-Tested on 1,502 pages across 7 page types (articles, forums, products, collections, listings, documentation, services):
+Tested on 1,497 pages across 7 page types (articles, forums, products, collections, listings, documentation, services):
 
 | Implementation | F1 |
 |----------------|------|
