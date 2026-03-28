@@ -105,9 +105,29 @@ pub fn extract_dom_title(doc: &Document, original: Metadata, _opts: &Options) ->
         return result;
     }
 
-    // Try <title> element first (highest priority among DOM sources)
-    if let Some(title) = examine_title_element(doc) {
-        result.title = Some(title);
+    // Get candidates
+    let title_text = examine_title_element(doc);
+    let h1_text = extract_first_h1(doc);
+
+    match (&title_text, &h1_text) {
+        // Both available: prefer H1 if it's contained in <title> (H1 is the clean version)
+        (Some(title), Some(h1))
+            if h1.len() > 5 && title.to_lowercase().contains(&h1.to_lowercase()) =>
+        {
+            result.title = Some(h1.clone());
+        }
+        // <title> available
+        (Some(title), _) => {
+            result.title = Some(title.clone());
+        }
+        // H1 only
+        (None, Some(h1)) if h1.len() > 5 => {
+            result.title = Some(h1.clone());
+        }
+        _ => {}
+    }
+
+    if result.title.is_some() {
         return result;
     }
 
@@ -122,18 +142,26 @@ pub fn extract_dom_title(doc: &Document, original: Metadata, _opts: &Options) ->
         }
     }
 
-    // Fallback to H1
-    for h1 in doc.select("h1").nodes() {
-        let h1_sel = Selection::from(*h1);
-        let text = etree::iter_text(&h1_sel, " ").trim().to_string();
-
-        if !text.is_empty() && text.len() > 5 && text.len() < 200 {
-            result.title = Some(text);
-            return result;
+    // Last resort: H1 (if not already tried above)
+    if let Some(h1) = h1_text {
+        if h1.len() > 5 {
+            result.title = Some(h1);
         }
     }
 
     result
+}
+
+/// Extract the first substantial H1 text from the document.
+fn extract_first_h1(doc: &Document) -> Option<String> {
+    for h1 in doc.select("h1").nodes() {
+        let h1_sel = Selection::from(*h1);
+        let text = etree::iter_text(&h1_sel, " ").trim().to_string();
+        if !text.is_empty() && text.len() > 5 && text.len() < 200 {
+            return Some(text);
+        }
+    }
+    None
 }
 
 // ============================================================

@@ -122,6 +122,26 @@ pub fn link_density_test(element: &Selection, options: &Options) -> bool {
         }
     }
 
+    // Extended check for larger elements: link-dense containers without paragraphs.
+    // Nav sections (menus, filter panels, related links) typically have 5+ links,
+    // high link density, and NO <p> paragraph children. Content sections always
+    // have paragraphs interspersed with links.
+    if n_links >= 5 && tag_name != "p" {
+        let has_paragraphs = element.select("p").length() > 0;
+        if !has_paragraphs {
+            let (link_length, n_short_links, n_non_empty_links) = collect_link_info(&links);
+            if n_non_empty_links > 0 {
+                let link_density = link_length as f64 / text_length.max(1) as f64;
+                let short_ratio = n_short_links as f64 / n_non_empty_links as f64;
+
+                // High link density + mostly short links + no paragraphs = navigation
+                if link_density > 0.5 && short_ratio > 0.5 {
+                    return true;
+                }
+            }
+        }
+    }
+
     false
 }
 
@@ -208,7 +228,21 @@ pub fn link_density_test_with_info(element: &Selection, options: &Options) -> (b
         return (true, false);
     }
 
-    // Has links but didn't meet threshold criteria
+    // Extended check: link-dense containers without paragraphs
+    if n_links >= 5 && tag_name != "p" {
+        let has_paragraphs = element.select("p").length() > 0;
+        if !has_paragraphs {
+            let (link_length, n_short_links, n_non_empty_links) = collect_link_info(&links);
+            if n_non_empty_links > 0 {
+                let link_density = link_length as f64 / text_length.max(1) as f64;
+                let short_ratio = n_short_links as f64 / n_non_empty_links as f64;
+                if link_density > 0.5 && short_ratio > 0.5 {
+                    return (true, true);
+                }
+            }
+        }
+    }
+
     let (_, _, n_non_empty_links) = collect_link_info(&links);
     (n_non_empty_links > 0, false)
 }

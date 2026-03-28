@@ -73,7 +73,14 @@ pub fn escape_markdown(text: &str, in_code_block: bool) -> String {
 /// # Returns
 ///
 /// Markdown with properly escaped special characters in text content.
+///
+/// # Deprecation
+///
+/// Since quick_html2md v0.2, position-aware escaping is handled natively
+/// by the converter when `escape_special_chars(true)` is set. This function
+/// is no longer called internally but is kept for backwards compatibility.
 #[must_use]
+#[deprecated(since = "0.1.2", note = "Use quick_html2md's built-in escape_special_chars option instead")]
 pub fn post_process_markdown(markdown: &str) -> String {
     if markdown.is_empty() {
         return String::new();
@@ -163,6 +170,19 @@ pub fn post_process_markdown(markdown: &str) -> String {
             continue;
         }
 
+        // Preserve blockquote markers at line start (> text, > > nested)
+        if line_start && ch == '>' {
+            result.push(ch);
+            line_start = false;
+            continue;
+        }
+        // Also preserve > after "> " (nested blockquotes)
+        if ch == '>' && result.ends_with("> ") {
+            result.push(ch);
+            line_start = false;
+            continue;
+        }
+
         // Preserve list markers at line start
         if line_start && (ch == '-' || ch == '*' || ch == '+') {
             if chars.peek() == Some(&' ') {
@@ -215,6 +235,36 @@ pub fn post_process_markdown(markdown: &str) -> String {
             }
             line_start = false;
             continue;
+        }
+
+        // Preserve link brackets [ and ] when part of [text](url) pattern
+        if ch == '[' {
+            // Look ahead for ](url) pattern - this is likely a markdown link
+            let remaining: String = chars.clone().collect();
+            if remaining.contains("](") {
+                result.push(ch);
+                line_start = false;
+                continue;
+            }
+        }
+        if ch == ']' {
+            if chars.peek() == Some(&'(') {
+                result.push(ch);
+                line_start = false;
+                continue;
+            }
+        }
+
+        // Preserve < and > in HTML-like contexts (e.g., <https://...>)
+        // but escape in plain text
+        if ch == '<' {
+            let next = chars.peek();
+            if next == Some(&'h') || next == Some(&'/') {
+                // Likely <https://...> or closing tag remnant — preserve
+                result.push(ch);
+                line_start = false;
+                continue;
+            }
         }
 
         // Escape other special characters

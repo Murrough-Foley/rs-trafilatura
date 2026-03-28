@@ -92,12 +92,12 @@ pub fn extract_discourse_content(doc: &Document) -> Option<String> {
                 .replace("\\n", "\n")
                 .replace("\\\"", "\"");
 
-            // Parse as HTML and extract text
-            let temp_doc = Document::from(format!("<div>{unescaped}</div>"));
-            let text = dom::text_content(&temp_doc.select("div")).trim().to_string();
-
-            if !text.is_empty() {
-                content_parts.push(text);
+            // Keep the decoded HTML — the main pipeline will handle tag preservation
+            // and markdown conversion. Previously this extracted plain text via
+            // dom::text_content(), which stripped <ul>/<li>/<strong> etc.
+            let trimmed = unescaped.trim();
+            if !trimmed.is_empty() {
+                content_parts.push(trimmed.to_string());
             }
         }
     }

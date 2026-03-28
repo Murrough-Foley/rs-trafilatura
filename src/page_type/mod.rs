@@ -987,6 +987,19 @@ const PRODUCT_BOILERPLATE_SELECTORS: &[&str] = &[
     "[class*='recently-viewed']",
     "[class*='recommend']",
     "[class*='related-']",
+    // Amazon-specific boilerplate
+    "[class*='sponsored']",
+    "[class*='a-carousel']",
+    "[class*='similarities']",
+    // eBay-specific boilerplate
+    "[class*='merch-module']",
+    "[class*='vi-ilComp']",
+    // Generic "similar/related items" headings and sections
+    "[class*='similar-']",
+    "[class*='also-viewed']",
+    "[class*='also-bought']",
+    "[class*='people-also']",
+    "[class*='you-may-also']",
 ];
 
 /// Boilerplate selectors for documentation pages.

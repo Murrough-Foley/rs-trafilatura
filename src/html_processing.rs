@@ -135,31 +135,22 @@ pub fn doc_cleaning(doc: &Document, opts: &Options) {
 fn doc_cleaning_inner(doc: &Document, opts: &Options, preserve_tags: &[&str]) {
     let exclude_tables = !opts.include_tables;
 
-    // Handle figure elements containing tables or blockquotes before cleaning.
-    // EPIC-05: Combined selectors - 2 tree scans → 1 tree scan
-    // Before: Two separate loops over doc.select("figure")
-    // After: Single loop, checking both conditions
+    // === Pre-cleaning: Context-aware handling that must happen before bulk removal ===
+
+    // Handle figure elements containing tables or blockquotes.
+    // These are content containers (quote boxes, data tables) that should be
+    // preserved by renaming to div before the bulk cleaner removes <figure>.
     for figure_node in doc.select("figure").nodes() {
         let figure = Selection::from(*figure_node);
-
-        // Handle figure containing tables (if tables are included)
         let has_table = !exclude_tables && figure.select("table").length() > 0;
-
-        // Handle figure containing blockquotes.
-        // These are quote boxes (like testimonials/reviews) that contain text content,
-        // not images, so they should be preserved by renaming to div.
         let has_blockquote = figure.select("blockquote").length() > 0;
-
         if has_table || has_blockquote {
             dom::rename(&figure, "div");
         }
     }
 
-    // Handle noscript elements specially: if they contain substantial content
-    // (due to malformed HTML where content got parsed inside noscript),
-    // strip the tag but keep children instead of removing everything.
-    // This handles cases like legacy pages with `<noscript><div>...</noscript>` without proper closing.
-    // BUT skip noscript elements that contain consent/GDPR banners.
+    // Handle noscript elements: strip tag but keep children if they contain
+    // substantial content (>500 chars) that isn't consent/GDPR banners.
     const NOSCRIPT_CONTENT_THRESHOLD: usize = 500;
     for noscript_node in doc.select("noscript").nodes() {
         let noscript = Selection::from(*noscript_node);
@@ -167,7 +158,6 @@ fn doc_cleaning_inner(doc: &Document, opts: &Options, preserve_tags: &[&str]) {
         let text_lower = text.to_lowercase();
         let text_len = text.trim().len();
 
-        // Skip if it looks like a consent/GDPR banner
         let is_consent = text_lower.contains("cookie")
             || text_lower.contains("consent")
             || text_lower.contains("gdpr")
@@ -177,36 +167,16 @@ fn doc_cleaning_inner(doc: &Document, opts: &Options, preserve_tags: &[&str]) {
             || text_lower.contains("enable javascript");
 
         if text_len > NOSCRIPT_CONTENT_THRESHOLD && !is_consent {
-            // Has substantial non-consent content - strip tag but keep children
             etree::strip(&noscript);
         }
-        // else: will be removed by normal cleaning
     }
 
-    // Build combined CSS selector for cleaning (performance optimization)
-    // Instead of 50+ separate select() calls, use one comma-separated selector
-    let mut clean_selector = build_clean_selector(opts);
-    let strip_selector = build_strip_selector(opts);
-
-    // Remove tags that the page type profile wants to preserve
-    if !preserve_tags.is_empty() {
-        clean_selector.retain(|s| !preserve_tags.contains(&s.as_str()));
-    }
-
-    // Strip tags first (remove tag but keep children) - single combined selector
-    if !strip_selector.is_empty() {
-        dom::strip_tags(&doc.select("body"), &strip_selector.iter().map(String::as_str).collect::<Vec<_>>());
-    }
-
-    // Handle footer specially: remove footers that are NOT inside article/main content.
-    // Footers inside article/main are content footers (e.g., article notes, attribution)
-    // and should be preserved for content extraction. Site footers are boilerplate.
-    // Do this BEFORE the combined removal so we can selectively remove "footer" from the selector.
+    // Handle footers: remove only those NOT inside article/main content.
+    // Content footers (article notes, attribution) are preserved.
     {
         let footers: Vec<_> = doc.select("footer").nodes().to_vec();
         for footer_node in footers {
             let footer = Selection::from(footer_node);
-            // Check if this footer is inside an article or main element
             let mut inside_content = false;
             let mut cur = footer.parent();
             while cur.length() > 0 {
@@ -215,7 +185,6 @@ fn doc_cleaning_inner(doc: &Document, opts: &Options, preserve_tags: &[&str]) {
                         inside_content = true;
                         break;
                     }
-                    // Stop at body
                     if tag == "body" || tag == "html" {
                         break;
                     }
@@ -226,21 +195,69 @@ fn doc_cleaning_inner(doc: &Document, opts: &Options, preserve_tags: &[&str]) {
                 dom::remove(&footer);
             }
         }
-        // Now remove "footer" from the combined selector since we handled it above
-        clean_selector.retain(|s| s != "footer");
     }
 
-    // Remove cleaning tags - single combined selector
-    if !clean_selector.is_empty() {
-        let combined = clean_selector.join(", ");
-        doc.select(&combined).remove();
+    // === Bulk cleaning via html-cleaning crate ===
+    {
+        use html_cleaning::{HtmlCleaner, CleaningOptions};
+
+        // Start from the trafilatura preset, but disable prune_empty and
+        // normalize_whitespace — we handle those with size guards below.
+        let mut cleaning_opts = html_cleaning::presets::trafilatura();
+        cleaning_opts.prune_empty = false;
+        cleaning_opts.normalize_whitespace = false;
+
+        // Remove "footer" from bulk removal — already handled above contextually
+        cleaning_opts.tags_to_remove.retain(|t| t != "footer");
+
+        // Remove tags that the page type profile wants to preserve
+        if !preserve_tags.is_empty() {
+            cleaning_opts.tags_to_remove.retain(|t| !preserve_tags.contains(&t.as_str()));
+        }
+
+        // Conditional: include tables — don't remove figure/picture/source
+        if opts.include_images {
+            cleaning_opts.tags_to_remove.retain(|t| !matches!(t.as_str(), "figure" | "picture" | "source"));
+            cleaning_opts.tags_to_strip.retain(|t| t != "img");
+        }
+
+        // Conditional: exclude tables — add table tags to removal
+        if !opts.include_tables {
+            for tag in &["table", "td", "th", "tr"] {
+                cleaning_opts.tags_to_remove.push((*tag).to_string());
+            }
+        }
+
+        // Add table structure tags to strip list (tbody, tfoot, thead)
+        for tag in TABLE_TAGS_TO_STRIP {
+            cleaning_opts.tags_to_strip.push(tag.to_string());
+        }
+
+        // Add modal/GDPR/consent selectors
+        cleaning_opts.selectors_to_remove.extend([
+            ".modal-dialog".to_string(),
+            ".modal-content".to_string(),
+            ".modal-backdrop".to_string(),
+            ".modal-overlay".to_string(),
+            "[class~=\"modal\"]".to_string(),
+            "[role=\"dialog\"]".to_string(),
+            "[id*=\"gdpr\"]".to_string(),
+            "[class*=\"gdpr\"]".to_string(),
+            "[id*=\"consent\"]".to_string(),
+            "[class*=\"consent\"]".to_string(),
+            "[class*=\"cookie-banner\"]".to_string(),
+            "[id*=\"cookie-banner\"]".to_string(),
+            "[class*=\"cookiebanner\"]".to_string(),
+            "[id*=\"cookiebanner\"]".to_string(),
+        ]);
+
+        let cleaner = HtmlCleaner::with_options(cleaning_opts);
+        cleaner.clean(doc);
     }
 
-    // Remove HTML comments
-    dom::remove_comments(doc);
-
-    // Prune empty elements (skip for performance if document is very large)
-    // EPIC-04: Use StrTendril.len() directly - no allocation needed
+    // === Post-cleaning: tail-aware empty element pruning ===
+    // The html-cleaning prune_empty doesn't handle the text/tail model that
+    // rs-trafilatura uses, so we keep the tail-aware version here.
     let body_len = doc.select("body").text().len();
     if body_len < MAX_PRUNE_DOCUMENT_SIZE {
         prune_html(doc, opts);

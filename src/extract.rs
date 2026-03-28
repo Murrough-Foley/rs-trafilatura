@@ -351,13 +351,23 @@ pub(crate) fn extract_content(html: &str, options: &Options) -> Result<ExtractRe
             warnings.push(format!(
                 "Using {structured_source} content: {structured_len} chars (DOM was {dom_len} chars)"
             ));
-            content_text.clone_from(structured_text);
-            // Create minimal HTML wrapper (escape basic HTML entities)
-            let escaped = structured_text
-                .replace('&', "&amp;")
-                .replace('<', "&lt;")
-                .replace('>', "&gt;");
-            content_html = Some(format!("<p>{escaped}</p>"));
+
+            if use_discourse {
+                // Discourse content is decoded HTML — keep tags for markdown conversion
+                let html_body = format!("<div>{structured_text}</div>");
+                let temp_doc = Document::from(html_body.as_str());
+                let temp_root = temp_doc.select("div");
+                content_text = crate::dom::text_content(&temp_root).trim().to_string();
+                content_html = Some(structured_text.clone());
+            } else {
+                // JSON-LD articleBody is plain text
+                content_text.clone_from(structured_text);
+                let escaped = structured_text
+                    .replace('&', "&amp;")
+                    .replace('<', "&lt;")
+                    .replace('>', "&gt;");
+                content_html = Some(format!("<p>{escaped}</p>"));
+            }
         }
     }
 
@@ -417,18 +427,17 @@ pub(crate) fn extract_content(html: &str, options: &Options) -> Result<ExtractRe
             use quick_html2md::{html_to_markdown_with_options, MarkdownOptions};
 
             // Map rs-trafilatura Options to quick_html2md MarkdownOptions
+            // quick_html2md v0.2 handles position-aware escaping natively
             let md_options = MarkdownOptions::new()
                 .include_links(options.include_links)
                 .include_images(options.include_images)
-                .preserve_tables(options.include_tables);
+                .preserve_tables(options.include_tables)
+                .escape_special_chars(true);
 
-            // Convert HTML to Markdown (quick_html2md handles tables natively)
-            let raw_markdown = html_to_markdown_with_options(html, &md_options);
+            // Convert HTML to Markdown (quick_html2md handles tables and escaping natively)
+            let markdown = html_to_markdown_with_options(html, &md_options);
 
-            // Post-process to escape special characters while preserving formatting
-            let processed_markdown = crate::markdown::post_process_markdown(&raw_markdown);
-
-            result.content_markdown = Some(processed_markdown);
+            result.content_markdown = Some(markdown);
         }
     }
 
@@ -972,6 +981,14 @@ fn apply_final_validations(
     _doc: &Document,
     options: &Options,
 ) -> Result<ExtractResult> {
+    // TODO: Multi-signal link-dense boilerplate removal (strip_link_dense_sections)
+    // Currently disabled — the post-extraction filter regresses F1 from 0.857 to 0.846
+    // because root.select("div") matches content-wrapping divs, not just nav sections.
+    // Future: restrict to direct children of extracted root, or integrate into
+    // the pre-extraction boilerplate removal in html_processing.rs where DOM context
+    // is richer. The multi-signal scoring (nav_score >= 5/8) correctly identifies
+    // nav sections but the DOM traversal catches too many false positives.
+
     // Count words in main content
     let word_count = count_words(&result.content_text, options.min_word_length);
 
@@ -1014,6 +1031,111 @@ fn apply_final_validations(
     }
 
     Ok(result)
+}
+
+/// Strip sections from content HTML that are link-dense navigation boilerplate.
+///
+/// Strip navigation boilerplate from extracted content using multi-signal detection.
+///
+/// Uses 4 signals to distinguish navigation (short links, packed together, many links)
+/// from legitimate content (long link text, paragraphs between links):
+/// 1. Link text density (ratio of link text to total text)
+/// 2. Average link text length (nav links are short: "Home", "About")
+/// 3. Inter-link text (nav has no text between links, content has paragraphs)
+/// 4. Link count (nav sections tend to have many links)
+///
+/// A section is only stripped when multiple signals agree (score >= 5 out of 8).
+fn strip_link_dense_sections(html: &str) -> String {
+    let doc = Document::from(html);
+    let body = doc.select("body");
+    let root = if body.exists() { body } else { doc.select("*").first() };
+
+    let original_text_len = crate::dom::text_content(&root).trim().len();
+    let mut changed = false;
+
+    for tag in &["div", "section", "ul", "nav", "aside", "footer"] {
+        for el in root.select(tag).iter() {
+            let links = el.select("a");
+            let link_count = links.length();
+            if link_count < 3 {
+                continue;
+            }
+
+            let total_text = crate::dom::text_content(&el);
+            let total_len = total_text.trim().len();
+            if total_len < 30 {
+                continue;
+            }
+
+            // Calculate link text metrics
+            let mut link_text_len: usize = 0;
+            for a in links.iter() {
+                link_text_len += crate::dom::text_content(&a).trim().len();
+            }
+
+            let link_density = link_text_len as f64 / total_len as f64;
+            let avg_link_len = link_text_len as f64 / link_count as f64;
+            let non_link_text = total_len.saturating_sub(link_text_len);
+            let text_per_gap = non_link_text as f64 / (link_count.saturating_sub(1)).max(1) as f64;
+
+            let mut nav_score: u32 = 0;
+
+            // Signal 1: Link density
+            if link_density > 0.6 {
+                nav_score += 2;
+            } else if link_density > 0.4 {
+                nav_score += 1;
+            }
+
+            // Signal 2: Average link text length (nav links are short)
+            if avg_link_len < 15.0 {
+                nav_score += 2;
+            } else if avg_link_len < 30.0 {
+                nav_score += 1;
+            }
+
+            // Signal 3: Inter-link text (nav has no text between links)
+            if text_per_gap < 10.0 {
+                nav_score += 2;
+            } else if text_per_gap < 30.0 {
+                nav_score += 1;
+            }
+
+            // Signal 4: Link count
+            if link_count >= 10 {
+                nav_score += 2;
+            } else if link_count >= 5 {
+                nav_score += 1;
+            }
+
+            // Strip if 5+ out of 8 signals agree
+            if nav_score >= 5 {
+                if let Some(node) = el.nodes().first() {
+                    node.remove_from_parent();
+                    changed = true;
+                }
+            }
+        }
+    }
+
+    if !changed {
+        return html.to_string();
+    }
+
+    // Guard: don't strip if we'd remove more than 50% of content
+    let result_body = doc.select("body");
+    let result_sel = if result_body.exists() {
+        result_body
+    } else {
+        doc.select("*").first()
+    };
+    let new_text_len = crate::dom::text_content(&result_sel).trim().len();
+    if new_text_len < original_text_len / 2 {
+        // Too aggressive — return original unchanged
+        return html.to_string();
+    }
+
+    crate::dom::inner_html(&result_sel).to_string()
 }
 
 /// Attempt length-based fallback extraction using alternative selectors
@@ -2584,6 +2706,8 @@ fn push_filtered_html_children(
                     | "h5"
                     | "h6"
                     | "blockquote"
+                    | "pre"
+                    | "code"
                     | "strong"
                     | "em"
                     | "b"
@@ -2612,6 +2736,13 @@ fn push_filtered_html_children(
                     if let Some(href) = el.attr("href") {
                         out.push_str(" href=\"");
                         out.push_str(&escape_html(&href));
+                        out.push('"');
+                    }
+                }
+                if tag == "code" {
+                    if let Some(class) = el.attr("class") {
+                        out.push_str(" class=\"");
+                        out.push_str(&escape_html(&class));
                         out.push('"');
                     }
                 }

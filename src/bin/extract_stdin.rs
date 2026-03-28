@@ -22,6 +22,8 @@ struct Output {
     // Hybrid-only fields
     #[serde(skip_serializing_if = "Option::is_none")]
     content_html: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    content_markdown: Option<String>,
 }
 
 fn main() {
@@ -31,6 +33,7 @@ fn main() {
     let mut url: Option<String> = None;
     let mut page_type_override: Option<PageType> = None;
     let mut hybrid = false;
+    let mut markdown = false;
     let mut i = 1;
     while i < args.len() {
         match args[i].as_str() {
@@ -62,6 +65,10 @@ fn main() {
                 hybrid = true;
                 i += 1;
             }
+            "--markdown" => {
+                markdown = true;
+                i += 1;
+            }
             _ => { i += 1; }
         }
     }
@@ -77,6 +84,10 @@ fn main() {
     let options = Options {
         url,
         page_type: page_type_override,
+        output_markdown: markdown,
+        include_tables: if markdown { true } else { Options::default().include_tables },
+        include_links: if markdown { true } else { Options::default().include_links },
+        include_formatting: if markdown { true } else { Options::default().include_formatting },
         ..Options::default()
     };
 
@@ -94,6 +105,7 @@ fn main() {
             classification_confidence: r.classification_confidence,
             confidence: r.extraction_quality,
             content_html: if hybrid { r.content_html } else { None },
+            content_markdown: if markdown { r.content_markdown } else { None },
         },
         Err(_) => Output {
             title: None,
@@ -104,6 +116,7 @@ fn main() {
             classification_confidence: None,
             confidence: 0.0,
             content_html: None,
+            content_markdown: None,
         },
     };
 
