@@ -14,8 +14,8 @@ keywords = ["html", "content-extraction", "web-scraping", "trafilatura", "boiler
 categories = ["parser-implementations", "web-programming", "text-processing"]
 
 [dependencies]
-html-cleaning = { path = "../html-cleaning" }
-quick_html2md = { path = "../quick_html2md" }
+html-cleaning = "0.3"
+quick_html2md = "0.2.1"
 dom_query = "0.24"         # Primary DOM manipulation
 tendril = "0.4"            # Zero-copy text operations via StrTendril
 thiserror = "2.0"
