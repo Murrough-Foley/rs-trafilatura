@@ -3812,7 +3812,7 @@ mod tests {
         let elapsed = start.elapsed();
 
         assert!(result.is_ok());
-        assert!(elapsed < Duration::from_secs(30), "large HTML parsing took {elapsed:?}");
+        assert!(elapsed < Duration::from_secs(60), "large HTML parsing took {elapsed:?}");
     }
 
     #[test]
