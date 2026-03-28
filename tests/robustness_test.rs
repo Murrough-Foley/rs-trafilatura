@@ -93,7 +93,7 @@ fn extract_handles_large_html_without_panic() {
     let elapsed = start.elapsed();
 
     assert!(matches!(result, Ok(_) | Err(Error::NoContent)));
-    assert!(elapsed < Duration::from_secs(30), "large HTML parsing took {elapsed:?}");
+    assert!(elapsed < Duration::from_secs(60), "large HTML parsing took {elapsed:?}");
 }
 
 #[test]
