@@ -1,6 +1,6 @@
 [package]
 name = "rs-trafilatura"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.85"
 authors = ["Murrough Foley"]
@@ -14,9 +14,9 @@ keywords = ["html", "content-extraction", "web-scraping", "trafilatura", "boiler
 categories = ["parser-implementations", "web-programming", "text-processing"]
 
 [dependencies]
-html-cleaning = { path = "../html-cleaning" }
-quick_html2md = { path = "../quick_html2md" }
-web-page-classifier = { path = "../web-page-classifier" }
+html-cleaning = "0.3"
+quick_html2md = "0.2"
+web-page-classifier = "0.1"
 dom_query = "0.24"         # Primary DOM manipulation
 tendril = "0.4"            # Zero-copy text operations via StrTendril
 thiserror = "2.0"

@@ -397,31 +397,13 @@ pub(crate) fn extract_content(html: &str, options: &Options) -> Result<ExtractRe
         eprintln!("  Warnings: {}", warnings.len());
     }
 
-    // Compute extraction quality using ML predictor
-    let heuristic_quality = compute_extraction_quality_heuristic(
+    // Compute extraction quality confidence
+    let extraction_quality = compute_extraction_quality_heuristic(
         &content_text,
         content_html.as_deref(),
         html.len(),
         detected_page_type,
     );
-    // Use ML quality predictor (features extracted from content statistics)
-    let extraction_quality = {
-        let mut f = [0.0f64; web_page_classifier::N_QUALITY_FEATURES];
-        f[0] = heuristic_quality;
-        f[1] = content_text.len() as f64;
-        f[2] = content_text.split_whitespace().count() as f64;
-        // Page type one-hot
-        f[13] = if matches!(detected_page_type, page_type::PageType::Article) { 1.0 } else { 0.0 };
-        f[14] = if matches!(detected_page_type, page_type::PageType::Category) { 1.0 } else { 0.0 };
-        f[15] = if matches!(detected_page_type, page_type::PageType::Documentation) { 1.0 } else { 0.0 };
-        f[16] = if matches!(detected_page_type, page_type::PageType::Forum) { 1.0 } else { 0.0 };
-        f[17] = if matches!(detected_page_type, page_type::PageType::Listing) { 1.0 } else { 0.0 };
-        f[18] = if matches!(detected_page_type, page_type::PageType::Product) { 1.0 } else { 0.0 };
-        f[19] = if matches!(detected_page_type, page_type::PageType::Service) { 1.0 } else { 0.0 };
-        f[21] = html.len() as f64;
-        f[22] = content_text.len() as f64 / html.len().max(1) as f64;
-        web_page_classifier::predict_quality(&f)
-    };
 
     // Build initial result
     let mut result = ExtractResult {

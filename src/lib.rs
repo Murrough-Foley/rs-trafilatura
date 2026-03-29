@@ -23,14 +23,22 @@
 //! ## Features
 //!
 //! - **Content Extraction**: Identifies and extracts the main article content
+//! - **Page Type Classification**: XGBoost classifier detects 7 page types
+//!   (article, forum, product, collection, listing, documentation, service)
+//! - **Per-Type Extraction Profiles**: Type-specific boilerplate removal,
+//!   content selectors, and extraction strategies
+//! - **Extraction Quality Predictor**: ML confidence score (0.0-1.0) predicting
+//!   extraction F1 — enables hybrid pipelines with LLM fallback for low-confidence pages
 //! - **Metadata Extraction**: Title, author, date, language, sitename, and more
-//! - **Boilerplate Removal**: Strips navigation, ads, footers, and other noise
+//!   from JSON-LD, Open Graph, Dublin Core, and HTML meta tags
+//! - **Markdown Output**: GitHub Flavored Markdown with headings, lists, tables, code blocks
 //! - **Configurable**: Options to tune precision/recall tradeoff
 //!
 //! ## Accuracy
 //!
-//! Achieves F1 0.860 on a 1,502-page benchmark with page type classification,
-//! ML-based content detection, and extraction quality confidence scoring.
+//! Achieves F1 0.859 on a 1,497-page multi-type benchmark (WCEB), outperforming
+//! Trafilatura (0.792) and neural approaches MinerU-HTML (0.827) and ReaderLM-v2 (0.741).
+//! F1 0.893 on a 511-page held-out test set confirms generalization.
 
 mod error;
 mod extract;

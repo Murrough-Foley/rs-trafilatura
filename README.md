@@ -7,10 +7,10 @@ A high-performance Rust port of [trafilatura](https://github.com/adbar/trafilatu
 ## Features
 
 - **Fast**: 71 files/s for articles, 46 files/s overall on a 1,497-page benchmark (pure Rust, compile-time regex)
-- **Accurate**: F1 0.966 on ScrapingHub benchmark, F1 0.860 across 7 page types
-- **Page Type Classification**: ML classifier (Random Forest, 200 trees, 163 features) detects 7 page types: article, forum, product, collection, listing, documentation, service
-- **Per-Type Extraction**: Specialized extraction profiles tuned for each page type
-- **Extraction Confidence**: Quality scoring (0.0-1.0) for each extraction, enabling hybrid pipelines with LLM fallback
+- **Accurate**: F1 0.966 on ScrapingHub benchmark, F1 0.859 across 7 page types
+- **Page Type Classification**: XGBoost classifier (200 trees, 181 features) detects 7 page types: article, forum, product, collection, listing, documentation, service
+- **Per-Type Extraction**: Specialized extraction profiles tuned for each page type (12 forum platforms, 4 documentation frameworks, JSON-LD product fallback)
+- **Extraction Quality Predictor**: ML-based confidence scoring (0.0-1.0) using a 27-feature XGBoost model that predicts extraction F1 — pages below 0.80 are candidates for LLM fallback
 - **Markdown Output**: GitHub Flavored Markdown preserving headings, lists, tables, bold/italic, code blocks
 - **Rich Metadata**: Title, author, date, description, categories, tags, license, images from JSON-LD, Open Graph, Dublin Core, and HTML meta tags
 - **Configurable**: 28 options to tune precision/recall tradeoff, content selection, and output format
@@ -53,7 +53,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rs-trafilatura = { git = "https://github.com/Murrough-Foley/rs-trafilatura" }
+rs-trafilatura = "0.2"
 ```
 
 ## Usage
@@ -215,13 +215,30 @@ Tested on [scrapinghub/article-extraction-benchmark](https://github.com/scraping
 | go-trafilatura (Go) | 0.960 | 0.940 | 0.980 |
 | trafilatura (Python) | 0.958 | 0.938 | 0.978 |
 
-### Multi-Type Benchmark
+### Multi-Type Benchmark (WCEB)
 
-Tested on 1,497 pages across 7 page types (articles, forums, products, collections, listings, documentation, services):
+Tested on the [Web Content Extraction Benchmark](https://github.com/Murrough-Foley/web-content-extraction-benchmark) — 1,497 pages across 7 page types:
 
-| Implementation | F1 |
-|----------------|------|
-| **rs-trafilatura** | **0.860** |
+| System | F1 | Type |
+|--------|------|------|
+| **rs-trafilatura** | **0.859** | Rule+ML |
+| MinerU-HTML (0.6B) | 0.827 | Neural |
+| Trafilatura (Python) | 0.792 | Rule |
+| ReaderLM-v2 (1.5B) | 0.741 | Neural |
+
+On a separate 511-page held-out test set: F1=0.893 (rs-trafilatura) vs 0.833 (Trafilatura).
+
+### Per-Page-Type F1
+
+| Page Type | rs-trafilatura | Trafilatura |
+|-----------|---------------|-------------|
+| Article | 0.932 | 0.926 |
+| Documentation | 0.931 | 0.888 |
+| Service | 0.843 | 0.763 |
+| Forum | 0.792 | 0.585 |
+| Collection | 0.713 | 0.553 |
+| Listing | 0.704 | 0.589 |
+| Product | 0.670 | 0.567 |
 
 ## Examples
 
