@@ -397,13 +397,31 @@ pub(crate) fn extract_content(html: &str, options: &Options) -> Result<ExtractRe
         eprintln!("  Warnings: {}", warnings.len());
     }
 
-    // Compute extraction quality confidence
-    let extraction_quality = compute_extraction_quality(
+    // Compute extraction quality using ML predictor
+    let heuristic_quality = compute_extraction_quality_heuristic(
         &content_text,
         content_html.as_deref(),
         html.len(),
         detected_page_type,
     );
+    // Use ML quality predictor (features extracted from content statistics)
+    let extraction_quality = {
+        let mut f = [0.0f64; web_page_classifier::N_QUALITY_FEATURES];
+        f[0] = heuristic_quality;
+        f[1] = content_text.len() as f64;
+        f[2] = content_text.split_whitespace().count() as f64;
+        // Page type one-hot
+        f[13] = if matches!(detected_page_type, page_type::PageType::Article) { 1.0 } else { 0.0 };
+        f[14] = if matches!(detected_page_type, page_type::PageType::Category) { 1.0 } else { 0.0 };
+        f[15] = if matches!(detected_page_type, page_type::PageType::Documentation) { 1.0 } else { 0.0 };
+        f[16] = if matches!(detected_page_type, page_type::PageType::Forum) { 1.0 } else { 0.0 };
+        f[17] = if matches!(detected_page_type, page_type::PageType::Listing) { 1.0 } else { 0.0 };
+        f[18] = if matches!(detected_page_type, page_type::PageType::Product) { 1.0 } else { 0.0 };
+        f[19] = if matches!(detected_page_type, page_type::PageType::Service) { 1.0 } else { 0.0 };
+        f[21] = html.len() as f64;
+        f[22] = content_text.len() as f64 / html.len().max(1) as f64;
+        web_page_classifier::predict_quality(&f)
+    };
 
     // Build initial result
     let mut result = ExtractResult {
@@ -767,19 +785,117 @@ fn try_multi_candidate_merge(doc: &Document, options: &Options) -> Option<String
     }
 }
 
-/// Compute a heuristic extraction quality score (0.0 - 1.0).
+/// Compute extraction quality using ML predictor.
 ///
-/// Estimates how well the extraction captured the page's main content.
-/// Based on five signals that are available at extraction time (no GT needed):
-///
-/// 1. Extraction-to-HTML ratio — very low ratio means under-extraction
-/// 2. Content length — very short content is almost always bad
-/// 3. Paragraph structure — real content has `<p>` tags
-/// 4. Link density — high link text ratio means navigation was captured
-/// 5. Boilerplate keywords — "cookie", "subscribe", etc. in first 200 chars
-///
-/// Pages scoring below ~0.6 are candidates for LLM fallback.
-fn compute_extraction_quality(
+/// Extracts 27 features from the extraction result and uses an XGBoost
+/// regression model to predict the expected F1 score (0.0-1.0).
+/// Pages scoring below ~0.80 are candidates for LLM fallback.
+fn compute_extraction_quality_ml(
+    content_text: &str,
+    content_html: Option<&str>,
+    html_len: usize,
+    page_type: page_type::PageType,
+    doc: &Document,
+) -> f64 {
+    let content_len = content_text.len();
+    let content_lower = content_text.to_ascii_lowercase();
+    let words: Vec<&str> = content_lower.split_whitespace().collect();
+    let word_count = words.len();
+    let unique_words: std::collections::HashSet<&str> = words.iter().copied().collect();
+
+    // Compute heuristic confidence as one of the 27 ML features
+    let heuristic_conf = compute_extraction_quality_heuristic(
+        content_text, content_html, html_len, page_type);
+
+    let mut f = [0.0f64; web_page_classifier::N_QUALITY_FEATURES];
+
+    f[0] = heuristic_conf;
+    f[1] = content_len as f64;
+    f[2] = word_count as f64;
+    f[3] = unique_words.len() as f64 / word_count.max(1) as f64;
+    f[4] = if word_count > 0 {
+        words.iter().map(|w| w.len() as f64).sum::<f64>() / word_count as f64
+    } else { 0.0 };
+
+    let sentences: Vec<&str> = content_text
+        .split(|c: char| c == '.' || c == '!' || c == '?' || c == '\n')
+        .map(str::trim).filter(|s| s.len() > 10).collect();
+    f[5] = sentences.len() as f64;
+    f[6] = if !sentences.is_empty() {
+        sentences.iter().map(|s| s.len() as f64).sum::<f64>() / sentences.len() as f64
+    } else { 0.0 };
+    let unique_sent: std::collections::HashSet<&str> = sentences.iter().copied().collect();
+    f[7] = unique_sent.len() as f64 / sentences.len().max(1) as f64;
+
+    let paragraphs: Vec<&str> = content_text.split("\n\n")
+        .map(str::trim).filter(|p| p.len() > 20).collect();
+    f[8] = paragraphs.len() as f64;
+    f[9] = if !paragraphs.is_empty() {
+        paragraphs.iter().map(|p| p.len() as f64).sum::<f64>() / paragraphs.len() as f64
+    } else { 0.0 };
+
+    let link_count = content_text.matches("http://").count() + content_text.matches("https://").count();
+    f[10] = link_count as f64;
+    f[11] = link_count as f64 / word_count.max(1) as f64;
+
+    let first_500 = &content_lower[..content_lower.len().min(500)];
+    let bp_kws = ["cookie", "consent", "subscribe", "newsletter", "sign up",
+                  "skip to", "copyright", "privacy", "terms", "accept"];
+    f[12] = bp_kws.iter().filter(|kw| first_500.contains(*kw)).count() as f64;
+
+    f[13] = if matches!(page_type, page_type::PageType::Article) { 1.0 } else { 0.0 };
+    f[14] = if matches!(page_type, page_type::PageType::Category) { 1.0 } else { 0.0 };
+    f[15] = if matches!(page_type, page_type::PageType::Documentation) { 1.0 } else { 0.0 };
+    f[16] = if matches!(page_type, page_type::PageType::Forum) { 1.0 } else { 0.0 };
+    f[17] = if matches!(page_type, page_type::PageType::Listing) { 1.0 } else { 0.0 };
+    f[18] = if matches!(page_type, page_type::PageType::Product) { 1.0 } else { 0.0 };
+    f[19] = if matches!(page_type, page_type::PageType::Service) { 1.0 } else { 0.0 };
+
+    let expected_median = match page_type {
+        page_type::PageType::Article => 10228.0,
+        page_type::PageType::Forum => 6698.0,
+        page_type::PageType::Product => 3052.0,
+        page_type::PageType::Category => 4423.0,
+        page_type::PageType::Listing => 6275.0,
+        page_type::PageType::Documentation => 8000.0,
+        page_type::PageType::Service => 5845.0,
+    };
+    f[20] = content_len as f64 / expected_median;
+    f[21] = html_len as f64;
+    f[22] = content_len as f64 / html_len.max(1) as f64;
+
+    let og_desc = doc.select(r#"meta[property="og:description"]"#)
+        .attr("content")
+        .unwrap_or_default();
+    if og_desc.len() > 20 {
+        let og_lower = og_desc.to_ascii_lowercase();
+        let og_w: std::collections::HashSet<&str> = og_lower.split_whitespace().collect();
+        let content_w: std::collections::HashSet<&str> = words.iter().take(200).copied().collect();
+        let overlap = og_w.intersection(&content_w).count();
+        f[23] = overlap as f64 / og_w.len().max(1) as f64;
+    } else {
+        f[23] = -1.0;
+    }
+
+    f[24] = doc.select("script").length() as f64;
+    f[25] = if doc.select(r#"script[type="application/ld+json"]"#).length() > 0 { 1.0 } else { 0.0 };
+
+    if word_count > 50 {
+        let mut bigram_counts = std::collections::HashMap::new();
+        for i in 0..words.len() - 1 {
+            let bg = format!("{} {}", words[i], words[i + 1]);
+            *bigram_counts.entry(bg).or_insert(0u32) += 1;
+        }
+        let top = bigram_counts.values().max().copied().unwrap_or(0);
+        f[26] = top as f64 / (words.len() - 1).max(1) as f64;
+    }
+
+    web_page_classifier::predict_quality(&f)
+}
+
+/// Original heuristic extraction quality score (0.0 - 1.0).
+/// Used as one of 27 features for the ML quality predictor.
+fn compute_extraction_quality_heuristic(
     content_text: &str,
     content_html: Option<&str>,
     html_len: usize,
