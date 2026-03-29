@@ -219,26 +219,23 @@ Tested on [scrapinghub/article-extraction-benchmark](https://github.com/scraping
 
 Tested on the [Web Content Extraction Benchmark](https://github.com/Murrough-Foley/web-content-extraction-benchmark) — 1,497 pages across 7 page types:
 
-| System | F1 | Type |
-|--------|------|------|
-| **rs-trafilatura** | **0.859** | Rule+ML |
-| MinerU-HTML (0.6B) | 0.827 | Neural |
-| Trafilatura (Python) | 0.792 | Rule |
-| ReaderLM-v2 (1.5B) | 0.741 | Neural |
-
-On a separate 511-page held-out test set: F1=0.893 (rs-trafilatura) vs 0.833 (Trafilatura).
+| Dataset | F1 |
+|---------|------|
+| Development set (1,497 pages) | **0.859** |
+| Held-out test set (511 pages) | **0.893** |
+| + MinerU-HTML fallback (hybrid) | **0.907** |
 
 ### Per-Page-Type F1
 
-| Page Type | rs-trafilatura | Trafilatura |
-|-----------|---------------|-------------|
-| Article | 0.932 | 0.926 |
-| Documentation | 0.931 | 0.888 |
-| Service | 0.843 | 0.763 |
-| Forum | 0.792 | 0.585 |
-| Collection | 0.713 | 0.553 |
-| Listing | 0.704 | 0.589 |
-| Product | 0.670 | 0.567 |
+| Page Type | Count | F1 |
+|-----------|-------|------|
+| Article | 793 | 0.932 |
+| Documentation | 91 | 0.931 |
+| Service | 165 | 0.843 |
+| Forum | 113 | 0.792 |
+| Collection | 117 | 0.713 |
+| Listing | 99 | 0.704 |
+| Product | 119 | 0.670 |
 
 ## Examples
 
