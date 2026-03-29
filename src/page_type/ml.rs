@@ -4,7 +4,14 @@
 //! to the web-page-classifier crate for model evaluation.
 
 use dom_query::Selection;
+use regex::Regex;
 use std::collections::{HashMap, HashSet};
+use std::sync::LazyLock;
+
+#[allow(clippy::expect_used)]
+static PRODUCT_COUNT_RE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"\d+\s*(results|items|products|pieces)").expect("valid regex")
+});
 
 use crate::dom::Document;
 use crate::result::Metadata;
@@ -377,6 +384,41 @@ pub fn extract_ml_features(doc: &Document, metadata: &Metadata, url: &str) -> [f
     let max_link_repeat = link_text_counts.values().max().copied().unwrap_or(0);
     f[79] = max_link_repeat as f64;
     f[80] = link_text_counts.values().filter(|&&c| c >= 3).count() as f64;
+
+    // === f[81..89]: Collection-specific features ===
+
+    // f[81]: og:type = product.group
+    f[81] = if doc.select(r#"meta[property="og:type"][content*="product.group"]"#).length() > 0 { 1.0 } else { 0.0 };
+
+    // f[82]: Has filter sidebar
+    f[82] = if doc.select("[class*='filter'][class*='sidebar'], [class*='filter'][class*='panel'], [class*='filter'][class*='bar'], [class*='filter'][class*='menu']").length() > 0 { 1.0 } else { 0.0 };
+
+    // f[83]: Has sort control
+    f[83] = if doc.select("[class*='sort'][class*='select'], [class*='sort'][class*='dropdown'], [class*='sort'][class*='control'], [class*='sort'][class*='option']").length() > 0 { 1.0 } else { 0.0 };
+
+    // f[84]: Has product count text ("showing X results", "X items")
+    f[84] = if PRODUCT_COUNT_RE.is_match(&body_lower) { 1.0 } else { 0.0 };
+
+    // f[85]: Product cards with price (cards that have both product-class and price-class)
+    let mut cards_with_price = 0u32;
+    let card_selector = "[class*='product-card'], [class*='product-tile'], [class*='product-item'], [class*='product-grid-item'], [class*='grid-item'], [class*='collection-item']";
+    let total_cards = doc.select(card_selector).length();
+    for node in doc.select(card_selector).nodes() {
+        let sel = Selection::from(*node);
+        if sel.select("[class*='price'], [class*='cost'], [class*='amount']").length() > 0 {
+            cards_with_price += 1;
+        }
+    }
+    f[85] = cards_with_price as f64;
+
+    // f[86]: Has CollectionPage schema
+    f[86] = if body_lower.contains("collectionpage") || body_lower.contains("productcollection") { 1.0 } else { 0.0 };
+
+    // f[87]: Total card count
+    f[87] = total_cards as f64;
+
+    // f[88]: Price-to-card ratio
+    f[88] = if total_cards > 0 { cards_with_price as f64 / total_cards as f64 } else { 0.0 };
 
     f
 }
