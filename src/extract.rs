@@ -522,6 +522,10 @@ fn extract_collection_description(doc: &Document) -> Option<String> {
 /// 3. Picks the group with the most total text content
 /// 4. Concatenates item texts
 fn try_collect_repeated_items(doc: &Document) -> Option<String> {
+    try_collect_repeated_items_with_threshold(doc, 15)
+}
+
+fn try_collect_repeated_items_with_threshold(doc: &Document, min_words: usize) -> Option<String> {
     // Strategy: find containers with 3+ direct children of the same tag
     // that each have meaningful text content. Common patterns:
     //   <main> > article*N   (news sites: Ars, NPR, StackOverflow Blog)
@@ -543,7 +547,7 @@ fn try_collect_repeated_items(doc: &Document) -> Option<String> {
             let container = Selection::from(*container_node);
 
             // Try article children first (strongest signal)
-            if let Some(group) = collect_sibling_group(&container, "article", 3, 15) {
+            if let Some(group) = collect_sibling_group(&container, "article", 3, min_words) {
                 let total: usize = group.iter().map(|t| t.len()).sum();
                 if total > best_total_len {
                     best_total_len = total;
@@ -554,7 +558,7 @@ fn try_collect_repeated_items(doc: &Document) -> Option<String> {
             // Try li children within ul/ol
             for list_node in container.select("ul, ol").nodes() {
                 let list = Selection::from(*list_node);
-                if let Some(group) = collect_sibling_group(&list, "li", 3, 15) {
+                if let Some(group) = collect_sibling_group(&list, "li", 3, min_words) {
                     let total: usize = group.iter().map(|t| t.len()).sum();
                     if total > best_total_len {
                         best_total_len = total;
@@ -579,7 +583,7 @@ fn try_collect_repeated_items(doc: &Document) -> Option<String> {
             }
             let text = sel.text();
             let trimmed = text.trim();
-            if trimmed.split_whitespace().count() >= 15 {
+            if trimmed.split_whitespace().count() >= min_words {
                 texts.push(trimmed.to_string());
             }
         }

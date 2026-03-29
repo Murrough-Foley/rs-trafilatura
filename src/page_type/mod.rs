@@ -154,6 +154,8 @@ pub(crate) struct ExtractionProfile {
 
 impl ExtractionProfile {
     /// Article extraction: standard behavior, strict boilerplate filtering.
+    /// aggregate_sections enabled as fallback for long listicle articles
+    /// where content is distributed across multiple sections.
     const ARTICLE: Self = Self {
         comments_are_content: false,
         lenient_boilerplate: false,
@@ -161,7 +163,7 @@ impl ExtractionProfile {
         preserve_tags: &[],
         min_paragraph_density: 0.4,
         boilerplate_selectors: &[],
-        aggregate_sections: false,
+        aggregate_sections: true,
         collect_repeated_items: false,
     };
 
@@ -246,6 +248,10 @@ impl ExtractionProfile {
             // Shopify themes
             ".product__description",
             ".product-single__description",
+            // Prose/content blocks (iFixit, documentation-style product pages)
+            ".prose",
+            ".rich-text",
+            ".rte",
             // Generic
             "[role='main']",
             "main",
@@ -253,11 +259,11 @@ impl ExtractionProfile {
         preserve_tags: &[],
         min_paragraph_density: 0.2,
         boilerplate_selectors: PRODUCT_BOILERPLATE_SELECTORS,
-        aggregate_sections: false,
+        aggregate_sections: true,
         collect_repeated_items: false,
     };
 
-    /// Category extraction: standard filtering, aggressive boilerplate removal.
+    /// Category/collection extraction: standard filtering.
     const CATEGORY: Self = Self {
         comments_are_content: false,
         lenient_boilerplate: false,
