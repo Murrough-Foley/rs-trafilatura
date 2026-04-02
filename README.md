@@ -217,13 +217,13 @@ Tested on [scrapinghub/article-extraction-benchmark](https://github.com/scraping
 
 ### Multi-Type Benchmark (WCEB)
 
-Tested on the [Web Content Extraction Benchmark](https://github.com/Murrough-Foley/web-content-extraction-benchmark) — 1,497 pages across 7 page types:
+Tested on the [Web Content Extraction Benchmark](https://webcontentextraction.org) ([GitHub](https://github.com/Murrough-Foley/web-content-extraction-benchmark)) — 1,497 pages across 7 page types:
 
 | Dataset | F1 |
 |---------|------|
 | Development set (1,497 pages) | **0.859** |
 | Held-out test set (511 pages) | **0.893** |
-| + MinerU-HTML fallback (hybrid) | **0.907** |
+| + MinerU-HTML fallback (hybrid) | **0.910** |
 
 ### Per-Page-Type F1
 
@@ -265,7 +265,7 @@ If you use rs-trafilatura in academic work, please cite:
   title = {rs-trafilatura: Fast Web Content Extraction in Rust},
   author = {Foley, Murrough},
   url = {https://github.com/Murrough-Foley/rs-trafilatura},
-  year = {2025}
+  year = {2026}
 }
 ```
 
