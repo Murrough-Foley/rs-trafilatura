@@ -115,12 +115,34 @@ mod tests {
 
     #[test]
     fn test_extract_page_url_passthrough() {
-        let html = "<html><body><article><p>Content here.</p></article></body></html>";
+        let html = "<html><body><article><p>Content here with enough words to be meaningful for the extractor to process properly.</p></article></body></html>";
         let page = make_test_page("https://docs.example.com/api/reference", html);
 
         let result = extract_page(&page).expect("extraction should succeed");
-        // URL contains "docs." so classifier should detect documentation type
-        assert!(result.metadata.page_type.is_some() || result.content_text.is_empty().not());
+        // URL contains "docs." subdomain — classifier should detect documentation type
+        assert_eq!(
+            result.metadata.page_type.as_deref(),
+            Some("documentation"),
+            "docs.example.com URL should be classified as documentation"
+        );
+    }
+
+    #[test]
+    fn test_extract_page_preserves_user_url() {
+        let html = "<html><body><article><p>Some content.</p></article></body></html>";
+        let page = make_test_page("https://example.com/page", html);
+        let options = Options {
+            url: Some("https://forum.example.com/thread/123".to_string()),
+            ..Options::default()
+        };
+        let result = extract_page_with_options(&page, &options).expect("extraction should succeed");
+        // The user-provided URL (forum) should take precedence over the page URL
+        // so the classifier should use the forum URL for classification
+        assert_eq!(
+            result.metadata.page_type.as_deref(),
+            Some("forum"),
+            "user-provided forum URL should override page URL for classification"
+        );
     }
 
     #[test]
@@ -129,8 +151,4 @@ mod tests {
         // Should not panic on empty input
         let _ = extract_page(&page);
     }
-
-    // Helper for the url_passthrough test
-    trait Not { fn not(self) -> bool; }
-    impl Not for bool { fn not(self) -> bool { !self } }
 }
