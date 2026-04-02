@@ -167,7 +167,10 @@ Use rs-trafilatura as the content extractor for the [spider](https://crates.io/c
 [dependencies]
 rs-trafilatura = { version = "0.2", features = ["spider"] }
 spider = "2"
+tokio = { version = "1", features = ["full"] }
 ```
+
+Crawl a site and extract content from every page:
 
 ```rust
 use spider::website::Website;
@@ -190,18 +193,16 @@ async fn main() {
 }
 ```
 
-For streaming extraction as pages arrive:
+For streaming extraction as pages arrive, use spider's subscribe channel:
 
 ```rust
-use spider::website::Website;
-use rs_trafilatura::spider_integration::extract_page;
-
+let mut website = Website::new("https://example.com");
 let mut rx = website.subscribe(0).unwrap();
 
 tokio::spawn(async move {
     while let Ok(page) = rx.recv().await {
         if let Ok(result) = extract_page(&page) {
-            // Process each page as it's crawled
+            println!("{}: {}", page.get_url(), result.content_text.len());
         }
     }
 });
@@ -209,6 +210,8 @@ tokio::spawn(async move {
 website.crawl().await;
 website.unsubscribe();
 ```
+
+Use `extract_page_with_options` for custom extraction settings (markdown output, precision/recall tradeoff, etc.).
 
 ## CLI
 
