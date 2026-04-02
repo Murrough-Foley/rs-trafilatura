@@ -58,6 +58,15 @@ pub mod markdown;
 /// Character encoding detection and transcoding.
 pub mod encoding;
 
+/// Integration with the [spider](https://crates.io/crates/spider) web crawler.
+///
+/// Enable with the `spider` feature flag in your `Cargo.toml`:
+/// ```toml
+/// rs-trafilatura = { version = "0.2", features = ["spider"] }
+/// ```
+#[cfg(feature = "spider")]
+pub mod spider_integration;
+
 // Internal modules — not part of the public API
 pub(crate) mod dom;
 pub(crate) mod etree;

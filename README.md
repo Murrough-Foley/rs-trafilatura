@@ -159,6 +159,57 @@ let html_bytes: &[u8] = /* ... */;
 let result = extract_bytes(html_bytes)?;
 ```
 
+### Integration with spider-rs
+
+Use rs-trafilatura as the content extractor for the [spider](https://crates.io/crates/spider) web crawler:
+
+```toml
+[dependencies]
+rs-trafilatura = { version = "0.2", features = ["spider"] }
+spider = "2"
+```
+
+```rust
+use spider::website::Website;
+use rs_trafilatura::spider_integration::extract_page;
+
+#[tokio::main]
+async fn main() {
+    let mut website = Website::new("https://example.com");
+    website.crawl().await;
+
+    for page in website.get_pages().unwrap_or_default().iter() {
+        if let Ok(result) = extract_page(page) {
+            println!("[{}] {} (confidence: {:.2})",
+                result.metadata.page_type.unwrap_or_default(),
+                result.metadata.title.unwrap_or_default(),
+                result.extraction_quality,
+            );
+        }
+    }
+}
+```
+
+For streaming extraction as pages arrive:
+
+```rust
+use spider::website::Website;
+use rs_trafilatura::spider_integration::extract_page;
+
+let mut rx = website.subscribe(0).unwrap();
+
+tokio::spawn(async move {
+    while let Ok(page) = rx.recv().await {
+        if let Ok(result) = extract_page(&page) {
+            // Process each page as it's crawled
+        }
+    }
+});
+
+website.crawl().await;
+website.unsubscribe();
+```
+
 ## CLI
 
 The included `extract_stdin` binary reads HTML from stdin and outputs JSON:
