@@ -269,7 +269,7 @@ Tested on [scrapinghub/article-extraction-benchmark](https://github.com/scraping
 | go-trafilatura (Go) | 0.960 | 0.940 | 0.980 |
 | trafilatura (Python) | 0.958 | 0.938 | 0.978 |
 
-### Multi-Type Benchmark (WCEB)
+### Multi-Type Benchmark (WCXB)
 
 Tested on the [Web Content Extraction Benchmark](https://webcontentextraction.org) ([GitHub](https://github.com/Murrough-Foley/web-content-extraction-benchmark)) — 1,497 pages across 7 page types:
 

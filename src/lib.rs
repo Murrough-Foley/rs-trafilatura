@@ -36,7 +36,7 @@
 //!
 //! ## Accuracy
 //!
-//! Achieves F1 0.859 on a 1,497-page multi-type benchmark (WCEB), outperforming
+//! Achieves F1 0.859 on a 1,497-page multi-type benchmark (WCXB), outperforming
 //! Trafilatura (0.792) and neural approaches MinerU-HTML (0.827) and ReaderLM-v2 (0.741).
 //! F1 0.893 on a 511-page held-out test set confirms generalization.
 
