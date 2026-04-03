@@ -181,7 +181,7 @@ async fn main() {
     let mut website = Website::new("https://example.com");
     website.crawl().await;
 
-    for page in website.get_pages().unwrap_or_default().iter() {
+    for page in website.get_pages().into_iter().flatten() {
         if let Ok(result) = extract_page(page) {
             println!("[{}] {} (confidence: {:.2})",
                 result.metadata.page_type.unwrap_or_default(),
